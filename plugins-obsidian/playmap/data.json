@@ -1,0 +1,9 @@
+{
+  "includedFolders": [
+    "docs-sample/04-Roadmap-Sample"
+  ],
+  "excludedFolders": [],
+  "timelineScale": "month",
+  "viewMode": "timeline",
+  "hideUndated": false
+}

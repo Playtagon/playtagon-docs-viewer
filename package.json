@@ -1,0 +1,11 @@
+{
+  "name": "docs-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A lightweight static-first viewer for Obsidian-style markdown documentation.",
+  "type": "module",
+  "scripts": {
+    "build:index": "node scripts/build_viewer_index.mjs",
+    "dev": "node scripts/dev_server.mjs"
+  }
+}

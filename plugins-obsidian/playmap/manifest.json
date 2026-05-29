@@ -1,0 +1,10 @@
+{
+  "id": "playmap",
+  "name": "Play Map",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Builds roadmap timeline and board views from feature notes grouped by folder hierarchy.",
+  "author": "",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docs Viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="sidebar" aria-label="Docs navigation">
+        <div class="sidebar-header">
+          <a class="brand" href="#/">Docs Viewer</a>
+          <div class="sidebar-actions">
+            <button id="roadmapLink" class="icon-text-button" type="button">Roadmap</button>
+            <button id="settingsLink" class="icon-text-button is-secondary" type="button">Settings</button>
+          </div>
+        </div>
+        <div id="authStatus" class="auth-status" hidden></div>
+        <label class="search">
+          <span>Search</span>
+          <input id="searchInput" type="search" autocomplete="off" />
+        </label>
+        <nav id="tree" class="tree"></nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div id="breadcrumbs" class="breadcrumbs"></div>
+          <div class="topbar-meta">
+            <div id="pageMeta" class="page-meta"></div>
+            <button id="refreshDocs" class="refresh-docs" type="button" title="Rebuild and refresh docs">Refresh</button>
+          </div>
+        </header>
+        <section id="content" class="content"></section>
+      </main>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2944 @@
+{
+  "generatedAt": "2026-05-29T21:59:58.524Z",
+  "source": {
+    "type": "local",
+    "path": "docs-sample"
+  },
+  "sourceRoot": "docs-sample",
+  "roadmap": {
+    "includedFolders": [
+      "04-Roadmap-Sample"
+    ],
+    "excludedFolders": [],
+    "hideUndated": false
+  },
+  "pages": [
+    {
+      "id": "00-Overview/Overview.md",
+      "path": "00-Overview/Overview.md",
+      "slug": "overview/overview",
+      "title": "Docs Viewer Overview",
+      "description": "A compact sample vault for testing docs structure, wikilinks, roadmap fields, and deployment flows.",
+      "frontmatter": {
+        "title": "Docs Viewer Overview",
+        "description": "A compact sample vault for testing docs structure, wikilinks, roadmap fields, and deployment flows.",
+        "aliases": [
+          "Overview"
+        ],
+        "tags": [
+          "overview",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "00-Overview",
+        "featured": true,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Docs Viewer Overview\n\n`docs-sample` is a small documentation vault that shows how to organize a project with folders, index pages, feature pages, frontmatter, and Obsidian-style wikilinks.\n\nUse it as a safe default source for trying the viewer before pointing the project at a real docs vault.\n\n## Quick map\n\n| Section | Purpose |\n| --- | --- |\n| [[Project\\|Project]] | How the viewer works: source, index, runtime, and UI |\n| [[Deployment\\|Deployment]] | How to deploy the viewer |\n| [[Operations\\|Operations]] | How to update docs and handle common issues |\n| [[Roadmap-Sample\\|Roadmap Sample]] | Dated sample items for the `#/roadmap` route |\n| [[Project-Obsidian-Play-Map\\|Obsidian Play Map]] | Local Obsidian companion plugin for editing roadmap data |\n\n## Core idea\n\nThe viewer does not replace Obsidian. Your vault remains the authoring source of truth, while the web viewer becomes a read-only runtime:\n\n1. Markdown files live in a vault.\n2. `npm run build:index` generates `viewer/data/vault-index.json`.\n3. `viewer/` is served as static files or through the optional Node server.\n\n## Related pages\n\n- [[Project-Architecture|Architecture]] - project layers and file responsibilities.\n- [[Deployment-Static|Static deployment]] - the simplest public deployment path.\n- [[Deployment-Node|Node deployment]] - deployment with auth and server endpoints.\n- [[Operations-Update-Docs|Update docs]] - how to refresh the index after markdown changes.\n- [[Roadmap-Sample|Roadmap Sample]] - sample roadmap items spanning May-December 2026.\n- [[Project-Obsidian-Play-Map|Obsidian Play Map]] - how local Obsidian editing connects to the web viewer.\n\n## When changing this page, check\n\n- [[Project|Project]], if the architecture summary changes.\n- [[Deployment|Deployment]], if the run/deploy model changes.\n- [[Operations|Operations]], if the docs update process changes.\n- [[Roadmap-Sample|Roadmap Sample]], if the demo roadmap changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Docs Viewer Overview",
+          "slug": "docs-viewer-overview"
+        },
+        {
+          "level": 2,
+          "text": "Quick map",
+          "slug": "quick-map"
+        },
+        {
+          "level": 2,
+          "text": "Core idea",
+          "slug": "core-idea"
+        },
+        {
+          "level": 2,
+          "text": "Related pages",
+          "slug": "related-pages"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project\\",
+          "heading": "",
+          "label": "Project"
+        },
+        {
+          "target": "Deployment\\",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Operations\\",
+          "heading": "",
+          "label": "Operations"
+        },
+        {
+          "target": "Roadmap-Sample\\",
+          "heading": "",
+          "label": "Roadmap Sample"
+        },
+        {
+          "target": "Project-Obsidian-Play-Map\\",
+          "heading": "",
+          "label": "Obsidian Play Map"
+        },
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        },
+        {
+          "target": "Deployment-Static",
+          "heading": "",
+          "label": "Static deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        },
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        },
+        {
+          "target": "Project-Obsidian-Play-Map",
+          "heading": "",
+          "label": "Obsidian Play Map"
+        },
+        {
+          "target": "Project",
+          "heading": "",
+          "label": "Project"
+        },
+        {
+          "target": "Deployment",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Operations",
+          "heading": "",
+          "label": "Operations"
+        },
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        }
+      ],
+      "isIndex": true,
+      "folder": "00-Overview",
+      "basename": "Overview"
+    },
+    {
+      "id": "01-Project/Project-Architecture.md",
+      "path": "01-Project/Project-Architecture.md",
+      "slug": "project/project-architecture",
+      "title": "Architecture",
+      "description": "Docs Viewer architecture: source vault, index builder, static runtime, and optional server.",
+      "frontmatter": {
+        "title": "Architecture",
+        "description": "Docs Viewer architecture: source vault, index builder, static runtime, and optional server.",
+        "aliases": [
+          "Architecture"
+        ],
+        "tags": [
+          "project",
+          "architecture"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "01-Project",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Architecture\n\nThe architecture is intentionally small: markdown is stored separately from the web runtime, and the viewer reads a generated JSON index.\n\n## Layers\n\n| Layer | Responsibility |\n| --- | --- |\n| Source | `.md` / `.mdx` files, assets, and folder structure |\n| Index builder | Frontmatter, headings, wikilinks, backlinks, and aliases |\n| Viewer runtime | Sidebar, routes, markdown rendering, roadmap route |\n| Server shell | Static serving, auth, rebuild endpoint, config endpoint |\n\n## Why this shape\n\n- Markdown stays portable and editable in Obsidian.\n- The viewer can be deployed as ordinary static files.\n- The Node server is only needed for auth, `/__config`, or `/__rebuild`.\n- The index can be rebuilt manually, by cron, by webhook, or in CI.\n\n## Framework defaults\n\nThe project starts with neutral placeholder defaults:\n\n| Setting | Default value |\n| --- | --- |\n| Local docs source | `docs-sample` |\n| GitHub owner | `your-org` |\n| GitHub repo | `your-docs-repo` |\n| GitHub branch | `main` |\n| GitHub docs path | `docs` |\n| Auth | disabled with `AUTH_ENABLED=false` |\n\nThese values make the viewer usable as a framework/starter without company-specific defaults. For a real project, replace `docs-viewer.config.json` and `.env`.\n\n## Responsibility boundary\n\n`viewer/app.js` should not read source markdown files directly. It works with the build output: `viewer/data/vault-index.json`.\n\n`scripts/build_viewer_index.mjs` should not decide how the UI looks. Its job is to prepare data.\n\n## When changing this page, check\n\n- [[Project|Project]], if the project map changes.\n- [[Project-Index-Build|Index build]], if indexed data changes.\n- [[Deployment-Static|Static deployment]], if the viewer stops being purely static.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Architecture",
+          "slug": "architecture"
+        },
+        {
+          "level": 2,
+          "text": "Layers",
+          "slug": "layers"
+        },
+        {
+          "level": 2,
+          "text": "Why this shape",
+          "slug": "why-this-shape"
+        },
+        {
+          "level": 2,
+          "text": "Framework defaults",
+          "slug": "framework-defaults"
+        },
+        {
+          "level": 2,
+          "text": "Responsibility boundary",
+          "slug": "responsibility-boundary"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project",
+          "heading": "",
+          "label": "Project"
+        },
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        },
+        {
+          "target": "Deployment-Static",
+          "heading": "",
+          "label": "Static deployment"
+        }
+      ],
+      "isIndex": false,
+      "folder": "01-Project",
+      "basename": "Project-Architecture"
+    },
+    {
+      "id": "01-Project/Project-Index-Build.md",
+      "path": "01-Project/Project-Index-Build.md",
+      "slug": "project/project-index-build",
+      "title": "Index Build",
+      "description": "How the build script turns a markdown vault into vault-index.json.",
+      "frontmatter": {
+        "title": "Index Build",
+        "description": "How the build script turns a markdown vault into vault-index.json.",
+        "aliases": [
+          "Index build"
+        ],
+        "tags": [
+          "project",
+          "build"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "01-Project",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Index Build\n\nBuild the index with:\n\n```bash\nnpm run build:index\n```\n\nBy default, the script reads the source from `docs-viewer.config.json`:\n\n```json\n{\n  \"source\": {\n    \"type\": \"local\",\n    \"local\": {\n      \"path\": \"docs-sample\"\n    }\n  }\n}\n```\n\nYou can also pass the source and output paths explicitly:\n\n```bash\nnode scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json\n```\n\n## What goes into the index\n\n- markdown pages;\n- page frontmatter;\n- body without frontmatter;\n- headings;\n- wikilinks such as `[[Page]]` and `[[Page|Alias]]`;\n- backlinks;\n- aliases;\n- folder tree;\n- copied assets.\n\n## Useful markdown conventions\n\n- Give every page a clear `title`.\n- Use `aliases` for readable navigation.\n- Escape wikilink aliases inside tables: `[[Page\\|Alias]]`.\n- End pages with an impact block such as `## When changing this page, check`.\n\n## When changing this page, check\n\n- [[Project-Runtime|Runtime]], if the UI data shape changes.\n- [[Operations-Update-Docs|Update docs]], if the build command changes.\n- [[Operations-Troubleshooting|Troubleshooting]], if new common errors appear.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Index Build",
+          "slug": "index-build"
+        },
+        {
+          "level": 2,
+          "text": "What goes into the index",
+          "slug": "what-goes-into-the-index"
+        },
+        {
+          "level": 2,
+          "text": "Useful markdown conventions",
+          "slug": "useful-markdown-conventions"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Page",
+          "heading": "",
+          "label": "Page"
+        },
+        {
+          "target": "Page",
+          "heading": "",
+          "label": "Alias"
+        },
+        {
+          "target": "Page\\",
+          "heading": "",
+          "label": "Alias"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": false,
+      "folder": "01-Project",
+      "basename": "Project-Index-Build"
+    },
+    {
+      "id": "01-Project/Project-Obsidian-Play-Map.md",
+      "path": "01-Project/Project-Obsidian-Play-Map.md",
+      "slug": "project/project-obsidian-play-map",
+      "title": "Obsidian Play Map",
+      "description": "How the Obsidian Play Map companion plugin fits into the Docs Viewer workflow.",
+      "frontmatter": {
+        "title": "Obsidian Play Map",
+        "description": "How the Obsidian Play Map companion plugin fits into the Docs Viewer workflow.",
+        "aliases": [
+          "Obsidian Play Map",
+          "Play Map"
+        ],
+        "tags": [
+          "project",
+          "obsidian",
+          "roadmap"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "01-Project",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "planned"
+      },
+      "body": "# Obsidian Play Map\n\nPlay Map is the Obsidian companion plugin for the roadmap workflow.\n\nDocs Viewer publishes markdown as a read-only web experience. Play Map runs locally inside Obsidian, where authors already edit the same markdown files.\n\n## Why it exists\n\nThe roadmap is stored in page frontmatter:\n\n```yaml\nstatus: planned\nroadmap_start: 2026-07-15\nroadmap_end: 2026-08-28\n```\n\nThat means the data remains portable markdown, but editing dates, statuses, and scopes by hand can be tedious. Play Map gives the vault a local timeline and board view without introducing a separate roadmap database.\n\n## Repository layout\n\n| Path | Purpose |\n| --- | --- |\n| `plugins-obsidian/` | Catalog for Obsidian companion plugins |\n| `plugins-obsidian/playmap/` | Obsidian Play Map plugin folder |\n| `plugins/roadmap/` | Docs Viewer roadmap plugin source |\n| `viewer/plugins/roadmap/` | Browser-served copy used by the static viewer |\n| `docs-sample/04-Roadmap-Sample/` | Sample notes that both implementations understand |\n\nUsers should copy the specific plugin folder:\n\n```text\nplugins-obsidian/playmap/ -> .obsidian/plugins/playmap/\n```\n\n## Workflow\n\n```text\nObsidian\n  -> edit notes and roadmap fields with Play Map\n  -> run npm run build:index\n  -> publish viewer/\n  -> readers open #/roadmap in Docs Viewer\n```\n\n## When to split repositories\n\nKeeping Play Map in this repository is useful while the markdown/frontmatter contract is still evolving.\n\nA separate repository makes sense once Play Map needs independent versioning, release notes, issue tracking, or publication as an Obsidian community plugin.\n\n## When changing this page, check\n\n- [[Project-Runtime|Runtime]], if the viewer plugin boundary changes.\n- [[Roadmap-Sample|Roadmap Sample]], if sample roadmap fields change.\n- `plugins-obsidian/playmap/README.md`, if the Obsidian plugin workflow changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Obsidian Play Map",
+          "slug": "obsidian-play-map"
+        },
+        {
+          "level": 2,
+          "text": "Why it exists",
+          "slug": "why-it-exists"
+        },
+        {
+          "level": 2,
+          "text": "Repository layout",
+          "slug": "repository-layout"
+        },
+        {
+          "level": 2,
+          "text": "Workflow",
+          "slug": "workflow"
+        },
+        {
+          "level": 2,
+          "text": "When to split repositories",
+          "slug": "when-to-split-repositories"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        }
+      ],
+      "isIndex": false,
+      "folder": "01-Project",
+      "basename": "Project-Obsidian-Play-Map"
+    },
+    {
+      "id": "01-Project/Project-Runtime.md",
+      "path": "01-Project/Project-Runtime.md",
+      "slug": "project/project-runtime",
+      "title": "Runtime",
+      "description": "How the browser runtime and optional Node server work.",
+      "frontmatter": {
+        "title": "Runtime",
+        "description": "How the browser runtime and optional Node server work.",
+        "aliases": [
+          "Runtime",
+          "Web runtime"
+        ],
+        "tags": [
+          "project",
+          "runtime"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "01-Project",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Runtime\n\nThe runtime has two parts: the browser UI in `viewer/` and the optional Node server in `scripts/dev_server.mjs`.\n\n## Browser UI\n\n`viewer/app.js` loads `viewer/data/vault-index.json` and renders:\n\n- sidebar from the folder tree;\n- hash routes such as `#/overview`;\n- markdown pages;\n- wikilinks;\n- backlinks;\n- roadmap route `#/roadmap`.\n\n## Node server\n\nThe command:\n\n```bash\nnpm run dev\n```\n\nstarts the server on `PORT` or `8787` by default.\n\nThe server can:\n\n- serve files from `viewer/`;\n- protect the viewer with OAuth when `AUTH_ENABLED=true`;\n- expose `/__auth/login`, `/__auth/me`, `/__auth/logout`, and OAuth callbacks;\n- expose `/__config` to admins only;\n- accept `/__config` updates from admins only;\n- run `/__rebuild` for admins only.\n\n## Auth and admin access\n\nThe auth wall runs on the server. Access is granted only after an OAuth/OIDC callback, verified email check, and signed HttpOnly session cookie creation.\n\nPermission split:\n\n| Permission | Env |\n|------|-----|\n| Read docs | `AUTH_ALLOWED_EMAILS`, `AUTH_ALLOWED_DOMAINS` |\n| Open Settings and trigger rebuilds | `AUTH_ADMIN_EMAILS` |\n\nWhen `AUTH_ENABLED=true`, opening a page without a session redirects to `/__auth/login`. Data/API requests without a session receive JSON `401`, so the browser runtime does not try to parse an HTML login page as `vault-index.json`.\n\nThe Refresh button is visible to all users. For admins, it calls `/__rebuild` and reloads the index. For non-admin readers, it only reloads the latest published `viewer/data/vault-index.json`.\n\n## When Node is not needed\n\nIf the docs are public and do not need server endpoints, deploy only the `viewer/` folder. See [[Deployment-Static|Static deployment]].\n\n## When changing this page, check\n\n- [[Deployment-Node|Node deployment]], if server startup changes.\n- [[Deployment-Auth|Auth deployment]], if auth changes.\n- [[Project-Architecture|Architecture]], if browser/server boundaries change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Runtime",
+          "slug": "runtime"
+        },
+        {
+          "level": 2,
+          "text": "Browser UI",
+          "slug": "browser-ui"
+        },
+        {
+          "level": 2,
+          "text": "Node server",
+          "slug": "node-server"
+        },
+        {
+          "level": 2,
+          "text": "Auth and admin access",
+          "slug": "auth-and-admin-access"
+        },
+        {
+          "level": 2,
+          "text": "When Node is not needed",
+          "slug": "when-node-is-not-needed"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Static",
+          "heading": "",
+          "label": "Static deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Auth",
+          "heading": "",
+          "label": "Auth deployment"
+        },
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        }
+      ],
+      "isIndex": false,
+      "folder": "01-Project",
+      "basename": "Project-Runtime"
+    },
+    {
+      "id": "01-Project/Project.md",
+      "path": "01-Project/Project.md",
+      "slug": "project/project",
+      "title": "Project",
+      "description": "How the docs viewer works.",
+      "frontmatter": {
+        "title": "Project",
+        "description": "How the docs viewer works.",
+        "aliases": [
+          "Project"
+        ],
+        "tags": [
+          "project",
+          "architecture"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "01-Project",
+        "featured": true,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Project\n\nDocs Viewer is a lightweight web client for Obsidian-style documentation. It reads a markdown vault, builds a JSON index, and renders docs in the browser without a heavy frontend framework.\n\n## Project parts\n\n| Part | Path | Role |\n| --- | --- | --- |\n| Source vault | `docs-sample/` or your own vault | Markdown files, frontmatter, wikilinks, and assets |\n| Build script | `scripts/build_viewer_index.mjs` | Builds pages, links, aliases, backlinks, and folder tree |\n| Runtime server | `scripts/dev_server.mjs` | Serves the viewer, auth, and server endpoints |\n| Static viewer | `viewer/` | HTML, CSS, JS, and `data/vault-index.json` |\n| Viewer plugins | `plugins/` | Source files for viewer extensions such as Roadmap |\n| Obsidian plugins | `plugins-obsidian/` | Catalog for local Obsidian companion plugins |\n| Play Map | `plugins-obsidian/playmap/` | Obsidian roadmap plugin folder users can copy into a vault |\n| Config | `docs-viewer.config.json` | Selects the source and ignored folders |\n\n## Main flow\n\n```text\nmarkdown vault\n  -> scripts/build_viewer_index.mjs\n  -> viewer/data/vault-index.json\n  -> viewer/app.js\n  -> browser UI\n```\n\n## Sections\n\n- [[Project-Architecture|Architecture]] - layers and responsibilities.\n- [[Project-Index-Build|Index build]] - how markdown becomes JSON.\n- [[Project-Runtime|Runtime]] - what the browser UI and Node server do.\n- [[Project-Obsidian-Play-Map|Obsidian Play Map]] - how the local Obsidian plugin fits into the workflow.\n\n## When changing this page, check\n\n- [[Project-Architecture|Architecture]], if layer boundaries change.\n- [[Project-Index-Build|Index build]], if the `vault-index.json` format changes.\n- [[Project-Runtime|Runtime]], if server or browser behavior changes.\n- [[Project-Obsidian-Play-Map|Obsidian Play Map]], if plugin organization changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Project",
+          "slug": "project"
+        },
+        {
+          "level": 2,
+          "text": "Project parts",
+          "slug": "project-parts"
+        },
+        {
+          "level": 2,
+          "text": "Main flow",
+          "slug": "main-flow"
+        },
+        {
+          "level": 2,
+          "text": "Sections",
+          "slug": "sections"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        },
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Project-Obsidian-Play-Map",
+          "heading": "",
+          "label": "Obsidian Play Map"
+        },
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        },
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Project-Obsidian-Play-Map",
+          "heading": "",
+          "label": "Obsidian Play Map"
+        }
+      ],
+      "isIndex": true,
+      "folder": "01-Project",
+      "basename": "Project"
+    },
+    {
+      "id": "02-Deployment/Deployment-Auth.md",
+      "path": "02-Deployment/Deployment-Auth.md",
+      "slug": "deployment/deployment-auth",
+      "title": "Auth Deployment",
+      "description": "Configure AUTH_ENABLED, OAuth providers, and access rules for private docs.",
+      "frontmatter": {
+        "title": "Auth Deployment",
+        "description": "Configure AUTH_ENABLED, OAuth providers, and access rules for private docs.",
+        "aliases": [
+          "Auth deployment",
+          "OAuth deployment"
+        ],
+        "tags": [
+          "deployment",
+          "auth"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "02-Deployment",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Auth Deployment\n\nAuth works only in [[Deployment-Node|Node deployment]], because static hosting cannot run the server-side OAuth flow.\n\n## Minimal `.env`\n\n```env\nAUTH_ENABLED=true\nAUTH_BASE_URL=https://docs.example.com\nAUTH_SESSION_SECRET=replace-with-long-random-string-at-least-32-chars\nAUTH_ALLOWED_DOMAINS=example.com\nAUTH_ADMIN_EMAILS=alice@example.com\nAUTH_PROVIDERS=google\n\nGOOGLE_CLIENT_ID=\nGOOGLE_CLIENT_SECRET=\n```\n\n## Callback URLs\n\nFor Google:\n\n```text\nhttps://docs.example.com/__auth/callback/google\n```\n\nFor GitHub:\n\n```text\nhttps://docs.example.com/__auth/callback/github\n```\n\nFor generic OIDC:\n\n```text\nhttps://docs.example.com/__auth/callback/oidc\n```\n\n## Access policy\n\nA user is allowed when their verified email matches one of these rules:\n\n- `AUTH_ALLOWED_EMAILS`;\n- `AUTH_ALLOWED_DOMAINS`.\n\nAdmins are listed in `AUTH_ADMIN_EMAILS`.\n\n## Important details\n\n- `AUTH_SESSION_SECRET` must be long and random.\n- `AUTH_BASE_URL` must match the public HTTPS domain.\n- Nginx must forward `Host` and `X-Forwarded-Proto`.\n\n## When changing this page, check\n\n- [[Deployment-Node|Node deployment]], if proxy setup changes.\n- [[Project-Runtime|Runtime]], if auth endpoints change.\n- [[Operations-Troubleshooting|Troubleshooting]], if new auth errors appear.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Auth Deployment",
+          "slug": "auth-deployment"
+        },
+        {
+          "level": 2,
+          "text": "Minimal `.env`",
+          "slug": "minimal-env"
+        },
+        {
+          "level": 2,
+          "text": "Callback URLs",
+          "slug": "callback-urls"
+        },
+        {
+          "level": 2,
+          "text": "Access policy",
+          "slug": "access-policy"
+        },
+        {
+          "level": 2,
+          "text": "Important details",
+          "slug": "important-details"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": false,
+      "folder": "02-Deployment",
+      "basename": "Deployment-Auth"
+    },
+    {
+      "id": "02-Deployment/Deployment-Node.md",
+      "path": "02-Deployment/Deployment-Node.md",
+      "slug": "deployment/deployment-node",
+      "title": "Node Deployment",
+      "description": "Deploy Docs Viewer as a Node service behind nginx.",
+      "frontmatter": {
+        "title": "Node Deployment",
+        "description": "Deploy Docs Viewer as a Node service behind nginx.",
+        "aliases": [
+          "Node deployment"
+        ],
+        "tags": [
+          "deployment",
+          "node"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "02-Deployment",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Node Deployment\n\nNode deployment is needed when the viewer should manage auth, config, or rebuilds itself.\n\n## Upload the project\n\n```bash\nmkdir -p /opt/docs-viewer\nrsync -av --delete \\\n  package.json scripts viewer docs-sample docs-viewer.config.json .env.example \\\n  user@server:/opt/docs-viewer/\n```\n\n## Prepare the server\n\n```bash\ncd /opt/docs-viewer\ncp .env.example .env\nnpm run build:index\nPORT=8787 npm run dev\n```\n\n## Systemd service\n\n```ini\n[Unit]\nDescription=Docs Viewer\nAfter=network.target\n\n[Service]\nWorkingDirectory=/opt/docs-viewer\nEnvironment=PORT=8787\nExecStart=/usr/bin/npm run dev\nRestart=always\nRestartSec=3\n\n[Install]\nWantedBy=multi-user.target\n```\n\n## Nginx reverse proxy\n\n```nginx\nserver {\n  server_name docs.example.com;\n\n  location / {\n    proxy_pass http://127.0.0.1:8787;\n    proxy_set_header Host $host;\n    proxy_set_header X-Forwarded-Proto $scheme;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n  }\n}\n```\n\n## When to choose this option\n\n- You need built-in OAuth.\n- You need to rebuild the index through `/__rebuild`.\n- You need to edit config through `/__config`.\n- Docs should not be fully public.\n\n## When changing this page, check\n\n- [[Deployment-Auth|Auth deployment]], if environment variables change.\n- [[Project-Runtime|Runtime]], if server behavior changes.\n- [[Operations-Troubleshooting|Troubleshooting]], if diagnostic commands change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Node Deployment",
+          "slug": "node-deployment"
+        },
+        {
+          "level": 2,
+          "text": "Upload the project",
+          "slug": "upload-the-project"
+        },
+        {
+          "level": 2,
+          "text": "Prepare the server",
+          "slug": "prepare-the-server"
+        },
+        {
+          "level": 2,
+          "text": "Systemd service",
+          "slug": "systemd-service"
+        },
+        {
+          "level": 2,
+          "text": "Nginx reverse proxy",
+          "slug": "nginx-reverse-proxy"
+        },
+        {
+          "level": 2,
+          "text": "When to choose this option",
+          "slug": "when-to-choose-this-option"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Auth",
+          "heading": "",
+          "label": "Auth deployment"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": false,
+      "folder": "02-Deployment",
+      "basename": "Deployment-Node"
+    },
+    {
+      "id": "02-Deployment/Deployment-Static.md",
+      "path": "02-Deployment/Deployment-Static.md",
+      "slug": "deployment/deployment-static",
+      "title": "Static Deployment",
+      "description": "The simplest way to deploy Docs Viewer as a static site.",
+      "frontmatter": {
+        "title": "Static Deployment",
+        "description": "The simplest way to deploy Docs Viewer as a static site.",
+        "aliases": [
+          "Static deployment"
+        ],
+        "tags": [
+          "deployment",
+          "static"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "02-Deployment",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Static Deployment\n\nStatic deployment is the right fit when the viewer is public or protected by another infrastructure layer.\n\n## Build\n\n```bash\nnpm run build:index\n```\n\nThis updates:\n\n```text\nviewer/data/vault-index.json\n```\n\n## Upload to a server\n\n```bash\nrsync -av --delete viewer/ user@server:/var/www/docs-viewer/\n```\n\n## Nginx\n\n```nginx\nserver {\n  server_name docs.example.com;\n\n  root /var/www/docs-viewer;\n  index index.html;\n\n  location / {\n    try_files $uri $uri/ /index.html;\n  }\n}\n```\n\n## SSL\n\n```bash\nsudo certbot --nginx -d docs.example.com\n```\n\n## Limitations\n\n- No built-in OAuth.\n- No `/__rebuild`.\n- No `/__config`.\n- To update docs, rebuild the index and upload `viewer/` again.\n\n## When changing this page, check\n\n- [[Deployment|Deployment]], if the static vs Node tradeoff changes.\n- [[Operations-Update-Docs|Update docs]], if publishing changes.\n- [[Project-Runtime|Runtime]], if the browser UI starts requiring a backend.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Static Deployment",
+          "slug": "static-deployment"
+        },
+        {
+          "level": 2,
+          "text": "Build",
+          "slug": "build"
+        },
+        {
+          "level": 2,
+          "text": "Upload to a server",
+          "slug": "upload-to-a-server"
+        },
+        {
+          "level": 2,
+          "text": "Nginx",
+          "slug": "nginx"
+        },
+        {
+          "level": 2,
+          "text": "SSL",
+          "slug": "ssl"
+        },
+        {
+          "level": 2,
+          "text": "Limitations",
+          "slug": "limitations"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        }
+      ],
+      "isIndex": false,
+      "folder": "02-Deployment",
+      "basename": "Deployment-Static"
+    },
+    {
+      "id": "02-Deployment/Deployment.md",
+      "path": "02-Deployment/Deployment.md",
+      "slug": "deployment/deployment",
+      "title": "Deployment",
+      "description": "Deployment options for Docs Viewer.",
+      "frontmatter": {
+        "title": "Deployment",
+        "description": "Deployment options for Docs Viewer.",
+        "aliases": [
+          "Deployment"
+        ],
+        "tags": [
+          "deployment",
+          "server"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "02-Deployment",
+        "featured": true,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Deployment\n\nThere are two main deployment modes:\n\n1. Static deployment - serve the `viewer/` folder through nginx, Vercel, Netlify, or any static host.\n2. Node deployment - run `npm run dev` behind a reverse proxy.\n\n## How to choose\n\n| Option | Use when |\n| --- | --- |\n| [[Deployment-Static\\|Static deployment]] | Docs are public, or access control is handled outside this app |\n| [[Deployment-Node\\|Node deployment]] | You need OAuth, `/__config`, `/__rebuild`, or private docs |\n\n## Minimal production flow\n\n```bash\nnpm run build:index\nrsync -av --delete viewer/ user@server:/var/www/docs-viewer/\n```\n\nIf you need a protected viewer, deploy the full project and run the Node service. See [[Deployment-Node|Node deployment]].\n\n## Sections\n\n- [[Deployment-Static|Static deployment]] - static hosting for `viewer/`.\n- [[Deployment-Node|Node deployment]] - Node server behind nginx.\n- [[Deployment-Auth|Auth deployment]] - environment variables and OAuth callbacks.\n\n## When changing this page, check\n\n- [[Project-Runtime|Runtime]], if server behavior changes.\n- [[Operations-Update-Docs|Update docs]], if publishing changes.\n- [[Operations-Troubleshooting|Troubleshooting]], if common symptoms change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Deployment",
+          "slug": "deployment"
+        },
+        {
+          "level": 2,
+          "text": "How to choose",
+          "slug": "how-to-choose"
+        },
+        {
+          "level": 2,
+          "text": "Minimal production flow",
+          "slug": "minimal-production-flow"
+        },
+        {
+          "level": 2,
+          "text": "Sections",
+          "slug": "sections"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Static\\",
+          "heading": "",
+          "label": "Static deployment"
+        },
+        {
+          "target": "Deployment-Node\\",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Static",
+          "heading": "",
+          "label": "Static deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Auth",
+          "heading": "",
+          "label": "Auth deployment"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": true,
+      "folder": "02-Deployment",
+      "basename": "Deployment"
+    },
+    {
+      "id": "03-Operations/Operations-Troubleshooting.md",
+      "path": "03-Operations/Operations-Troubleshooting.md",
+      "slug": "operations/operations-troubleshooting",
+      "title": "Troubleshooting",
+      "description": "Common Docs Viewer issues and quick checks.",
+      "frontmatter": {
+        "title": "Troubleshooting",
+        "description": "Common Docs Viewer issues and quick checks.",
+        "aliases": [
+          "Troubleshooting"
+        ],
+        "tags": [
+          "operations",
+          "debug"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "03-Operations",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Troubleshooting\n\n## Viewer shows old pages\n\nMost likely, `viewer/data/vault-index.json` was not updated.\n\n```bash\nnpm run build:index\n```\n\nFor static deployment, upload `viewer/` again after rebuilding.\n\n## A page is not found through a wikilink\n\nCheck:\n\n- whether a markdown file with that basename exists;\n- whether the expected alias exists in frontmatter;\n- whether a table is broken by an unescaped `|`.\n\nInside tables, use:\n\n```md\n[[Project\\|Project]]\n```\n\n## Auth rejects a user\n\nCheck:\n\n- `AUTH_ENABLED=true`;\n- `AUTH_BASE_URL` matches the public domain;\n- the user email is verified by the OAuth provider;\n- the domain is listed in `AUTH_ALLOWED_DOMAINS` or the email is listed in `AUTH_ALLOWED_EMAILS`;\n- the callback URL is registered in the OAuth app.\n\n## Nginx returns 502\n\nCheck that the Node service is running:\n\n```bash\nsudo systemctl status docs-viewer\n```\n\nAnd that the nginx proxy points to the right port:\n\n```text\nproxy_pass http://127.0.0.1:8787;\n```\n\n## When changing this page, check\n\n- [[Deployment-Node|Node deployment]], if systemd or proxy setup changes.\n- [[Deployment-Auth|Auth deployment]], if auth behavior changes.\n- [[Operations-Update-Docs|Update docs]], if the rebuild flow changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Troubleshooting",
+          "slug": "troubleshooting"
+        },
+        {
+          "level": 2,
+          "text": "Viewer shows old pages",
+          "slug": "viewer-shows-old-pages"
+        },
+        {
+          "level": 2,
+          "text": "A page is not found through a wikilink",
+          "slug": "a-page-is-not-found-through-a-wikilink"
+        },
+        {
+          "level": 2,
+          "text": "Auth rejects a user",
+          "slug": "auth-rejects-a-user"
+        },
+        {
+          "level": 2,
+          "text": "Nginx returns 502",
+          "slug": "nginx-returns-502"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project\\",
+          "heading": "",
+          "label": "Project"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Deployment-Auth",
+          "heading": "",
+          "label": "Auth deployment"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        }
+      ],
+      "isIndex": false,
+      "folder": "03-Operations",
+      "basename": "Operations-Troubleshooting"
+    },
+    {
+      "id": "03-Operations/Operations-Update-Docs.md",
+      "path": "03-Operations/Operations-Update-Docs.md",
+      "slug": "operations/operations-update-docs",
+      "title": "Update Docs",
+      "description": "How to update markdown documentation and publish a new viewer index.",
+      "frontmatter": {
+        "title": "Update Docs",
+        "description": "How to update markdown documentation and publish a new viewer index.",
+        "aliases": [
+          "Update docs"
+        ],
+        "tags": [
+          "operations",
+          "update"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "03-Operations",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Update Docs\n\nThe update flow depends on the deployment mode.\n\n## Static deployment\n\n```bash\nnpm run build:index\nrsync -av --delete viewer/ user@server:/var/www/docs-viewer/\n```\n\n## Node deployment\n\nUpdate the source vault on the server and rebuild the index:\n\n```bash\ncd /opt/docs-viewer\nnpm run build:index\nsudo systemctl restart docs-viewer\n```\n\nIf `/__rebuild` is enabled, the server runtime can rebuild the index.\n\n## Checklist\n\n- The start page opens.\n- Wikilinks work.\n- Sidebar shows new pages.\n- Backlinks appear where incoming links are expected.\n- `#/roadmap` opens if roadmap fields are used.\n\n## When changing this page, check\n\n- [[Deployment-Static|Static deployment]], if static upload changes.\n- [[Deployment-Node|Node deployment]], if the server flow changes.\n- [[Project-Index-Build|Index build]], if the build command changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Update Docs",
+          "slug": "update-docs"
+        },
+        {
+          "level": 2,
+          "text": "Static deployment",
+          "slug": "static-deployment"
+        },
+        {
+          "level": 2,
+          "text": "Node deployment",
+          "slug": "node-deployment"
+        },
+        {
+          "level": 2,
+          "text": "Checklist",
+          "slug": "checklist"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Static",
+          "heading": "",
+          "label": "Static deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        },
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        }
+      ],
+      "isIndex": false,
+      "folder": "03-Operations",
+      "basename": "Operations-Update-Docs"
+    },
+    {
+      "id": "03-Operations/Operations.md",
+      "path": "03-Operations/Operations.md",
+      "slug": "operations/operations",
+      "title": "Operations",
+      "description": "Operational notes for updating docs, rebuilding the index, and checking common issues.",
+      "frontmatter": {
+        "title": "Operations",
+        "description": "Operational notes for updating docs, rebuilding the index, and checking common issues.",
+        "aliases": [
+          "Operations"
+        ],
+        "tags": [
+          "operations",
+          "docs"
+        ],
+        "author": "",
+        "date": "2026-05-26",
+        "category": "03-Operations",
+        "featured": true,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done"
+      },
+      "body": "# Operations\n\nThis section describes day-to-day work with the viewer after deployment.\n\n## Typical cycle\n\n1. Edit markdown in the source vault.\n2. Build the index.\n3. Check the viewer locally.\n4. Upload the update or trigger a rebuild.\n\n## Sections\n\n- [[Operations-Update-Docs|Update docs]] - how to update content.\n- [[Operations-Troubleshooting|Troubleshooting]] - what to check when something does not open.\n\n## Commands\n\n```bash\nnpm run build:index\nnpm run dev\n```\n\n## When changing this page, check\n\n- [[Deployment|Deployment]], if the production flow changes.\n- [[Project-Index-Build|Index build]], if index building changes.\n- [[Operations-Troubleshooting|Troubleshooting]], if symptoms or commands change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Operations",
+          "slug": "operations"
+        },
+        {
+          "level": 2,
+          "text": "Typical cycle",
+          "slug": "typical-cycle"
+        },
+        {
+          "level": 2,
+          "text": "Sections",
+          "slug": "sections"
+        },
+        {
+          "level": 2,
+          "text": "Commands",
+          "slug": "commands"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        },
+        {
+          "target": "Deployment",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": true,
+      "folder": "03-Operations",
+      "basename": "Operations"
+    },
+    {
+      "id": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Discovery.md",
+      "path": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Discovery.md",
+      "slug": "roadmap-sample/foundation/roadmap-sample-discovery",
+      "title": "Discovery",
+      "description": "Define the scope and shape of the docs viewer.",
+      "frontmatter": {
+        "title": "Discovery",
+        "description": "Define the scope and shape of the docs viewer.",
+        "aliases": [
+          "Discovery"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "done",
+        "roadmap_start": "2026-05-01",
+        "roadmap_end": "2026-05-31"
+      },
+      "body": "# Discovery\n\nDiscovery covers the initial product decisions for Docs Viewer: source format, runtime shape, publishing modes, and the decision to keep markdown as the source of truth.\n\n## Outcome\n\n- Use a markdown vault as input.\n- Build a static JSON index.\n- Keep the browser runtime dependency-light.\n- Add Node only for auth, config, and rebuild endpoints.\n\n## When changing this page, check\n\n- [[Roadmap-Sample|Roadmap Sample]], if the sample timeline changes.\n- [[Project-Architecture|Architecture]], if source/runtime boundaries change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Discovery",
+          "slug": "discovery"
+        },
+        {
+          "level": 2,
+          "text": "Outcome",
+          "slug": "outcome"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        },
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/01-Foundation",
+      "basename": "Roadmap-Sample-Discovery"
+    },
+    {
+      "id": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Indexing.md",
+      "path": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Indexing.md",
+      "slug": "roadmap-sample/foundation/roadmap-sample-indexing",
+      "title": "Indexing",
+      "description": "Build a stable index from markdown pages, frontmatter, wikilinks, backlinks, and assets.",
+      "frontmatter": {
+        "title": "Indexing",
+        "description": "Build a stable index from markdown pages, frontmatter, wikilinks, backlinks, and assets.",
+        "aliases": [
+          "Indexing"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "in-progress",
+        "roadmap_start": "2026-06-03",
+        "roadmap_end": "2026-07-12"
+      },
+      "body": "# Indexing\n\nIndexing turns the source vault into `viewer/data/vault-index.json`.\n\n## Scope\n\n- Parse YAML frontmatter.\n- Resolve aliases and wikilinks.\n- Build backlinks.\n- Copy supported image assets.\n- Generate a folder tree for sidebar navigation.\n\n## When changing this page, check\n\n- [[Project-Index-Build|Index build]], if the sample implies a new index field.\n- [[Operations-Troubleshooting|Troubleshooting]], if a new failure mode appears.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Indexing",
+          "slug": "indexing"
+        },
+        {
+          "level": 2,
+          "text": "Scope",
+          "slug": "scope"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project-Index-Build",
+          "heading": "",
+          "label": "Index build"
+        },
+        {
+          "target": "Operations-Troubleshooting",
+          "heading": "",
+          "label": "Troubleshooting"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/01-Foundation",
+      "basename": "Roadmap-Sample-Indexing"
+    },
+    {
+      "id": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Auth-Admin.md",
+      "path": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Auth-Admin.md",
+      "slug": "roadmap-sample/experience/roadmap-sample-auth-admin",
+      "title": "Auth and Admin",
+      "description": "Add optional server-side auth, admin-only settings, and rebuild controls.",
+      "frontmatter": {
+        "title": "Auth and Admin",
+        "description": "Add optional server-side auth, admin-only settings, and rebuild controls.",
+        "aliases": [
+          "Auth and admin"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "planned",
+        "roadmap_start": "2026-08-10",
+        "roadmap_end": "2026-09-30"
+      },
+      "body": "# Auth and Admin\n\nThis sample item represents the optional Node deployment layer.\n\n## Scope\n\n- OAuth/OIDC sign-in.\n- Verified email allowlist.\n- Admin-only settings.\n- Server-side rebuild endpoint.\n\n## When changing this page, check\n\n- [[Deployment-Auth|Auth deployment]], if auth expectations change.\n- [[Deployment-Node|Node deployment]], if server behavior changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Auth and Admin",
+          "slug": "auth-and-admin"
+        },
+        {
+          "level": 2,
+          "text": "Scope",
+          "slug": "scope"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment-Auth",
+          "heading": "",
+          "label": "Auth deployment"
+        },
+        {
+          "target": "Deployment-Node",
+          "heading": "",
+          "label": "Node deployment"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/02-Experience",
+      "basename": "Roadmap-Sample-Auth-Admin"
+    },
+    {
+      "id": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Viewer-UX.md",
+      "path": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Viewer-UX.md",
+      "slug": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+      "title": "Viewer UX",
+      "description": "Improve the browser reader experience: sidebar, search, breadcrumbs, backlinks, and page rendering.",
+      "frontmatter": {
+        "title": "Viewer UX",
+        "description": "Improve the browser reader experience: sidebar, search, breadcrumbs, backlinks, and page rendering.",
+        "aliases": [
+          "Viewer UX"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "planned",
+        "roadmap_start": "2026-07-15",
+        "roadmap_end": "2026-08-28"
+      },
+      "body": "# Viewer UX\n\nViewer UX work focuses on the browser runtime: fast navigation, readable pages, useful backlinks, and predictable behavior on smaller screens.\n\n## Scope\n\n- Sidebar search and folder collapse.\n- Clean markdown rendering.\n- Backlinks under each page.\n- Responsive layout for mobile and desktop.\n\n## When changing this page, check\n\n- [[Project-Runtime|Runtime]], if viewer behavior changes.\n- [[Roadmap-Sample|Roadmap Sample]], if the sample date range changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Viewer UX",
+          "slug": "viewer-ux"
+        },
+        {
+          "level": 2,
+          "text": "Scope",
+          "slug": "scope"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/02-Experience",
+      "basename": "Roadmap-Sample-Viewer-UX"
+    },
+    {
+      "id": "04-Roadmap-Sample/03-Launch/Roadmap-Sample-Deployment.md",
+      "path": "04-Roadmap-Sample/03-Launch/Roadmap-Sample-Deployment.md",
+      "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+      "title": "Deployment",
+      "description": "Document and verify static, Node, and hosted deployment paths.",
+      "frontmatter": {
+        "title": "Deployment",
+        "description": "Document and verify static, Node, and hosted deployment paths.",
+        "aliases": [
+          "Deployment sample"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "todo",
+        "roadmap_start": "2026-10-01",
+        "roadmap_end": "2026-10-31"
+      },
+      "body": "# Deployment\n\nDeployment work makes the project easy to publish from a clean GitHub repository.\n\n## Scope\n\n- Static hosting instructions.\n- Node service instructions.\n- Vercel-style build settings.\n- Git hygiene for config and secrets.\n\n## When changing this page, check\n\n- [[Deployment|Deployment]], if the deployment matrix changes.\n- [[Operations-Update-Docs|Update docs]], if publishing steps change.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Deployment",
+          "slug": "deployment"
+        },
+        {
+          "level": 2,
+          "text": "Scope",
+          "slug": "scope"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Deployment",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/03-Launch",
+      "basename": "Roadmap-Sample-Deployment"
+    },
+    {
+      "id": "04-Roadmap-Sample/04-Future/Roadmap-Sample-Plugin-Runtime.md",
+      "path": "04-Roadmap-Sample/04-Future/Roadmap-Sample-Plugin-Runtime.md",
+      "slug": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+      "title": "Plugin Runtime",
+      "description": "Explore a small plugin model shared between the web viewer and local Obsidian extensions.",
+      "frontmatter": {
+        "title": "Plugin Runtime",
+        "description": "Explore a small plugin model shared between the web viewer and local Obsidian extensions.",
+        "aliases": [
+          "Plugin runtime"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "backlog",
+        "roadmap_start": "2026-11-02",
+        "roadmap_end": "2026-12-18",
+        "scopes": [
+          {
+            "title": "Web plugin registry",
+            "status": "backlog",
+            "roadmap_start": "2026-11-02",
+            "roadmap_end": "2026-11-20"
+          },
+          {
+            "title": "Shared roadmap model",
+            "status": "todo",
+            "roadmap_start": "2026-11-23",
+            "roadmap_end": "2026-12-04"
+          },
+          {
+            "title": "Plugin docs",
+            "status": "planned",
+            "roadmap_start": "2026-12-07",
+            "roadmap_end": "2026-12-18"
+          }
+        ]
+      },
+      "body": "# Plugin Runtime\n\nPlugin Runtime is a future-facing sample item that shows how a single page can produce multiple roadmap bars through `scopes`.\n\n## Scope\n\n- Define a lightweight web plugin registry.\n- Keep shared roadmap logic outside UI-specific code.\n- Document how optional extensions should be packaged.\n\n## When changing this page, check\n\n- [[Roadmap-Sample|Roadmap Sample]], if scope names or dates change.\n- [[Project-Architecture|Architecture]], if the plugin boundary changes.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Plugin Runtime",
+          "slug": "plugin-runtime"
+        },
+        {
+          "level": 2,
+          "text": "Scope",
+          "slug": "scope"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Roadmap-Sample",
+          "heading": "",
+          "label": "Roadmap Sample"
+        },
+        {
+          "target": "Project-Architecture",
+          "heading": "",
+          "label": "Architecture"
+        }
+      ],
+      "isIndex": false,
+      "folder": "04-Roadmap-Sample/04-Future",
+      "basename": "Roadmap-Sample-Plugin-Runtime"
+    },
+    {
+      "id": "04-Roadmap-Sample/Roadmap-Sample.md",
+      "path": "04-Roadmap-Sample/Roadmap-Sample.md",
+      "slug": "roadmap-sample/roadmap-sample",
+      "title": "Roadmap Sample",
+      "description": "A small set of dated sample items used to demonstrate the roadmap timeline and board.",
+      "frontmatter": {
+        "title": "Roadmap Sample",
+        "description": "A small set of dated sample items used to demonstrate the roadmap timeline and board.",
+        "aliases": [
+          "Roadmap Sample"
+        ],
+        "tags": [
+          "roadmap",
+          "sample"
+        ],
+        "author": "",
+        "date": "2026-05-29",
+        "category": "04-Roadmap-Sample",
+        "featured": true,
+        "image": "",
+        "logo": "",
+        "metrics": "",
+        "status": "planned"
+      },
+      "body": "# Roadmap Sample\n\nThis section exists only to make the built-in `#/roadmap` route useful in the sample project.\n\nEach child page has roadmap frontmatter with dates between May and December 2026. The roadmap plugin reads those fields and turns the pages into timeline bars and board cards.\n\nThe sample is intentionally nested so the roadmap can demonstrate folder groups:\n\n```text\n04-Roadmap-Sample/\n├── 01-Foundation/\n├── 02-Experience/\n├── 03-Launch/\n└── 04-Future/\n```\n\n## Sample items\n\n| Item | Status | Window |\n| --- | --- | --- |\n| [[Roadmap-Sample-Discovery\\|Discovery]] | Done | May 2026 |\n| [[Roadmap-Sample-Indexing\\|Indexing]] | In progress | June-July 2026 |\n| [[Roadmap-Sample-Viewer-UX\\|Viewer UX]] | Planned | July-August 2026 |\n| [[Roadmap-Sample-Auth-Admin\\|Auth and admin]] | Planned | August-September 2026 |\n| [[Roadmap-Sample-Deployment\\|Deployment]] | Todo | October 2026 |\n| [[Roadmap-Sample-Plugin-Runtime\\|Plugin runtime]] | Backlog | November-December 2026 |\n\n## Roadmap fields\n\nRoadmap items are ordinary docs pages with a few extra frontmatter fields:\n\n```yaml\nstatus: planned\nroadmap_start: 2026-07-01\nroadmap_end: 2026-08-15\n```\n\nPages can also define `scopes` when one page should produce multiple roadmap bars.\n\nThe sample config uses:\n\n```json\n{\n  \"roadmap\": {\n    \"includedFolders\": [\"04-Roadmap-Sample\"],\n    \"excludedFolders\": [],\n    \"hideUndated\": false\n  }\n}\n```\n\n## When changing this page, check\n\n- [[Project-Runtime|Runtime]], if roadmap rendering changes.\n- [[Operations-Update-Docs|Update docs]], if sample data needs to be rebuilt.\n- `#/roadmap`, to confirm the sample timeline still spans May-December 2026.\n",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Roadmap Sample",
+          "slug": "roadmap-sample"
+        },
+        {
+          "level": 2,
+          "text": "Sample items",
+          "slug": "sample-items"
+        },
+        {
+          "level": 2,
+          "text": "Roadmap fields",
+          "slug": "roadmap-fields"
+        },
+        {
+          "level": 2,
+          "text": "When changing this page, check",
+          "slug": "when-changing-this-page-check"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Roadmap-Sample-Discovery\\",
+          "heading": "",
+          "label": "Discovery"
+        },
+        {
+          "target": "Roadmap-Sample-Indexing\\",
+          "heading": "",
+          "label": "Indexing"
+        },
+        {
+          "target": "Roadmap-Sample-Viewer-UX\\",
+          "heading": "",
+          "label": "Viewer UX"
+        },
+        {
+          "target": "Roadmap-Sample-Auth-Admin\\",
+          "heading": "",
+          "label": "Auth and admin"
+        },
+        {
+          "target": "Roadmap-Sample-Deployment\\",
+          "heading": "",
+          "label": "Deployment"
+        },
+        {
+          "target": "Roadmap-Sample-Plugin-Runtime\\",
+          "heading": "",
+          "label": "Plugin runtime"
+        },
+        {
+          "target": "Project-Runtime",
+          "heading": "",
+          "label": "Runtime"
+        },
+        {
+          "target": "Operations-Update-Docs",
+          "heading": "",
+          "label": "Update docs"
+        }
+      ],
+      "isIndex": true,
+      "folder": "04-Roadmap-Sample",
+      "basename": "Roadmap-Sample"
+    }
+  ],
+  "tree": {
+    "name": "docs",
+    "path": "",
+    "children": [
+      {
+        "name": "Overview",
+        "rawName": "00-Overview",
+        "path": "00-Overview",
+        "children": [],
+        "pages": [
+          {
+            "title": "Docs Viewer Overview",
+            "slug": "overview/overview",
+            "path": "00-Overview/Overview.md",
+            "fileName": "Overview.md",
+            "isIndex": true
+          }
+        ]
+      },
+      {
+        "name": "Project",
+        "rawName": "01-Project",
+        "path": "01-Project",
+        "children": [],
+        "pages": [
+          {
+            "title": "Architecture",
+            "slug": "project/project-architecture",
+            "path": "01-Project/Project-Architecture.md",
+            "fileName": "Project-Architecture.md",
+            "isIndex": false
+          },
+          {
+            "title": "Index Build",
+            "slug": "project/project-index-build",
+            "path": "01-Project/Project-Index-Build.md",
+            "fileName": "Project-Index-Build.md",
+            "isIndex": false
+          },
+          {
+            "title": "Obsidian Play Map",
+            "slug": "project/project-obsidian-play-map",
+            "path": "01-Project/Project-Obsidian-Play-Map.md",
+            "fileName": "Project-Obsidian-Play-Map.md",
+            "isIndex": false
+          },
+          {
+            "title": "Runtime",
+            "slug": "project/project-runtime",
+            "path": "01-Project/Project-Runtime.md",
+            "fileName": "Project-Runtime.md",
+            "isIndex": false
+          },
+          {
+            "title": "Project",
+            "slug": "project/project",
+            "path": "01-Project/Project.md",
+            "fileName": "Project.md",
+            "isIndex": true
+          }
+        ]
+      },
+      {
+        "name": "Deployment",
+        "rawName": "02-Deployment",
+        "path": "02-Deployment",
+        "children": [],
+        "pages": [
+          {
+            "title": "Auth Deployment",
+            "slug": "deployment/deployment-auth",
+            "path": "02-Deployment/Deployment-Auth.md",
+            "fileName": "Deployment-Auth.md",
+            "isIndex": false
+          },
+          {
+            "title": "Node Deployment",
+            "slug": "deployment/deployment-node",
+            "path": "02-Deployment/Deployment-Node.md",
+            "fileName": "Deployment-Node.md",
+            "isIndex": false
+          },
+          {
+            "title": "Static Deployment",
+            "slug": "deployment/deployment-static",
+            "path": "02-Deployment/Deployment-Static.md",
+            "fileName": "Deployment-Static.md",
+            "isIndex": false
+          },
+          {
+            "title": "Deployment",
+            "slug": "deployment/deployment",
+            "path": "02-Deployment/Deployment.md",
+            "fileName": "Deployment.md",
+            "isIndex": true
+          }
+        ]
+      },
+      {
+        "name": "Operations",
+        "rawName": "03-Operations",
+        "path": "03-Operations",
+        "children": [],
+        "pages": [
+          {
+            "title": "Troubleshooting",
+            "slug": "operations/operations-troubleshooting",
+            "path": "03-Operations/Operations-Troubleshooting.md",
+            "fileName": "Operations-Troubleshooting.md",
+            "isIndex": false
+          },
+          {
+            "title": "Update Docs",
+            "slug": "operations/operations-update-docs",
+            "path": "03-Operations/Operations-Update-Docs.md",
+            "fileName": "Operations-Update-Docs.md",
+            "isIndex": false
+          },
+          {
+            "title": "Operations",
+            "slug": "operations/operations",
+            "path": "03-Operations/Operations.md",
+            "fileName": "Operations.md",
+            "isIndex": true
+          }
+        ]
+      },
+      {
+        "name": "Roadmap-Sample",
+        "rawName": "04-Roadmap-Sample",
+        "path": "04-Roadmap-Sample",
+        "children": [
+          {
+            "name": "Foundation",
+            "rawName": "01-Foundation",
+            "path": "04-Roadmap-Sample/01-Foundation",
+            "children": [],
+            "pages": [
+              {
+                "title": "Discovery",
+                "slug": "roadmap-sample/foundation/roadmap-sample-discovery",
+                "path": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Discovery.md",
+                "fileName": "Roadmap-Sample-Discovery.md",
+                "isIndex": false
+              },
+              {
+                "title": "Indexing",
+                "slug": "roadmap-sample/foundation/roadmap-sample-indexing",
+                "path": "04-Roadmap-Sample/01-Foundation/Roadmap-Sample-Indexing.md",
+                "fileName": "Roadmap-Sample-Indexing.md",
+                "isIndex": false
+              }
+            ]
+          },
+          {
+            "name": "Experience",
+            "rawName": "02-Experience",
+            "path": "04-Roadmap-Sample/02-Experience",
+            "children": [],
+            "pages": [
+              {
+                "title": "Auth and Admin",
+                "slug": "roadmap-sample/experience/roadmap-sample-auth-admin",
+                "path": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Auth-Admin.md",
+                "fileName": "Roadmap-Sample-Auth-Admin.md",
+                "isIndex": false
+              },
+              {
+                "title": "Viewer UX",
+                "slug": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+                "path": "04-Roadmap-Sample/02-Experience/Roadmap-Sample-Viewer-UX.md",
+                "fileName": "Roadmap-Sample-Viewer-UX.md",
+                "isIndex": false
+              }
+            ]
+          },
+          {
+            "name": "Launch",
+            "rawName": "03-Launch",
+            "path": "04-Roadmap-Sample/03-Launch",
+            "children": [],
+            "pages": [
+              {
+                "title": "Deployment",
+                "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+                "path": "04-Roadmap-Sample/03-Launch/Roadmap-Sample-Deployment.md",
+                "fileName": "Roadmap-Sample-Deployment.md",
+                "isIndex": false
+              }
+            ]
+          },
+          {
+            "name": "Future",
+            "rawName": "04-Future",
+            "path": "04-Roadmap-Sample/04-Future",
+            "children": [],
+            "pages": [
+              {
+                "title": "Plugin Runtime",
+                "slug": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+                "path": "04-Roadmap-Sample/04-Future/Roadmap-Sample-Plugin-Runtime.md",
+                "fileName": "Roadmap-Sample-Plugin-Runtime.md",
+                "isIndex": false
+              }
+            ]
+          }
+        ],
+        "pages": [
+          {
+            "title": "Roadmap Sample",
+            "slug": "roadmap-sample/roadmap-sample",
+            "path": "04-Roadmap-Sample/Roadmap-Sample.md",
+            "fileName": "Roadmap-Sample.md",
+            "isIndex": true
+          }
+        ]
+      }
+    ],
+    "pages": []
+  },
+  "aliases": {
+    "architecture": "project/project-architecture",
+    "auth and admin": "roadmap-sample/experience/roadmap-sample-auth-admin",
+    "auth deployment": "deployment/deployment-auth",
+    "deployment sample": "roadmap-sample/launch/roadmap-sample-deployment",
+    "deployment": "roadmap-sample/launch/roadmap-sample-deployment",
+    "deployment-auth": "deployment/deployment-auth",
+    "deployment-node": "deployment/deployment-node",
+    "deployment-static": "deployment/deployment-static",
+    "discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
+    "docs viewer overview": "overview/overview",
+    "index build": "project/project-index-build",
+    "indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
+    "node deployment": "deployment/deployment-node",
+    "oauth deployment": "deployment/deployment-auth",
+    "obsidian play map": "project/project-obsidian-play-map",
+    "operations": "operations/operations",
+    "operations-troubleshooting": "operations/operations-troubleshooting",
+    "operations-update-docs": "operations/operations-update-docs",
+    "overview": "overview/overview",
+    "play map": "project/project-obsidian-play-map",
+    "plugin runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+    "project": "project/project",
+    "project-architecture": "project/project-architecture",
+    "project-index-build": "project/project-index-build",
+    "project-obsidian-play-map": "project/project-obsidian-play-map",
+    "project-runtime": "project/project-runtime",
+    "roadmap sample": "roadmap-sample/roadmap-sample",
+    "roadmap-sample": "roadmap-sample/roadmap-sample",
+    "roadmap-sample-auth-admin": "roadmap-sample/experience/roadmap-sample-auth-admin",
+    "roadmap-sample-deployment": "roadmap-sample/launch/roadmap-sample-deployment",
+    "roadmap-sample-discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
+    "roadmap-sample-indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
+    "roadmap-sample-plugin-runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+    "roadmap-sample-viewer-ux": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+    "runtime": "project/project-runtime",
+    "static deployment": "deployment/deployment-static",
+    "troubleshooting": "operations/operations-troubleshooting",
+    "update docs": "operations/operations-update-docs",
+    "viewer ux": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+    "web runtime": "project/project-runtime"
+  },
+  "routeAliases": {
+    "00-overview/overview": "overview/overview",
+    "overview/overview": "overview/overview",
+    "01-project/project-architecture": "project/project-architecture",
+    "project/project-architecture": "project/project-architecture",
+    "01-project/project-index-build": "project/project-index-build",
+    "project/project-index-build": "project/project-index-build",
+    "01-project/project-obsidian-play-map": "project/project-obsidian-play-map",
+    "project/project-obsidian-play-map": "project/project-obsidian-play-map",
+    "01-project/project-runtime": "project/project-runtime",
+    "project/project-runtime": "project/project-runtime",
+    "01-project/project": "project/project",
+    "project/project": "project/project",
+    "02-deployment/deployment-auth": "deployment/deployment-auth",
+    "deployment/deployment-auth": "deployment/deployment-auth",
+    "02-deployment/deployment-node": "deployment/deployment-node",
+    "deployment/deployment-node": "deployment/deployment-node",
+    "02-deployment/deployment-static": "deployment/deployment-static",
+    "deployment/deployment-static": "deployment/deployment-static",
+    "02-deployment/deployment": "deployment/deployment",
+    "deployment/deployment": "deployment/deployment",
+    "03-operations/operations-troubleshooting": "operations/operations-troubleshooting",
+    "operations/operations-troubleshooting": "operations/operations-troubleshooting",
+    "03-operations/operations-update-docs": "operations/operations-update-docs",
+    "operations/operations-update-docs": "operations/operations-update-docs",
+    "03-operations/operations": "operations/operations",
+    "operations/operations": "operations/operations",
+    "04-roadmap-sample/01-foundation/roadmap-sample-discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
+    "roadmap-sample/foundation/roadmap-sample-discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
+    "04-roadmap-sample/01-foundation/roadmap-sample-indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
+    "roadmap-sample/foundation/roadmap-sample-indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
+    "04-roadmap-sample/02-experience/roadmap-sample-auth-admin": "roadmap-sample/experience/roadmap-sample-auth-admin",
+    "roadmap-sample/experience/roadmap-sample-auth-admin": "roadmap-sample/experience/roadmap-sample-auth-admin",
+    "04-roadmap-sample/02-experience/roadmap-sample-viewer-ux": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+    "roadmap-sample/experience/roadmap-sample-viewer-ux": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+    "04-roadmap-sample/03-launch/roadmap-sample-deployment": "roadmap-sample/launch/roadmap-sample-deployment",
+    "roadmap-sample/launch/roadmap-sample-deployment": "roadmap-sample/launch/roadmap-sample-deployment",
+    "04-roadmap-sample/04-future/roadmap-sample-plugin-runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+    "roadmap-sample/future/roadmap-sample-plugin-runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+    "04-roadmap-sample/roadmap-sample": "roadmap-sample/roadmap-sample",
+    "roadmap-sample/roadmap-sample": "roadmap-sample/roadmap-sample",
+    "overview": "overview/overview",
+    "project": "project/project",
+    "deployment": "deployment/deployment",
+    "operations": "operations/operations",
+    "roadmap-sample": "roadmap-sample/roadmap-sample"
+  },
+  "assets": {},
+  "resolvedLinks": {
+    "overview/overview": [
+      {
+        "target": "Project\\",
+        "heading": "",
+        "label": "Project",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Deployment\\",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Operations\\",
+        "heading": "",
+        "label": "Operations",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample\\",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Project-Obsidian-Play-Map\\",
+        "heading": "",
+        "label": "Obsidian Play Map",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Static",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "deployment/deployment-static",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      },
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      },
+      {
+        "target": "Project-Obsidian-Play-Map",
+        "heading": "",
+        "label": "Obsidian Play Map",
+        "slug": "project/project-obsidian-play-map",
+        "exists": true
+      },
+      {
+        "target": "Project",
+        "heading": "",
+        "label": "Project",
+        "slug": "project/project",
+        "exists": true
+      },
+      {
+        "target": "Deployment",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "exists": true
+      },
+      {
+        "target": "Operations",
+        "heading": "",
+        "label": "Operations",
+        "slug": "operations/operations",
+        "exists": true
+      },
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      }
+    ],
+    "project/project-architecture": [
+      {
+        "target": "Project",
+        "heading": "",
+        "label": "Project",
+        "slug": "project/project",
+        "exists": true
+      },
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Static",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "deployment/deployment-static",
+        "exists": true
+      }
+    ],
+    "project/project-index-build": [
+      {
+        "target": "Page",
+        "heading": "",
+        "label": "Page",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Page",
+        "heading": "",
+        "label": "Alias",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Page\\",
+        "heading": "",
+        "label": "Alias",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "project/project-obsidian-play-map": [
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      }
+    ],
+    "project/project-runtime": [
+      {
+        "target": "Deployment-Static",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "deployment/deployment-static",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Auth",
+        "heading": "",
+        "label": "Auth deployment",
+        "slug": "deployment/deployment-auth",
+        "exists": true
+      },
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      }
+    ],
+    "project/project": [
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      },
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Project-Obsidian-Play-Map",
+        "heading": "",
+        "label": "Obsidian Play Map",
+        "slug": "project/project-obsidian-play-map",
+        "exists": true
+      },
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      },
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Project-Obsidian-Play-Map",
+        "heading": "",
+        "label": "Obsidian Play Map",
+        "slug": "project/project-obsidian-play-map",
+        "exists": true
+      }
+    ],
+    "deployment/deployment-auth": [
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "deployment/deployment-node": [
+      {
+        "target": "Deployment-Auth",
+        "heading": "",
+        "label": "Auth deployment",
+        "slug": "deployment/deployment-auth",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "deployment/deployment-static": [
+      {
+        "target": "Deployment",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      }
+    ],
+    "deployment/deployment": [
+      {
+        "target": "Deployment-Static\\",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Deployment-Node\\",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Static",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "deployment/deployment-static",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Auth",
+        "heading": "",
+        "label": "Auth deployment",
+        "slug": "deployment/deployment-auth",
+        "exists": true
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "operations/operations-troubleshooting": [
+      {
+        "target": "Project\\",
+        "heading": "",
+        "label": "Project",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Auth",
+        "heading": "",
+        "label": "Auth deployment",
+        "slug": "deployment/deployment-auth",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      }
+    ],
+    "operations/operations-update-docs": [
+      {
+        "target": "Deployment-Static",
+        "heading": "",
+        "label": "Static deployment",
+        "slug": "deployment/deployment-static",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      },
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      }
+    ],
+    "operations/operations": [
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      },
+      {
+        "target": "Deployment",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "exists": true
+      },
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/foundation/roadmap-sample-discovery": [
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      },
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/foundation/roadmap-sample-indexing": [
+      {
+        "target": "Project-Index-Build",
+        "heading": "",
+        "label": "Index build",
+        "slug": "project/project-index-build",
+        "exists": true
+      },
+      {
+        "target": "Operations-Troubleshooting",
+        "heading": "",
+        "label": "Troubleshooting",
+        "slug": "operations/operations-troubleshooting",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/experience/roadmap-sample-auth-admin": [
+      {
+        "target": "Deployment-Auth",
+        "heading": "",
+        "label": "Auth deployment",
+        "slug": "deployment/deployment-auth",
+        "exists": true
+      },
+      {
+        "target": "Deployment-Node",
+        "heading": "",
+        "label": "Node deployment",
+        "slug": "deployment/deployment-node",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/experience/roadmap-sample-viewer-ux": [
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/launch/roadmap-sample-deployment": [
+      {
+        "target": "Deployment",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/future/roadmap-sample-plugin-runtime": [
+      {
+        "target": "Roadmap-Sample",
+        "heading": "",
+        "label": "Roadmap Sample",
+        "slug": "roadmap-sample/roadmap-sample",
+        "exists": true
+      },
+      {
+        "target": "Project-Architecture",
+        "heading": "",
+        "label": "Architecture",
+        "slug": "project/project-architecture",
+        "exists": true
+      }
+    ],
+    "roadmap-sample/roadmap-sample": [
+      {
+        "target": "Roadmap-Sample-Discovery\\",
+        "heading": "",
+        "label": "Discovery",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample-Indexing\\",
+        "heading": "",
+        "label": "Indexing",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample-Viewer-UX\\",
+        "heading": "",
+        "label": "Viewer UX",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample-Auth-Admin\\",
+        "heading": "",
+        "label": "Auth and admin",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample-Deployment\\",
+        "heading": "",
+        "label": "Deployment",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Roadmap-Sample-Plugin-Runtime\\",
+        "heading": "",
+        "label": "Plugin runtime",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Project-Runtime",
+        "heading": "",
+        "label": "Runtime",
+        "slug": "project/project-runtime",
+        "exists": true
+      },
+      {
+        "target": "Operations-Update-Docs",
+        "heading": "",
+        "label": "Update docs",
+        "slug": "operations/operations-update-docs",
+        "exists": true
+      }
+    ]
+  },
+  "backlinks": {
+    "project/project-architecture": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-runtime",
+        "title": "Runtime"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "roadmap-sample/foundation/roadmap-sample-discovery",
+        "title": "Discovery"
+      },
+      {
+        "slug": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+        "title": "Plugin Runtime"
+      }
+    ],
+    "deployment/deployment-static": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-architecture",
+        "title": "Architecture"
+      },
+      {
+        "slug": "project/project-runtime",
+        "title": "Runtime"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "operations/operations-update-docs",
+        "title": "Update Docs"
+      }
+    ],
+    "deployment/deployment-node": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-runtime",
+        "title": "Runtime"
+      },
+      {
+        "slug": "deployment/deployment-auth",
+        "title": "Auth Deployment"
+      },
+      {
+        "slug": "deployment/deployment-auth",
+        "title": "Auth Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "operations/operations-troubleshooting",
+        "title": "Troubleshooting"
+      },
+      {
+        "slug": "operations/operations-update-docs",
+        "title": "Update Docs"
+      },
+      {
+        "slug": "roadmap-sample/experience/roadmap-sample-auth-admin",
+        "title": "Auth and Admin"
+      }
+    ],
+    "operations/operations-update-docs": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-index-build",
+        "title": "Index Build"
+      },
+      {
+        "slug": "deployment/deployment-static",
+        "title": "Static Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "operations/operations-troubleshooting",
+        "title": "Troubleshooting"
+      },
+      {
+        "slug": "operations/operations",
+        "title": "Operations"
+      },
+      {
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "roadmap-sample/roadmap-sample",
+        "title": "Roadmap Sample"
+      }
+    ],
+    "roadmap-sample/roadmap-sample": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-obsidian-play-map",
+        "title": "Obsidian Play Map"
+      },
+      {
+        "slug": "roadmap-sample/foundation/roadmap-sample-discovery",
+        "title": "Discovery"
+      },
+      {
+        "slug": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+        "title": "Viewer UX"
+      },
+      {
+        "slug": "roadmap-sample/future/roadmap-sample-plugin-runtime",
+        "title": "Plugin Runtime"
+      }
+    ],
+    "project/project-obsidian-play-map": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      }
+    ],
+    "project/project": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "project/project-architecture",
+        "title": "Architecture"
+      }
+    ],
+    "roadmap-sample/launch/roadmap-sample-deployment": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      },
+      {
+        "slug": "deployment/deployment-static",
+        "title": "Static Deployment"
+      },
+      {
+        "slug": "operations/operations",
+        "title": "Operations"
+      },
+      {
+        "slug": "roadmap-sample/launch/roadmap-sample-deployment",
+        "title": "Deployment"
+      }
+    ],
+    "operations/operations": [
+      {
+        "slug": "overview/overview",
+        "title": "Docs Viewer Overview"
+      }
+    ],
+    "project/project-index-build": [
+      {
+        "slug": "project/project-architecture",
+        "title": "Architecture"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "operations/operations-update-docs",
+        "title": "Update Docs"
+      },
+      {
+        "slug": "operations/operations",
+        "title": "Operations"
+      },
+      {
+        "slug": "roadmap-sample/foundation/roadmap-sample-indexing",
+        "title": "Indexing"
+      }
+    ],
+    "project/project-runtime": [
+      {
+        "slug": "project/project-index-build",
+        "title": "Index Build"
+      },
+      {
+        "slug": "project/project-obsidian-play-map",
+        "title": "Obsidian Play Map"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "project/project",
+        "title": "Project"
+      },
+      {
+        "slug": "deployment/deployment-auth",
+        "title": "Auth Deployment"
+      },
+      {
+        "slug": "deployment/deployment-node",
+        "title": "Node Deployment"
+      },
+      {
+        "slug": "deployment/deployment-static",
+        "title": "Static Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "roadmap-sample/experience/roadmap-sample-viewer-ux",
+        "title": "Viewer UX"
+      },
+      {
+        "slug": "roadmap-sample/roadmap-sample",
+        "title": "Roadmap Sample"
+      }
+    ],
+    "operations/operations-troubleshooting": [
+      {
+        "slug": "project/project-index-build",
+        "title": "Index Build"
+      },
+      {
+        "slug": "deployment/deployment-auth",
+        "title": "Auth Deployment"
+      },
+      {
+        "slug": "deployment/deployment-node",
+        "title": "Node Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "operations/operations",
+        "title": "Operations"
+      },
+      {
+        "slug": "operations/operations",
+        "title": "Operations"
+      },
+      {
+        "slug": "roadmap-sample/foundation/roadmap-sample-indexing",
+        "title": "Indexing"
+      }
+    ],
+    "deployment/deployment-auth": [
+      {
+        "slug": "project/project-runtime",
+        "title": "Runtime"
+      },
+      {
+        "slug": "deployment/deployment-node",
+        "title": "Node Deployment"
+      },
+      {
+        "slug": "deployment/deployment",
+        "title": "Deployment"
+      },
+      {
+        "slug": "operations/operations-troubleshooting",
+        "title": "Troubleshooting"
+      },
+      {
+        "slug": "roadmap-sample/experience/roadmap-sample-auth-admin",
+        "title": "Auth and Admin"
+      }
+    ]
+  }
+}

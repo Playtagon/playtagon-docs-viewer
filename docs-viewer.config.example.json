@@ -1,0 +1,33 @@
+{
+  "source": {
+    "type": "local",
+    "local": {
+      "path": "docs-sample"
+    },
+    "github": {
+      "owner": "your-org",
+      "repo": "your-docs-repo",
+      "branch": "main",
+      "path": "docs"
+    }
+  },
+  "roadmap": {
+    "includedFolders": [
+      "04-Roadmap-Sample"
+    ],
+    "excludedFolders": [],
+    "hideUndated": false
+  },
+  "ignoredFolders": [
+    ".git",
+    ".claude",
+    ".obsidian",
+    ".trash",
+    "node_modules",
+    "__pycache__",
+    ".github/workflows",
+    "apps/internal",
+    "docs/superpowers",
+    "scripts"
+  ]
+}

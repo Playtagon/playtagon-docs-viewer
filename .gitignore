@@ -1,0 +1,8 @@
+.DS_Store
+.obsidian/
+.env
+.env.*
+!.env.example
+docs-viewer.config.json
+node_modules/
+viewer/data/assets/
