@@ -1,4 +1,7 @@
 {
+  "app": {
+    "title": "Docs Viewer"
+  },
   "source": {
     "type": "local",
     "local": {
@@ -8,7 +11,7 @@
       "owner": "your-org",
       "repo": "your-docs-repo",
       "branch": "main",
-      "path": "docs"
+      "path": ""
     }
   },
   "roadmap": {

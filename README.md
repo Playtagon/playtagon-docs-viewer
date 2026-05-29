@@ -89,6 +89,9 @@ The local config is ignored by git so projects can keep private paths or reposit
 
 ```json
 {
+  "app": {
+    "title": "Docs Viewer"
+  },
   "source": {
     "type": "local",
     "local": {
@@ -98,7 +101,7 @@ The local config is ignored by git so projects can keep private paths or reposit
       "owner": "your-org",
       "repo": "your-docs-repo",
       "branch": "main",
-      "path": "docs"
+      "path": ""
     }
   },
   "roadmap": {
@@ -111,7 +114,13 @@ The local config is ignored by git so projects can keep private paths or reposit
 }
 ```
 
-`roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault.
+`app.title` controls the viewer brand text and browser tab suffix.
+
+`source.github.path` is optional. Leave it empty to index markdown from the repository root, or set it to a subfolder when docs live below the root.
+
+`roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault. `roadmap.excludedFolders` is applied after the allowlist, so it is useful for excluding archive or draft subfolders inside a broader included folder.
+
+To customize the browser favicon, place `favicon.ico`, `favicon.png`, or `favicon.svg` anywhere in the indexed docs assets, for example `00 Assets/favicon.png`. The viewer will use it automatically after rebuilding the index.
 
 ## Writing Docs
 

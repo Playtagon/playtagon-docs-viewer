@@ -17,8 +17,11 @@ const viewerPluginOutDir = path.resolve("viewer/plugins");
 
 const SKIP_DIRS = new Set(config.ignoredFolders || [".git", ".obsidian", ".trash", "node_modules", "__pycache__"]);
 const MARKDOWN_EXTENSIONS = new Set([".md", ".mdx"]);
-const ASSET_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif"]);
+const ASSET_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif", ".ico"]);
 const DEFAULT_CONFIG = {
+  app: {
+    title: "Docs Viewer",
+  },
   source: {
     type: "local",
     local: { path: "docs-sample" },
@@ -26,7 +29,7 @@ const DEFAULT_CONFIG = {
       owner: "your-org",
       repo: "your-docs-repo",
       branch: "main",
-      path: "docs",
+      path: "",
     },
   },
   roadmap: {
@@ -58,6 +61,11 @@ async function loadConfig() {
 
 function toPosix(value) {
   return value.split(path.sep).join("/");
+}
+
+function normalizeRepoPath(value) {
+  const normalized = String(value || "").replace(/^\/+|\/+$/g, "");
+  return normalized === "." ? "" : normalized;
 }
 
 function isIgnoredPath(relativePath) {
@@ -348,7 +356,7 @@ async function readGitHubBlob(owner, repo, sha, token) {
 
 async function loadGitHubSource(source) {
   const { owner, repo, branch = "main" } = source.github || {};
-  const sourcePath = String(source.github?.path || "").replace(/^\/+|\/+$/g, "");
+  const sourcePath = normalizeRepoPath(source.github?.path);
   const token = process.env.DOCS_VIEWER_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "";
 
   if (!owner || !repo) {
@@ -366,6 +374,10 @@ async function loadGitHubSource(source) {
       ...entry,
       relativePath: sourcePath ? entry.path.slice(sourcePath.length).replace(/^\//, "") : entry.path,
     }))
+    .filter((entry) => {
+      const extension = path.posix.extname(entry.relativePath).toLowerCase();
+      return MARKDOWN_EXTENSIONS.has(extension) || ASSET_EXTENSIONS.has(extension);
+    })
     .filter((entry) => entry.relativePath && !isIgnoredPath(entry.relativePath));
 
   return Promise.all(
@@ -505,13 +517,16 @@ for (const page of pages) {
 
 const index = {
   generatedAt: new Date().toISOString(),
+  app: {
+    title: config.app?.title || "Docs Viewer",
+  },
   source: config.source?.type === "github"
     ? {
         type: "github",
         owner: config.source.github?.owner || "",
         repo: config.source.github?.repo || "",
         branch: config.source.github?.branch || "main",
-        path: config.source.github?.path || "",
+        path: normalizeRepoPath(config.source.github?.path),
       }
     : {
         type: "local",

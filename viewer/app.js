@@ -24,6 +24,7 @@ const state = {
 };
 
 const els = {
+  brand: document.querySelector(".brand"),
   tree: document.querySelector("#tree"),
   content: document.querySelector("#content"),
   breadcrumbs: document.querySelector("#breadcrumbs"),
@@ -54,28 +55,75 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
+function stripNumericPrefix(value) {
+  return String(value || "").replace(/^\d+-/, "");
+}
+
+function breadcrumbLabel(value) {
+  return stripNumericPrefix(value).replace(/[-_]+/g, " ").trim();
+}
+
 function pageHref(slug) {
-  return `#/${slug}`;
+  return slug ? `/${slug}` : "/";
+}
+
+function icon(name) {
+  return `<i class="ti ti-${name}" aria-hidden="true"></i>`;
+}
+
+function appTitle() {
+  return state.data?.app?.title || "Docs Viewer";
+}
+
+function setDocumentTitle(title) {
+  document.title = `${title} · ${appTitle()}`;
+}
+
+function setBrandTitle() {
+  if (els.brand) els.brand.textContent = appTitle();
+}
+
+function applyFavicon() {
+  const assets = state.data?.assets || {};
+  const faviconPath =
+    assets["favicon.ico"] ||
+    assets["favicon.png"] ||
+    assets["favicon.svg"] ||
+    Object.entries(assets).find(([key]) => /(^|\/)favicon\.(ico|png|svg)$/i.test(key))?.[1];
+  if (!faviconPath) return;
+
+  let link = document.querySelector("link[rel='icon']");
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "icon";
+    document.head.append(link);
+  }
+  link.href = `/data/${faviconPath}`;
 }
 
 function folderId(path) {
   return `folder-${slugify(path || "root")}`;
 }
 
-function currentHash() {
-  return decodeURIComponent(location.hash.replace(/^#\/?/, "").split("#")[0]);
+function currentRoute() {
+  if (location.hash.startsWith("#/")) {
+    return decodeURIComponent(location.hash.replace(/^#\/?/, "").split("#")[0]);
+  }
+  return decodeURIComponent(location.pathname.replace(/^\/+|\/+$/g, ""));
 }
 
 function findPage(slug) {
   if (!slug) {
-    return state.data.pages.find((page) => page.path === "index.md") || state.data.pages[0];
+    return state.data.pages.find((page) => page.path.toLowerCase() === "readme.md")
+      || state.data.pages.find((page) => page.path.toLowerCase() === "index.md")
+      || state.data.pages[0];
   }
   const resolvedSlug = state.data.routeAliases?.[slug] || slug;
   return state.data.pages.find((page) => page.slug === resolvedSlug) || null;
 }
 
 async function loadVaultIndex() {
-  const response = await fetch(`./data/vault-index.json?ts=${Date.now()}`, { cache: "no-store" });
+  const response = await fetch(`/data/vault-index.json?ts=${Date.now()}`, { cache: "no-store" });
   if (response.status === 401) {
     location.assign("/__auth/login");
     throw new Error("Authentication required");
@@ -92,8 +140,144 @@ async function loadVaultIndex() {
 
 function setRefreshState(label, disabled = false) {
   if (!els.refreshDocs) return;
-  els.refreshDocs.textContent = label;
+  els.refreshDocs.innerHTML = `${icon(label === "Refreshing" ? "loader-2" : "refresh")}<span>${escapeHtml(label)}</span>`;
   els.refreshDocs.disabled = disabled;
+}
+
+function sourcePathForPage(page) {
+  const source = state.data?.source;
+  if (source?.type === "github") {
+    return [source.path, page.path].filter(Boolean).join("/");
+  }
+  return [source?.path, page.path].filter(Boolean).join("/");
+}
+
+function sourceHrefForPage(page) {
+  const source = state.data?.source;
+  if (source?.type !== "github" || !source.owner || !source.repo) return "";
+  const filePath = sourcePathForPage(page)
+    .split("/")
+    .map((part) => encodeURIComponent(part))
+    .join("/");
+  return `https://github.com/${encodeURIComponent(source.owner)}/${encodeURIComponent(source.repo)}/blob/${encodeURI(
+    source.branch || "main",
+  )}/${filePath}`;
+}
+
+function renderSourceMeta(page) {
+  const sourcePath = sourcePathForPage(page);
+  const href = sourceHrefForPage(page);
+  const label = `Source: ${sourcePath}`;
+  const content = `${icon("external-link")}<span>Source</span>`;
+  return href
+    ? `<a class="source-link" href="${escapeHtml(href)}" target="_blank" rel="noreferrer" title="${escapeHtml(label)}">${content}</a>`
+    : `<span class="source-link is-static" title="${escapeHtml(label)}">${content}</span>`;
+}
+
+function folderRouteSlug(folderPath) {
+  return String(folderPath || "")
+    .split("/")
+    .filter(Boolean)
+    .map((part) => slugify(stripNumericPrefix(part)))
+    .join("/");
+}
+
+function pageForFolderPath(folderPath) {
+  const routeSlug = folderRouteSlug(folderPath);
+  const resolvedSlug = state.data.routeAliases?.[routeSlug] || routeSlug;
+  return state.data.pages.find((item) => item.slug === resolvedSlug) || null;
+}
+
+function collapseBreadcrumbItems(items) {
+  if (items.length <= 5) return items;
+  return [items[0], items[1], { type: "ellipsis" }, ...items.slice(-2)];
+}
+
+function renderBreadcrumbs(page) {
+  const homePage = findPage("");
+  if (homePage?.slug === page.slug) {
+    return `<nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><span aria-current="page">Home</span></li>
+      </ol>
+    </nav>`;
+  }
+
+  const items = [
+    {
+      label: "Home",
+      href: "/",
+    },
+  ];
+  const folderParts = String(page.folder || "")
+    .split("/")
+    .filter(Boolean);
+  let currentPath = "";
+
+  for (const part of folderParts) {
+    currentPath = currentPath ? `${currentPath}/${part}` : part;
+    const folderPage = pageForFolderPath(currentPath);
+    items.push({
+      label: breadcrumbLabel(part),
+      href: folderPage && folderPage.slug !== page.slug ? pageHref(folderPage.slug) : "",
+    });
+  }
+
+  items.push({ label: page.title, current: true });
+
+  return `<nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      ${collapseBreadcrumbItems(items)
+        .map((item) => {
+          if (item.type === "ellipsis") {
+            return `<li class="breadcrumb-ellipsis" aria-hidden="true">...</li>`;
+          }
+          if (item.current) {
+            return `<li><span aria-current="page">${escapeHtml(item.label)}</span></li>`;
+          }
+          return `<li>${
+            item.href
+              ? `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`
+              : `<span>${escapeHtml(item.label)}</span>`
+          }</li>`;
+        })
+        .join("")}
+    </ol>
+  </nav>`;
+}
+
+function scrollRouteToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  els.content?.scrollTo?.({ top: 0, left: 0, behavior: "auto" });
+}
+
+function expandFolderPath(folderPath) {
+  const parts = String(folderPath || "")
+    .split("/")
+    .filter(Boolean);
+  let currentPath = "";
+  for (const part of parts) {
+    currentPath = currentPath ? `${currentPath}/${part}` : part;
+    state.collapsedFolders.delete(currentPath);
+  }
+}
+
+function scrollActiveTreeLink() {
+  const activeLink = els.tree.querySelector(".tree-link.is-active");
+  if (!activeLink) return;
+  requestAnimationFrame(() => {
+    activeLink.scrollIntoView({ block: "center", inline: "nearest" });
+  });
+}
+
+function navigateTo(href, replace = false) {
+  const url = new URL(href, location.origin);
+  const next = `${url.pathname}${url.search}${url.hash}`;
+  const current = `${location.pathname}${location.search}${location.hash}`;
+  if (next !== current) {
+    history[replace ? "replaceState" : "pushState"](null, "", next);
+  }
+  renderRoute();
 }
 
 async function loadViewerConfig() {
@@ -480,6 +664,7 @@ function renderTree() {
       renderTree();
     });
   });
+  scrollActiveTreeLink();
 }
 
 function renderBacklinks(page) {
@@ -493,10 +678,12 @@ function renderBacklinks(page) {
 function renderPage(page) {
   state.route = page.slug;
   state.currentPageSlug = page.slug;
+  expandFolderPath(page.folder);
   els.content.className = "content";
-  els.breadcrumbs.textContent = page.folder || "Home";
-  els.pageMeta.textContent = page.path;
-  document.title = `${page.title} · Docs Viewer`;
+  els.breadcrumbs.outerHTML = renderBreadcrumbs(page);
+  els.breadcrumbs = document.querySelector("#breadcrumbs");
+  els.pageMeta.innerHTML = renderSourceMeta(page);
+  setDocumentTitle(page.title);
   els.content.innerHTML = `<article>
     <h1 class="doc-title">${escapeHtml(page.title)}</h1>
     ${page.description ? `<p class="doc-description">${escapeHtml(page.description)}</p>` : ""}
@@ -663,7 +850,7 @@ function renderRoadmap() {
   els.content.className = "content roadmap";
   els.breadcrumbs.textContent = "Plugin";
   els.pageMeta.textContent = `${model.featureCount} features · ${model.itemCount} items`;
-  document.title = "Roadmap · Docs Viewer";
+  setDocumentTitle("Roadmap");
   els.content.innerHTML = `<section class="roadmap">
     <header class="prm-header">
       <div class="prm-brand">
@@ -792,6 +979,7 @@ function collectRoadmapGroupPaths(group, paths = []) {
 }
 
 function renderSettingsForm(config, message = "") {
+  const projectTitle = config.app?.title || appTitle();
   const sourceType = config.source?.type || "local";
   const localPath = config.source?.local?.path || "docs-sample";
   const github = config.source?.github || {};
@@ -799,12 +987,16 @@ function renderSettingsForm(config, message = "") {
   els.content.className = "content settings-content";
   els.breadcrumbs.textContent = "Admin";
   els.pageMeta.textContent = "docs-viewer.config.json";
-  document.title = "Settings · Docs Viewer";
+  setDocumentTitle("Settings");
   els.content.innerHTML = `<section class="settings-panel">
     <h1 class="doc-title">Settings</h1>
     <p class="doc-description">Configure the docs source and folders ignored during indexing.</p>
     ${message ? `<div class="settings-message">${escapeHtml(message)}</div>` : ""}
     <form id="settingsForm" class="settings-form">
+      <label class="settings-field">
+        <span>Project title</span>
+        <input name="projectTitle" value="${escapeHtml(projectTitle)}" placeholder="Docs Viewer" />
+      </label>
       <fieldset>
         <legend>Source</legend>
         <label class="settings-radio">
@@ -835,9 +1027,10 @@ function renderSettingsForm(config, message = "") {
         </label>
         <label class="settings-field">
           <span>Docs path in repo</span>
-          <input name="githubPath" value="${escapeHtml(github.path || "")}" placeholder="docs-sample" />
+          <input name="githubPath" value="${escapeHtml(github.path || "")}" placeholder="Repository root" />
         </label>
       </div>
+      <p class="settings-note">Leave <code>Docs path in repo</code> empty to index markdown from the repository root.</p>
       <p class="settings-note">Private GitHub repositories use server-side env token: <code>DOCS_VIEWER_GITHUB_TOKEN</code> or <code>GITHUB_TOKEN</code>. Token configured: ${
         config.githubTokenConfigured ? "yes" : "no"
       }.</p>
@@ -860,6 +1053,7 @@ function renderSettingsForm(config, message = "") {
           <span>Excluded folders</span>
           <textarea name="roadmapExcludedFolders" rows="4">${escapeHtml((roadmap.excludedFolders || []).join("\n"))}</textarea>
         </label>
+        <p class="settings-note settings-note-wide">Included folders are an allowlist. Leave them empty to scan the full vault. Excluded folders are then applied as a denylist, which is useful for skipping archive or draft subfolders inside an included area.</p>
         <label class="settings-radio">
           <input type="checkbox" name="roadmapHideUndated" value="true" ${roadmap.hideUndated ? "checked" : ""} />
           <span>Hide undated roadmap items by default</span>
@@ -875,6 +1069,9 @@ function renderSettingsForm(config, message = "") {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const nextConfig = {
+      app: {
+        title: String(form.get("projectTitle") || "Docs Viewer").trim() || "Docs Viewer",
+      },
       source: {
         type: form.get("sourceType"),
         local: { path: String(form.get("localPath") || "docs-sample").trim() },
@@ -908,6 +1105,8 @@ function renderSettingsForm(config, message = "") {
       state.data = await loadVaultIndex();
       state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
       state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+      setBrandTitle();
+      applyFavicon();
       renderTree();
       renderSettingsForm({ ...nextConfig, githubTokenConfigured: config.githubTokenConfigured }, "Settings saved and index rebuilt.");
     } catch (error) {
@@ -935,14 +1134,21 @@ async function renderSettings() {
 }
 
 function renderRoute() {
-  const route = currentHash();
+  const previousPageSlug = state.currentPageSlug;
+  const route = currentRoute();
+  if (location.hash.startsWith("#/")) {
+    const cleanRoute = route ? pageHref(route) : "/";
+    history.replaceState(null, "", cleanRoute);
+  }
   if (route === "roadmap") {
     renderRoadmap();
+    if (previousPageSlug && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
     return;
   }
 
   if (route === "settings") {
     renderSettings();
+    if (previousPageSlug && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
     return;
   }
 
@@ -952,14 +1158,18 @@ function renderRoute() {
       history.replaceState(null, "", pageHref(page.slug));
     }
     renderPage(page);
+    if (previousPageSlug && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
     return;
   }
 
   els.content.innerHTML = `<div class="empty-state">Page not found.</div>`;
+  if (previousPageSlug) scrollRouteToTop();
 }
 
 async function init() {
   state.data = await loadVaultIndex();
+  setBrandTitle();
+  applyFavicon();
   state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
   state.auth = await loadAuthStatus();
   renderAuthStatus(state.auth);
@@ -970,13 +1180,21 @@ async function init() {
     renderTree();
   });
   els.roadmapLink.addEventListener("click", () => {
-    location.hash = "#/roadmap";
+    navigateTo("/roadmap");
   });
   els.settingsLink?.addEventListener("click", () => {
-    location.hash = "#/settings";
+    navigateTo("/settings");
   });
   els.refreshDocs?.addEventListener("click", refreshDocs);
-  window.addEventListener("hashchange", renderRoute);
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link || link.target || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const url = new URL(link.href);
+    if (url.origin !== location.origin) return;
+    event.preventDefault();
+    navigateTo(`${url.pathname}${url.search}${url.hash}`);
+  });
+  window.addEventListener("popstate", renderRoute);
   renderRoute();
 }
 

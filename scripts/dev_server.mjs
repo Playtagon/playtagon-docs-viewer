@@ -16,6 +16,9 @@ const configFile = resolve("docs-viewer.config.json");
 const SESSION_COOKIE = "docs_viewer_session";
 const OAUTH_STATE_COOKIE = "docs_viewer_oauth_state";
 const DEFAULT_CONFIG = {
+  app: {
+    title: "Docs Viewer",
+  },
   source: {
     type: "local",
     local: { path: "docs-sample" },
@@ -23,7 +26,7 @@ const DEFAULT_CONFIG = {
       owner: "your-org",
       repo: "your-docs-repo",
       branch: "main",
-      path: "docs",
+      path: "",
     },
   },
   roadmap: {
@@ -534,6 +537,7 @@ async function serveStatic(req, res) {
   const url = new URL(req.url, `http://${req.headers.host || "127.0.0.1"}`);
   const requested = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
   const filePath = normalize(join(root, requested));
+  const indexPath = join(root, "index.html");
 
   if (!filePath.startsWith(root)) {
     send(res, 403, "Forbidden");
@@ -553,6 +557,14 @@ async function serveStatic(req, res) {
     });
     createReadStream(filePath).pipe(res);
   } catch {
+    if (req.method === "GET" && !extname(url.pathname)) {
+      res.writeHead(200, {
+        "content-type": MIME_TYPES[".html"],
+        "cache-control": "no-store",
+      });
+      createReadStream(indexPath).pipe(res);
+      return;
+    }
     send(res, 404, "Not found");
   }
 }
@@ -569,7 +581,7 @@ const server = createServer(async (req, res) => {
     if (!ensureAuthReady(res)) return;
     const session = currentSession(req);
     if (!session) {
-      if (req.method === "GET" && (url.pathname === "/" || url.pathname.endsWith(".html"))) {
+      if (req.method === "GET" && (url.pathname === "/" || url.pathname.endsWith(".html") || !extname(url.pathname))) {
         redirect(res, "/__auth/login");
       } else {
         send(res, 401, JSON.stringify({ error: "Authentication required" }), "application/json; charset=utf-8");
