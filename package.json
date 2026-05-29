@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build:index": "node scripts/build_viewer_index.mjs",
+    "build:kb": "python3 scripts/build_knowledge_base.py docs-sample -o knowledge-base.md",
     "dev": "node scripts/dev_server.mjs"
   }
 }

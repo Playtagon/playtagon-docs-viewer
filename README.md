@@ -24,6 +24,7 @@ docs-viewer/
 │   └── playmap/                  # Play Map Obsidian plugin
 ├── scripts/
 │   ├── build_viewer_index.mjs    # Markdown vault -> JSON index
+│   ├── build_knowledge_base.py   # Markdown vault -> one LLM-ready context file
 │   ├── dev_server.mjs            # Static server + optional auth/config/rebuild endpoints
 │   └── load_env.mjs
 ├── viewer/
@@ -53,6 +54,28 @@ http://127.0.0.1:8787
 ```
 
 By default, the example config points at `docs-sample/`.
+
+## LLM Context File
+
+Sometimes the fastest way to give an LLM project context is not to send it a folder tree one file at a time, but to hand it one Markdown file with the relevant documentation already stitched together. The knowledge-base builder exists for that workflow.
+
+```bash
+npm run build:kb
+```
+
+The command scans `docs-sample/` and writes `knowledge-base.md`. The output is meant as an LLM context packet, not as a perfect archive of the source files: it keeps file paths, source labels, a table of contents, and the document content, while compacting repeated blank lines and trailing whitespace so the result is easier to paste or upload as context.
+
+You can point it at another vault:
+
+```bash
+python3 scripts/build_knowledge_base.py path/to/docs -o knowledge-base.md --title "Project Knowledge Base"
+```
+
+If you need the original spacing preserved, add `--verbatim`:
+
+```bash
+python3 scripts/build_knowledge_base.py docs-sample -o knowledge-base.md --verbatim
+```
 
 ## Configuration
 
