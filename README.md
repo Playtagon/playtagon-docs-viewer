@@ -9,7 +9,8 @@ It is designed for teams that want to keep writing in a normal markdown vault wh
 - Reads a local markdown vault, such as `docs-sample/`.
 - Parses YAML frontmatter, headings, aliases, Obsidian wikilinks, backlinks, and assets.
 - Generates `viewer/data/vault-index.json`.
-- Renders a browser UI with sidebar navigation, search, markdown pages, backlinks, and a roadmap route.
+- Renders a browser UI with sidebar navigation, search, markdown pages, page table of contents, backlinks, and a roadmap route.
+- Keeps route and heading-anchor navigation stable with sticky topbar-aware scroll offsets.
 - Can be deployed as static files.
 - Can optionally run behind a small Node server for OAuth, config editing, and rebuilds.
 
@@ -147,6 +148,8 @@ Useful conventions:
 - Use `aliases` for human-readable links.
 - Escape wikilink aliases inside markdown tables: `[[Page\|Alias]]`.
 - Add an impact block at the end, for example `## When changing this page, check`.
+
+The page table of contents is generated from `##` through `####` headings. `Linked mentions` are generated automatically from resolved wikilinks and rendered as document chips in the viewer; they are not authored as a manual markdown section.
 
 ## Deployment
 

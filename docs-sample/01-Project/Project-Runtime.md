@@ -29,7 +29,12 @@ The runtime has two parts: the browser UI in `viewer/` and the optional Node ser
 - markdown pages;
 - wikilinks;
 - backlinks;
+- page table of contents from `##` through `####` headings;
 - roadmap route `#/roadmap`.
+
+The right-side `On this page` navigation is runtime UI, not authored content. It highlights the active heading while scrolling and uses a sticky topbar-aware offset for heading links.
+
+`Linked mentions` are also runtime UI. The index builder resolves wikilinks and writes backlinks into `vault-index.json`; the browser renders those backlinks as linked document chips.
 
 ## Node server
 
