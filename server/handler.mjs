@@ -180,6 +180,11 @@ function isAdminEmail(email) {
   return config.adminEmails.includes(normalizeEmail(email));
 }
 
+function hasAdminAccess(req, config = authConfig()) {
+  if (!config.enabled) return false;
+  return isAdminEmail(currentSession(req)?.email);
+}
+
 function ensureAuthReady(res) {
   const config = authConfig();
   if (!config.enabled) return true;
@@ -707,8 +712,13 @@ export async function handleDocsViewerRequest(req, res) {
     }
   }
 
+  if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/settings" && !hasAdminAccess(req, config)) {
+    redirect(res, "/");
+    return;
+  }
+
   if (req.method === "GET" && url.pathname === "/__config") {
-    if (!isAdminEmail(currentSession(req)?.email)) {
+    if (!hasAdminAccess(req, config)) {
       send(res, 403, JSON.stringify({ error: "Admin access required" }), "application/json; charset=utf-8");
       return;
     }
@@ -743,7 +753,7 @@ export async function handleDocsViewerRequest(req, res) {
   }
 
   if (req.method === "POST" && url.pathname === "/__config") {
-    if (!isAdminEmail(currentSession(req)?.email)) {
+    if (!hasAdminAccess(req, config)) {
       send(res, 403, JSON.stringify({ error: "Admin access required" }), "application/json; charset=utf-8");
       return;
     }
@@ -772,7 +782,7 @@ export async function handleDocsViewerRequest(req, res) {
   }
 
   if (req.method === "POST" && url.pathname === "/__rebuild") {
-    if (!isAdminEmail(currentSession(req)?.email)) {
+    if (!hasAdminAccess(req, config)) {
       send(res, 403, JSON.stringify({ error: "Admin access required" }), "application/json; charset=utf-8");
       return;
     }

@@ -360,8 +360,12 @@ function renderAuthStatus(auth) {
   <a href="/__auth/logout">Sign out</a>`;
 }
 
+function canAccessSettings(auth) {
+  return Boolean(auth?.authenticated && auth.isAdmin);
+}
+
 function applyAdminUi(auth) {
-  if (!auth?.authenticated || auth.isAdmin) return;
+  if (canAccessSettings(auth)) return;
   els.settingsLink?.remove();
 }
 
@@ -1293,6 +1297,10 @@ function renderSettingsForm(config, message = "") {
 }
 
 async function renderSettings() {
+  if (!canAccessSettings(state.auth)) {
+    navigateTo("/", true);
+    return;
+  }
   resetPageToc();
   state.route = "__settings";
   state.currentPageSlug = "settings";
