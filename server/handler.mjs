@@ -327,8 +327,9 @@ async function loginFaviconHref() {
       assets["favicon.svg"] ||
       Object.entries(assets).find(([key]) => /(^|\/)favicon\.(ico|png|svg)$/i.test(key))?.[1];
     if (!faviconPath || !/^assets\/[a-z0-9а-яё._\-/ ]+\.(ico|png|svg)$/i.test(faviconPath)) return "";
-    const filePath = resolve(root, faviconPath);
-    if (!filePath.startsWith(`${root}/`)) return "";
+    const dataRoot = resolve(root, "data");
+    const filePath = resolve(dataRoot, faviconPath);
+    if (!filePath.startsWith(`${dataRoot}/`)) return "";
     const mimeType = (MIME_TYPES[extname(filePath).toLowerCase()] || "image/x-icon").split(";")[0];
     return `data:${mimeType};base64,${(await readFile(filePath)).toString("base64")}`;
   } catch {
