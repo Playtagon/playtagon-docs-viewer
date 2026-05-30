@@ -312,6 +312,10 @@ function expandFolderPath(folderPath) {
   }
 }
 
+function currentTreePage() {
+  return state.data?.pages.find((page) => page.slug === state.currentPageSlug) || null;
+}
+
 function scrollActiveTreeLink() {
   const activeLink = els.tree.querySelector(".tree-link.is-active");
   if (!activeLink) return;
@@ -1046,7 +1050,7 @@ function renderRoadmap() {
               </label>
               <button class="prm-icon-button" type="button" data-roadmap-action="expand" title="Expand all" aria-label="Expand all">${icon("arrow-autofit-height")}</button>
               <button class="prm-icon-button" type="button" data-roadmap-action="collapse" title="Collapse all" aria-label="Collapse all">${icon("fold")}</button>`
-            : `<button class="prm-icon-button" type="button" data-board-action="expand" title="Expand all" aria-label="Expand all">${icon("arrow-autofit-height")}</button>
+            : `<button class="prm-icon-button" type="button" data-board-action="expand" title="Expand all" aria-label="Expand all">${icon("arrow-autofit-width")}</button>
               <button class="prm-icon-button" type="button" data-board-action="collapse" title="Collapse all" aria-label="Collapse all">${icon("fold")}</button>`
         }
       </div>
@@ -1359,6 +1363,8 @@ async function init() {
   });
   els.collapseTree?.addEventListener("click", () => {
     state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+    const page = currentTreePage();
+    if (page) expandFolderPath(page.folder);
     renderTree({ scrollActive: false });
   });
   els.mobileMenuToggle?.addEventListener("click", () => {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T02:50:04.271Z",
+  "generatedAt": "2026-05-30T03:09:36.994Z",
   "app": {
     "title": "Playtagon Docs"
   },
@@ -35,7 +35,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "MVP фиксирует первую рабочую версию Playtagon: студия может создать игру через [[Types-Play-SDK|Play SDK]], загрузить .playtagon-архив, пройти базовый review/publishing loop и довести approved submission до live.\n\n## Входит в MVP\n\n| Область      | Модули                                                                                                                                                                                              |\n| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Studio       | [[Studio\\|Studio]], [[Studio-Auth\\|Auth]], [[Studio-Members\\|Members]], [[Studio-Users\\|Users]], [[Studio-Games\\|Dashboard]], [[Studio-Insights\\|Studio Insights]], [[Studio-Profile\\|Profile]] |\n| Game         | [[Game\\|Game]], [[Game-Insights\\|Game Insights]], [[Game-Settings\\|Game Settings]], [[Game-AI-Wizard\\|Game AI Wizard]], [[Game-Documentation\\|game documentation]]                                  |\n| Editor tools | [[Editor-Tools-Resources\\|Resources]], [[Editor-Tools-Launch-Game\\|Launch Game]], [[Editor-Tools-Promo-Assets\\|Promo Assets]], [[Editor-Tools-Publishing\\|Publishing]]                              |\n| SDK/RGS      | [[SDK\\|SDK]], [[SDK-RGS\\|RGS]], базовые RGS API pages                                                                                                                                               |\n| AI           | [[AI-Wizard\\|AI Wizard]] как помощник, onboarding shell и источник SDK/Q&A                                                                                                                          |\n\n## Не входит в MVP\n\n- [[Blueprint|Blueprint]] как полноценный node editor.\n- [[Billing|Billing]], [[Royalty|Royalty]], [[Pulse|Pulse]], [[Audit-Log|Audit Log]], [[Notifications|Notifications]],\n- [[Game-Designer|Game Designer]], [[Sound-Designer|Sound Designer]], [[Certification|Certification]], [[Translator|Translator]].\n- [[Brief|Brief]], [[Moodboard|Moodboard]], [[Kanban|Kanban]] как инструменты командной работы.\n- [[Types-Slot-Reskin|Slot Reskin]], [[Types-Originals|Originals]], [[Types-Visual-AI|Visual Editor + AI]].\n- Полноценный [[Simulation|Math Simulation]] как отдельный аналитический продукт; в MVP остаётся базовая проверка/симуляция там, где её вызывает RGS или publishing.\n\n## Важные ограничения MVP\n\n- Нет типа создания игры по умолчанию в продуктовой модели; пользователь выбирает тип, но в MVP активен только [[Types-Play-SDK|Play SDK]].\n- Математика загружается через [[Resources|Resources]] как версия архива, а не собирается через Blueprint-ноды.\n- [[Publishing|Publishing]] использует три модуля submission и 48-часовой период перед deployment.\n\n## Связанные страницы\n- [[Overview|Overview]]: общая карта продукта\n- [[Types-Play-SDK|Play SDK]]: единственный активный creator type MVP\n- [[Publishing|Publishing]]: путь к live\n- [[001-Studio-Basic|Studio Basic Flow]]: сквозной MVP-сценарий\n\n## При изменении проверить\n- Все страницы, где упоминается доступность Visual, AI Builder, Blueprint, Certification или Simulation.\n- Статусы game card в Studio Dashboard и Game Hub.\n",
+      "body": "MVP фиксирует первую рабочую версию Playtagon: студия может создать игру через [[Types-Play-SDK|Play SDK]], загрузить .playtagon-архив, пройти базовый review/publishing loop и довести approved submission до live.\n\n## Входит в MVP\n\n| Область      | Модули                                                                                                                                                                                              |\n| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Studio       | [[Studio\\|Studio]], [[Studio-Auth\\|Auth]], [[Studio-Members\\|Members]], [[Studio-Users\\|Users]], [[Studio-Games\\|Dashboard]], [[Studio-Insights\\|Studio Insights]], [[Studio-Profile\\|Profile]] |\n| Game         | [[Game\\|Game]], [[Game-Insights\\|Game Insights]], [[Game-Settings\\|Game Settings]], [[Game-AI-Wizard\\|Game AI Wizard]], [[Game-Documentation\\|game documentation]]                                  |\n| Editor tools | [[Editor-Tools-Resources\\|Resources]], [[Editor-Tools-Launch-Game\\|Launch Game]], [[Editor-Tools-Promo-Assets\\|Promo Assets]], [[Editor-Tools-Publishing\\|Publishing]]                              |\n| SDK/RGS      | [[SDK\\|SDK]], [[SDK-RGS\\|RGS]], базовые RGS API pages                                                                                                                                               |\n| AI           | [[AI-Wizard\\|AI Wizard]] как помощник, onboarding shell и источник SDK/Q&A                                                                                                                          |\n\n## Не входит в MVP\n\n- [[Blueprint|Blueprint]] как полноценный node editor.\n- [[Billing|Billing]], [[Royalty|Royalty]], [[Pulse|Pulse]], [[Audit-Log|Audit Log]], [[Notifications|Notifications]],\n- [[Game-Designer|Game Designer]], [[Sound-Designer|Sound Designer]], [[Certification|Certification]], [[Translator|Translator]].\n- [[Brief|Brief]], [[Moodboard|Moodboard]], [[Kanban|Kanban]] как инструменты командной работы.\n- [[Types-Slot-Reskin|Slot Reskin]], [[Types-Originals|Originals]], [[Types-Visual-AI|Visual Editor + AI]].\n- Полноценный [[Simulation|Math Simulation]] как отдельный аналитический продукт; в MVP остаётся базовая проверка/симуляция там, где её вызывает RGS или publishing.\n\n## Важные ограничения MVP\n\n- Нет типа создания игры по умолчанию в продуктовой модели; пользователь выбирает тип, но в MVP активен только [[Types-Play-SDK|Play SDK]].\n- Математика загружается через [[Resources|Resources]] как версия архива, а не собирается через Blueprint-ноды.\n- [[Publishing|Publishing]] использует три модуля submission и 48-часовой период перед deployment.\n\n## Связанные страницы\n- [[Overview|Overview]]: общая карта продукта\n- [[Types-Play-SDK|Play SDK]]: единственный активный creator type MVP\n- [[Publishing|Publishing]]: путь к live\n- [[Studio-Basic|Studio Basic Flow]]: сквозной MVP-сценарий\n\n## При изменении проверить\n- Все страницы, где упоминается доступность Visual, AI Builder, Blueprint, Certification или Simulation.\n- Статусы game card в Studio Dashboard и Game Hub.\n",
       "headings": [
         {
           "level": 2,
@@ -280,7 +280,7 @@
           "label": "Publishing"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         }
@@ -767,7 +767,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Google OAuth — быстрый вход через Google account. Он используется как обычный auth provider и ведёт в те же post-auth ветки, что Magic Link.\n\n## После входа\n\nСистема проверяет:\n\n1. есть ли активное invite-состояние;\n2. approved ли пользователь для создания студии;\n3. состоит ли он в одной или нескольких студиях;\n4. нужно ли показать [[Auth-Multi-Studio|multi-studio screen]].\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[Auth-Invite-Link|invite link]]: link invite может вести через Google OAuth\n- [[Profile|Profile]]: профиль получает базовые identity data\n\n## При изменении проверить\n- [[Auth|Auth]] при изменении provider routing.\n- [[002-Onboarding|Onboarding flow]] при изменении post-auth переходов.\n",
+      "body": "Google OAuth — быстрый вход через Google account. Он используется как обычный auth provider и ведёт в те же post-auth ветки, что Magic Link.\n\n## После входа\n\nСистема проверяет:\n\n1. есть ли активное invite-состояние;\n2. approved ли пользователь для создания студии;\n3. состоит ли он в одной или нескольких студиях;\n4. нужно ли показать [[Auth-Multi-Studio|multi-studio screen]].\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[Auth-Invite-Link|invite link]]: link invite может вести через Google OAuth\n- [[Profile|Profile]]: профиль получает базовые identity data\n\n## При изменении проверить\n- [[Auth|Auth]] при изменении provider routing.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении post-auth переходов.\n",
       "headings": [
         {
           "level": 2,
@@ -812,7 +812,7 @@
           "label": "Auth"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -843,7 +843,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Invite Email — персональное приглашение на конкретный email. Письмо содержит token link: по переходу пользователь автоматически проходит auth step и попадает в onboarding приглашённого.\n\n## Правила\n\n- приглашение привязано к email и студии;\n- пользователь не может создать новую студию из этого сценария;\n- onboarding собирает имя и фото;\n- дефолтный доступ определяется permissions template, выбранным при invite.\n\n## Связанные страницы\n- [[Members-Invite|invite flow]]: создание email invite\n- [[Auth|Auth]]: auth routing\n- [[Members-Role-Templates|role templates]]: дефолтный permission template\n- [[002-Onboarding|Onboarding flow]]: путь invited by email\n\n## При изменении проверить\n- [[Members-Invite|invite flow]] при изменении invite fields.\n- [[002-Onboarding|Onboarding flow]] при изменении onboarding приглашённого.\n- [[Users-Permissions|permissions]] при изменении default permissions.\n",
+      "body": "Invite Email — персональное приглашение на конкретный email. Письмо содержит token link: по переходу пользователь автоматически проходит auth step и попадает в onboarding приглашённого.\n\n## Правила\n\n- приглашение привязано к email и студии;\n- пользователь не может создать новую студию из этого сценария;\n- onboarding собирает имя и фото;\n- дефолтный доступ определяется permissions template, выбранным при invite.\n\n## Связанные страницы\n- [[Members-Invite|invite flow]]: создание email invite\n- [[Auth|Auth]]: auth routing\n- [[Members-Role-Templates|role templates]]: дефолтный permission template\n- [[05-Flows/Onboarding|Onboarding flow]]: путь invited by email\n\n## При изменении проверить\n- [[Members-Invite|invite flow]] при изменении invite fields.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении onboarding приглашённого.\n- [[Users-Permissions|permissions]] при изменении default permissions.\n",
       "headings": [
         {
           "level": 2,
@@ -878,7 +878,7 @@
           "label": "role templates"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -888,7 +888,7 @@
           "label": "invite flow"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -924,7 +924,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Invite Link — общая ссылка студии. В отличие от email invite, она не привязана к конкретному человеку, поэтому после открытия ссылки пользователь сначала проходит Google OAuth или Magic Link.\n\n## Поведение\n\n- ссылка привязана к студии;\n- её можно сбросить, после чего старая перестаёт работать;\n- присоединившийся получает permission template, заданный для link invite;\n- Owner/Member с нужными permissions получает notification о новом участнике.\n\n## Связанные страницы\n- [[Members-Invite|invite flow]]: управление invite link\n- [[Auth-Magic-Link|Magic Link]]: один из auth providers\n- [[Auth-Google-OAuth|Google OAuth]]: один из auth providers\n- [[Notifications|Notifications]]: уведомления о новом участнике\n- [[002-Onboarding|Onboarding flow]]: путь invited by link\n\n## При изменении проверить\n- [[Members-Invite|invite flow]] при изменении link lifecycle.\n- [[Notifications-Rules|notification rules]] при изменении уведомлений о вступлении.\n- [[002-Onboarding|Onboarding flow]] при изменении invite link path.\n",
+      "body": "Invite Link — общая ссылка студии. В отличие от email invite, она не привязана к конкретному человеку, поэтому после открытия ссылки пользователь сначала проходит Google OAuth или Magic Link.\n\n## Поведение\n\n- ссылка привязана к студии;\n- её можно сбросить, после чего старая перестаёт работать;\n- присоединившийся получает permission template, заданный для link invite;\n- Owner/Member с нужными permissions получает notification о новом участнике.\n\n## Связанные страницы\n- [[Members-Invite|invite flow]]: управление invite link\n- [[Auth-Magic-Link|Magic Link]]: один из auth providers\n- [[Auth-Google-OAuth|Google OAuth]]: один из auth providers\n- [[Notifications|Notifications]]: уведомления о новом участнике\n- [[05-Flows/Onboarding|Onboarding flow]]: путь invited by link\n\n## При изменении проверить\n- [[Members-Invite|invite flow]] при изменении link lifecycle.\n- [[Notifications-Rules|notification rules]] при изменении уведомлений о вступлении.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении invite link path.\n",
       "headings": [
         {
           "level": 2,
@@ -964,7 +964,7 @@
           "label": "Notifications"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -979,7 +979,7 @@
           "label": "notification rules"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -1087,7 +1087,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Multi Studio появляется после входа, если пользователь состоит в нескольких студиях. Это входной screen, а не обычная настройка профиля: пользователь выбирает рабочий контекст до попадания в Dashboard.\n\n## UI model\n\nЭкран визуально использует [[Onboarding|Wizard onboarding]]: список студий, краткое описание доступа и опциональная кнопка создания новой студии, если это разрешено.\n\n## Правила\n\n- выбор студии определяет текущий workspace;\n- права пользователя считаются внутри выбранной студии;\n- создание новой студии доступно только пользователям, которым это разрешено waitlist/product policy;\n- возврат к выбору студии возможен через account switcher.\n\n## Связанные страницы\n- [[Auth|Auth]]: post-auth routing\n- [[Onboarding|Wizard onboarding]]: визуальный shell\n- [[Users-Permissions|permissions]]: права считаются в рамках выбранной студии\n- [[Games|Dashboard]]: следующий экран после выбора\n\n## При изменении проверить\n- [[002-Onboarding|Onboarding flow]] при изменении multi-studio entrance.\n- [[Users-Permissions|permissions]] при изменении workspace-scoped permissions.\n",
+      "body": "Multi Studio появляется после входа, если пользователь состоит в нескольких студиях. Это входной screen, а не обычная настройка профиля: пользователь выбирает рабочий контекст до попадания в Dashboard.\n\n## UI model\n\nЭкран визуально использует [[04-AI-Wizard/Onboarding|Wizard onboarding]]: список студий, краткое описание доступа и опциональная кнопка создания новой студии, если это разрешено.\n\n## Правила\n\n- выбор студии определяет текущий workspace;\n- права пользователя считаются внутри выбранной студии;\n- создание новой студии доступно только пользователям, которым это разрешено waitlist/product policy;\n- возврат к выбору студии возможен через account switcher.\n\n## Связанные страницы\n- [[Auth|Auth]]: post-auth routing\n- [[04-AI-Wizard/Onboarding|Wizard onboarding]]: визуальный shell\n- [[Users-Permissions|permissions]]: права считаются в рамках выбранной студии\n- [[Games|Dashboard]]: следующий экран после выбора\n\n## При изменении проверить\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении multi-studio entrance.\n- [[Users-Permissions|permissions]] при изменении workspace-scoped permissions.\n",
       "headings": [
         {
           "level": 2,
@@ -1112,7 +1112,7 @@
       ],
       "wikilinks": [
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
@@ -1122,7 +1122,7 @@
           "label": "Auth"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
@@ -1137,7 +1137,7 @@
           "label": "Dashboard"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -1176,7 +1176,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Waitlist — входной барьер для пользователя, которого Playtagon ещё не знает. Он не может сразу создать студию: сначала проходит форму-заявку в интерфейсе [[Onboarding|Wizard onboarding]].\n\n## Сценарий\n\n1. Пользователь пытается войти или создать аккаунт.\n2. Система не находит invite или approved waitlist status.\n3. Показывается Wizard-like форма.\n4. Пользователь оставляет информацию о себе, студии и намерениях.\n5. Заявка уходит в admin review.\n6. После approval пользователь может пройти product onboarding и создать студию.\n\n## Почему это важно\n\nWaitlist защищает платформу от случайных аккаунтов и помогает Playtagon квалифицировать студии до того, как им будет открыт доступ к созданию игр и publishing.\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[Onboarding|Wizard onboarding]]: визуальная оболочка waitlist\n- [[002-Onboarding|Onboarding flow]]: сквозной onboarding flow\n- [[Audit-Log-Events|audit events]]: события заявки и approval\n\n## При изменении проверить\n- [[002-Onboarding|Onboarding flow]] при изменении waitlist steps.\n- [[Onboarding|Wizard onboarding]] при изменении интерфейса waitlist.\n- Admin/backoffice документацию, если меняется approval процесс.\n",
+      "body": "Waitlist — входной барьер для пользователя, которого Playtagon ещё не знает. Он не может сразу создать студию: сначала проходит форму-заявку в интерфейсе [[04-AI-Wizard/Onboarding|Wizard onboarding]].\n\n## Сценарий\n\n1. Пользователь пытается войти или создать аккаунт.\n2. Система не находит invite или approved waitlist status.\n3. Показывается Wizard-like форма.\n4. Пользователь оставляет информацию о себе, студии и намерениях.\n5. Заявка уходит в admin review.\n6. После approval пользователь может пройти product onboarding и создать студию.\n\n## Почему это важно\n\nWaitlist защищает платформу от случайных аккаунтов и помогает Playtagon квалифицировать студии до того, как им будет открыт доступ к созданию игр и publishing.\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[04-AI-Wizard/Onboarding|Wizard onboarding]]: визуальная оболочка waitlist\n- [[05-Flows/Onboarding|Onboarding flow]]: сквозной onboarding flow\n- [[Audit-Log-Events|audit events]]: события заявки и approval\n\n## При изменении проверить\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении waitlist steps.\n- [[04-AI-Wizard/Onboarding|Wizard onboarding]] при изменении интерфейса waitlist.\n- Admin/backoffice документацию, если меняется approval процесс.\n",
       "headings": [
         {
           "level": 2,
@@ -1201,7 +1201,7 @@
       ],
       "wikilinks": [
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
@@ -1211,12 +1211,12 @@
           "label": "Auth"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -1226,12 +1226,12 @@
           "label": "audit events"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         }
@@ -1265,7 +1265,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Auth — единая точка входа. Регистрация и авторизация не разделяются на два продукта: пользователь всегда начинает с входа, а дальнейший путь определяется тем, знаком ли он Playtagon и есть ли у него приглашение.\n\n## Методы входа\n\n| Метод | Когда используется |\n| --- | --- |\n| [[Studio-Auth-Magic-Link\\|Magic Link]] | Email-first вход без пароля |\n| [[Studio-Auth-Google-OAuth\\|Google OAuth]] | Быстрый вход через Google |\n\n## Три входных сценария\n\n| Сценарий | Что происходит |\n| --- | --- |\n| Unknown user | Попадает в [[Studio-Auth-Waitlist\\|Waitlist]], который визуально выглядит как [[AI-Wizard-Onboarding\\|Wizard onboarding]] |\n| Invite by email | Переходит по token link из письма и попадает в onboarding приглашённого |\n| Invite by link | Проходит Google/Magic Link и возвращается в onboarding приглашённого |\n\n## Multi-studio\n\nЕсли пользователь состоит в нескольких студиях, после входа он видит [[Auth-Multi-Studio|multi-studio screen]]: экран выбора студии или создания новой, если permissions позволяют. Этот экран тоже использует Wizard-like UX, чтобы входной опыт был цельным.\n\n## Связанные страницы\n- [[Auth-Waitlist|Waitlist]]: путь неизвестного пользователя\n- [[Auth-Invite-Email|email invite]]: персональное приглашение с token\n- [[Auth-Invite-Link|invite link]]: приглашение по общей ссылке\n- [[Auth-Multi-Studio|multi-studio screen]]: выбор студии при повторном входе\n- [[Onboarding|Wizard onboarding]]: визуальная оболочка входных сценариев\n- [[002-Onboarding|Onboarding flow]]: сквозной флоу входа\n\n## При изменении проверить\n- [[002-Onboarding|Onboarding flow]] при изменении любого входного сценария.\n- [[Members-Invite|invite flow]] при изменении invite mechanics.\n- [[Members-Role-Templates|role templates]] и [[Users-Permissions|permissions]], если меняется дефолтный доступ приглашённых.\n",
+      "body": "Auth — единая точка входа. Регистрация и авторизация не разделяются на два продукта: пользователь всегда начинает с входа, а дальнейший путь определяется тем, знаком ли он Playtagon и есть ли у него приглашение.\n\n## Методы входа\n\n| Метод | Когда используется |\n| --- | --- |\n| [[Studio-Auth-Magic-Link\\|Magic Link]] | Email-first вход без пароля |\n| [[Studio-Auth-Google-OAuth\\|Google OAuth]] | Быстрый вход через Google |\n\n## Три входных сценария\n\n| Сценарий | Что происходит |\n| --- | --- |\n| Unknown user | Попадает в [[Studio-Auth-Waitlist\\|Waitlist]], который визуально выглядит как [[AI-Wizard-Onboarding\\|Wizard onboarding]] |\n| Invite by email | Переходит по token link из письма и попадает в onboarding приглашённого |\n| Invite by link | Проходит Google/Magic Link и возвращается в onboarding приглашённого |\n\n## Multi-studio\n\nЕсли пользователь состоит в нескольких студиях, после входа он видит [[Auth-Multi-Studio|multi-studio screen]]: экран выбора студии или создания новой, если permissions позволяют. Этот экран тоже использует Wizard-like UX, чтобы входной опыт был цельным.\n\n## Связанные страницы\n- [[Auth-Waitlist|Waitlist]]: путь неизвестного пользователя\n- [[Auth-Invite-Email|email invite]]: персональное приглашение с token\n- [[Auth-Invite-Link|invite link]]: приглашение по общей ссылке\n- [[Auth-Multi-Studio|multi-studio screen]]: выбор студии при повторном входе\n- [[04-AI-Wizard/Onboarding|Wizard onboarding]]: визуальная оболочка входных сценариев\n- [[05-Flows/Onboarding|Onboarding flow]]: сквозной флоу входа\n\n## При изменении проверить\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении любого входного сценария.\n- [[Members-Invite|invite flow]] при изменении invite mechanics.\n- [[Members-Role-Templates|role templates]] и [[Users-Permissions|permissions]], если меняется дефолтный доступ приглашённых.\n",
       "headings": [
         {
           "level": 2,
@@ -1340,17 +1340,17 @@
           "label": "multi-studio screen"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -1823,7 +1823,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Games — первый рабочий экран студии после входа. Он отвечает за портфель игр, быстрый доступ к действиям и понимание, что сейчас требует внимания.\n\n## Empty state\n\nЕсли игр ещё нет, Games предлагает создать первую игру. Пользователь выбирает creator type; в MVP активен только [[Types-Play-SDK|Play SDK]]. Другие creator types могут быть видимыми как future направления, но не должны выглядеть доступными.\n\n## Games list\n\n| View | Назначение |\n| --- | --- |\n| Compact | быстрый список большого количества игр |\n| Detailed | карточки с cover, publishing status, progress и виджетами |\n\n## Карточка игры\n\nDetailed card показывает:\n\n- cover из [[Promo-Assets|Large Product Icon]];\n- lifecycle status из [[Publishing-Lifecycle|publishing lifecycle]];\n- последние события из [[Pulse|Pulse]];\n- последний результат [[Simulation|Math Simulation]];\n- быстрый переход в [[Game|Game]].\n\n## Publishing statuses\n\nCollect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live\n\n## Связанные страницы\n- [[Game|Game]]: следующий уровень после выбора игры\n- [[Types-Play-SDK|Play SDK]]: активный creator type MVP\n- [[Publishing-Lifecycle|publishing lifecycle]]: источник publishing statuses\n- [[Pulse|Pulse]]: последние события на карточке\n- [[Overview-MVP-June-2026|MVP June 2026]]: границы MVP\n\n## При изменении проверить\n- [[001-Studio-Basic|Studio Basic Flow]] при изменении create game path.\n- [[Game|Game]] при изменении карточки или перехода в Game Hub.\n- [[Overview-MVP-June-2026|MVP June 2026]] при изменении доступных creator types.\n",
+      "body": "Games — первый рабочий экран студии после входа. Он отвечает за портфель игр, быстрый доступ к действиям и понимание, что сейчас требует внимания.\n\n## Empty state\n\nЕсли игр ещё нет, Games предлагает создать первую игру. Пользователь выбирает creator type; в MVP активен только [[Types-Play-SDK|Play SDK]]. Другие creator types могут быть видимыми как future направления, но не должны выглядеть доступными.\n\n## Games list\n\n| View | Назначение |\n| --- | --- |\n| Compact | быстрый список большого количества игр |\n| Detailed | карточки с cover, publishing status, progress и виджетами |\n\n## Карточка игры\n\nDetailed card показывает:\n\n- cover из [[Promo-Assets|Large Product Icon]];\n- lifecycle status из [[Publishing-Lifecycle|publishing lifecycle]];\n- последние события из [[Pulse|Pulse]];\n- последний результат [[Simulation|Math Simulation]];\n- быстрый переход в [[Game|Game]].\n\n## Publishing statuses\n\nCollect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live\n\n## Связанные страницы\n- [[Game|Game]]: следующий уровень после выбора игры\n- [[Types-Play-SDK|Play SDK]]: активный creator type MVP\n- [[Publishing-Lifecycle|publishing lifecycle]]: источник publishing statuses\n- [[Pulse|Pulse]]: последние события на карточке\n- [[Overview-MVP-June-2026|MVP June 2026]]: границы MVP\n\n## При изменении проверить\n- [[Studio-Basic|Studio Basic Flow]] при изменении create game path.\n- [[Game|Game]] при изменении карточки или перехода в Game Hub.\n- [[Overview-MVP-June-2026|MVP June 2026]] при изменении доступных creator types.\n",
       "headings": [
         {
           "level": 2,
@@ -1913,7 +1913,7 @@
           "label": "MVP June 2026"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         },
@@ -2042,7 +2042,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Invite — входная точка добавления людей в студию. Playtagon поддерживает два способа: персональное приглашение по email и общую ссылку студии.\n\n## Email invite\n\nOwner или Member с нужными permissions вводит email, выбирает role/template и отправляет приглашение. Пользователь получает token link и проходит [[Auth-Invite-Email|email invite]].\n\n## Link invite\n\nОбщая ссылка подходит для быстрых приглашений. Она ведёт через [[Auth-Invite-Link|invite link]] и должна иметь безопасный дефолтный permission template, обычно Viewer.\n\n## Reset link\n\nСсылку можно сбросить. После reset старая ссылка не работает, а новые вступления идут только через свежий URL.\n\n## Связанные страницы\n- [[Auth-Invite-Email|email invite]]: путь пользователя по email token\n- [[Auth-Invite-Link|invite link]]: путь пользователя по общей ссылке\n- [[Members-Role-Templates|role templates]]: стартовый набор permissions\n- [[Notifications-Rules|notification rules]]: уведомления о новых участниках\n\n## При изменении проверить\n- [[002-Onboarding|Onboarding flow]] при изменении invite path.\n- [[Users-Permissions|permissions]] при изменении дефолтных прав.\n",
+      "body": "Invite — входная точка добавления людей в студию. Playtagon поддерживает два способа: персональное приглашение по email и общую ссылку студии.\n\n## Email invite\n\nOwner или Member с нужными permissions вводит email, выбирает role/template и отправляет приглашение. Пользователь получает token link и проходит [[Auth-Invite-Email|email invite]].\n\n## Link invite\n\nОбщая ссылка подходит для быстрых приглашений. Она ведёт через [[Auth-Invite-Link|invite link]] и должна иметь безопасный дефолтный permission template, обычно Viewer.\n\n## Reset link\n\nСсылку можно сбросить. После reset старая ссылка не работает, а новые вступления идут только через свежий URL.\n\n## Связанные страницы\n- [[Auth-Invite-Email|email invite]]: путь пользователя по email token\n- [[Auth-Invite-Link|invite link]]: путь пользователя по общей ссылке\n- [[Members-Role-Templates|role templates]]: стартовый набор permissions\n- [[Notifications-Rules|notification rules]]: уведомления о новых участниках\n\n## При изменении проверить\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении invite path.\n- [[Users-Permissions|permissions]] при изменении дефолтных прав.\n",
       "headings": [
         {
           "level": 2,
@@ -2102,7 +2102,7 @@
           "label": "notification rules"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         },
@@ -2224,7 +2224,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Role template — стартовый набор permissions. Template не является ролью: после применения его можно вручную скорректировать.\n\n## Templates\n\n| Template | Типичный доступ |\n| --- | --- |\n| Game Lead | полный доступ к игре и publishing |\n| Game Designer | gameplay/design modules, без финансов |\n| Math Designer | SDK, Resources, Simulation, Math submission |\n| Developer | SDK, Resources, Launch Game, technical checks |\n| QA Tester | Launch Game, Replays, read-only publishing status |\n| Marketing Manager | Promo Assets, descriptions, public materials |\n| Analyst | Insights, Simulation reports, read-only game data |\n| Viewer | безопасный read-only минимум |\n\n## Viewer\n\nViewer — это permission template. Его можно использовать как дефолт для invite link, но в системе ролей пользователь всё равно остаётся Member.\n\n## Связанные страницы\n- [[Members-Roles|roles]]: Owner и Member\n- [[Users-Permissions|permissions]]: матрица прав\n- [[Users-Game-Access|game access]]: права на конкретные игры\n- [[Game-Settings-Members|game members]]: настройка доступа из Game Settings\n\n## При изменении проверить\n- [[Users-Permissions|permissions]] при изменении состава template.\n- [[002-Onboarding|Onboarding flow]] при изменении Viewer/default invite logic.\n",
+      "body": "Role template — стартовый набор permissions. Template не является ролью: после применения его можно вручную скорректировать.\n\n## Templates\n\n| Template | Типичный доступ |\n| --- | --- |\n| Game Lead | полный доступ к игре и publishing |\n| Game Designer | gameplay/design modules, без финансов |\n| Math Designer | SDK, Resources, Simulation, Math submission |\n| Developer | SDK, Resources, Launch Game, technical checks |\n| QA Tester | Launch Game, Replays, read-only publishing status |\n| Marketing Manager | Promo Assets, descriptions, public materials |\n| Analyst | Insights, Simulation reports, read-only game data |\n| Viewer | безопасный read-only минимум |\n\n## Viewer\n\nViewer — это permission template. Его можно использовать как дефолт для invite link, но в системе ролей пользователь всё равно остаётся Member.\n\n## Связанные страницы\n- [[Members-Roles|roles]]: Owner и Member\n- [[Users-Permissions|permissions]]: матрица прав\n- [[Users-Game-Access|game access]]: права на конкретные игры\n- [[Game-Settings-Members|game members]]: настройка доступа из Game Settings\n\n## При изменении проверить\n- [[Users-Permissions|permissions]] при изменении состава template.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении Viewer/default invite logic.\n",
       "headings": [
         {
           "level": 2,
@@ -2274,7 +2274,7 @@
           "label": "permissions"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -2305,7 +2305,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "В Playtagon две базовые роли: Owner и Member. Роль отвечает за предельный уровень контроля, а не за рабочую специализацию человека.\n\n| Роль | Смысл |\n| --- | --- |\n| Owner | владелец студии, полный доступ, billing, settings, members, transfer-critical actions |\n| Member | участник студии; реальные возможности задаются permissions |\n\n## Почему нет Admin/Editor/Viewer как ролей\n\nAdmin, Editor, Viewer и профессиональные названия лучше работают как permission templates. Это снижает конфликт между названием должности и реальными правами на уровне игры/модуля.\n\n## Связанные страницы\n- [[Users-Permissions|permissions]]: детальная матрица прав\n- [[Members-Role-Templates|role templates]]: рабочие шаблоны доступа\n- [[Game-Settings-Members|game members]]: доступ на уровне конкретной игры\n\n## При изменении проверить\n- [[Users|Users]] при изменении списка ролей.\n- [[002-Onboarding|Onboarding flow]] при изменении дефолта для приглашённых.\n",
+      "body": "В Playtagon две базовые роли: Owner и Member. Роль отвечает за предельный уровень контроля, а не за рабочую специализацию человека.\n\n| Роль | Смысл |\n| --- | --- |\n| Owner | владелец студии, полный доступ, billing, settings, members, transfer-critical actions |\n| Member | участник студии; реальные возможности задаются permissions |\n\n## Почему нет Admin/Editor/Viewer как ролей\n\nAdmin, Editor, Viewer и профессиональные названия лучше работают как permission templates. Это снижает конфликт между названием должности и реальными правами на уровне игры/модуля.\n\n## Связанные страницы\n- [[Users-Permissions|permissions]]: детальная матрица прав\n- [[Members-Role-Templates|role templates]]: рабочие шаблоны доступа\n- [[Game-Settings-Members|game members]]: доступ на уровне конкретной игры\n\n## При изменении проверить\n- [[Users|Users]] при изменении списка ролей.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении дефолта для приглашённых.\n",
       "headings": [
         {
           "level": 2,
@@ -2345,7 +2345,7 @@
           "label": "Users"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -4821,7 +4821,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Studio — уровень организации команды и портфеля игр. На этом уровне Playtagon отвечает не за конкретную игровую механику, а за то, кто входит в продукт, какие игры есть у студии, какие права у участников, что происходит с финансами и какие события нужно показать команде.\n\n## Что входит в Studio\n\n| Область | Страницы |\n| --- | --- |\n| Вход и команда | [[Studio-Auth\\|Auth]], [[Studio-Members\\|Members]], [[Studio-Users\\|Users]], [[Studio-Profile\\|Profile]] |\n| Рабочий контур | [[Studio-Games\\|Dashboard]], [[Studio-Pulse\\|Pulse]], [[Studio-Notifications\\|Notifications]], [[Studio-Audit-Log\\|Audit Log]] |\n| Аналитика | [[Studio-Insights\\|Studio Insights]] |\n| Финансы | [[Studio-Billing\\|Billing]], [[Studio-Royalty\\|Royalty]], [[Studio-Reconciliation\\|Reconciliation]] |\n| Настройки | [[Studio-Settings\\|Studio Settings]] |\n| Внешний слой | [[Studio-Influencer-Hub\\|Influencer Hub]] |\n\n## Граница ответственности\n\nStudio управляет организацией и портфелем. Конкретная игра открывается как [[Game|Game]]: там находятся Game Hub, game-level settings, insights и документация. Рабочие инструменты создания игры живут в [[Editor|Editor]].\n\n## Событийная модель\n\n[[Audit-Log|Audit Log]] хранит все события студии. [[Pulse|Pulse]] и [[Notifications|Notifications]] не создают отдельную правду, а показывают разные выборки из Audit Log: Pulse — как activity feed, Notifications — как доставляемые пользователю сигналы.\n\n## Связанные страницы\n- [[Auth|Auth]]: пути входа, waitlist, invite и multi-studio\n- [[Games|Dashboard]]: первый рабочий экран студии\n- [[Game|Game]]: конкретная игра внутри студии\n- [[Editor|Editor]]: инструменты создания игры\n- [[Audit-Log|Audit Log]]: единый источник событий\n\n## При изменении проверить\n- Все Studio subpages при изменении модели ролей, permissions или событий.\n- [[Game|Game]] и [[Games|Dashboard]], если меняется связь студии со списком игр.\n- [[001-Studio-Basic|Studio Basic Flow]] и [[002-Onboarding|Onboarding flow]], если меняется входной путь пользователя.\n",
+      "body": "Studio — уровень организации команды и портфеля игр. На этом уровне Playtagon отвечает не за конкретную игровую механику, а за то, кто входит в продукт, какие игры есть у студии, какие права у участников, что происходит с финансами и какие события нужно показать команде.\n\n## Что входит в Studio\n\n| Область | Страницы |\n| --- | --- |\n| Вход и команда | [[Studio-Auth\\|Auth]], [[Studio-Members\\|Members]], [[Studio-Users\\|Users]], [[Studio-Profile\\|Profile]] |\n| Рабочий контур | [[Studio-Games\\|Dashboard]], [[Studio-Pulse\\|Pulse]], [[Studio-Notifications\\|Notifications]], [[Studio-Audit-Log\\|Audit Log]] |\n| Аналитика | [[Studio-Insights\\|Studio Insights]] |\n| Финансы | [[Studio-Billing\\|Billing]], [[Studio-Royalty\\|Royalty]], [[Studio-Reconciliation\\|Reconciliation]] |\n| Настройки | [[Studio-Settings\\|Studio Settings]] |\n| Внешний слой | [[Studio-Influencer-Hub\\|Influencer Hub]] |\n\n## Граница ответственности\n\nStudio управляет организацией и портфелем. Конкретная игра открывается как [[Game|Game]]: там находятся Game Hub, game-level settings, insights и документация. Рабочие инструменты создания игры живут в [[Editor|Editor]].\n\n## Событийная модель\n\n[[Audit-Log|Audit Log]] хранит все события студии. [[Pulse|Pulse]] и [[Notifications|Notifications]] не создают отдельную правду, а показывают разные выборки из Audit Log: Pulse — как activity feed, Notifications — как доставляемые пользователю сигналы.\n\n## Связанные страницы\n- [[Auth|Auth]]: пути входа, waitlist, invite и multi-studio\n- [[Games|Dashboard]]: первый рабочий экран студии\n- [[Game|Game]]: конкретная игра внутри студии\n- [[Editor|Editor]]: инструменты создания игры\n- [[Audit-Log|Audit Log]]: единый источник событий\n\n## При изменении проверить\n- Все Studio subpages при изменении модели ролей, permissions или событий.\n- [[Game|Game]] и [[Games|Dashboard]], если меняется связь студии со списком игр.\n- [[Studio-Basic|Studio Basic Flow]] и [[05-Flows/Onboarding|Onboarding flow]], если меняется входной путь пользователя.\n",
       "headings": [
         {
           "level": 2,
@@ -4981,12 +4981,12 @@
           "label": "Dashboard"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -5266,7 +5266,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Studio Users описывает права доступа. В новой модели есть две базовые роли: [[Members-Roles|Owner и Member]]. Всё, что раньше выглядело как Admin, Editor или Viewer, лучше описывать через permissions и templates.\n\n## Уровни прав\n\n| Уровень | Что ограничивает |\n| --- | --- |\n| Studio | доступ к общим разделам: billing, settings, members, dashboard |\n| Game | доступ к конкретной игре |\n| Module | доступ к конкретному tool внутри игры |\n\n## Состояния прав\n\n| Состояние | Смысл |\n| --- | --- |\n| Denied | пользователь не видит область |\n| View | может читать и смотреть статус |\n| Edit | может менять данные и запускать действия |\n\n## Подстраницы\n\n- [[Users-Roles|user roles]]\n- [[Users-Permissions|permissions]]\n- [[Users-Game-Access|game access]]\n\n## Связанные страницы\n- [[Members-Roles|roles]]: простая ролевая модель\n- [[Members-Role-Templates|role templates]]: шаблоны доступа\n- [[Game-Settings-Members|game members]]: game-level настройка тех же прав\n- [[Audit-Log|Audit Log]]: изменения прав логируются\n\n## При изменении проверить\n- [[Members|Members]] и [[Game-Settings-Members|game members]] при изменении permissions.\n- [[002-Onboarding|Onboarding flow]] при изменении дефолтных прав приглашённых пользователей.\n",
+      "body": "Studio Users описывает права доступа. В новой модели есть две базовые роли: [[Members-Roles|Owner и Member]]. Всё, что раньше выглядело как Admin, Editor или Viewer, лучше описывать через permissions и templates.\n\n## Уровни прав\n\n| Уровень | Что ограничивает |\n| --- | --- |\n| Studio | доступ к общим разделам: billing, settings, members, dashboard |\n| Game | доступ к конкретной игре |\n| Module | доступ к конкретному tool внутри игры |\n\n## Состояния прав\n\n| Состояние | Смысл |\n| --- | --- |\n| Denied | пользователь не видит область |\n| View | может читать и смотреть статус |\n| Edit | может менять данные и запускать действия |\n\n## Подстраницы\n\n- [[Users-Roles|user roles]]\n- [[Users-Permissions|permissions]]\n- [[Users-Game-Access|game access]]\n\n## Связанные страницы\n- [[Members-Roles|roles]]: простая ролевая модель\n- [[Members-Role-Templates|role templates]]: шаблоны доступа\n- [[Game-Settings-Members|game members]]: game-level настройка тех же прав\n- [[Audit-Log|Audit Log]]: изменения прав логируются\n\n## При изменении проверить\n- [[Members|Members]] и [[Game-Settings-Members|game members]] при изменении permissions.\n- [[05-Flows/Onboarding|Onboarding flow]] при изменении дефолтных прав приглашённых пользователей.\n",
       "headings": [
         {
           "level": 2,
@@ -5346,7 +5346,7 @@
           "label": "game members"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding flow"
         }
@@ -8837,7 +8837,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Publishing Lifecycle фиксирует статусы submission от заполнения формы до live.\n\n```text\nCollect Info\n    ↓\nOn Review\n    ↓\nReview Fail → create new submission\n    или\nReview Pass → Go live\n    ↓\n48h period\n    ↓\nGame Deployment\n    ↓\nLive\n```\n\n## Статусы\n\n| Статус | Смысл |\n| --- | --- |\n| Collect Info | студия заполняет submission, auto-checks могут уже выполняться |\n| On Review | submission отправлен Playtagon reviewer |\n| Review Fail | один или несколько модулей отклонены; нужен новый submission |\n| Review Pass | submission approved и может идти в live |\n| 48h period | таймер перед deployment; можно отменить |\n| Game Deployment | Playtagon разворачивает approved version |\n| Live | игра доступна через RGS |\n\n## Параллельность\n\nApproved submission не обязан сразу становиться live. Команда может держать approved version и параллельно готовить другую. Но live одновременно может быть только одна версия игры.\n\n## Отмена\n\n48h period нужен как safety window. Если команда замечает ошибку, deployment отменяется без вывода версии в live.\n\n## Связанные страницы\n- [[Publishing|Publishing]]: родительский publishing module\n- [[001-Studio-Basic|Studio Basic Flow]]: сквозной MVP-флоу\n- [[Game|Game]]: отображение publishing state в Game Hub\n- [[Games|Dashboard]]: отображение статусов на карточке игры\n- [[Publishing-Alerts|publishing alerts]]: alerts на lifecycle changes\n\n## При изменении проверить\n- [[Games|Dashboard]], [[Game|Game]] и [[001-Studio-Basic|Studio Basic Flow]] при изменении статусов.\n- [[Publishing-Alerts|publishing alerts]] при изменении transitions.\n",
+      "body": "Publishing Lifecycle фиксирует статусы submission от заполнения формы до live.\n\n```text\nCollect Info\n    ↓\nOn Review\n    ↓\nReview Fail → create new submission\n    или\nReview Pass → Go live\n    ↓\n48h period\n    ↓\nGame Deployment\n    ↓\nLive\n```\n\n## Статусы\n\n| Статус | Смысл |\n| --- | --- |\n| Collect Info | студия заполняет submission, auto-checks могут уже выполняться |\n| On Review | submission отправлен Playtagon reviewer |\n| Review Fail | один или несколько модулей отклонены; нужен новый submission |\n| Review Pass | submission approved и может идти в live |\n| 48h period | таймер перед deployment; можно отменить |\n| Game Deployment | Playtagon разворачивает approved version |\n| Live | игра доступна через RGS |\n\n## Параллельность\n\nApproved submission не обязан сразу становиться live. Команда может держать approved version и параллельно готовить другую. Но live одновременно может быть только одна версия игры.\n\n## Отмена\n\n48h period нужен как safety window. Если команда замечает ошибку, deployment отменяется без вывода версии в live.\n\n## Связанные страницы\n- [[Publishing|Publishing]]: родительский publishing module\n- [[Studio-Basic|Studio Basic Flow]]: сквозной MVP-флоу\n- [[Game|Game]]: отображение publishing state в Game Hub\n- [[Games|Dashboard]]: отображение статусов на карточке игры\n- [[Publishing-Alerts|publishing alerts]]: alerts на lifecycle changes\n\n## При изменении проверить\n- [[Games|Dashboard]], [[Game|Game]] и [[Studio-Basic|Studio Basic Flow]] при изменении статусов.\n- [[Publishing-Alerts|publishing alerts]] при изменении transitions.\n",
       "headings": [
         {
           "level": 2,
@@ -8872,7 +8872,7 @@
           "label": "Publishing"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         },
@@ -8902,7 +8902,7 @@
           "label": "Game"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         },
@@ -11401,7 +11401,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "## Назначение\n\nAI Wizard — постоянный AI-агент, доступный на всех экранах платформы. Это не отдельный модуль, а **сквозной интерфейс**, встроенный в каждый экран.\n\nWizard умеет читать контекст текущего модуля и действовать с учётом того, где находится пользователь. Чем больше пользователь взаимодействует с Wizard, тем больше платформа зарабатывает через токенизированную систему — поэтому Wizard активно продвигает себя сам.\n\n\n## Расположение\n\n- Панель Wizard по умолчанию **закреплена справа**\n- Можно свернуть/развернуть, но полностью скрыть нельзя — доступ в одно касание\n- Wizard присутствует в том числе на входных экранах: [[002-Onboarding|Waitlist Onboarding]] и выборе студии\n\n\n## Режимы работы\n\n### Контекстный ассистент\n\nWizard понимает, в каком модуле работает пользователь, и предлагает релевантные действия:\n\n| Модуль | Что умеет Wizard |\n|--------|-----------------|\n| [[Editor-Tools-Brief\\|Brief]] | Структурирует документацию, генерирует разделы |\n| [[Editor-Tools-Moodboard\\|Moodboard]] | Ищет изображения в интернете, генерирует визуалы |\n| [[Editor-Tools-Blueprint\\|Blueprint]] | Принимает текстовые инструкции, настраивает ноды, объясняет ошибки |\n| [[Editor-Tools-Game-Designer\\|Game Designer]] | Генерирует символы, фоны, UI-элементы |\n| [[Editor-Tools-Sound-Designer\\|Sound Designer]] | Создаёт аудио по описанию |\n| [[Editor-Tools-Publishing\\|Publishing]] | Заполняет метаданные, помогает с формой сабмита |\n| [[Editor-Tools-Promo-Assets\\|Promo Assets]] | Генерирует промо-ассеты под конкретный тип и размер |\n| [[Editor-Tools-Translator\\|Translator]] | Автоматически заполняет переводы, проверяет словарь терминов |\n| [[Editor-Tools-Resources\\|Resources]] | Помогает организовать ассеты, генерирует контент |\n| [[Editor-Tools-Simulation\\|Math Simulation]] | Объясняет результаты симуляции, помогает интерпретировать ошибки |\n\n### Онбординг\n\nДля новых пользователей AI Wizard — **гид по платформе**:\n- Объясняет, с чего начать, исходя из типа игры и роли\n- Ведёт по шагам первой настройки студии\n- Оболочка для [[002-Onboarding|Waitlist Onboarding]] и выбора студии при мультиаккаунте\n\n### Саппорт и справка\n- Первая точка обращения при любом вопросе\n- Отвечает на вопросы по платформе (в том числе по [[SDK|SDK]] — Wizard обучен на SDK-документации)\n- При невозможности решить вопрос — предоставляет email или эскалирует в поддержку\n\n\n## Self-promotion: триггерный маркетинг\n\nWizard **сам себя продвигает** — триггерится на события платформы и пишет пользователю первым:\n\n| Событие | Действие Wizard |\n|---------|-----------------|\n| Создан аккаунт | Приветственное сообщение, предложение помочь |\n| Первый вход в [[Editor-Tools-Resources\\|Resources]] | «Хочешь помогу организовать ассеты?» |\n| Первый вход в [[Editor-Tools-Translator\\|Translator]] | «Могу перевести сразу все строки» |\n| Загружен архив в [[Editor-Tools-Resources\\|Resources]] | «Запустить симуляцию?» |\n| Ошибка при сборке архива | «Вижу ошибку — давай разберём» |\n| Завершена [[Editor-Tools-Simulation\\|симуляция]] | «Посмотрим результаты вместе?» |\n\nЭто выгодно обеим сторонам: пользователь получает своевременную помощь, платформа — больше взаимодействий с токенизированной системой.\n\n\n## Мульти-агентная архитектура\n\nПродукт может иметь несколько **специализированных агентов**, каждый из которых отвечает за своё направление:\n\n| Агент | Специализация |\n|-------|--------------|\n| SDK-агент | Помощь с интеграцией, архивом, CLI, RGS |\n| Промо-агент | Генерация [[Editor-Tools-Promo-Assets\\|Promo Assets]], маркетинговые материалы |\n| Паблишинг-агент | Форма сабмита, метаданные, ревью |\n| Дизайн-агент | [[Editor-Tools-Game-Designer\\|Game Designer]], [[Editor-Tools-Moodboard\\|Moodboard]], визуальный стиль |\n\n**Именование агентов** настраивается в [[Studio-Settings|Studio Settings]] — студия даёт агентам имена (например, «Макс — технический ассистент»). Пользователь обращается к агентам как к коллегам, а не к безликому интерфейсу.\n\n> Эта архитектура заложена для развития; точные границы между агентами уточняются.\n\n\n## Память и контекст\n\n### Уровень игры\nWizard помнит историю взаимодействия в рамках конкретной игры. Переход между модулями не сбрасывает контекст — Wizard знает, что происходит в [[Brief|Brief]], [[Moodboard|Moodboard]] и [[Blueprint|Blueprint]] одновременно.\n\n### Уровень студии\nВ [[Studio-Settings|Studio Settings]] задаются **постоянные инструкции** для всех агентов:\n- Тон и стиль коммуникации\n- Предпочтения по жанру и визуальному стилю\n- Ограничения (нежелательные механики, темы)\n\nЭти инструкции применяются ко всем играм студии и всем участникам.\n\n\n## Ключевые принципы\n\n- **Контекст из брифа** — Wizard читает [[Brief|Brief]] и [[Moodboard|Moodboard]] для повышения точности генерации\n- **Документация SDK** — Wizard обучен на [[SDK|SDK]]-документации и умеет отвечать на вопросы по интеграции с [[RGS|RGS]]\n- **Документированные ноды** — в [[Blueprint|Blueprint]] Wizard опирается на документацию нод\n- **Вариативность** — генерирует несколько вариантов для сравнения\n\n\n## Система кредитов\n\n| Действие | Стоимость |\n|----------|-----------|\n| Генерация текста (метаданные, переводы) | Низкая |\n| Генерация изображений / символов | Средняя |\n| Генерация аудио | Средняя |\n| Генерация промо-ассетов | Средняя |\n| Настройка нод в [[Editor-Tools-Blueprint\\|Blueprint]] | Низкая |\n| Запуск платформенной [[Editor-Tools-Simulation\\|симуляции]] | TBD |\n\nКредиты включены в тарифный план. После исчерпания лимита — докупаются. Подробнее — [[Billing|Billing]].\n\n\n## Открытые вопросы\n\n> **⚠️ Требует технического решения.**\n\nЕсли два участника студии одновременно открывают чат с Wizard в рамках одной игры:\n- Видят ли они общую историю диалога или каждый — только свою?\n- Как Wizard разрешает параллельные конфликтующие запросы?\n\n\n## Связанные страницы\n\nAI Wizard присутствует и активен в каждом модуле:\n[[Brief|Brief]] · [[Moodboard|Moodboard]] · [[Blueprint|Blueprint]] · [[Game-Designer|Game Designer]] · [[Sound-Designer|Sound Designer]] · [[Resources|Resources]] · [[Promo-Assets|Promo Assets]] · [[Publishing|Publishing]] · [[Translator|Translator]] · [[Simulation|Math Simulation]] · [[002-Onboarding|Onboarding]] · [[Studio-Settings|Studio Settings]]\n\n## При изменении проверить\n- Родительскую страницу [[Editor|Editor]] и [[Game|Game]], если меняется назначение модуля.\n- Связанные страницы из блока выше, если меняется контракт между модулями.\n",
+      "body": "## Назначение\n\nAI Wizard — постоянный AI-агент, доступный на всех экранах платформы. Это не отдельный модуль, а **сквозной интерфейс**, встроенный в каждый экран.\n\nWizard умеет читать контекст текущего модуля и действовать с учётом того, где находится пользователь. Чем больше пользователь взаимодействует с Wizard, тем больше платформа зарабатывает через токенизированную систему — поэтому Wizard активно продвигает себя сам.\n\n\n## Расположение\n\n- Панель Wizard по умолчанию **закреплена справа**\n- Можно свернуть/развернуть, но полностью скрыть нельзя — доступ в одно касание\n- Wizard присутствует в том числе на входных экранах: [[05-Flows/Onboarding|Waitlist Onboarding]] и выборе студии\n\n\n## Режимы работы\n\n### Контекстный ассистент\n\nWizard понимает, в каком модуле работает пользователь, и предлагает релевантные действия:\n\n| Модуль | Что умеет Wizard |\n|--------|-----------------|\n| [[Editor-Tools-Brief\\|Brief]] | Структурирует документацию, генерирует разделы |\n| [[Editor-Tools-Moodboard\\|Moodboard]] | Ищет изображения в интернете, генерирует визуалы |\n| [[Editor-Tools-Blueprint\\|Blueprint]] | Принимает текстовые инструкции, настраивает ноды, объясняет ошибки |\n| [[Editor-Tools-Game-Designer\\|Game Designer]] | Генерирует символы, фоны, UI-элементы |\n| [[Editor-Tools-Sound-Designer\\|Sound Designer]] | Создаёт аудио по описанию |\n| [[Editor-Tools-Publishing\\|Publishing]] | Заполняет метаданные, помогает с формой сабмита |\n| [[Editor-Tools-Promo-Assets\\|Promo Assets]] | Генерирует промо-ассеты под конкретный тип и размер |\n| [[Editor-Tools-Translator\\|Translator]] | Автоматически заполняет переводы, проверяет словарь терминов |\n| [[Editor-Tools-Resources\\|Resources]] | Помогает организовать ассеты, генерирует контент |\n| [[Editor-Tools-Simulation\\|Math Simulation]] | Объясняет результаты симуляции, помогает интерпретировать ошибки |\n\n### Онбординг\n\nДля новых пользователей AI Wizard — **гид по платформе**:\n- Объясняет, с чего начать, исходя из типа игры и роли\n- Ведёт по шагам первой настройки студии\n- Оболочка для [[05-Flows/Onboarding|Waitlist Onboarding]] и выбора студии при мультиаккаунте\n\n### Саппорт и справка\n- Первая точка обращения при любом вопросе\n- Отвечает на вопросы по платформе (в том числе по [[SDK|SDK]] — Wizard обучен на SDK-документации)\n- При невозможности решить вопрос — предоставляет email или эскалирует в поддержку\n\n\n## Self-promotion: триггерный маркетинг\n\nWizard **сам себя продвигает** — триггерится на события платформы и пишет пользователю первым:\n\n| Событие | Действие Wizard |\n|---------|-----------------|\n| Создан аккаунт | Приветственное сообщение, предложение помочь |\n| Первый вход в [[Editor-Tools-Resources\\|Resources]] | «Хочешь помогу организовать ассеты?» |\n| Первый вход в [[Editor-Tools-Translator\\|Translator]] | «Могу перевести сразу все строки» |\n| Загружен архив в [[Editor-Tools-Resources\\|Resources]] | «Запустить симуляцию?» |\n| Ошибка при сборке архива | «Вижу ошибку — давай разберём» |\n| Завершена [[Editor-Tools-Simulation\\|симуляция]] | «Посмотрим результаты вместе?» |\n\nЭто выгодно обеим сторонам: пользователь получает своевременную помощь, платформа — больше взаимодействий с токенизированной системой.\n\n\n## Мульти-агентная архитектура\n\nПродукт может иметь несколько **специализированных агентов**, каждый из которых отвечает за своё направление:\n\n| Агент | Специализация |\n|-------|--------------|\n| SDK-агент | Помощь с интеграцией, архивом, CLI, RGS |\n| Промо-агент | Генерация [[Editor-Tools-Promo-Assets\\|Promo Assets]], маркетинговые материалы |\n| Паблишинг-агент | Форма сабмита, метаданные, ревью |\n| Дизайн-агент | [[Editor-Tools-Game-Designer\\|Game Designer]], [[Editor-Tools-Moodboard\\|Moodboard]], визуальный стиль |\n\n**Именование агентов** настраивается в [[Studio-Settings|Studio Settings]] — студия даёт агентам имена (например, «Макс — технический ассистент»). Пользователь обращается к агентам как к коллегам, а не к безликому интерфейсу.\n\n> Эта архитектура заложена для развития; точные границы между агентами уточняются.\n\n\n## Память и контекст\n\n### Уровень игры\nWizard помнит историю взаимодействия в рамках конкретной игры. Переход между модулями не сбрасывает контекст — Wizard знает, что происходит в [[Brief|Brief]], [[Moodboard|Moodboard]] и [[Blueprint|Blueprint]] одновременно.\n\n### Уровень студии\nВ [[Studio-Settings|Studio Settings]] задаются **постоянные инструкции** для всех агентов:\n- Тон и стиль коммуникации\n- Предпочтения по жанру и визуальному стилю\n- Ограничения (нежелательные механики, темы)\n\nЭти инструкции применяются ко всем играм студии и всем участникам.\n\n\n## Ключевые принципы\n\n- **Контекст из брифа** — Wizard читает [[Brief|Brief]] и [[Moodboard|Moodboard]] для повышения точности генерации\n- **Документация SDK** — Wizard обучен на [[SDK|SDK]]-документации и умеет отвечать на вопросы по интеграции с [[RGS|RGS]]\n- **Документированные ноды** — в [[Blueprint|Blueprint]] Wizard опирается на документацию нод\n- **Вариативность** — генерирует несколько вариантов для сравнения\n\n\n## Система кредитов\n\n| Действие | Стоимость |\n|----------|-----------|\n| Генерация текста (метаданные, переводы) | Низкая |\n| Генерация изображений / символов | Средняя |\n| Генерация аудио | Средняя |\n| Генерация промо-ассетов | Средняя |\n| Настройка нод в [[Editor-Tools-Blueprint\\|Blueprint]] | Низкая |\n| Запуск платформенной [[Editor-Tools-Simulation\\|симуляции]] | TBD |\n\nКредиты включены в тарифный план. После исчерпания лимита — докупаются. Подробнее — [[Billing|Billing]].\n\n\n## Открытые вопросы\n\n> **⚠️ Требует технического решения.**\n\nЕсли два участника студии одновременно открывают чат с Wizard в рамках одной игры:\n- Видят ли они общую историю диалога или каждый — только свою?\n- Как Wizard разрешает параллельные конфликтующие запросы?\n\n\n## Связанные страницы\n\nAI Wizard присутствует и активен в каждом модуле:\n[[Brief|Brief]] · [[Moodboard|Moodboard]] · [[Blueprint|Blueprint]] · [[Game-Designer|Game Designer]] · [[Sound-Designer|Sound Designer]] · [[Resources|Resources]] · [[Promo-Assets|Promo Assets]] · [[Publishing|Publishing]] · [[Translator|Translator]] · [[Simulation|Math Simulation]] · [[05-Flows/Onboarding|Onboarding]] · [[Studio-Settings|Studio Settings]]\n\n## При изменении проверить\n- Родительскую страницу [[Editor|Editor]] и [[Game|Game]], если меняется назначение модуля.\n- Связанные страницы из блока выше, если меняется контракт между модулями.\n",
       "headings": [
         {
           "level": 2,
@@ -11486,7 +11486,7 @@
       ],
       "wikilinks": [
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Waitlist Onboarding"
         },
@@ -11541,7 +11541,7 @@
           "label": "Math Simulation"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Waitlist Onboarding"
         },
@@ -11701,7 +11701,7 @@
           "label": "Math Simulation"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding"
         },
@@ -12059,8 +12059,185 @@
       "basename": "Support"
     },
     {
-      "id": "05-Flows/001-Studio-Basic.md",
-      "path": "05-Flows/001-Studio-Basic.md",
+      "id": "05-Flows/Flows.md",
+      "path": "05-Flows/Flows.md",
+      "slug": "flows/flows",
+      "title": "Flows",
+      "description": "Индекс сквозных пользовательских сценариев Playtagon.",
+      "frontmatter": {
+        "title": "Flows",
+        "description": "Индекс сквозных пользовательских сценариев Playtagon.",
+        "tags": [
+          "flows"
+        ],
+        "author": "",
+        "date": "2026-05-25",
+        "category": "flows",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": ""
+      },
+      "body": "Флоу описывают не экраны, а реальные пути пользователя через несколько модулей. Если меняется модуль, связанный с флоу, проверяем соответствующий сценарий через impact links.\n\n| Флоу | Что проверяет |\n| --- | --- |\n| [[Flow-001-Studio-Basic\\|Studio Basic Flow]] | базовый путь студии от входа до создания игры и подготовки publishing |\n| [[Flow-002-Onboarding\\|Onboarding flow]] | waitlist, invite email, invite link и multi-studio entrance |\n\n## Связанные страницы\n- [[Studio|Studio]]: стартовая область большинства флоу\n- [[Game|Game]]: переход от списка игр к конкретной игре\n- [[Editor|Editor]]: рабочие инструменты внутри игры\n- [[AI-Wizard|AI Wizard]]: единый shell для onboarding и помощник внутри продукта\n\n## При изменении проверить\n- Flow-001 при изменении Studio Dashboard, Game, Resources, Launch Game, Promo Assets или Publishing.\n- Flow-002 при изменении Auth, Members, AI Wizard или Multi-Studio логики.\n",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Связанные страницы",
+          "slug": "связанные-страницы"
+        },
+        {
+          "level": 2,
+          "text": "При изменении проверить",
+          "slug": "при-изменении-проверить"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Flow-001-Studio-Basic",
+          "heading": "",
+          "label": "Studio Basic Flow"
+        },
+        {
+          "target": "Flow-002-Onboarding",
+          "heading": "",
+          "label": "Onboarding flow"
+        },
+        {
+          "target": "Studio",
+          "heading": "",
+          "label": "Studio"
+        },
+        {
+          "target": "Game",
+          "heading": "",
+          "label": "Game"
+        },
+        {
+          "target": "Editor",
+          "heading": "",
+          "label": "Editor"
+        },
+        {
+          "target": "AI-Wizard",
+          "heading": "",
+          "label": "AI Wizard"
+        }
+      ],
+      "isIndex": true,
+      "folder": "05-Flows",
+      "basename": "Flows"
+    },
+    {
+      "id": "05-Flows/Onboarding.md",
+      "path": "05-Flows/Onboarding.md",
+      "slug": "flows/onboarding",
+      "title": "002 Onboarding",
+      "description": "Три пути попадания на платформу: waitlist, invite email, invite link and multi-studio entrance через AI Wizard UX.",
+      "frontmatter": {
+        "title": "002 Onboarding",
+        "description": "Три пути попадания на платформу: waitlist, invite email, invite link and multi-studio entrance через AI Wizard UX.",
+        "aliases": [
+          "Flow-002-Onboarding"
+        ],
+        "tags": [
+          "flows",
+          "onboarding"
+        ],
+        "author": "",
+        "date": "2026-05-25",
+        "category": "flows",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": ""
+      },
+      "body": "Onboarding использует [[AI-Wizard|AI Wizard]] как единый UX shell: пользователь видит Wizard до входа в продукт и затем продолжает работать с ним внутри Studio/Game.\n\n## Путь 1: Unknown user → Waitlist\n\n1. Пользователь пытается создать аккаунт.\n2. Попадает в [[Auth-Waitlist|Waitlist]].\n3. Waitlist form выглядит как AI Wizard conversation.\n4. После заявки пользователь ждёт решения.\n5. Только approved waitlist user может создать студию.\n6. Product onboarding собирает имя, название студии и опционально logo.\n\n## Путь 2: Invited by email\n\n1. Пользователь получает email invite.\n2. Переходит по token link и автоматически проходит auth.\n3. Заполняет имя/фото.\n4. Попадает в студию.\n5. По умолчанию получает Viewer permission template, но не отдельную роль Viewer.\n\n## Путь 3: Invited by link\n\n1. Пользователь открывает invite link.\n2. Выбирает Google OAuth или Magic Link.\n3. После auth возвращается в invited onboarding.\n4. Получает доступ по шаблону, заданному приглашающей студией.\n\n## Multi-studio\n\nЕсли у пользователя несколько студий, после входа он выбирает студию или создаёт новую, если permissions позволяют. Экран выбора визуально использует AI Wizard.\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[Auth-Waitlist|Waitlist]]: waitlist onboarding\n- [[Auth-Invite-Email|email invite]]: email token invite\n- [[Auth-Invite-Link|invite link]]: invite link\n- [[Auth-Multi-Studio|multi-studio screen]]: выбор студии\n- [[04-AI-Wizard/Onboarding|Wizard onboarding]]: Wizard shell для входных сценариев\n- [[Members-Role-Templates|role templates]]: Viewer как permission template\n\n## При изменении проверить\n- Studio Auth pages при изменении любого входного пути.\n- AI Wizard Onboarding при изменении визуального shell.\n- Members/Users permissions при изменении default access для invited users.\n",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Путь 1: Unknown user → Waitlist",
+          "slug": "путь-1-unknown-user-waitlist"
+        },
+        {
+          "level": 2,
+          "text": "Путь 2: Invited by email",
+          "slug": "путь-2-invited-by-email"
+        },
+        {
+          "level": 2,
+          "text": "Путь 3: Invited by link",
+          "slug": "путь-3-invited-by-link"
+        },
+        {
+          "level": 2,
+          "text": "Multi-studio",
+          "slug": "multi-studio"
+        },
+        {
+          "level": 2,
+          "text": "Связанные страницы",
+          "slug": "связанные-страницы"
+        },
+        {
+          "level": 2,
+          "text": "При изменении проверить",
+          "slug": "при-изменении-проверить"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "AI-Wizard",
+          "heading": "",
+          "label": "AI Wizard"
+        },
+        {
+          "target": "Auth-Waitlist",
+          "heading": "",
+          "label": "Waitlist"
+        },
+        {
+          "target": "Auth",
+          "heading": "",
+          "label": "Auth"
+        },
+        {
+          "target": "Auth-Waitlist",
+          "heading": "",
+          "label": "Waitlist"
+        },
+        {
+          "target": "Auth-Invite-Email",
+          "heading": "",
+          "label": "email invite"
+        },
+        {
+          "target": "Auth-Invite-Link",
+          "heading": "",
+          "label": "invite link"
+        },
+        {
+          "target": "Auth-Multi-Studio",
+          "heading": "",
+          "label": "multi-studio screen"
+        },
+        {
+          "target": "04-AI-Wizard/Onboarding",
+          "heading": "",
+          "label": "Wizard onboarding"
+        },
+        {
+          "target": "Members-Role-Templates",
+          "heading": "",
+          "label": "role templates"
+        }
+      ],
+      "isIndex": false,
+      "folder": "05-Flows",
+      "basename": "Onboarding"
+    },
+    {
+      "id": "05-Flows/Studio-Basic.md",
+      "path": "05-Flows/Studio-Basic.md",
       "slug": "flows/studio-basic",
       "title": "001 Studio Basic",
       "description": "Базовый путь студии: вход, создание игры, загрузка архива, тестирование, промо-ассеты и publishing submission.",
@@ -12260,184 +12437,7 @@
       ],
       "isIndex": false,
       "folder": "05-Flows",
-      "basename": "001-Studio-Basic"
-    },
-    {
-      "id": "05-Flows/002-Onboarding.md",
-      "path": "05-Flows/002-Onboarding.md",
-      "slug": "flows/onboarding",
-      "title": "002 Onboarding",
-      "description": "Три пути попадания на платформу: waitlist, invite email, invite link and multi-studio entrance через AI Wizard UX.",
-      "frontmatter": {
-        "title": "002 Onboarding",
-        "description": "Три пути попадания на платформу: waitlist, invite email, invite link and multi-studio entrance через AI Wizard UX.",
-        "aliases": [
-          "Flow-002-Onboarding"
-        ],
-        "tags": [
-          "flows",
-          "onboarding"
-        ],
-        "author": "",
-        "date": "2026-05-25",
-        "category": "flows",
-        "featured": false,
-        "image": "",
-        "logo": "",
-        "metrics": ""
-      },
-      "body": "Onboarding использует [[AI-Wizard|AI Wizard]] как единый UX shell: пользователь видит Wizard до входа в продукт и затем продолжает работать с ним внутри Studio/Game.\n\n## Путь 1: Unknown user → Waitlist\n\n1. Пользователь пытается создать аккаунт.\n2. Попадает в [[Auth-Waitlist|Waitlist]].\n3. Waitlist form выглядит как AI Wizard conversation.\n4. После заявки пользователь ждёт решения.\n5. Только approved waitlist user может создать студию.\n6. Product onboarding собирает имя, название студии и опционально logo.\n\n## Путь 2: Invited by email\n\n1. Пользователь получает email invite.\n2. Переходит по token link и автоматически проходит auth.\n3. Заполняет имя/фото.\n4. Попадает в студию.\n5. По умолчанию получает Viewer permission template, но не отдельную роль Viewer.\n\n## Путь 3: Invited by link\n\n1. Пользователь открывает invite link.\n2. Выбирает Google OAuth или Magic Link.\n3. После auth возвращается в invited onboarding.\n4. Получает доступ по шаблону, заданному приглашающей студией.\n\n## Multi-studio\n\nЕсли у пользователя несколько студий, после входа он выбирает студию или создаёт новую, если permissions позволяют. Экран выбора визуально использует AI Wizard.\n\n## Связанные страницы\n- [[Auth|Auth]]: родительская auth-модель\n- [[Auth-Waitlist|Waitlist]]: waitlist onboarding\n- [[Auth-Invite-Email|email invite]]: email token invite\n- [[Auth-Invite-Link|invite link]]: invite link\n- [[Auth-Multi-Studio|multi-studio screen]]: выбор студии\n- [[Onboarding|Wizard onboarding]]: Wizard shell для входных сценариев\n- [[Members-Role-Templates|role templates]]: Viewer как permission template\n\n## При изменении проверить\n- Studio Auth pages при изменении любого входного пути.\n- AI Wizard Onboarding при изменении визуального shell.\n- Members/Users permissions при изменении default access для invited users.\n",
-      "headings": [
-        {
-          "level": 2,
-          "text": "Путь 1: Unknown user → Waitlist",
-          "slug": "путь-1-unknown-user-waitlist"
-        },
-        {
-          "level": 2,
-          "text": "Путь 2: Invited by email",
-          "slug": "путь-2-invited-by-email"
-        },
-        {
-          "level": 2,
-          "text": "Путь 3: Invited by link",
-          "slug": "путь-3-invited-by-link"
-        },
-        {
-          "level": 2,
-          "text": "Multi-studio",
-          "slug": "multi-studio"
-        },
-        {
-          "level": 2,
-          "text": "Связанные страницы",
-          "slug": "связанные-страницы"
-        },
-        {
-          "level": 2,
-          "text": "При изменении проверить",
-          "slug": "при-изменении-проверить"
-        }
-      ],
-      "wikilinks": [
-        {
-          "target": "AI-Wizard",
-          "heading": "",
-          "label": "AI Wizard"
-        },
-        {
-          "target": "Auth-Waitlist",
-          "heading": "",
-          "label": "Waitlist"
-        },
-        {
-          "target": "Auth",
-          "heading": "",
-          "label": "Auth"
-        },
-        {
-          "target": "Auth-Waitlist",
-          "heading": "",
-          "label": "Waitlist"
-        },
-        {
-          "target": "Auth-Invite-Email",
-          "heading": "",
-          "label": "email invite"
-        },
-        {
-          "target": "Auth-Invite-Link",
-          "heading": "",
-          "label": "invite link"
-        },
-        {
-          "target": "Auth-Multi-Studio",
-          "heading": "",
-          "label": "multi-studio screen"
-        },
-        {
-          "target": "Onboarding",
-          "heading": "",
-          "label": "Wizard onboarding"
-        },
-        {
-          "target": "Members-Role-Templates",
-          "heading": "",
-          "label": "role templates"
-        }
-      ],
-      "isIndex": false,
-      "folder": "05-Flows",
-      "basename": "002-Onboarding"
-    },
-    {
-      "id": "05-Flows/Flows.md",
-      "path": "05-Flows/Flows.md",
-      "slug": "flows/flows",
-      "title": "Flows",
-      "description": "Индекс сквозных пользовательских сценариев Playtagon.",
-      "frontmatter": {
-        "title": "Flows",
-        "description": "Индекс сквозных пользовательских сценариев Playtagon.",
-        "tags": [
-          "flows"
-        ],
-        "author": "",
-        "date": "2026-05-25",
-        "category": "flows",
-        "featured": false,
-        "image": "",
-        "logo": "",
-        "metrics": ""
-      },
-      "body": "Флоу описывают не экраны, а реальные пути пользователя через несколько модулей. Если меняется модуль, связанный с флоу, проверяем соответствующий сценарий через impact links.\n\n| Флоу | Что проверяет |\n| --- | --- |\n| [[Flow-001-Studio-Basic\\|Studio Basic Flow]] | базовый путь студии от входа до создания игры и подготовки publishing |\n| [[Flow-002-Onboarding\\|Onboarding flow]] | waitlist, invite email, invite link и multi-studio entrance |\n\n## Связанные страницы\n- [[Studio|Studio]]: стартовая область большинства флоу\n- [[Game|Game]]: переход от списка игр к конкретной игре\n- [[Editor|Editor]]: рабочие инструменты внутри игры\n- [[AI-Wizard|AI Wizard]]: единый shell для onboarding и помощник внутри продукта\n\n## При изменении проверить\n- Flow-001 при изменении Studio Dashboard, Game, Resources, Launch Game, Promo Assets или Publishing.\n- Flow-002 при изменении Auth, Members, AI Wizard или Multi-Studio логики.\n",
-      "headings": [
-        {
-          "level": 2,
-          "text": "Связанные страницы",
-          "slug": "связанные-страницы"
-        },
-        {
-          "level": 2,
-          "text": "При изменении проверить",
-          "slug": "при-изменении-проверить"
-        }
-      ],
-      "wikilinks": [
-        {
-          "target": "Flow-001-Studio-Basic",
-          "heading": "",
-          "label": "Studio Basic Flow"
-        },
-        {
-          "target": "Flow-002-Onboarding",
-          "heading": "",
-          "label": "Onboarding flow"
-        },
-        {
-          "target": "Studio",
-          "heading": "",
-          "label": "Studio"
-        },
-        {
-          "target": "Game",
-          "heading": "",
-          "label": "Game"
-        },
-        {
-          "target": "Editor",
-          "heading": "",
-          "label": "Editor"
-        },
-        {
-          "target": "AI-Wizard",
-          "heading": "",
-          "label": "AI Wizard"
-        }
-      ],
-      "isIndex": true,
-      "folder": "05-Flows",
-      "basename": "Flows"
+      "basename": "Studio-Basic"
     },
     {
       "id": "06-Design-System/Design-System.md",
@@ -15261,7 +15261,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "## О платформе\n\n[[Overview|Playtagon]] — платформа для разработки, ревью и публикации casino games. Студия регистрируется, собирает игры, проходит review и выводит их в live. Вся игровая логика и математика исполняется на [[RGS|RGS]] (Remote Game Server); Playtagon — веб-интерфейс над ним. Разработчики работают через [[SDK|Playtagon SDK]], собирают игру в брендированный [[SDK#playtagon archive|.playtagon]]-архив и загружают его на платформу. Базовая игровая единица в SDK называется [[SDK#round|round]], а не spin — платформа поддерживает не только slot-механику. Граница MVP зафиксирована в [[Overview-MVP-June-2026|Overview MVP June 2026]].\n\n\n## Studio\n\n[[Studio|Studio]] — уровень организации. Здесь живут команда, финансы, аудит и портфель игр.\n\nВход в платформу начинается с [[Auth|Auth]]. Регистрация и авторизация не разделены: пользователь всегда начинает со входа, а дальнейший путь определяется его статусом. Незнакомый пользователь попадает в [[Auth-Waitlist|Waitlist]] — форму-заявку, которая визуально выглядит как [[Onboarding|Wizard onboarding]], и ждёт одобрения. Приглашённый по email пользователь переходит по токен-ссылке из письма через [[Auth-Invite-Email|Invite Email]] и сразу попадает в студию. Приглашённый по общей ссылке проходит [[Auth-Magic-Link|Magic Link]] или [[Auth-Google-OAuth|Google OAuth]] через [[Auth-Invite-Link|Invite Link]]. Если пользователь состоит в нескольких студиях, после входа он видит [[Auth-Multi-Studio|multi-studio screen]] и выбирает рабочий контекст. Управление методами входа (сменить email, переподключить Google) доступно в разделе Auth methods в [[Profile|Profile]].\n\nСостав команды управляется через [[Members|Members]]. В системе две базовые роли: [[Members-Roles|Owner и Member]]. Owner имеет полный контроль над студией; Member получает доступ через [[Users-Permissions|permissions]]. Реальная специализация участника выражается не ролью, а [[Members-Role-Templates|role template]] — стартовым набором прав: Game Lead, Developer, QA Tester, Analyst, Marketing Manager, Viewer и другие. После применения шаблон можно скорректировать вручную. Если у участника разный доступ к разным играм, на уровне студийного списка отображается mixed-состояние. Пригласить участника можно через [[Members-Invite|Invite]] — по email с выставленными заранее правами или по общей ссылке с настраиваемым дефолтным доступом. Удаление через [[Members-Remove|Remove]] немедленно снимает все права. Активные сессии участников видны в [[Members-Sessions|Member Sessions]] и могут быть принудительно завершены. Участники могут управлять собственными сессиями через [[Profile-Sessions|Profile Sessions]]. Персональные данные — avatar, имя, язык, timezone — хранятся в [[Profile-Personal-Data|Personal Data]]. Матрица прав по уровням Studio, Game и Module описана в [[Users|Studio Users]]. Доступ конкретного участника к конкретным играм — в [[Users-Game-Access|Game Access]], те же данные со стороны игры — в [[Game-Settings-Members|Game Settings Members]].\n\nПервый рабочий экран после входа — [[Games|Studio Games]] (Dashboard). Здесь виден портфель игр в compact или detailed view. Detailed-карточка показывает обложку из [[Promo-Assets|Large Product Icon]], текущий publishing status, последние события из [[Pulse|Pulse]] и последний результат [[Simulation|Math Simulation]]. Статусы публикации проходят через цепочку: Collect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live.\n\nВсе значимые события студии фиксирует [[Audit-Log|Audit Log]] — единый источник правды. Таксономия событий описана в [[Audit-Log-Events|Audit Events]]; правила видимости — в [[Audit-Log-Access|Audit Access]]. Из Audit Log строятся два независимых представления: [[Pulse|Pulse]] как activity feed (activity feed, online status участников и progress widgets) и [[Notifications|Notifications]] как доставляемые пользователю сигналы. Каналы доставки описаны в [[Notifications-Channels|Notification Channels]], логика маршрутизации — в [[Notifications-Rules|Notification Rules]].\n\nАналитика на уровне студии собрана в [[Studio-Insights|Studio Insights]]: командная активность в [[Insights-Team|Team Insights]] и портфельные метрики в [[Insights-Games|Game Portfolio Insights]].\n\nФинансовая сторона: [[Billing|Billing]] управляет тарифными [[Billing-Plans|Планами]], [[Billing-History|историей платежей]] и [[Billing-AI-Credits|AI Credits]] — токенизированной системой использования AI Wizard. Студиям без собственного бренда применяется модель [[Royalty|Royalty]]: Playtagon получает GGR от операторов и выплачивает студии согласованный процент. История выплат — в [[Royalty-History|Royalty History]], правила расчёта — в [[Royalty-Model|Royalty Model]]. [[Reconciliation|Reconciliation]] — процесс сверки данных между Playtagon и внешними операторами; при расхождении применяется правило меньшей стороны. Billing-сторона сверки — в [[Billing-Reconciliation|Billing Reconciliation]].\n\nНастройки студии собраны в [[Studio-Settings|Studio Settings]]. [[Settings-Basics|Basic Settings]] хранит название, логотип, slug (используется для красивой внешней ссылки) и бренды. Бренд — это название + ссылка + RGS operator ID; проходит approval (Pending → Approved / Rejected). Branded links — ID бренда, который передаётся в RGS и используется для атрибуции трафика. Остальные подразделы настроек: [[Studio-Settings-Members|Members Settings]] — дефолты приглашений и invite-политики; [[Settings-AI-Wizard|AI Wizard Settings]] — имена агентов и инструкции; [[Settings-Audit-Log|Audit Log Settings]] — retention и visibility; [[Settings-Billing|Billing Settings]] — реквизиты и платёжный метод; [[Settings-Notifications|Notification Settings]] — preferences и overrides; [[Settings-My-Profile|My Profile]] — shortcut к личному профилю.\n\n[[Influencer-Hub|Influencer Hub]] — внешний коммуникационный слой: студия публикует задачу, инфлюенсер откликается, сделка ведётся на платформе. Инфлюенсеры — не Members: у них другие права и lifecycle.\n\n\n## Game\n\n[[Game|Game]] — обёртка конкретной игры. Навигационный центр с тремя вкладками: Game Hub (виджеты с publishing status, инструменты, [[Game-Insights|Game Insights]], последний статус симуляции и Pulse), Insights и Settings. Обложка Game Hub — Large Product Icon (500×500 px) из [[Promo-Assets|Promo Assets]].\n\n[[Game-Settings|Game Settings]] содержит внутреннее название игры (публичное задаётся в Publishing), управление доступом команды на уровне игры и notification overrides. Добавить участника к игре можно через селектор из существующих тиммейтов или через кнопку «Пригласить», которая открывает [[Members-Invite|Members Invite]] в новой вкладке. [[Game-AI-Wizard|Game AI Wizard]] — контекстное проявление AI Wizard внутри конкретной игры: знает активный submission, доступные инструменты и SDK-документацию. [[Game-Documentation|Game Documentation]] — in-product справка, связанная с Game Hub.\n\n\n## Editor\n\n[[Editor|Editor]] разделён на два слоя: тип создания игры и инструменты.\n\n[[Types|Creator types]] определяют стартовый путь. В MVP активен только [[Types-Play-SDK|Play SDK]]: разработчик собирает игру через SDK, загружает `.playtagon`-архив и проходит publishing. Остальные типы планируются на будущее: [[Types-Visual-AI|Visual Editor + AI]] (визуальный редактор с AI-сопровождением), [[Types-Slot-Reskin|Slot Reskin]] (быстрая адаптация slot framework) и [[Types-Originals|Originals]] (игры не slot-типа).\n\nИнструменты редактора делятся на MVP и будущие. **В MVP:** [[Resources|Resources]] — файловый эксплорер, где хранятся ассеты и `.playtagon`-архив; архив после загрузки собирается на RGS и возвращает статус сборки, после чего становится доступен запуск и симуляция. [[Launch-Game|Launch Game]] (GDM Stand) — демостенд: RGS iframe с игровым канвасом и Playtagon-контролы (баланс, валюта, язык, replay). Кнопка Publish car setup прокидывает параметры в форму Publishing. [[Promo-Assets|Promo Assets]] — управление рекламными материалами: пять обязательных типов (Small UI Icon 40×40, Software Card Preview 300×188, App Tile Icon 300×300, Large Product Icon 500×500, Game Promo Thumbnail 780×1040) и кастомные. RGS получает внешние ссылки на approved ассеты; первый approved становится default. AI Wizard умеет генерировать ассеты по описанию. [[Publishing|Publishing]] — финальный этап жизненного цикла игры, описан ниже отдельно. [[Translator|Translator]] — локализация: таблица строк, AI-перевод, glossary и language readiness для Client Model.\n\n**Не в MVP:** [[Blueprint|Blueprint]] — node editor игровой математики; [[Game-Designer|Game Designer]] — визуальная среда для символов, UI и анимаций; [[Sound-Designer|Sound Designer]] — звуковой дизайн; [[Simulation|Math Simulation]] как полноценный аналитический продукт (в MVP — только базовые проверки через RGS и publishing); [[Certification|Certification]] — будущий certification process; [[Brief|Brief]] — рабочая документация проекта; [[Moodboard|Moodboard]] — визуальные референсы; [[Kanban|Kanban]] — задачи команды внутри игры.\n\n\n## Publishing\n\n[[Publishing|Publishing]] — итерационная публикация игры через submission из трёх модулей. Все поля автосохраняются.\n\n[[Publishing-Game-Foundation|Game Foundation]] — первый модуль: публичное название, slug, описание игры и автоматическая проверка readiness из [[Promo-Assets|Promo Assets]]. Если хотя бы один из пяти обязательных типов ассетов не имеет approved default — модуль остаётся incomplete.\n\n[[Publishing-Math|Math module]] — второй модуль: выбор версии `.playtagon`-архива из [[Resources|Resources]], self-checkers (разработчик вручную подтверждает ответственность за математику) и RGS auto-checks (archive integrity, manifest, RTP validation, round correctness, randomizer usage, simulation run). Каждый auto-check виден в UI со статусами in progress / accepted / rejected.\n\n[[Publishing-Client-Model|Client Model]] — третий модуль: client version, launch setup из [[Launch-Game|Launch Game]], language readiness из [[Translator|Translator]], visual self-checkers.\n\nКаждый модуль — отдельный [[Publishing-Threads|Thread]] для коммуникации студии с reviewer. Review Fail невозможен без комментария в thread провалившегося модуля. Жизненный цикл submission: [[Publishing-Lifecycle|Publishing Lifecycle]] — Collect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live. 48h period — safety window, в котором студия может отменить deployment. Параллельные submissions разрешены; чтобы пустить новую версию в live, старую нужно сначала снять. Снятие — через официальный publishing request с 30-дневным окном отмены. [[Publishing-Alerts|Publishing Alerts]] описывают product и technical сигналы вокруг submission и live-инцидентов.\n\n\n## AI Wizard\n\n[[AI-Wizard|AI Wizard]] — постоянный AI-агент на всех экранах. Не creator type и не отдельный модуль — сквозной интерфейс. Читает контекст текущего экрана, отвечает на вопросы по [[SDK|SDK]] и [[RGS|RGS]], помогает с publishing, promo-ассетами и onboarding.\n\n[[Onboarding|Wizard Onboarding]] — визуальная оболочка для входных сценариев: waitlist, invite и multi-studio screen выглядят как Wizard-диалог. [[Context-Assistant|Context Assistant]] — помощник внутри конкретного модуля. [[Memory|Wizard Memory]] — контекст игры, студийные инструкции и история диалога. [[Multi-Agent|Multi-agent]] — архитектура специализированных агентов (SDK-agent, promo-agent, publishing-agent); имена настраиваются в [[Settings-AI-Wizard|AI Wizard Settings]]. [[Self-Promotion|Self-promotion]] — триггерная механика, при которой Wizard сам предлагает помощь на событиях платформы. [[Support|Support]] — эскалация из Wizard в поддержку.\n\n\n## SDK и RGS\n\n[[SDK|SDK]] — developer-facing библиотека для сборки игры. Определяет формат `.playtagon`-архива, API раундов, randomizer и кастомные сценарии. Документация написана AI-friendly — AI Wizard обучен на ней и отвечает по ней пользователю.\n\n[[RGS|RGS]] — серверная сторона. Принимает архив, выполняет сборку, математику, симуляции и авточеки. Возвращает статус сборки в Resources. Предоставляет iframe для Launch Game. Получает внешние ссылки на Promo Assets и branded link ID из Studio Settings. [[RGS-API-Protocol|RGS API Protocol]] и [[Reference|RGS API Reference]] — технические спецификации взаимодействия с RGS.\n\n\n## Флоу\n\n[[Flows|Flows]] описывают реальные пути пользователя через несколько модулей. [[001-Studio-Basic|Studio Basic Flow]] — MVP-путь от входа до live: Auth → Dashboard → создание игры → Resources → Launch Game → Promo Assets → Publishing → 48h period → Live. [[002-Onboarding|Onboarding Flow]] — три пути попадания на платформу: waitlist, invite email, invite link и multi-studio entrance через AI Wizard UX.\n\n\n## Дизайн-система\n\n[[Design-System|Design System]] состоит из двух направлений. [[Design-System-Pixel|Pixel]] — визуальная система для изображений, чартов и графических primitives. [[PlayUI|PlayUI]] — интерфейсная система платформы: компоненты, состояния и паттерны взаимодействия в Studio, Game и Editor.\n\n\n## Внутренняя документация, команда и инфраструктура\n\n[[Internal|Internal]] описывает устройство docs-платформы как технического продукта. [[GitHub-Auth-and-Access-Control|GitHub Auth]] — OAuth через GitHub org membership, JWT-сессии на 30 дней. [[Content-and-Navigation-System|Content System]] — как устроено хранение и рендеринг документации. [[Contributing-Guide|Contributing]] — правила работы с доками через PR. [[Vercel-Deploy-and-CI-CD|Deployment]] — процесс деплоя docs-сайта. [[Documentation|Documentation]] — правила frontmatter, aliases, backlinks и impact links.\n\n[[Team|Team]] — контекст команды. [[Как-устроена-документация|Docs Workflow]] — как команда меняет документацию. [[Подключение-GitHub-MCP-через-Cloudflare|GitHub MCP Cloudflare]] — интеграции и инфраструктурные инструменты.\n\n[[Infrastructure|Infrastructure]] — технический стек платформы. [[Монорепа-playtagon-engine|Monorepo]] — структура репозитория. [[Git-Флоу-разработки|Git Workflow]] и [[Git-Ветки|Git Branches]] — правила работы с ветками. [[Supabase|Supabase]] — база данных и auth. [[Vercel-Проекты-и-деплои|Vercel]] — хостинг и preview deployments. [[Playtagon-Web|Playtagon Web]] — публичный сайт продукта.\n\n\n## Глоссарий\n\n**.playtagon** — брендированный формат архива игры. Не `.zip`. Загружается в Resources, собирается на RGS, проходит auto-checks при submission. Всегда ссылается на конкретную версию.\n\n**48h period** — safety window после «Go live». Студия может отменить deployment до истечения таймера. Статус виден в Publishing и Game Hub publishing widget.\n\n**AI Credits** — токенизированная система использования AI Wizard: текстовая помощь, генерация изображений и аудио, SDK help. Включены в тарифный план, после исчерпания докупаются.\n\n**Audit Log** — единый источник всех значимых событий студии. Из него строятся Pulse и Notifications — не отдельные источники правды, а выборки.\n\n**Auto-check** — автоматическая проверка, выполняемая RGS при submission: целостность архива, manifest, RTP validation, round correctness, randomizer usage. Отображается в UI со статусами in progress / accepted / rejected.\n\n**Brand** — собственный бренд студии: название + ссылка + RGS operator ID. Проходит approval (Pending → Approved / Rejected). Влияет на royalty model и publishing правила.\n\n**Branded link** — ID бренда или источника трафика. Передаётся в RGS, используется для аналитики, billing и reconciliation.\n\n**Client Model** — третий модуль submission: client version, launch setup, localization readiness, visual self-checkers.\n\n**Creator type** — стартовый путь создания игры. В MVP активен только Play SDK.\n\n**Game Foundation** — первый модуль submission: публичное название, slug, описание, автоматическая проверка Promo Assets readiness.\n\n**Game Hub** — главный экран конкретной игры: три вкладки (Hub / Insights / Settings), виджеты, навигация в Editor.\n\n**GGR** (Gross Gaming Revenue) — выручка оператора от игры. База для расчёта royalty.\n\n**God Mode** — тестовые override controls в Launch Game: принудительные исходы раундов, edge case сценарии.\n\n**Invite link** — общая ссылка студии для приглашения. Не привязана к конкретному человеку; после сброса старая перестаёт работать.\n\n**Large Product Icon** — 500×500 px. Обложка игры в Game Hub и Dashboard card.\n\n**Live** — финальный статус игры; доступна через RGS для операторов.\n\n**Math module** — второй модуль submission: версия архива, self-checkers, RGS auto-checks.\n\n**Mixed state** — состояние участника, когда у него разный уровень доступа к разным играм. Отображается на верхнем уровне списка.\n\n**Notification rules** — правила маршрутизации: какое событие становится уведомлением и кто его получает.\n\n**Owner** — базовая роль с полным контролем над студией: settings, billing, members, critical actions.\n\n**Permissions** — детализация доступа на трёх уровнях: Studio, Game, Module. Состояния: Denied / View / Edit.\n\n**Play SDK** — единственный активный creator type в MVP.\n\n**Promo Assets** — инструмент управления рекламными материалами. Пять обязательных типов + кастомные. RGS получает внешние ссылки, не сами файлы. Первый approved = default.\n\n**Publish current setup** — кнопка в Launch Game, прокидывающая параметры тестирования в форму Publishing.\n\n**Reconciliation** — сверка данных между Playtagon и внешними операторами. При расхождении применяется правило меньшей стороны.\n\n**Replay** — воспроизведение конкретного раунда в Launch Game для дебага.\n\n**RGS** (Remote Game Server) — серверная сторона: принимает архив, выполняет математику, раунды и симуляции.\n\n**Role template** — стартовый набор permissions (Game Lead, Developer, QA Tester, Viewer и др.). После применения настраивается вручную.\n\n**Round / Раунд** — базовая игровая единица в SDK. Не «спин». Одна игровая итерация с началом, исходом и финансовым результатом.\n\n**Royalty** — выплата студии от Playtagon. Применяется при публикации без собственного бренда. База — GGR после reconciliation.\n\n**RTP** (Return to Player) — процент возврата ставок. Заявляется разработчиком, проверяется RGS auto-check.\n\n**SDK** (Playtagon SDK) — developer-facing библиотека. Определяет формат архива, API раундов, randomizer, сценарии. AI-friendly: Wizard отвечает по ней.\n\n**Self-checker** — ручное подтверждение команды разработчиков до submission. Фиксирует ответственность команды. Отделён от RGS auto-checks.\n\n**Self-promotion** — механика AI Wizard: триггерится на события платформы и сам предлагает помощь.\n\n**Slug** — URL-идентификатор: студии (красивая внешняя ссылка) или игры (задаётся в Game Foundation).\n\n**Studio** — уровень организации: участники, права, финансы, портфель игр.\n\n**Submission** — форма публикации из трёх модулей: Game Foundation + Math + Client Model. Каждый модуль — шаг формы и thread для коммуникации.\n\n**Thread** — ветка коммуникации внутри submission, привязанная к конкретному модулю.\n\n**Viewer** — permission template (не роль). Безопасный read-only минимум; используется как дефолт для invite link.\n\n**Waitlist** — входной барьер для неизвестного пользователя. Форма-заявка уходит в Admin; после approval доступно создание студии.\n",
+      "body": "## О платформе\n\n[[Overview|Playtagon]] — платформа для разработки, ревью и публикации casino games. Студия регистрируется, собирает игры, проходит review и выводит их в live. Вся игровая логика и математика исполняется на [[RGS|RGS]] (Remote Game Server); Playtagon — веб-интерфейс над ним. Разработчики работают через [[SDK|Playtagon SDK]], собирают игру в брендированный [[SDK#playtagon archive|.playtagon]]-архив и загружают его на платформу. Базовая игровая единица в SDK называется [[SDK#round|round]], а не spin — платформа поддерживает не только slot-механику. Граница MVP зафиксирована в [[Overview-MVP-June-2026|Overview MVP June 2026]].\n\n\n## Studio\n\n[[Studio|Studio]] — уровень организации. Здесь живут команда, финансы, аудит и портфель игр.\n\nВход в платформу начинается с [[Auth|Auth]]. Регистрация и авторизация не разделены: пользователь всегда начинает со входа, а дальнейший путь определяется его статусом. Незнакомый пользователь попадает в [[Auth-Waitlist|Waitlist]] — форму-заявку, которая визуально выглядит как [[04-AI-Wizard/Onboarding|Wizard onboarding]], и ждёт одобрения. Приглашённый по email пользователь переходит по токен-ссылке из письма через [[Auth-Invite-Email|Invite Email]] и сразу попадает в студию. Приглашённый по общей ссылке проходит [[Auth-Magic-Link|Magic Link]] или [[Auth-Google-OAuth|Google OAuth]] через [[Auth-Invite-Link|Invite Link]]. Если пользователь состоит в нескольких студиях, после входа он видит [[Auth-Multi-Studio|multi-studio screen]] и выбирает рабочий контекст. Управление методами входа (сменить email, переподключить Google) доступно в разделе Auth methods в [[Profile|Profile]].\n\nСостав команды управляется через [[Members|Members]]. В системе две базовые роли: [[Members-Roles|Owner и Member]]. Owner имеет полный контроль над студией; Member получает доступ через [[Users-Permissions|permissions]]. Реальная специализация участника выражается не ролью, а [[Members-Role-Templates|role template]] — стартовым набором прав: Game Lead, Developer, QA Tester, Analyst, Marketing Manager, Viewer и другие. После применения шаблон можно скорректировать вручную. Если у участника разный доступ к разным играм, на уровне студийного списка отображается mixed-состояние. Пригласить участника можно через [[Members-Invite|Invite]] — по email с выставленными заранее правами или по общей ссылке с настраиваемым дефолтным доступом. Удаление через [[Members-Remove|Remove]] немедленно снимает все права. Активные сессии участников видны в [[Members-Sessions|Member Sessions]] и могут быть принудительно завершены. Участники могут управлять собственными сессиями через [[Profile-Sessions|Profile Sessions]]. Персональные данные — avatar, имя, язык, timezone — хранятся в [[Profile-Personal-Data|Personal Data]]. Матрица прав по уровням Studio, Game и Module описана в [[Users|Studio Users]]. Доступ конкретного участника к конкретным играм — в [[Users-Game-Access|Game Access]], те же данные со стороны игры — в [[Game-Settings-Members|Game Settings Members]].\n\nПервый рабочий экран после входа — [[Games|Studio Games]] (Dashboard). Здесь виден портфель игр в compact или detailed view. Detailed-карточка показывает обложку из [[Promo-Assets|Large Product Icon]], текущий publishing status, последние события из [[Pulse|Pulse]] и последний результат [[Simulation|Math Simulation]]. Статусы публикации проходят через цепочку: Collect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live.\n\nВсе значимые события студии фиксирует [[Audit-Log|Audit Log]] — единый источник правды. Таксономия событий описана в [[Audit-Log-Events|Audit Events]]; правила видимости — в [[Audit-Log-Access|Audit Access]]. Из Audit Log строятся два независимых представления: [[Pulse|Pulse]] как activity feed (activity feed, online status участников и progress widgets) и [[Notifications|Notifications]] как доставляемые пользователю сигналы. Каналы доставки описаны в [[Notifications-Channels|Notification Channels]], логика маршрутизации — в [[Notifications-Rules|Notification Rules]].\n\nАналитика на уровне студии собрана в [[Studio-Insights|Studio Insights]]: командная активность в [[Insights-Team|Team Insights]] и портфельные метрики в [[Insights-Games|Game Portfolio Insights]].\n\nФинансовая сторона: [[Billing|Billing]] управляет тарифными [[Billing-Plans|Планами]], [[Billing-History|историей платежей]] и [[Billing-AI-Credits|AI Credits]] — токенизированной системой использования AI Wizard. Студиям без собственного бренда применяется модель [[Royalty|Royalty]]: Playtagon получает GGR от операторов и выплачивает студии согласованный процент. История выплат — в [[Royalty-History|Royalty History]], правила расчёта — в [[Royalty-Model|Royalty Model]]. [[Reconciliation|Reconciliation]] — процесс сверки данных между Playtagon и внешними операторами; при расхождении применяется правило меньшей стороны. Billing-сторона сверки — в [[Billing-Reconciliation|Billing Reconciliation]].\n\nНастройки студии собраны в [[Studio-Settings|Studio Settings]]. [[Settings-Basics|Basic Settings]] хранит название, логотип, slug (используется для красивой внешней ссылки) и бренды. Бренд — это название + ссылка + RGS operator ID; проходит approval (Pending → Approved / Rejected). Branded links — ID бренда, который передаётся в RGS и используется для атрибуции трафика. Остальные подразделы настроек: [[Studio-Settings-Members|Members Settings]] — дефолты приглашений и invite-политики; [[Settings-AI-Wizard|AI Wizard Settings]] — имена агентов и инструкции; [[Settings-Audit-Log|Audit Log Settings]] — retention и visibility; [[Settings-Billing|Billing Settings]] — реквизиты и платёжный метод; [[Settings-Notifications|Notification Settings]] — preferences и overrides; [[Settings-My-Profile|My Profile]] — shortcut к личному профилю.\n\n[[Influencer-Hub|Influencer Hub]] — внешний коммуникационный слой: студия публикует задачу, инфлюенсер откликается, сделка ведётся на платформе. Инфлюенсеры — не Members: у них другие права и lifecycle.\n\n\n## Game\n\n[[Game|Game]] — обёртка конкретной игры. Навигационный центр с тремя вкладками: Game Hub (виджеты с publishing status, инструменты, [[Game-Insights|Game Insights]], последний статус симуляции и Pulse), Insights и Settings. Обложка Game Hub — Large Product Icon (500×500 px) из [[Promo-Assets|Promo Assets]].\n\n[[Game-Settings|Game Settings]] содержит внутреннее название игры (публичное задаётся в Publishing), управление доступом команды на уровне игры и notification overrides. Добавить участника к игре можно через селектор из существующих тиммейтов или через кнопку «Пригласить», которая открывает [[Members-Invite|Members Invite]] в новой вкладке. [[Game-AI-Wizard|Game AI Wizard]] — контекстное проявление AI Wizard внутри конкретной игры: знает активный submission, доступные инструменты и SDK-документацию. [[Game-Documentation|Game Documentation]] — in-product справка, связанная с Game Hub.\n\n\n## Editor\n\n[[Editor|Editor]] разделён на два слоя: тип создания игры и инструменты.\n\n[[Types|Creator types]] определяют стартовый путь. В MVP активен только [[Types-Play-SDK|Play SDK]]: разработчик собирает игру через SDK, загружает `.playtagon`-архив и проходит publishing. Остальные типы планируются на будущее: [[Types-Visual-AI|Visual Editor + AI]] (визуальный редактор с AI-сопровождением), [[Types-Slot-Reskin|Slot Reskin]] (быстрая адаптация slot framework) и [[Types-Originals|Originals]] (игры не slot-типа).\n\nИнструменты редактора делятся на MVP и будущие. **В MVP:** [[Resources|Resources]] — файловый эксплорер, где хранятся ассеты и `.playtagon`-архив; архив после загрузки собирается на RGS и возвращает статус сборки, после чего становится доступен запуск и симуляция. [[Launch-Game|Launch Game]] (GDM Stand) — демостенд: RGS iframe с игровым канвасом и Playtagon-контролы (баланс, валюта, язык, replay). Кнопка Publish car setup прокидывает параметры в форму Publishing. [[Promo-Assets|Promo Assets]] — управление рекламными материалами: пять обязательных типов (Small UI Icon 40×40, Software Card Preview 300×188, App Tile Icon 300×300, Large Product Icon 500×500, Game Promo Thumbnail 780×1040) и кастомные. RGS получает внешние ссылки на approved ассеты; первый approved становится default. AI Wizard умеет генерировать ассеты по описанию. [[Publishing|Publishing]] — финальный этап жизненного цикла игры, описан ниже отдельно. [[Translator|Translator]] — локализация: таблица строк, AI-перевод, glossary и language readiness для Client Model.\n\n**Не в MVP:** [[Blueprint|Blueprint]] — node editor игровой математики; [[Game-Designer|Game Designer]] — визуальная среда для символов, UI и анимаций; [[Sound-Designer|Sound Designer]] — звуковой дизайн; [[Simulation|Math Simulation]] как полноценный аналитический продукт (в MVP — только базовые проверки через RGS и publishing); [[Certification|Certification]] — будущий certification process; [[Brief|Brief]] — рабочая документация проекта; [[Moodboard|Moodboard]] — визуальные референсы; [[Kanban|Kanban]] — задачи команды внутри игры.\n\n\n## Publishing\n\n[[Publishing|Publishing]] — итерационная публикация игры через submission из трёх модулей. Все поля автосохраняются.\n\n[[Publishing-Game-Foundation|Game Foundation]] — первый модуль: публичное название, slug, описание игры и автоматическая проверка readiness из [[Promo-Assets|Promo Assets]]. Если хотя бы один из пяти обязательных типов ассетов не имеет approved default — модуль остаётся incomplete.\n\n[[Publishing-Math|Math module]] — второй модуль: выбор версии `.playtagon`-архива из [[Resources|Resources]], self-checkers (разработчик вручную подтверждает ответственность за математику) и RGS auto-checks (archive integrity, manifest, RTP validation, round correctness, randomizer usage, simulation run). Каждый auto-check виден в UI со статусами in progress / accepted / rejected.\n\n[[Publishing-Client-Model|Client Model]] — третий модуль: client version, launch setup из [[Launch-Game|Launch Game]], language readiness из [[Translator|Translator]], visual self-checkers.\n\nКаждый модуль — отдельный [[Publishing-Threads|Thread]] для коммуникации студии с reviewer. Review Fail невозможен без комментария в thread провалившегося модуля. Жизненный цикл submission: [[Publishing-Lifecycle|Publishing Lifecycle]] — Collect Info → On Review → Review Pass/Fail → 48h period → Game Deployment → Live. 48h period — safety window, в котором студия может отменить deployment. Параллельные submissions разрешены; чтобы пустить новую версию в live, старую нужно сначала снять. Снятие — через официальный publishing request с 30-дневным окном отмены. [[Publishing-Alerts|Publishing Alerts]] описывают product и technical сигналы вокруг submission и live-инцидентов.\n\n\n## AI Wizard\n\n[[AI-Wizard|AI Wizard]] — постоянный AI-агент на всех экранах. Не creator type и не отдельный модуль — сквозной интерфейс. Читает контекст текущего экрана, отвечает на вопросы по [[SDK|SDK]] и [[RGS|RGS]], помогает с publishing, promo-ассетами и onboarding.\n\n[[04-AI-Wizard/Onboarding|Wizard Onboarding]] — визуальная оболочка для входных сценариев: waitlist, invite и multi-studio screen выглядят как Wizard-диалог. [[Context-Assistant|Context Assistant]] — помощник внутри конкретного модуля. [[Memory|Wizard Memory]] — контекст игры, студийные инструкции и история диалога. [[Multi-Agent|Multi-agent]] — архитектура специализированных агентов (SDK-agent, promo-agent, publishing-agent); имена настраиваются в [[Settings-AI-Wizard|AI Wizard Settings]]. [[Self-Promotion|Self-promotion]] — триггерная механика, при которой Wizard сам предлагает помощь на событиях платформы. [[Support|Support]] — эскалация из Wizard в поддержку.\n\n\n## SDK и RGS\n\n[[SDK|SDK]] — developer-facing библиотека для сборки игры. Определяет формат `.playtagon`-архива, API раундов, randomizer и кастомные сценарии. Документация написана AI-friendly — AI Wizard обучен на ней и отвечает по ней пользователю.\n\n[[RGS|RGS]] — серверная сторона. Принимает архив, выполняет сборку, математику, симуляции и авточеки. Возвращает статус сборки в Resources. Предоставляет iframe для Launch Game. Получает внешние ссылки на Promo Assets и branded link ID из Studio Settings. [[RGS-API-Protocol|RGS API Protocol]] и [[Reference|RGS API Reference]] — технические спецификации взаимодействия с RGS.\n\n\n## Флоу\n\n[[Flows|Flows]] описывают реальные пути пользователя через несколько модулей. [[Studio-Basic|Studio Basic Flow]] — MVP-путь от входа до live: Auth → Dashboard → создание игры → Resources → Launch Game → Promo Assets → Publishing → 48h period → Live. [[05-Flows/Onboarding|Onboarding Flow]] — три пути попадания на платформу: waitlist, invite email, invite link и multi-studio entrance через AI Wizard UX.\n\n\n## Дизайн-система\n\n[[Design-System|Design System]] состоит из двух направлений. [[Design-System-Pixel|Pixel]] — визуальная система для изображений, чартов и графических primitives. [[PlayUI|PlayUI]] — интерфейсная система платформы: компоненты, состояния и паттерны взаимодействия в Studio, Game и Editor.\n\n\n## Внутренняя документация, команда и инфраструктура\n\n[[Internal|Internal]] описывает устройство docs-платформы как технического продукта. [[GitHub-Auth-and-Access-Control|GitHub Auth]] — OAuth через GitHub org membership, JWT-сессии на 30 дней. [[Content-and-Navigation-System|Content System]] — как устроено хранение и рендеринг документации. [[Contributing-Guide|Contributing]] — правила работы с доками через PR. [[Vercel-Deploy-and-CI-CD|Deployment]] — процесс деплоя docs-сайта. [[Documentation|Documentation]] — правила frontmatter, aliases, backlinks и impact links.\n\n[[Team|Team]] — контекст команды. [[Как-устроена-документация|Docs Workflow]] — как команда меняет документацию. [[Подключение-GitHub-MCP-через-Cloudflare|GitHub MCP Cloudflare]] — интеграции и инфраструктурные инструменты.\n\n[[Infrastructure|Infrastructure]] — технический стек платформы. [[Монорепа-playtagon-engine|Monorepo]] — структура репозитория. [[Git-Флоу-разработки|Git Workflow]] и [[Git-Ветки|Git Branches]] — правила работы с ветками. [[Supabase|Supabase]] — база данных и auth. [[Vercel-Проекты-и-деплои|Vercel]] — хостинг и preview deployments. [[Playtagon-Web|Playtagon Web]] — публичный сайт продукта.\n\n\n## Глоссарий\n\n**.playtagon** — брендированный формат архива игры. Не `.zip`. Загружается в Resources, собирается на RGS, проходит auto-checks при submission. Всегда ссылается на конкретную версию.\n\n**48h period** — safety window после «Go live». Студия может отменить deployment до истечения таймера. Статус виден в Publishing и Game Hub publishing widget.\n\n**AI Credits** — токенизированная система использования AI Wizard: текстовая помощь, генерация изображений и аудио, SDK help. Включены в тарифный план, после исчерпания докупаются.\n\n**Audit Log** — единый источник всех значимых событий студии. Из него строятся Pulse и Notifications — не отдельные источники правды, а выборки.\n\n**Auto-check** — автоматическая проверка, выполняемая RGS при submission: целостность архива, manifest, RTP validation, round correctness, randomizer usage. Отображается в UI со статусами in progress / accepted / rejected.\n\n**Brand** — собственный бренд студии: название + ссылка + RGS operator ID. Проходит approval (Pending → Approved / Rejected). Влияет на royalty model и publishing правила.\n\n**Branded link** — ID бренда или источника трафика. Передаётся в RGS, используется для аналитики, billing и reconciliation.\n\n**Client Model** — третий модуль submission: client version, launch setup, localization readiness, visual self-checkers.\n\n**Creator type** — стартовый путь создания игры. В MVP активен только Play SDK.\n\n**Game Foundation** — первый модуль submission: публичное название, slug, описание, автоматическая проверка Promo Assets readiness.\n\n**Game Hub** — главный экран конкретной игры: три вкладки (Hub / Insights / Settings), виджеты, навигация в Editor.\n\n**GGR** (Gross Gaming Revenue) — выручка оператора от игры. База для расчёта royalty.\n\n**God Mode** — тестовые override controls в Launch Game: принудительные исходы раундов, edge case сценарии.\n\n**Invite link** — общая ссылка студии для приглашения. Не привязана к конкретному человеку; после сброса старая перестаёт работать.\n\n**Large Product Icon** — 500×500 px. Обложка игры в Game Hub и Dashboard card.\n\n**Live** — финальный статус игры; доступна через RGS для операторов.\n\n**Math module** — второй модуль submission: версия архива, self-checkers, RGS auto-checks.\n\n**Mixed state** — состояние участника, когда у него разный уровень доступа к разным играм. Отображается на верхнем уровне списка.\n\n**Notification rules** — правила маршрутизации: какое событие становится уведомлением и кто его получает.\n\n**Owner** — базовая роль с полным контролем над студией: settings, billing, members, critical actions.\n\n**Permissions** — детализация доступа на трёх уровнях: Studio, Game, Module. Состояния: Denied / View / Edit.\n\n**Play SDK** — единственный активный creator type в MVP.\n\n**Promo Assets** — инструмент управления рекламными материалами. Пять обязательных типов + кастомные. RGS получает внешние ссылки, не сами файлы. Первый approved = default.\n\n**Publish current setup** — кнопка в Launch Game, прокидывающая параметры тестирования в форму Publishing.\n\n**Reconciliation** — сверка данных между Playtagon и внешними операторами. При расхождении применяется правило меньшей стороны.\n\n**Replay** — воспроизведение конкретного раунда в Launch Game для дебага.\n\n**RGS** (Remote Game Server) — серверная сторона: принимает архив, выполняет математику, раунды и симуляции.\n\n**Role template** — стартовый набор permissions (Game Lead, Developer, QA Tester, Viewer и др.). После применения настраивается вручную.\n\n**Round / Раунд** — базовая игровая единица в SDK. Не «спин». Одна игровая итерация с началом, исходом и финансовым результатом.\n\n**Royalty** — выплата студии от Playtagon. Применяется при публикации без собственного бренда. База — GGR после reconciliation.\n\n**RTP** (Return to Player) — процент возврата ставок. Заявляется разработчиком, проверяется RGS auto-check.\n\n**SDK** (Playtagon SDK) — developer-facing библиотека. Определяет формат архива, API раундов, randomizer, сценарии. AI-friendly: Wizard отвечает по ней.\n\n**Self-checker** — ручное подтверждение команды разработчиков до submission. Фиксирует ответственность команды. Отделён от RGS auto-checks.\n\n**Self-promotion** — механика AI Wizard: триггерится на события платформы и сам предлагает помощь.\n\n**Slug** — URL-идентификатор: студии (красивая внешняя ссылка) или игры (задаётся в Game Foundation).\n\n**Studio** — уровень организации: участники, права, финансы, портфель игр.\n\n**Submission** — форма публикации из трёх модулей: Game Foundation + Math + Client Model. Каждый модуль — шаг формы и thread для коммуникации.\n\n**Thread** — ветка коммуникации внутри submission, привязанная к конкретному модулю.\n\n**Viewer** — permission template (не роль). Безопасный read-only минимум; используется как дефолт для invite link.\n\n**Waitlist** — входной барьер для неизвестного пользователя. Форма-заявка уходит в Admin; после approval доступно создание студии.\n",
       "headings": [
         {
           "level": 2,
@@ -15366,7 +15366,7 @@
           "label": "Waitlist"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard onboarding"
         },
@@ -15821,7 +15821,7 @@
           "label": "RGS"
         },
         {
-          "target": "Onboarding",
+          "target": "04-AI-Wizard/Onboarding",
           "heading": "",
           "label": "Wizard Onboarding"
         },
@@ -15881,12 +15881,12 @@
           "label": "Flows"
         },
         {
-          "target": "001-Studio-Basic",
+          "target": "Studio-Basic",
           "heading": "",
           "label": "Studio Basic Flow"
         },
         {
-          "target": "002-Onboarding",
+          "target": "05-Flows/Onboarding",
           "heading": "",
           "label": "Onboarding Flow"
         },
@@ -17213,25 +17213,25 @@
         "children": [],
         "pages": [
           {
-            "title": "001 Studio Basic",
-            "slug": "flows/studio-basic",
-            "path": "05-Flows/001-Studio-Basic.md",
-            "fileName": "001-Studio-Basic.md",
-            "isIndex": false
-          },
-          {
-            "title": "002 Onboarding",
-            "slug": "flows/onboarding",
-            "path": "05-Flows/002-Onboarding.md",
-            "fileName": "002-Onboarding.md",
-            "isIndex": false
-          },
-          {
             "title": "Flows",
             "slug": "flows/flows",
             "path": "05-Flows/Flows.md",
             "fileName": "Flows.md",
             "isIndex": true
+          },
+          {
+            "title": "002 Onboarding",
+            "slug": "flows/onboarding",
+            "path": "05-Flows/Onboarding.md",
+            "fileName": "Onboarding.md",
+            "isIndex": false
+          },
+          {
+            "title": "001 Studio Basic",
+            "slug": "flows/studio-basic",
+            "path": "05-Flows/Studio-Basic.md",
+            "fileName": "Studio-Basic.md",
+            "isIndex": false
           }
         ]
       },
@@ -17474,9 +17474,7 @@
     "...slug": "web/playtagon-web",
     "00-monorepo": "infrastructure/монорепа-playtagon-engine",
     "001 studio basic": "flows/studio-basic",
-    "001-studio-basic": "flows/studio-basic",
     "002 onboarding": "flows/onboarding",
-    "002-onboarding": "flows/onboarding",
     "01-supabase": "infrastructure/supabase",
     "02-git-branches": "infrastructure/git-ветки",
     "03-git-workflow": "infrastructure/git-флоу-разработки",
@@ -17652,7 +17650,7 @@
     "notifications-rules": "studio/notifications/notifications-rules",
     "notifications: channels": "studio/notifications/notifications-channels",
     "notifications: rules": "studio/notifications/notifications-rules",
-    "onboarding": "ai-wizard/onboarding",
+    "onboarding": "flows/onboarding",
     "overview": "overview/overview",
     "overview-mvp-june-2026": "overview/overview-mvp-june-2026",
     "overview: mvp june 2026": "overview/overview-mvp-june-2026",
@@ -17765,6 +17763,7 @@
     "studio-auth-google-oauth": "studio/auth/auth-google-oauth",
     "studio-auth-magic-link": "studio/auth/auth-magic-link",
     "studio-auth-waitlist": "studio/auth/auth-waitlist",
+    "studio-basic": "flows/studio-basic",
     "studio-billing": "studio/billing/billing",
     "studio-games": "studio/games",
     "studio-influencer-hub": "studio/influencer-hub",
@@ -18101,12 +18100,12 @@
     "ai-wizard/self-promotion": "ai-wizard/self-promotion",
     "04-ai-wizard/support": "ai-wizard/support",
     "ai-wizard/support": "ai-wizard/support",
-    "05-flows/001-studio-basic": "flows/studio-basic",
-    "flows/studio-basic": "flows/studio-basic",
-    "05-flows/002-onboarding": "flows/onboarding",
-    "flows/onboarding": "flows/onboarding",
     "05-flows/flows": "flows/flows",
     "flows/flows": "flows/flows",
+    "05-flows/onboarding": "flows/onboarding",
+    "flows/onboarding": "flows/onboarding",
+    "05-flows/studio-basic": "flows/studio-basic",
+    "flows/studio-basic": "flows/studio-basic",
     "06-design-system/design-system": "design-system/design-system",
     "design-system/design-system": "design-system/design-system",
     "06-design-system/playctrl": "design-system/playctrl",
@@ -18505,7 +18504,7 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
@@ -18914,11 +18913,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/auth/auth-invite-email": [
@@ -18944,11 +18943,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Members-Invite",
@@ -18958,11 +18957,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Users-Permissions",
@@ -19002,11 +19001,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Members-Invite",
@@ -19023,11 +19022,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/auth/auth-magic-link": [
@@ -19076,11 +19075,11 @@
     ],
     "studio/auth/auth-multi-studio": [
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Auth",
@@ -19090,11 +19089,11 @@
         "exists": true
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Users-Permissions",
@@ -19111,11 +19110,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Users-Permissions",
@@ -19127,11 +19126,11 @@
     ],
     "studio/auth/auth-waitlist": [
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Auth",
@@ -19141,18 +19140,18 @@
         "exists": true
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Audit-Log-Events",
@@ -19162,18 +19161,18 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/auth/auth": [
@@ -19241,25 +19240,25 @@
         "exists": true
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Members-Invite",
@@ -19638,7 +19637,7 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
@@ -19754,11 +19753,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Users-Permissions",
@@ -19856,11 +19855,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/members/members-roles": [
@@ -19893,11 +19892,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/members/members-sessions": [
@@ -21636,18 +21635,18 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "studio/users/users-game-access": [
@@ -21861,11 +21860,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       }
     ],
     "game/game-ai-wizard": [
@@ -23843,7 +23842,7 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
@@ -23885,7 +23884,7 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
@@ -25387,11 +25386,11 @@
     ],
     "ai-wizard/ai-wizard": [
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Waitlist Onboarding",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Editor-Tools-Brief",
@@ -25464,11 +25463,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Waitlist Onboarding",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "SDK",
@@ -25688,11 +25687,11 @@
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Studio-Settings",
@@ -25851,6 +25850,115 @@
         "heading": "",
         "label": "AI Wizard settings",
         "slug": "studio/studio-settings/settings-ai-wizard",
+        "exists": true
+      }
+    ],
+    "flows/flows": [
+      {
+        "target": "Flow-001-Studio-Basic",
+        "heading": "",
+        "label": "Studio Basic Flow",
+        "slug": "flows/studio-basic",
+        "exists": true
+      },
+      {
+        "target": "Flow-002-Onboarding",
+        "heading": "",
+        "label": "Onboarding flow",
+        "slug": "flows/onboarding",
+        "exists": true
+      },
+      {
+        "target": "Studio",
+        "heading": "",
+        "label": "Studio",
+        "slug": "studio/studio",
+        "exists": true
+      },
+      {
+        "target": "Game",
+        "heading": "",
+        "label": "Game",
+        "slug": "game/game",
+        "exists": true
+      },
+      {
+        "target": "Editor",
+        "heading": "",
+        "label": "Editor",
+        "slug": "editor/editor",
+        "exists": true
+      },
+      {
+        "target": "AI-Wizard",
+        "heading": "",
+        "label": "AI Wizard",
+        "slug": "ai-wizard/ai-wizard",
+        "exists": true
+      }
+    ],
+    "flows/onboarding": [
+      {
+        "target": "AI-Wizard",
+        "heading": "",
+        "label": "AI Wizard",
+        "slug": "ai-wizard/ai-wizard",
+        "exists": true
+      },
+      {
+        "target": "Auth-Waitlist",
+        "heading": "",
+        "label": "Waitlist",
+        "slug": "studio/auth/auth-waitlist",
+        "exists": true
+      },
+      {
+        "target": "Auth",
+        "heading": "",
+        "label": "Auth",
+        "slug": "studio/auth/auth",
+        "exists": true
+      },
+      {
+        "target": "Auth-Waitlist",
+        "heading": "",
+        "label": "Waitlist",
+        "slug": "studio/auth/auth-waitlist",
+        "exists": true
+      },
+      {
+        "target": "Auth-Invite-Email",
+        "heading": "",
+        "label": "email invite",
+        "slug": "studio/auth/auth-invite-email",
+        "exists": true
+      },
+      {
+        "target": "Auth-Invite-Link",
+        "heading": "",
+        "label": "invite link",
+        "slug": "studio/auth/auth-invite-link",
+        "exists": true
+      },
+      {
+        "target": "Auth-Multi-Studio",
+        "heading": "",
+        "label": "multi-studio screen",
+        "slug": "studio/auth/auth-multi-studio",
+        "exists": true
+      },
+      {
+        "target": "04-AI-Wizard/Onboarding",
+        "heading": "",
+        "label": "Wizard onboarding",
+        "slug": "",
+        "exists": false
+      },
+      {
+        "target": "Members-Role-Templates",
+        "heading": "",
+        "label": "role templates",
+        "slug": "studio/members/members-role-templates",
         "exists": true
       }
     ],
@@ -26056,115 +26164,6 @@
         "heading": "",
         "label": "Publishing",
         "slug": "editor/tools/publishing/publishing",
-        "exists": true
-      }
-    ],
-    "flows/onboarding": [
-      {
-        "target": "AI-Wizard",
-        "heading": "",
-        "label": "AI Wizard",
-        "slug": "ai-wizard/ai-wizard",
-        "exists": true
-      },
-      {
-        "target": "Auth-Waitlist",
-        "heading": "",
-        "label": "Waitlist",
-        "slug": "studio/auth/auth-waitlist",
-        "exists": true
-      },
-      {
-        "target": "Auth",
-        "heading": "",
-        "label": "Auth",
-        "slug": "studio/auth/auth",
-        "exists": true
-      },
-      {
-        "target": "Auth-Waitlist",
-        "heading": "",
-        "label": "Waitlist",
-        "slug": "studio/auth/auth-waitlist",
-        "exists": true
-      },
-      {
-        "target": "Auth-Invite-Email",
-        "heading": "",
-        "label": "email invite",
-        "slug": "studio/auth/auth-invite-email",
-        "exists": true
-      },
-      {
-        "target": "Auth-Invite-Link",
-        "heading": "",
-        "label": "invite link",
-        "slug": "studio/auth/auth-invite-link",
-        "exists": true
-      },
-      {
-        "target": "Auth-Multi-Studio",
-        "heading": "",
-        "label": "multi-studio screen",
-        "slug": "studio/auth/auth-multi-studio",
-        "exists": true
-      },
-      {
-        "target": "Onboarding",
-        "heading": "",
-        "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
-      },
-      {
-        "target": "Members-Role-Templates",
-        "heading": "",
-        "label": "role templates",
-        "slug": "studio/members/members-role-templates",
-        "exists": true
-      }
-    ],
-    "flows/flows": [
-      {
-        "target": "Flow-001-Studio-Basic",
-        "heading": "",
-        "label": "Studio Basic Flow",
-        "slug": "flows/studio-basic",
-        "exists": true
-      },
-      {
-        "target": "Flow-002-Onboarding",
-        "heading": "",
-        "label": "Onboarding flow",
-        "slug": "flows/onboarding",
-        "exists": true
-      },
-      {
-        "target": "Studio",
-        "heading": "",
-        "label": "Studio",
-        "slug": "studio/studio",
-        "exists": true
-      },
-      {
-        "target": "Game",
-        "heading": "",
-        "label": "Game",
-        "slug": "game/game",
-        "exists": true
-      },
-      {
-        "target": "Editor",
-        "heading": "",
-        "label": "Editor",
-        "slug": "editor/editor",
-        "exists": true
-      },
-      {
-        "target": "AI-Wizard",
-        "heading": "",
-        "label": "AI Wizard",
-        "slug": "ai-wizard/ai-wizard",
         "exists": true
       }
     ],
@@ -27250,11 +27249,11 @@
         "exists": true
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Auth-Invite-Email",
@@ -27887,11 +27886,11 @@
         "exists": true
       },
       {
-        "target": "Onboarding",
+        "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard Onboarding",
-        "slug": "ai-wizard/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Context-Assistant",
@@ -27971,18 +27970,18 @@
         "exists": true
       },
       {
-        "target": "001-Studio-Basic",
+        "target": "Studio-Basic",
         "heading": "",
         "label": "Studio Basic Flow",
         "slug": "flows/studio-basic",
         "exists": true
       },
       {
-        "target": "002-Onboarding",
+        "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding Flow",
-        "slug": "flows/onboarding",
-        "exists": true
+        "slug": "",
+        "exists": false
       },
       {
         "target": "Design-System",
@@ -28204,12 +28203,12 @@
         "title": "Translator"
       },
       {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
         "slug": "flows/flows",
         "title": "Flows"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
       },
       {
         "slug": "design-system/playui",
@@ -28290,12 +28289,12 @@
         "title": "Studio"
       },
       {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
         "slug": "flows/onboarding",
         "title": "002 Onboarding"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
       },
       {
         "slug": "readme",
@@ -28970,24 +28969,24 @@
         "title": "AI Wizard"
       },
       {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
         "slug": "flows/flows",
         "title": "Flows"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
       },
       {
         "slug": "design-system/playui",
@@ -30212,12 +30211,12 @@
         "title": "Support"
       },
       {
-        "slug": "flows/onboarding",
-        "title": "002 Onboarding"
-      },
-      {
         "slug": "flows/flows",
         "title": "Flows"
+      },
+      {
+        "slug": "flows/onboarding",
+        "title": "002 Onboarding"
       },
       {
         "slug": "internal/documentation",
@@ -31716,12 +31715,12 @@
         "title": "AI Wizard"
       },
       {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
         "slug": "flows/flows",
         "title": "Flows"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
       },
       {
         "slug": "design-system/playui",
@@ -32372,88 +32371,6 @@
         "title": "Playtagon Docs"
       }
     ],
-    "flows/onboarding": [
-      {
-        "slug": "studio/auth/auth-google-oauth",
-        "title": "Auth: Google OAuth"
-      },
-      {
-        "slug": "studio/auth/auth-invite-email",
-        "title": "Auth: Invite Email"
-      },
-      {
-        "slug": "studio/auth/auth-invite-email",
-        "title": "Auth: Invite Email"
-      },
-      {
-        "slug": "studio/auth/auth-invite-link",
-        "title": "Auth: Invite Link"
-      },
-      {
-        "slug": "studio/auth/auth-invite-link",
-        "title": "Auth: Invite Link"
-      },
-      {
-        "slug": "studio/auth/auth-multi-studio",
-        "title": "Auth: Multi Studio"
-      },
-      {
-        "slug": "studio/auth/auth-waitlist",
-        "title": "Auth: Waitlist"
-      },
-      {
-        "slug": "studio/auth/auth-waitlist",
-        "title": "Auth: Waitlist"
-      },
-      {
-        "slug": "studio/auth/auth",
-        "title": "Studio Auth"
-      },
-      {
-        "slug": "studio/auth/auth",
-        "title": "Studio Auth"
-      },
-      {
-        "slug": "studio/members/members-invite",
-        "title": "Members: Invite"
-      },
-      {
-        "slug": "studio/members/members-role-templates",
-        "title": "Members: Role Templates"
-      },
-      {
-        "slug": "studio/members/members-roles",
-        "title": "Members: Roles"
-      },
-      {
-        "slug": "studio/studio",
-        "title": "Studio"
-      },
-      {
-        "slug": "studio/users/users",
-        "title": "Studio Users"
-      },
-      {
-        "slug": "ai-wizard/ai-wizard",
-        "title": "AI Wizard"
-      },
-      {
-        "slug": "ai-wizard/ai-wizard",
-        "title": "AI Wizard"
-      },
-      {
-        "slug": "ai-wizard/ai-wizard",
-        "title": "AI Wizard"
-      },
-      {
-        "slug": "flows/flows",
-        "title": "Flows"
-      },
-      {
-        "slug": "readme",
-        "title": "Playtagon Docs"
-      }
-    ],
     "studio/members/members-invite": [
       {
         "slug": "studio/auth/auth-invite-email",
@@ -32550,12 +32467,12 @@
         "title": "Game Settings: Members"
       },
       {
-        "slug": "flows/studio-basic",
-        "title": "001 Studio Basic"
-      },
-      {
         "slug": "flows/onboarding",
         "title": "002 Onboarding"
+      },
+      {
+        "slug": "flows/studio-basic",
+        "title": "001 Studio Basic"
       },
       {
         "slug": "readme",
@@ -32616,48 +32533,6 @@
         "title": "Playtagon Docs"
       }
     ],
-    "ai-wizard/onboarding": [
-      {
-        "slug": "studio/auth/auth-multi-studio",
-        "title": "Auth: Multi Studio"
-      },
-      {
-        "slug": "studio/auth/auth-multi-studio",
-        "title": "Auth: Multi Studio"
-      },
-      {
-        "slug": "studio/auth/auth-waitlist",
-        "title": "Auth: Waitlist"
-      },
-      {
-        "slug": "studio/auth/auth-waitlist",
-        "title": "Auth: Waitlist"
-      },
-      {
-        "slug": "studio/auth/auth-waitlist",
-        "title": "Auth: Waitlist"
-      },
-      {
-        "slug": "studio/auth/auth",
-        "title": "Studio Auth"
-      },
-      {
-        "slug": "studio/auth/auth",
-        "title": "Studio Auth"
-      },
-      {
-        "slug": "flows/onboarding",
-        "title": "002 Onboarding"
-      },
-      {
-        "slug": "readme",
-        "title": "Playtagon Docs"
-      },
-      {
-        "slug": "readme",
-        "title": "Playtagon Docs"
-      }
-    ],
     "studio/auth/auth-waitlist": [
       {
         "slug": "studio/auth/auth",
@@ -32678,6 +32553,12 @@
       {
         "slug": "readme",
         "title": "Playtagon Docs"
+      }
+    ],
+    "ai-wizard/onboarding": [
+      {
+        "slug": "studio/auth/auth",
+        "title": "Studio Auth"
       }
     ],
     "studio/auth/auth-invite-email": [
@@ -33400,6 +33281,12 @@
       {
         "slug": "readme",
         "title": "Playtagon Docs"
+      }
+    ],
+    "flows/onboarding": [
+      {
+        "slug": "flows/flows",
+        "title": "Flows"
       }
     ],
     "design-system/playpixel": [

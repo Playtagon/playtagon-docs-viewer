@@ -248,34 +248,61 @@ async function getProviderConfig(provider) {
   return provider === "oidc" ? oidcProviderConfig() : authProviderConfig(provider);
 }
 
-function authLoginPage(req, message = "") {
+async function authLoginPage(req, message = "") {
   const config = authConfig();
+  const viewerConfig = await readConfig();
+  const appTitle = viewerConfig.app?.title || DEFAULT_CONFIG.app.title;
+  const faviconHref = await loginFaviconHref();
+  const providerIcons = {
+    github: "brand-github",
+    google: "brand-google",
+    oidc: "login",
+  };
+  const providerLabels = {
+    github: "GitHub",
+    google: "Google",
+    oidc: "OIDC",
+  };
   const providers = config.providers
-    .map((provider) => `<a class="auth-button" href="/__auth/login/${provider}">Continue with ${provider.toUpperCase()}</a>`)
+    .map(
+      (provider) => `<a class="auth-button" href="/__auth/login/${provider}">
+        <i class="ti ti-${providerIcons[provider] || "login"}" aria-hidden="true"></i>
+        <span>Continue with ${providerLabels[provider] || provider}</span>
+      </a>`,
+    )
     .join("");
   const escapedMessage = message ? `<div class="auth-message">${escapeHtml(message)}</div>` : "";
+  const safeTitle = escapeHtml(appTitle);
   return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in · Docs Viewer</title>
+    <title>Sign in · ${safeTitle}</title>
+    ${faviconHref ? `<link rel="icon" href="${escapeHtml(faviconHref)}" />` : ""}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <style>
-      :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      body { align-items: center; background: #f7f7f4; color: #202522; display: grid; margin: 0; min-height: 100vh; padding: 24px; }
-      main { margin: 0 auto; max-width: 420px; width: 100%; }
-      h1 { font-size: 32px; letter-spacing: 0; line-height: 1.1; margin: 0 0 10px; }
+      :root { box-sizing: border-box; color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      *, *::before, *::after { box-sizing: inherit; }
+      body { background: #f7f7f4; color: #202522; display: grid; margin: 0; min-height: 100dvh; padding: clamp(16px, 4vw, 24px); place-items: center; }
+      main { max-width: min(420px, 100%); width: 100%; }
+      h1 { font-size: clamp(28px, 8vw, 32px); letter-spacing: 0; line-height: 1.1; margin: 0 0 10px; overflow-wrap: anywhere; }
       p { color: #68716b; line-height: 1.5; margin: 0 0 24px; }
       .auth-panel { background: #fff; border: 1px solid #dfe4df; border-radius: 8px; padding: 28px; }
       .auth-actions { display: grid; gap: 10px; }
-      .auth-button { align-items: center; background: #19736c; border-radius: 6px; color: #fff; display: flex; font-weight: 700; height: 44px; justify-content: center; text-decoration: none; }
+      .auth-button { align-items: center; background: #19736c; border-radius: 6px; color: #fff; display: flex; font-weight: 700; gap: 8px; min-height: 44px; justify-content: center; padding: 10px 14px; text-decoration: none; }
+      .auth-button .ti { font-size: 20px; }
       .auth-button:hover { background: #105a54; }
       .auth-message { background: #fff3f1; border: 1px solid #e4b6af; border-radius: 6px; color: #8b2f28; margin-bottom: 16px; padding: 10px 12px; }
+      @media (max-width: 480px) {
+        body { padding: 14px; place-items: center; }
+        .auth-panel { padding: 20px; }
+      }
     </style>
   </head>
   <body>
     <main class="auth-panel">
-      <h1>Docs Viewer</h1>
+      <h1>${safeTitle}</h1>
       <p>Sign in with an approved, verified email to access the documentation.</p>
       ${escapedMessage}
       <div class="auth-actions">${providers || "<p>No auth providers configured.</p>"}</div>
@@ -291,6 +318,25 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+async function loginFaviconHref() {
+  try {
+    const index = JSON.parse(await readFile(join(root, "data", "vault-index.json"), "utf8"));
+    const assets = index.assets || {};
+    const faviconPath =
+      assets["favicon.ico"] ||
+      assets["favicon.png"] ||
+      assets["favicon.svg"] ||
+      Object.entries(assets).find(([key]) => /(^|\/)favicon\.(ico|png|svg)$/i.test(key))?.[1];
+    if (!faviconPath || !/^assets\/[a-z0-9а-яё._\-/ ]+\.(ico|png|svg)$/i.test(faviconPath)) return "";
+    const filePath = resolve(root, faviconPath);
+    if (!filePath.startsWith(`${root}/`)) return "";
+    const mimeType = (MIME_TYPES[extname(filePath).toLowerCase()] || "image/x-icon").split(";")[0];
+    return `data:${mimeType};base64,${(await readFile(filePath)).toString("base64")}`;
+  } catch {
+    return "";
+  }
 }
 
 async function readJsonBody(req) {
@@ -394,7 +440,7 @@ async function handleAuth(req, res, url) {
   if (!ensureAuthReady(res)) return true;
 
   if (req.method === "GET" && url.pathname === "/__auth/login") {
-    sendHtml(res, 200, authLoginPage(req, url.searchParams.get("error") || ""));
+    sendHtml(res, 200, await authLoginPage(req, url.searchParams.get("error") || ""));
     return true;
   }
 
@@ -468,7 +514,7 @@ async function handleAuth(req, res, url) {
     const provider = callbackMatch[1];
     const storedState = verifySignedPayload(parseCookies(req)[OAUTH_STATE_COOKIE], config.sessionSecret);
     if (!storedState || storedState.provider !== provider || storedState.state !== url.searchParams.get("state")) {
-      sendHtml(res, 400, authLoginPage(req, "OAuth state check failed. Please try again."));
+      sendHtml(res, 400, await authLoginPage(req, "OAuth state check failed. Please try again."));
       return true;
     }
 
@@ -478,7 +524,7 @@ async function handleAuth(req, res, url) {
       const token = await exchangeCodeForToken(provider, providerConfig, url.searchParams.get("code") || "", redirectUri);
       const identity = await loadIdentity(provider, providerConfig, token);
       if (!identity.email || !identity.emailVerified || !isAllowedEmail(identity.email)) {
-        sendHtml(res, 403, authLoginPage(req, "This verified email is not allowed to access the docs."));
+        sendHtml(res, 403, await authLoginPage(req, "This verified email is not allowed to access the docs."));
         return true;
       }
 
@@ -499,7 +545,7 @@ async function handleAuth(req, res, url) {
       });
       return true;
     } catch (error) {
-      sendHtml(res, 500, authLoginPage(req, error.message));
+      sendHtml(res, 500, await authLoginPage(req, error.message));
       return true;
     }
   }
