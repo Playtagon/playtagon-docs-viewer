@@ -121,6 +121,20 @@ The local config is ignored by git so projects can keep private paths or reposit
 
 `roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault. `roadmap.excludedFolders` is applied after the allowlist, so it is useful for excluding archive or draft subfolders inside a broader included folder.
 
+Hosted deployments can override the local config with environment variables. This is useful when the open-source viewer should build from a private docs repository without committing `docs-viewer.config.json`:
+
+```env
+DOCS_VIEWER_APP_TITLE=Playtagon Docs
+DOCS_VIEWER_SOURCE_TYPE=github
+DOCS_VIEWER_GITHUB_OWNER=Playtagon
+DOCS_VIEWER_GITHUB_REPO=playtagon-docs-internal
+DOCS_VIEWER_GITHUB_BRANCH=main
+DOCS_VIEWER_GITHUB_PATH=
+DOCS_VIEWER_GITHUB_TOKEN=
+```
+
+`DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources.
+
 To customize the browser favicon, place `favicon.ico`, `favicon.png`, or `favicon.svg` anywhere in the indexed docs assets, for example `00 Assets/favicon.png`. The viewer will use it automatically after rebuilding the index.
 
 ## Writing Docs

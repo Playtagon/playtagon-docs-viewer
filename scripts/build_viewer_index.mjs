@@ -7,7 +7,7 @@ import { loadEnv } from "./load_env.mjs";
 await loadEnv();
 
 const configFile = path.resolve("docs-viewer.config.json");
-const config = await loadConfig();
+const config = applyEnvOverrides(await loadConfig());
 const rootArg = process.argv[2] || config.source?.local?.path || "docs-sample";
 const outArg = process.argv[3] || "viewer/data/vault-index.json";
 const rootDir = path.resolve(rootArg);
@@ -57,6 +57,77 @@ async function loadConfig() {
   } catch {
     return DEFAULT_CONFIG;
   }
+}
+
+function envValue(key) {
+  const value = process.env[key];
+  return value === undefined || String(value).trim() === "" ? undefined : String(value).trim();
+}
+
+function envList(key) {
+  return envValue(key)
+    ?.split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function envBoolean(key) {
+  const value = envValue(key);
+  if (value === undefined) return undefined;
+  return ["1", "true", "yes", "on"].includes(value.toLowerCase());
+}
+
+function applyEnvOverrides(inputConfig) {
+  const next = JSON.parse(JSON.stringify(inputConfig || DEFAULT_CONFIG));
+
+  const appTitle = envValue("DOCS_VIEWER_APP_TITLE");
+  if (appTitle) {
+    next.app ||= {};
+    next.app.title = appTitle;
+  }
+
+  const sourceType = envValue("DOCS_VIEWER_SOURCE_TYPE");
+  if (sourceType) {
+    next.source ||= {};
+    next.source.type = sourceType;
+  }
+
+  const localPath = envValue("DOCS_VIEWER_LOCAL_PATH");
+  if (localPath) {
+    next.source ||= {};
+    next.source.local ||= {};
+    next.source.local.path = localPath;
+  }
+
+  const githubOwner = envValue("DOCS_VIEWER_GITHUB_OWNER");
+  const githubRepo = envValue("DOCS_VIEWER_GITHUB_REPO");
+  const githubBranch = envValue("DOCS_VIEWER_GITHUB_BRANCH");
+  const githubPath = envValue("DOCS_VIEWER_GITHUB_PATH");
+  if (githubOwner || githubRepo || githubBranch || githubPath !== undefined) {
+    next.source ||= {};
+    next.source.github ||= {};
+    if (githubOwner) next.source.github.owner = githubOwner;
+    if (githubRepo) next.source.github.repo = githubRepo;
+    if (githubBranch) next.source.github.branch = githubBranch;
+    if (githubPath !== undefined) next.source.github.path = githubPath;
+  }
+
+  const includedFolders = envList("DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS");
+  const excludedFolders = envList("DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS");
+  const hideUndated = envBoolean("DOCS_VIEWER_ROADMAP_HIDE_UNDATED");
+  if (includedFolders || excludedFolders || hideUndated !== undefined) {
+    next.roadmap ||= {};
+    if (includedFolders) next.roadmap.includedFolders = includedFolders;
+    if (excludedFolders) next.roadmap.excludedFolders = excludedFolders;
+    if (hideUndated !== undefined) next.roadmap.hideUndated = hideUndated;
+  }
+
+  const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");
+  if (ignoredFolders) {
+    next.ignoredFolders = ignoredFolders;
+  }
+
+  return next;
 }
 
 function toPosix(value) {
