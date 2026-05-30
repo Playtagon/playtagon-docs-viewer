@@ -7,10 +7,10 @@
       "maxDuration": 30
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/api/server"
+      "src": "/(.*)",
+      "dest": "/api/server.mjs"
     }
   ]
 }
