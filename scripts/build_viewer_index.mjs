@@ -83,11 +83,15 @@ function normalizeFolderList(value) {
 }
 
 function stripNumericPrefix(value) {
-  return value.replace(/^\d+-/, "");
+  return value.replace(/^\d+[\s._-]+/, "");
 }
 
 function routePart(value) {
   return slugify(stripNumericPrefix(value));
+}
+
+function displayName(value) {
+  return stripNumericPrefix(value).replace(/[-_]+/g, " ").trim();
 }
 
 function slugify(value) {
@@ -198,10 +202,13 @@ function extractLinks(body) {
   const pattern = /\[\[([^\]|#]+)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g;
   let match;
   while ((match = pattern.exec(body))) {
+    const target = match[1].replace(/\\+$/, "").trim();
+    const heading = match[2]?.replace(/\\+$/, "").trim() || "";
+    const label = match[3]?.trim() || target;
     links.push({
-      target: match[1].trim(),
-      heading: match[2]?.trim() || "",
-      label: match[3]?.trim() || match[1].trim(),
+      target,
+      heading,
+      label,
     });
   }
   return links;
@@ -302,7 +309,7 @@ function buildTree(files) {
       currentPath = currentPath ? `${currentPath}/${part}` : part;
       if (!byPath.has(currentPath)) {
         const node = {
-          name: stripNumericPrefix(part),
+          name: displayName(part),
           rawName: part,
           path: currentPath,
           children: [],
@@ -321,6 +328,10 @@ function buildTree(files) {
       fileName,
       isIndex: file.isIndex,
     });
+
+    if (file.isIndex) {
+      current.name = file.title;
+    }
   }
 
   return root;
@@ -330,7 +341,7 @@ function isIndexFile(relativePath, frontmatterTitle) {
   const parsed = path.posix.parse(relativePath);
   const folderName = stripNumericPrefix(path.posix.basename(parsed.dir || ""));
   const baseName = stripNumericPrefix(parsed.name);
-  return parsed.name.toLowerCase() === "index" || baseName === folderName || frontmatterTitle === folderName;
+  return parsed.name.toLowerCase() === "index" || slugify(baseName) === slugify(folderName) || slugify(frontmatterTitle) === slugify(folderName);
 }
 
 async function fetchGitHubJson(url, token) {

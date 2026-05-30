@@ -22,6 +22,7 @@ const state = {
   collapsedFolders: new Set(),
   currentPageSlug: "",
   tocScrollHandler: null,
+  mobileNavOpen: false,
 };
 
 const els = {
@@ -31,8 +32,12 @@ const els = {
   breadcrumbs: document.querySelector("#breadcrumbs"),
   pageMeta: document.querySelector("#pageMeta"),
   searchInput: document.querySelector("#searchInput"),
+  searchToggle: document.querySelector("#searchToggle"),
   roadmapLink: document.querySelector("#roadmapLink"),
   settingsLink: document.querySelector("#settingsLink"),
+  expandTree: document.querySelector("#expandTree"),
+  collapseTree: document.querySelector("#collapseTree"),
+  mobileMenuToggle: document.querySelector("#mobileMenuToggle"),
   refreshDocs: document.querySelector("#refreshDocs"),
   authStatus: document.querySelector("#authStatus"),
 };
@@ -57,7 +62,7 @@ function slugify(value) {
 }
 
 function stripNumericPrefix(value) {
-  return String(value || "").replace(/^\d+-/, "");
+  return String(value || "").replace(/^\d+[\s._-]+/, "");
 }
 
 function breadcrumbLabel(value) {
@@ -82,6 +87,7 @@ function setDocumentTitle(title) {
 
 function setBrandTitle() {
   if (els.brand) els.brand.textContent = appTitle();
+  document.querySelector(".mobile-brand")?.replaceChildren(document.createTextNode(appTitle()));
 }
 
 function applyFavicon() {
@@ -169,7 +175,8 @@ function renderSourceMeta(page) {
   const sourcePath = sourcePathForPage(page);
   const href = sourceHrefForPage(page);
   const label = `Source: ${sourcePath}`;
-  const content = `${icon("external-link")}<span>Source</span>`;
+  const displayName = state.data?.source?.type === "github" ? "Source" : page.fileName || page.path.split("/").pop() || "Source";
+  const content = `${icon("external-link")}<span>${escapeHtml(displayName)}</span>`;
   return href
     ? `<a class="source-link" href="${escapeHtml(href)}" target="_blank" rel="noreferrer" title="${escapeHtml(label)}">${content}</a>`
     : `<span class="source-link is-static" title="${escapeHtml(label)}">${content}</span>`;
@@ -268,7 +275,8 @@ function scrollRouteToTop() {
 
 function scrollOffset() {
   const topbar = document.querySelector(".topbar");
-  const topbarHeight = topbar?.getBoundingClientRect().height || 0;
+  const topbarPosition = topbar ? getComputedStyle(topbar).position : "";
+  const topbarHeight = topbarPosition === "fixed" || topbarPosition === "sticky" ? topbar.getBoundingClientRect().height : 0;
   return topbarHeight + 20;
 }
 
@@ -366,11 +374,14 @@ async function saveViewerConfig(config) {
 function inlineMarkdown(value) {
   return escapeHtml(value)
     .replace(/\[\[([^\]|#]+)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g, (_, target, heading, label) => {
-      const slug = state.data.aliases[String(target).toLowerCase()];
-      const hash = heading ? `#${slugify(heading)}` : "";
+      const cleanTarget = String(target).replace(/\\+$/, "").trim();
+      const cleanHeading = heading ? String(heading).replace(/\\+$/, "").trim() : "";
+      const cleanLabel = label?.trim() || cleanTarget;
+      const slug = state.data.aliases[cleanTarget.toLowerCase()];
+      const hash = cleanHeading ? `#${slugify(cleanHeading)}` : "";
       return slug
-        ? `<a href="${pageHref(slug)}${hash}">${escapeHtml(label || target)}</a>`
-        : `<span title="Missing page" class="missing-link">${escapeHtml(label || target)}</span>`;
+        ? `<a href="${pageHref(slug)}${hash}">${escapeHtml(cleanLabel)}</a>`
+        : `<span title="Missing page" class="missing-link">${escapeHtml(cleanLabel)}</span>`;
     })
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
@@ -645,6 +656,11 @@ function renderMarkdown(raw) {
   return blocks.join("\n");
 }
 
+function nodeContainsActivePage(node, activeSlug) {
+  return node.pages.some((page) => page.slug === activeSlug)
+    || node.children.some((child) => nodeContainsActivePage(child, activeSlug));
+}
+
 function renderTreeNode(node, depth = 0) {
   const query = state.query.trim().toLowerCase();
   const pages = node.pages
@@ -659,6 +675,7 @@ function renderTreeNode(node, depth = 0) {
 
   const active = state.route;
   const isCollapsed = !query && state.collapsedFolders.has(node.path);
+  const isActiveBranch = nodeContainsActivePage(node, active);
   const folderButton = node.path
     ? `<button class="tree-folder" type="button" data-folder-path="${escapeHtml(node.path)}" aria-expanded="${
         isCollapsed ? "false" : "true"
@@ -676,7 +693,11 @@ function renderTreeNode(node, depth = 0) {
     )
     .join("");
 
-  return `<div class="tree-group ${isCollapsed ? "is-collapsed" : ""}" style="--depth:${depth}">
+  const depthIndent = depth * 14;
+  const lineLeft = 12 + Math.max(0, depth - 1) * 14;
+  return `<div class="tree-group ${isCollapsed ? "is-collapsed" : ""} ${
+    isActiveBranch ? "is-active-branch" : ""
+  }" data-depth="${depth}" style="--depth:${depth};--depth-indent:${depthIndent}px;--line-left:${lineLeft}px">
     ${folderButton}
     <div id="${node.path ? folderId(node.path) : ""}" class="tree-children">
       <div class="tree-pages">${pageLinks}</div>
@@ -707,6 +728,24 @@ function renderTree({ scrollActive = true } = {}) {
     });
   });
   if (scrollActive) scrollActiveTreeLink();
+}
+
+function setMobileNavOpen(open) {
+  state.mobileNavOpen = open;
+  document.body.classList.toggle("is-mobile-nav-open", open);
+  if (!els.mobileMenuToggle) return;
+  els.mobileMenuToggle.setAttribute("aria-expanded", String(open));
+  els.mobileMenuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  els.mobileMenuToggle.innerHTML = icon(open ? "x" : "menu-2");
+}
+
+function setSearchOpen(open) {
+  const search = document.querySelector(".search");
+  search?.classList.toggle("is-open", open);
+  els.searchToggle?.setAttribute("aria-expanded", String(open));
+  if (open) {
+    requestAnimationFrame(() => els.searchInput?.focus());
+  }
 }
 
 function renderBacklinks(page) {
@@ -848,7 +887,7 @@ function renderRoadmapGroup(group, timeline, depth = 0) {
     <button class="prm-group-header" type="button" data-roadmap-group="${escapeHtml(group.path)}" aria-expanded="${
       isCollapsed ? "false" : "true"
     }">
-      <span class="prm-group-toggle" aria-hidden="true">${isCollapsed ? "›" : "⌄"}</span>
+      <span class="prm-group-toggle" aria-hidden="true">${icon(isCollapsed ? "chevron-right" : "chevron-down")}</span>
       <span class="prm-group-name">${escapeHtml(group.title || group.name)}</span>
     </button>
     ${features}
@@ -885,7 +924,7 @@ function renderRoadmapFeature(feature, timeline, depth) {
 }
 
 function renderRoadmapTimeline(model) {
-  const items = model.items.filter((item) => !state.hideUndatedRoadmap || (item.start && item.end));
+  const items = visibleRoadmapItems(model.items);
   const timeline = buildTimeline(items, state.roadmapScale);
   const groups = model.root.children.map((group) => renderRoadmapGroup(group, timeline)).join("");
   const unplanned = state.hideUndatedRoadmap ? "" : renderUnplanned(model.undated);
@@ -925,10 +964,14 @@ function renderUnplanned(items) {
   </section>`;
 }
 
+function visibleRoadmapItems(items) {
+  return items.filter((item) => !state.hideUndatedRoadmap || (item.start && item.end));
+}
+
 function renderRoadmapBoard(model) {
   return `<div class="prm-scroll">
     <div class="prm-board">
-      ${STATUS_OPTIONS.map(([status, label]) => renderBoardColumn(status, label, model.items)).join("")}
+      ${STATUS_OPTIONS.map(([status, label]) => renderBoardColumn(status, label, visibleRoadmapItems(model.items))).join("")}
     </div>
   </div>`;
 }
@@ -968,11 +1011,11 @@ function renderRoadmap() {
   state.route = "__roadmap";
   state.currentPageSlug = "roadmap";
   const model = buildRoadmapModel(state.data, state.data.roadmap || {});
-  els.content.className = "content roadmap";
+  els.content.className = "content roadmap-content";
   els.breadcrumbs.textContent = "Plugin";
   els.pageMeta.textContent = `${model.featureCount} features · ${model.itemCount} items`;
   setDocumentTitle("Roadmap");
-  els.content.innerHTML = `<section class="roadmap">
+  els.content.innerHTML = `<section class="roadmap-view">
     <header class="prm-header">
       <div class="prm-brand">
         <div class="prm-brand-text">
@@ -1001,10 +1044,10 @@ function renderRoadmap() {
                     .join("")}
                 </select>
               </label>
-              <button class="prm-icon-button" type="button" data-roadmap-action="expand">+</button>
-              <button class="prm-icon-button" type="button" data-roadmap-action="collapse">-</button>`
-            : `<button class="prm-icon-button" type="button" data-board-action="expand">+</button>
-              <button class="prm-icon-button" type="button" data-board-action="collapse">-</button>`
+              <button class="prm-icon-button" type="button" data-roadmap-action="expand" title="Expand all" aria-label="Expand all">${icon("arrow-autofit-height")}</button>
+              <button class="prm-icon-button" type="button" data-roadmap-action="collapse" title="Collapse all" aria-label="Collapse all">${icon("fold")}</button>`
+            : `<button class="prm-icon-button" type="button" data-board-action="expand" title="Expand all" aria-label="Expand all">${icon("arrow-autofit-height")}</button>
+              <button class="prm-icon-button" type="button" data-board-action="collapse" title="Collapse all" aria-label="Collapse all">${icon("fold")}</button>`
         }
       </div>
     </header>
@@ -1258,6 +1301,7 @@ async function renderSettings() {
 function renderRoute() {
   const previousPageSlug = state.currentPageSlug;
   const route = currentRoute();
+  setMobileNavOpen(false);
   if (location.hash.startsWith("#/")) {
     const cleanRoute = route ? pageHref(route) : "/";
     history.replaceState(null, "", cleanRoute);
@@ -1304,6 +1348,21 @@ async function init() {
   els.searchInput.addEventListener("input", () => {
     state.query = els.searchInput.value;
     renderTree();
+  });
+  els.searchToggle?.addEventListener("click", () => {
+    const search = document.querySelector(".search");
+    setSearchOpen(!search?.classList.contains("is-open"));
+  });
+  els.expandTree?.addEventListener("click", () => {
+    state.collapsedFolders.clear();
+    renderTree();
+  });
+  els.collapseTree?.addEventListener("click", () => {
+    state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+    renderTree({ scrollActive: false });
+  });
+  els.mobileMenuToggle?.addEventListener("click", () => {
+    setMobileNavOpen(!state.mobileNavOpen);
   });
   els.roadmapLink.addEventListener("click", () => {
     navigateTo("/roadmap");

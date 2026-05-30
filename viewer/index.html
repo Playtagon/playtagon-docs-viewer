@@ -13,18 +13,28 @@
       <aside class="sidebar" aria-label="Docs navigation">
         <div class="sidebar-header">
           <a class="brand" href="/">Docs Viewer</a>
-          <div class="sidebar-actions">
-            <button id="roadmapLink" class="icon-text-button" type="button" title="Roadmap" aria-label="Roadmap">
-              <i class="ti ti-map" aria-hidden="true"></i>
-            </button>
+          <div class="sidebar-settings">
             <button id="settingsLink" class="icon-text-button is-secondary" type="button" title="Settings" aria-label="Settings">
               <i class="ti ti-settings" aria-hidden="true"></i>
             </button>
           </div>
         </div>
         <div id="authStatus" class="auth-status" hidden></div>
+        <div class="sidebar-tool-bar" aria-label="Navigation tools">
+          <button id="searchToggle" class="tool-icon-button" type="button" title="Search" aria-label="Search" aria-expanded="false">
+            <i class="ti ti-search" aria-hidden="true"></i>
+          </button>
+          <button id="expandTree" class="tool-icon-button" type="button" title="Expand all" aria-label="Expand all">
+            <i class="ti ti-arrow-autofit-height" aria-hidden="true"></i>
+          </button>
+          <button id="collapseTree" class="tool-icon-button" type="button" title="Collapse all" aria-label="Collapse all">
+            <i class="ti ti-fold" aria-hidden="true"></i>
+          </button>
+          <button id="roadmapLink" class="tool-icon-button is-primary" type="button" title="Roadmap" aria-label="Roadmap">
+            <i class="ti ti-map" aria-hidden="true"></i>
+          </button>
+        </div>
         <label class="search">
-          <span>Search</span>
           <input id="searchInput" type="search" autocomplete="off" />
         </label>
         <nav id="tree" class="tree"></nav>
@@ -42,6 +52,12 @@
         </header>
         <section id="content" class="content"></section>
       </main>
+      <header class="mobile-shellbar">
+        <a class="mobile-brand" href="/">Docs Viewer</a>
+        <button id="mobileMenuToggle" class="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          <i class="ti ti-menu-2" aria-hidden="true"></i>
+        </button>
+      </header>
     </div>
     <script type="module" src="/app.js"></script>
   </body>

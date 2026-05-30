@@ -67,9 +67,8 @@ a:hover {
   padding: 12px 14px;
 }
 
-.sidebar-actions {
+.sidebar-settings {
   display: flex;
-  flex-wrap: wrap;
   gap: 6px;
   justify-content: flex-end;
 }
@@ -153,16 +152,62 @@ a:hover {
   color: var(--text);
 }
 
+.sidebar-settings .icon-text-button {
+  font-size: 19px;
+  height: 34px;
+  width: 34px;
+}
+
+.sidebar-tool-bar {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+.tool-icon-button {
+  align-items: center;
+  background: var(--panel-subtle);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 34px;
+  font-size: 19px;
+  height: 34px;
+  justify-content: center;
+  padding: 0;
+  width: 34px;
+}
+
+.tool-icon-button:hover,
+.tool-icon-button:focus-visible,
+.tool-icon-button[aria-expanded="true"] {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.tool-icon-button.is-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.tool-icon-button.is-primary:hover,
+.tool-icon-button.is-primary:focus-visible {
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+
 .search {
   border-bottom: 1px solid var(--line);
-  display: grid;
-  gap: 6px;
+  display: none;
   padding: 12px 14px;
 }
 
-.search span {
-  color: var(--muted);
-  font-size: 12px;
+.search.is-open {
+  display: block;
 }
 
 .search input {
@@ -178,11 +223,26 @@ a:hover {
 
 .tree {
   overflow: auto;
-  padding: 10px;
+  padding: 10px 10px 140px;
 }
 
 .tree-group {
   margin: 2px 0;
+  position: relative;
+}
+
+.tree-group[data-depth]:not([data-depth="0"])::before {
+  background: var(--line);
+  bottom: 4px;
+  content: "";
+  left: var(--line-left);
+  position: absolute;
+  top: 4px;
+  width: 1px;
+}
+
+.tree-group.is-active-branch::before {
+  background: color-mix(in srgb, var(--accent) 46%, var(--line));
 }
 
 .tree-folder {
@@ -197,14 +257,20 @@ a:hover {
   font-size: 12px;
   font-weight: 700;
   min-height: 30px;
-  padding: 10px 8px 4px;
+  padding: 10px 8px 4px calc(8px + var(--depth-indent));
+  position: relative;
   text-align: left;
   text-transform: uppercase;
   width: 100%;
+  z-index: 1;
 }
 
 .tree-folder:hover {
   background: var(--panel-subtle);
+  color: var(--text);
+}
+
+.tree-group.is-active-branch > .tree-folder {
   color: var(--text);
 }
 
@@ -223,6 +289,8 @@ a:hover {
 }
 
 .tree-folder-label {
+  flex: 1 1 auto;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -244,9 +312,11 @@ a:hover {
   font-size: 14px;
   line-height: 1.3;
   overflow: hidden;
-  padding: 7px 8px 7px calc(8px + var(--depth) * 12px);
+  padding: 7px 8px 7px calc(28px + var(--depth-indent));
+  position: relative;
   text-overflow: ellipsis;
   white-space: nowrap;
+  z-index: 1;
 }
 
 .tree-link:hover,
@@ -262,16 +332,17 @@ a:hover {
 
 .topbar {
   align-items: center;
-  background: rgba(247, 247, 244, 0.94);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
   display: flex;
   gap: 16px;
   justify-content: space-between;
   min-height: 60px;
   padding: 12px 32px;
-  position: sticky;
-  top: 0;
-  z-index: 5;
+}
+
+.mobile-shellbar {
+  display: none;
 }
 
 .breadcrumbs,
@@ -800,7 +871,7 @@ a:hover {
   text-decoration: none;
 }
 
-.roadmap {
+.roadmap-content {
   height: calc(100vh - 60px);
   max-width: none;
   overflow: hidden;
@@ -1022,7 +1093,7 @@ a:hover {
   text-align: center;
 }
 
-.roadmap {
+.roadmap-view {
   --prm-line: var(--line);
   --prm-muted: var(--muted);
   --prm-bar-default: var(--blue);
@@ -1050,7 +1121,8 @@ a:hover {
   flex: 0 0 auto;
   min-height: 72px;
   padding: 10px 18px;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 8;
 }
 
@@ -1239,7 +1311,7 @@ a:hover {
   color: var(--muted);
   display: inline-flex;
   flex: 0 0 28px;
-  font-size: 18px;
+  font-size: 16px;
   height: 28px;
   justify-content: center;
   margin-left: calc(4px + var(--prm-depth) * 16px);
@@ -1568,18 +1640,18 @@ a:hover {
   text-decoration: none;
 }
 
-.roadmap .prm-board-card,
-.roadmap .prm-board-card:is(:hover, :focus, :active, :visited) {
+.roadmap-view .prm-board-card,
+.roadmap-view .prm-board-card:is(:hover, :focus, :active, :visited) {
   color: var(--text) !important;
 }
 
-.roadmap .prm-board-card-title,
+.roadmap-view .prm-board-card-title,
 .prm-board-card:is(:hover, :focus, :active, :visited) .prm-board-card-title {
   color: var(--text) !important;
 }
 
-.roadmap .prm-board-card-parent,
-.roadmap .prm-board-card-dates,
+.roadmap-view .prm-board-card-parent,
+.roadmap-view .prm-board-card-dates,
 .prm-board-card:is(:hover, :focus, :active, :visited) .prm-board-card-parent,
 .prm-board-card:is(:hover, :focus, :active, :visited) .prm-board-card-dates {
   color: var(--muted) !important;
@@ -1613,14 +1685,47 @@ a:hover {
 }
 
 @media (max-width: 840px) {
+  body {
+    padding-bottom: 62px;
+  }
+
+  body.is-mobile-nav-open {
+    overflow: hidden;
+  }
+
   .app-shell {
     grid-template-columns: 1fr;
   }
 
   .sidebar {
+    border-right: 0;
+    bottom: 62px;
+    box-shadow: 0 -18px 44px rgba(20, 28, 24, 0.16);
+    display: none;
     height: auto;
-    max-height: 44vh;
-    position: relative;
+    left: 0;
+    max-height: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 20;
+  }
+
+  body.is-mobile-nav-open .sidebar {
+    display: flex;
+  }
+
+  .sidebar-header {
+    min-height: 58px;
+  }
+
+  .sidebar-tool-bar {
+    flex-wrap: nowrap;
+  }
+
+  .tree {
+    flex: 1 1 auto;
+    padding-bottom: 160px;
   }
 
   .topbar {
@@ -1635,6 +1740,48 @@ a:hover {
     width: 100%;
   }
 
+  .mobile-shellbar {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid var(--line);
+    bottom: 0;
+    display: flex;
+    gap: 14px;
+    justify-content: space-between;
+    left: 0;
+    min-height: 62px;
+    padding: 10px 14px max(10px, env(safe-area-inset-bottom));
+    position: fixed;
+    right: 0;
+    z-index: 30;
+  }
+
+  .mobile-brand {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-button {
+    align-items: center;
+    background: var(--accent);
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 40px;
+    font-size: 22px;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+  }
+
   .settings-grid,
   .settings-form fieldset {
     grid-template-columns: 1fr;
@@ -1646,7 +1793,7 @@ a:hover {
   }
 
   .content {
-    padding: 32px 18px 64px;
+    padding: 32px 18px 96px;
   }
 
   .doc-layout {
@@ -1657,19 +1804,20 @@ a:hover {
     display: none;
   }
 
-  .roadmap {
-    height: auto;
-    overflow: visible;
+  .roadmap-content {
+    height: calc(100vh - 122px);
+    overflow: hidden;
     padding: 0;
   }
 
-  .roadmap {
+  .roadmap-view {
     min-height: 70vh;
   }
 
   .prm-header {
     grid-template-columns: 1fr;
-    position: static;
+    position: sticky;
+    top: 0;
   }
 
   .prm-actions,
