@@ -21,6 +21,11 @@
     "excludedFolders": [],
     "hideUndated": false
   },
+  "plugins": {
+    "roadmap": {
+      "enabled": true
+    }
+  },
   "ignoredFolders": [
     ".git",
     ".claude",

@@ -81,6 +81,16 @@ function appTitle() {
   return state.data?.app?.title || "Docs Viewer";
 }
 
+function isPluginEnabled(pluginId) {
+  return state.data?.plugins?.[pluginId]?.enabled !== false;
+}
+
+function applyPluginUi() {
+  if (els.roadmapLink) {
+    els.roadmapLink.hidden = !isPluginEnabled("roadmap");
+  }
+}
+
 function setDocumentTitle(title) {
   document.title = `${title} · ${appTitle()}`;
 }
@@ -1128,6 +1138,7 @@ async function refreshDocs() {
     state.data = await loadVaultIndex();
     state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
     state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+    applyPluginUi();
     renderTree();
     renderRoute();
     setRefreshState("Refreshed", true);
@@ -1156,6 +1167,8 @@ function renderSettingsForm(config, message = "") {
   const localPath = config.source?.local?.path || "docs-sample";
   const github = config.source?.github || {};
   const roadmap = config.roadmap || {};
+  const plugins = config.plugins || {};
+  const roadmapPluginEnabled = plugins.roadmap?.enabled !== false;
   const configWritable = config.deployment?.configWritable !== false;
   const disabledAttr = configWritable ? "" : "disabled";
   const deploymentMode = config.deployment?.mode || "node";
@@ -1224,6 +1237,13 @@ function renderSettingsForm(config, message = "") {
         <textarea name="ignoredFolders" rows="7" ${disabledAttr}>${escapeHtml((config.ignoredFolders || []).join("\n"))}</textarea>
       </label>
       <fieldset>
+        <legend>Plugins</legend>
+        <label class="settings-radio">
+          <input type="checkbox" name="roadmapPluginEnabled" value="true" ${roadmapPluginEnabled ? "checked" : ""} ${disabledAttr} />
+          <span>Enable Roadmap plugin</span>
+        </label>
+      </fieldset>
+      <fieldset>
         <legend>Roadmap</legend>
         <label class="settings-field">
           <span>Included folders</span>
@@ -1267,6 +1287,11 @@ function renderSettingsForm(config, message = "") {
         .split(/\r?\n|,/)
         .map((item) => item.trim())
         .filter(Boolean),
+      plugins: {
+        roadmap: {
+          enabled: form.get("roadmapPluginEnabled") === "true",
+        },
+      },
       roadmap: {
         includedFolders: String(form.get("roadmapIncludedFolders") || "")
           .split(/\r?\n|,/)
@@ -1288,6 +1313,7 @@ function renderSettingsForm(config, message = "") {
       state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
       setBrandTitle();
       applyFavicon();
+      applyPluginUi();
       renderTree();
       renderSettingsForm({ ...nextConfig, githubTokenConfigured: config.githubTokenConfigured }, "Settings saved and index rebuilt.");
     } catch (error) {
@@ -1328,6 +1354,10 @@ function renderRoute() {
     history.replaceState(null, "", cleanRoute);
   }
   if (route === "roadmap") {
+    if (!isPluginEnabled("roadmap")) {
+      navigateTo("/", true);
+      return;
+    }
     renderRoadmap();
     if (previousPageSlug && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
     return;
@@ -1361,6 +1391,7 @@ async function init() {
   state.data = await loadVaultIndex();
   setBrandTitle();
   applyFavicon();
+  applyPluginUi();
   state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
   state.auth = await loadAuthStatus();
   renderAuthStatus(state.auth);
@@ -1387,7 +1418,7 @@ async function init() {
   els.mobileMenuToggle?.addEventListener("click", () => {
     setMobileNavOpen(!state.mobileNavOpen);
   });
-  els.roadmapLink.addEventListener("click", () => {
+  els.roadmapLink?.addEventListener("click", () => {
     navigateTo("/roadmap");
   });
   els.settingsLink?.addEventListener("click", () => {

@@ -30,11 +30,21 @@ The runtime has two parts: the browser UI in `viewer/` and the optional Node ser
 - wikilinks;
 - backlinks;
 - page table of contents from `##` through `####` headings;
-- roadmap route `#/roadmap`.
+- enabled plugin routes such as `#/roadmap`.
 
 The right-side `On this page` navigation is runtime UI, not authored content. It highlights the active heading while scrolling and uses a sticky topbar-aware offset for heading links.
 
 `Linked mentions` are also runtime UI. The index builder resolves wikilinks and writes backlinks into `vault-index.json`; the browser renders those backlinks as linked document chips.
+
+## Viewer plugins
+
+Viewer plugins are opt-in runtime features controlled by `plugins.<pluginId>.enabled` in `docs-viewer.config.json` or by matching Vercel env variables. The Roadmap plugin uses:
+
+```env
+DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED=true
+```
+
+When a plugin is disabled, its toolbar entry should be hidden and its route should redirect to `/`. New viewer plugins should follow the same contract so one viewer repository can power different public and private documentation deployments.
 
 ## Node server
 

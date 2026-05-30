@@ -111,6 +111,11 @@ The local config is ignored by git so projects can keep private paths or reposit
     ],
     "excludedFolders": [],
     "hideUndated": false
+  },
+  "plugins": {
+    "roadmap": {
+      "enabled": true
+    }
   }
 }
 ```
@@ -120,6 +125,8 @@ The local config is ignored by git so projects can keep private paths or reposit
 `source.github.path` is optional. Leave it empty to index markdown from the repository root, or set it to a subfolder when docs live below the root.
 
 `roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault. `roadmap.excludedFolders` is applied after the allowlist, so it is useful for excluding archive or draft subfolders inside a broader included folder.
+
+`plugins.<pluginId>.enabled` controls whether a viewer plugin is available at runtime. When `plugins.roadmap.enabled` is `false`, the Roadmap toolbar button is hidden and `/roadmap` redirects back to `/`.
 
 Hosted deployments can override the local config with environment variables. This is useful when the open-source viewer should build from a private docs repository without committing `docs-viewer.config.json`:
 
@@ -134,6 +141,7 @@ DOCS_VIEWER_GITHUB_TOKEN=
 DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_HIDE_UNDATED=false
+DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED=true
 ```
 
 `DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources. Use `__empty__` when an environment-backed list should intentionally be empty, for example an empty roadmap include list that scans the full vault.
@@ -219,6 +227,8 @@ The repository includes two related roadmap integrations:
 - `plugins-obsidian/playmap/` - the Obsidian Play Map companion plugin.
 
 The build step copies viewer plugins into `viewer/plugins/` so static hosting can serve them with the rest of the viewer.
+
+Viewer plugins must be guarded by config. Add a default under `plugins.<pluginId>.enabled`, write that state into `viewer/data/vault-index.json`, hide plugin UI when disabled, and make the plugin route redirect to `/`. Vercel deployments should expose the same flag as `DOCS_VIEWER_PLUGIN_<PLUGIN_ID>_ENABLED`.
 
 The roadmap is built from docs frontmatter:
 

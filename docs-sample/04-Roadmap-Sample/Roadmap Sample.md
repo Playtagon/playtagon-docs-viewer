@@ -58,6 +58,11 @@ The sample config uses:
 
 ```json
 {
+  "plugins": {
+    "roadmap": {
+      "enabled": true
+    }
+  },
   "roadmap": {
     "includedFolders": ["04-Roadmap-Sample"],
     "excludedFolders": [],

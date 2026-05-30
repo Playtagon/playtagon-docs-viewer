@@ -28,6 +28,11 @@ const DEFAULT_CONFIG = {
     excludedFolders: [],
     hideUndated: false,
   },
+  plugins: {
+    roadmap: {
+      enabled: true,
+    },
+  },
   ignoredFolders: [
     ".git",
     ".claude",
@@ -120,11 +125,17 @@ function applyEnvOverrides(inputConfig) {
   const includedFolders = envList("DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS");
   const excludedFolders = envList("DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS");
   const hideUndated = envBoolean("DOCS_VIEWER_ROADMAP_HIDE_UNDATED");
+  const roadmapPluginEnabled = envBoolean("DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED");
   if (includedFolders || excludedFolders || hideUndated !== undefined) {
     next.roadmap ||= {};
     if (includedFolders) next.roadmap.includedFolders = includedFolders;
     if (excludedFolders) next.roadmap.excludedFolders = excludedFolders;
     if (hideUndated !== undefined) next.roadmap.hideUndated = hideUndated;
+  }
+  if (roadmapPluginEnabled !== undefined) {
+    next.plugins ||= {};
+    next.plugins.roadmap ||= {};
+    next.plugins.roadmap.enabled = roadmapPluginEnabled;
   }
 
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");
@@ -626,6 +637,11 @@ const index = {
     includedFolders: normalizeFolderList(config.roadmap?.includedFolders),
     excludedFolders: normalizeFolderList(config.roadmap?.excludedFolders),
     hideUndated: Boolean(config.roadmap?.hideUndated),
+  },
+  plugins: {
+    roadmap: {
+      enabled: config.plugins?.roadmap?.enabled !== false,
+    },
   },
   pages,
   tree: buildTree(pages),

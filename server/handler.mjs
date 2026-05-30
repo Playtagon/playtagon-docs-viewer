@@ -31,6 +31,11 @@ const DEFAULT_CONFIG = {
     excludedFolders: [],
     hideUndated: false,
   },
+  plugins: {
+    roadmap: {
+      enabled: true,
+    },
+  },
   ignoredFolders: [
     ".git",
     ".claude",
@@ -358,6 +363,20 @@ async function readConfig() {
   return applyEnvOverrides(config);
 }
 
+async function readVaultIndex() {
+  return JSON.parse(await readFile(join(root, "data", "vault-index.json"), "utf8"));
+}
+
+async function isViewerPluginEnabled(pluginId) {
+  try {
+    const index = await readVaultIndex();
+    return index.plugins?.[pluginId]?.enabled !== false;
+  } catch {
+    const config = await readConfig();
+    return config.plugins?.[pluginId]?.enabled !== false;
+  }
+}
+
 async function writeConfig(config) {
   await writeFile(configFile, `${JSON.stringify(config, null, 2)}\n`, "utf8");
 }
@@ -421,11 +440,17 @@ function applyEnvOverrides(inputConfig) {
   const includedFolders = envList("DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS");
   const excludedFolders = envList("DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS");
   const hideUndated = envBoolean("DOCS_VIEWER_ROADMAP_HIDE_UNDATED");
+  const roadmapPluginEnabled = envBoolean("DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED");
   if (includedFolders || excludedFolders || hideUndated !== undefined) {
     next.roadmap ||= {};
     if (includedFolders) next.roadmap.includedFolders = includedFolders;
     if (excludedFolders) next.roadmap.excludedFolders = excludedFolders;
     if (hideUndated !== undefined) next.roadmap.hideUndated = hideUndated;
+  }
+  if (roadmapPluginEnabled !== undefined) {
+    next.plugins ||= {};
+    next.plugins.roadmap ||= {};
+    next.plugins.roadmap.enabled = roadmapPluginEnabled;
   }
 
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");
@@ -715,6 +740,13 @@ export async function handleDocsViewerRequest(req, res) {
   if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/settings" && !hasAdminAccess(req, config)) {
     redirect(res, "/");
     return;
+  }
+
+  if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/roadmap") {
+    if (!(await isViewerPluginEnabled("roadmap"))) {
+      redirect(res, "/");
+      return;
+    }
   }
 
   if (req.method === "GET" && url.pathname === "/__config") {

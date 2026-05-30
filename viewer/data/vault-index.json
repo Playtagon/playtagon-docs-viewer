@@ -13,6 +13,11 @@
     "excludedFolders": [],
     "hideUndated": false
   },
+  "plugins": {
+    "roadmap": {
+      "enabled": true
+    }
+  },
   "pages": [
     {
       "id": "00 Notes/AGENTS.md",
