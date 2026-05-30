@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T03:21:00.613Z",
+  "generatedAt": "2026-05-30T03:33:56.903Z",
   "app": {
     "title": "Playtagon Docs"
   },
@@ -15240,6 +15240,60 @@
       "basename": "RGS-API-Protocol"
     },
     {
+      "id": "Docs-Audit.md",
+      "path": "Docs-Audit.md",
+      "slug": "docs-audit",
+      "title": "Docs Audit",
+      "description": "Рабочий аудит смысловой нагрузки docs-local: явные противоречия, слабые места и порядок ручной проверки.",
+      "frontmatter": {
+        "title": "Docs Audit",
+        "description": "Рабочий аудит смысловой нагрузки docs-local: явные противоречия, слабые места и порядок ручной проверки."
+      },
+      "body": "\nЦель этого файла — отделить механические проблемы документации от продуктовых решений, которые нужно подтвердить вручную.\n\nПроверка делалась по `docs-local`: статусы MVP/future, повторяющиеся служебные блоки, тонкие страницы, алиасы и внутренние wiki-ссылки.\n\n## Быстрый итог\n\n| Что проверено | Сейчас |\n| --- | --- |\n| Markdown-файлы | 167 |\n| Broken wiki links в текущем индексе | 0 |\n| Страницы с `Связанные страницы` | 151 |\n| Страницы с `При изменении проверить` | 164 |\n| Файлы с `TBD` | 2 |\n| Файлы с `TODO` | 2 |\n\nГлавный вывод: структура уже держится и ссылки не сломаны, но в содержании есть несколько точек, где MVP-границы и старые шаблоны могут вводить в заблуждение.\n\n## Точно проверить\n\n| Приоритет | Тема | Что не сходится | Где смотреть |\n| --- | --- | --- | --- |\n| High | MVP-статус Translator | `README` описывает `Translator` в блоке MVP-инструментов, а `Overview: MVP June 2026` явно относит `Translator` к тому, что не входит в MVP. Нужно выбрать одну позицию и привести все страницы к ней. | `README.md`, `00-Overview/Overview-MVP-June-2026.md`, `03-Editor/Editor.md`, `03-Editor/Tools/Translator/Translator.md` |\n| High | Math Simulation как продукт vs auto-check | В overview сказано, что полноценный Math Simulation не входит в MVP, но страница `Simulation` описывает отдельный инструмент и обязательную симуляцию перед публикацией. Возможно, нужно разделить \"видимый инструмент\" и \"RGS/publishing auto-check\". | `00-Overview/Overview-MVP-June-2026.md`, `03-Editor/Tools/Simulation/Simulation.md`, `03-Editor/Tools/Publishing/Publishing-Math.md` |\n| Medium | AI Wizard \"активен в каждом модуле\" | AI Wizard описан как активный во всех модулях, включая будущие `Brief`, `Moodboard`, `Blueprint`, `Game Designer`, `Sound Designer`. Это может выглядеть как доступный MVP-функционал. | `04-AI-Wizard/AI-Wizard.md`, `03-Editor/Tools/*` |\n| Medium | Два Onboarding-контекста | Есть flow-level onboarding и AI Wizard onboarding. Сейчас алиасы разведены, но по смыслу легко спутать \"сценарий входа\" и \"wizard shell для входа\". | `05-Flows/Onboarding.md`, `04-AI-Wizard/Onboarding.md`, `README.md` |\n| Medium | Members / Users / Studio Settings Members | Есть несколько близких сущностей вокруг участников, ролей и доступа. Нужно руками проверить границу: кто является продуктовой сущностью, кто настройкой, кто permission view. | `01-Studio/Members/*`, `01-Studio/Users/*`, `01-Studio/Studio-Settings/Studio-Settings-Members.md` |\n\n## Документационный долг\n\n| Тема | Почему мешает | Что сделать |\n| --- | --- | --- |\n| Слишком много служебных блоков | `Связанные страницы` и `При изменении проверить` есть почти везде. Это полезно для impact analysis, но на stub-страницах оно становится основным контентом. | Оставить блоки только там, где они несут реальный смысл, или укоротить их на дочерних страницах. |\n| Тонкие дочерние страницы tools | После удаления дублей многие страницы стали практически пустыми: только frontmatter, связанные страницы и check-list. | Решить: либо дописать 2-4 смысловых абзаца, либо склеить такие страницы с родительским модулем. |\n| Старые ссылки на flow-id | Во многих tool subpages встречается текстовый паттерн `Flow-001-Studio-Basic, если изменение влияет на MVP-путь`. Он выглядит как рудимент старой системы. | Заменить на нормальную wiki-ссылку `[[Studio-Basic|Studio Basic Flow]]` или убрать там, где это не добавляет пользы. |\n| Рабочие документы в корне | `Theme-Colors.md` и этот аудит — полезные рабочие файлы, но они отличаются от продуктовой документации. | Позже решить, оставить их в корне или вынести в служебную папку, например `10-Team` или `07-Internal`. |\n\n## Что выглядит согласованно\n\n| Тема | Наблюдение |\n| --- | --- |\n| Creator types | `Play SDK` последовательно описан как единственный активный creator type MVP. `Visual AI`, `Slot Reskin`, `Originals` описаны как будущие направления. |\n| Future tools | `Blueprint`, `Moodboard`, `Kanban`, `Brief`, `Game Designer`, `Sound Designer`, `Certification` в основном помечены как future / not MVP. |\n| Publishing core | `Resources`, `Launch Game`, `Promo Assets`, `Publishing` стабильно повторяются как основной MVP-путь. |\n| Wiki links | В текущем индексе нет broken wiki links, то есть переименования файлов и алиасы сейчас держатся. |\n\n## Порядок ручной проверки\n\n1. Сверить `README.md` и `00-Overview/Overview-MVP-June-2026.md` как два главных источника правды.\n2. Принять решение по `Translator`: MVP, не MVP или частично MVP через `Publishing Client Model`.\n3. Разделить `Math Simulation`: отдельный инструмент, publishing auto-check, RGS internal check.\n4. Пройти `03-Editor/Editor.md` и список инструментов, чтобы все tool statuses совпадали с overview.\n5. Проверить `04-AI-Wizard/AI-Wizard.md`: где Wizard реально активен в MVP, а где это future promise.\n6. Развести терминологию `Members`, `Users`, `Permissions`, `Studio Settings Members`.\n7. Решить судьбу тонких tool subpages: дописать или склеить.\n\n## Кандидаты на первую правку\n\n| Файл | Почему первый |\n| --- | --- |\n| `README.md` | Самый видимый документ, сейчас содержит потенциальный конфликт по `Translator`. |\n| `00-Overview/Overview-MVP-June-2026.md` | Должен быть источником правды по MVP-границам. |\n| `03-Editor/Editor.md` | Показывает список editor tools и может закрепить правильные статусы. |\n| `03-Editor/Tools/Translator/Translator.md` | Нужно явно указать статус: MVP / future / partial. |\n| `03-Editor/Tools/Simulation/Simulation.md` | Нужно убрать двусмысленность между продуктовым инструментом и обязательным auto-check. |\n| `04-AI-Wizard/AI-Wizard.md` | Нужно смягчить формулировку \"активен в каждом модуле\", если часть модулей не входит в MVP. |\n",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Быстрый итог",
+          "slug": "быстрыи-итог"
+        },
+        {
+          "level": 2,
+          "text": "Точно проверить",
+          "slug": "точно-проверить"
+        },
+        {
+          "level": 2,
+          "text": "Документационный долг",
+          "slug": "документационныи-долг"
+        },
+        {
+          "level": 2,
+          "text": "Что выглядит согласованно",
+          "slug": "что-выглядит-согласованно"
+        },
+        {
+          "level": 2,
+          "text": "Порядок ручной проверки",
+          "slug": "порядок-ручнои-проверки"
+        },
+        {
+          "level": 2,
+          "text": "Кандидаты на первую правку",
+          "slug": "кандидаты-на-первую-правку"
+        }
+      ],
+      "wikilinks": [
+        {
+          "target": "Studio-Basic",
+          "heading": "",
+          "label": "Studio Basic Flow"
+        }
+      ],
+      "isIndex": false,
+      "folder": "",
+      "basename": "Docs-Audit"
+    },
+    {
       "id": "README.md",
       "path": "README.md",
       "slug": "readme",
@@ -17495,6 +17549,13 @@
     ],
     "pages": [
       {
+        "title": "Docs Audit",
+        "slug": "docs-audit",
+        "path": "Docs-Audit.md",
+        "fileName": "Docs-Audit.md",
+        "isIndex": false
+      },
+      {
         "title": "Playtagon Docs",
         "slug": "readme",
         "path": "README.md",
@@ -17586,7 +17647,9 @@
     "design system": "design-system/design-system",
     "design-system": "design-system/design-system",
     "design-system-pixel": "design-system/playpixel",
+    "docs audit": "docs-audit",
     "docs site architecture": "internal/internal",
+    "docs-audit": "docs-audit",
     "documentation": "internal/documentation",
     "editor": "editor/editor",
     "editor-tools-blueprint": "editor/tools/blueprint/blueprint",
@@ -18198,6 +18261,7 @@
     "rgs-api-protocol/reference": "rgs-api-protocol/reference",
     "12-rgs-api-protocol/rgs-api-protocol": "rgs-api-protocol/rgs-api-protocol",
     "rgs-api-protocol/rgs-api-protocol": "rgs-api-protocol/rgs-api-protocol",
+    "docs-audit": "docs-audit",
     "readme": "readme",
     "theme-colors": "theme-colors",
     "overview": "overview/overview",
@@ -27229,6 +27293,15 @@
         "exists": true
       }
     ],
+    "docs-audit": [
+      {
+        "target": "Studio-Basic",
+        "heading": "",
+        "label": "Studio Basic Flow",
+        "slug": "flows/studio-basic",
+        "exists": true
+      }
+    ],
     "readme": [
       {
         "target": "Overview",
@@ -31449,6 +31522,10 @@
       {
         "slug": "flows/flows",
         "title": "Flows"
+      },
+      {
+        "slug": "docs-audit",
+        "title": "Docs Audit"
       },
       {
         "slug": "readme",
