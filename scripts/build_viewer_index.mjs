@@ -7,15 +7,6 @@ import { loadEnv } from "./load_env.mjs";
 await loadEnv();
 
 const configFile = path.resolve("docs-viewer.config.json");
-const config = applyEnvOverrides(await loadConfig());
-const rootArg = process.argv[2] || config.source?.local?.path || "docs-sample";
-const outArg = process.argv[3] || "viewer/data/vault-index.json";
-const rootDir = path.resolve(rootArg);
-const outFile = path.resolve(outArg);
-const viewerPluginSourceDir = path.resolve("plugins");
-const viewerPluginOutDir = path.resolve("viewer/plugins");
-
-const SKIP_DIRS = new Set(config.ignoredFolders || [".git", ".obsidian", ".trash", "node_modules", "__pycache__"]);
 const MARKDOWN_EXTENSIONS = new Set([".md", ".mdx"]);
 const ASSET_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif", ".ico"]);
 const DEFAULT_CONFIG = {
@@ -50,6 +41,16 @@ const DEFAULT_CONFIG = {
     "scripts",
   ],
 };
+
+const config = applyEnvOverrides(await loadConfig());
+const rootArg = process.argv[2] || config.source?.local?.path || "docs-sample";
+const outArg = process.argv[3] || "viewer/data/vault-index.json";
+const rootDir = path.resolve(rootArg);
+const outFile = path.resolve(outArg);
+const viewerPluginSourceDir = path.resolve("plugins");
+const viewerPluginOutDir = path.resolve("viewer/plugins");
+
+const SKIP_DIRS = new Set(config.ignoredFolders || [".git", ".obsidian", ".trash", "node_modules", "__pycache__"]);
 
 async function loadConfig() {
   try {
