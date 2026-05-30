@@ -362,8 +362,12 @@ function envValue(key) {
 }
 
 function envList(key) {
-  return envValue(key)
-    ?.split(",")
+  const raw = process.env[key];
+  if (raw === undefined) return undefined;
+  const value = String(raw).trim();
+  if (!value || value === "*" || value.toLowerCase() === "__empty__") return [];
+  return value
+    .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
 }

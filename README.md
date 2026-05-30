@@ -131,9 +131,12 @@ DOCS_VIEWER_GITHUB_REPO=playtagon-docs-internal
 DOCS_VIEWER_GITHUB_BRANCH=main
 DOCS_VIEWER_GITHUB_PATH=
 DOCS_VIEWER_GITHUB_TOKEN=
+DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS=__empty__
+DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS=__empty__
+DOCS_VIEWER_ROADMAP_HIDE_UNDATED=false
 ```
 
-`DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources.
+`DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources. Use `__empty__` when an environment-backed list should intentionally be empty, for example an empty roadmap include list that scans the full vault.
 
 To customize the browser favicon, place `favicon.ico`, `favicon.png`, or `favicon.svg` anywhere in the indexed docs assets, for example `00 Assets/favicon.png`. The viewer will use it automatically after rebuilding the index.
 
