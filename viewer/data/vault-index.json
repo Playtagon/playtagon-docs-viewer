@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T03:09:36.994Z",
+  "generatedAt": "2026-05-30T03:21:00.613Z",
   "app": {
     "title": "Playtagon Docs"
   },
@@ -6192,7 +6192,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6246,7 +6246,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Canvas будущего node editor.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6300,7 +6300,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Комментарии в Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6354,7 +6354,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Debug-инструменты Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6408,7 +6408,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Ноды будущего Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6462,7 +6462,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Шаблоны Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6516,7 +6516,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Версионность Blueprint.\n\n\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Blueprint|Blueprint]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Blueprint при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6773,7 +6773,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь при создании brief.\n\n\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6827,7 +6827,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Совместная работа и комментарии в brief.\n\n\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6881,7 +6881,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Редактирование brief-документа.\n\n\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6935,7 +6935,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Шаблоны brief-документов.\n\n\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Brief|Brief]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Brief при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -6992,7 +6992,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Рабочий brief игры: продуктовые заметки, требования и решения команды.\n\nВ MVP не входит. Планируется как рабочая документация проекта в рамках Visual creation flow.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "В MVP не входит. Планируется как рабочая документация проекта в рамках Visual creation flow.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -7046,7 +7046,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Будущий процесс certification. SLA и точный процесс пока не определены.\n\nCertification не входит в MVP; не смешиваем его с publishing review.\n\n## Связанные страницы\n- [[Publishing|Publishing]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "Certification не входит в MVP; не смешиваем его с publishing review.\n\n## Связанные страницы\n- [[Publishing|Publishing]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -7100,7 +7100,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в Game Designer.\n\n\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7154,7 +7154,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Анимации игры.\n\n\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7208,7 +7208,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Символы игры.\n\n\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7262,7 +7262,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "UI-слой игры.\n\n\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Game-Designer|Game Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Game-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7319,7 +7319,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Будущая визуальная среда для символов, UI, фонов и анимаций.\n\nВ MVP visual/client сторона проверяется через Client Model в Publishing, а не через полноценный Game Designer.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "В MVP visual/client сторона проверяется через Client Model в Publishing, а не через полноценный Game Designer.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -7373,7 +7373,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Фильтры задач.\n\n\n\n## Связанные страницы\n- [[Kanban|Kanban]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Kanban при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Kanban|Kanban]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Kanban при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7427,7 +7427,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Задачи внутри игры.\n\n\n\n## Связанные страницы\n- [[Kanban|Kanban]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Kanban при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Kanban|Kanban]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Kanban при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7481,7 +7481,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Задачи команды внутри игры: work planning, filters and links to Pulse.\n\nВ MVP не входит. Kanban может порождать события для Studio Pulse через Audit Log.\n\n## Связанные страницы\n- [[Game|Game]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "В MVP не входит. Kanban может порождать события для Studio Pulse через Audit Log.\n\n## Связанные страницы\n- [[Game|Game]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -7535,7 +7535,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Debug controls демостенда.\n\n\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7589,7 +7589,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Тестовые override controls.\n\n\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7643,7 +7643,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Replay отыгранных rounds.\n\n\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7697,7 +7697,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Настройка тестовой сцены и client model.\n\n\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7751,7 +7751,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Переключение версий build/client model.\n\n\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Launch-Game|Launch Game]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Launch-Game при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -7984,7 +7984,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в moodboard.\n\n\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -8038,7 +8038,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Canvas для визуальных референсов.\n\n\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -8092,7 +8092,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Комментарии по moodboard.\n\n\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Moodboard|Moodboard]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Moodboard при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -8149,7 +8149,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Визуальный canvas для референсов и вариантов направления игры.\n\nВ MVP не входит. Moodboard связан с будущим visual creation flow и AI-assisted генерацией.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "В MVP не входит. Moodboard связан с будущим visual creation flow и AI-assisted генерацией.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -8203,7 +8203,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Promo-agent и помощь с рекламными материалами.\n\n\n\n## Связанные страницы\n- [[Promo-Assets|Promo Assets]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Promo-Assets при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Promo-Assets|Promo Assets]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Promo-Assets при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -8257,7 +8257,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Типы, размеры и placements промо-ассетов.\n\n\n\n## Связанные страницы\n- [[Promo-Assets|Promo Assets]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Promo-Assets при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Promo-Assets|Promo Assets]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Promo-Assets при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9378,7 +9378,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в Resources.\n\n\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9432,7 +9432,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Обычное файловое дерево и preview файлов.\n\n\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9486,7 +9486,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": ".playtagon-архивы и статусы RGS build.\n\n\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9540,7 +9540,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Библиотечные файлы игры.\n\n\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Resources|Resources]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Resources при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9833,7 +9833,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Расширенный отчёт simulation.\n\n\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9887,7 +9887,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Запуск math simulation.\n\n\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9941,7 +9941,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Базовый отчёт simulation.\n\n\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -9995,7 +9995,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Как simulation стучится в RGS.\n\n\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Simulation|Math Simulation]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Simulation при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10262,7 +10262,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в Sound Designer.\n\n\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10316,7 +10316,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Audio library.\n\n\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10370,7 +10370,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Timeline аудио.\n\n\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10424,7 +10424,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Audio triggers.\n\n\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Sound-Designer|Sound Designer]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Sound-Designer при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10481,7 +10481,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Будущий модуль саунд-дизайна, triggers, timeline and sound library.\n\nНе входит в MVP.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
+      "body": "Не входит в MVP.\n\n## Связанные страницы\n- [[Types-Visual-AI|Visual Editor + AI]]: главная связанная область\n- [[Editor|Editor]]: общая карта editor tools\n- [[Overview-MVP-June-2026|MVP June 2026]]: MVP-статус модуля\n\n## При изменении проверить\n- Overview-MVP-June26 при изменении статуса доступности.\n- Editor при изменении места модуля в tool map.\n",
       "headings": [
         {
           "level": 2,
@@ -10644,7 +10644,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "AI-помощь в локализации.\n\n\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10698,7 +10698,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Глоссарий терминов.\n\n\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10752,7 +10752,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Языки локализации.\n\n\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -10806,7 +10806,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Таблица переводов.\n\n\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
+      "body": "\n\n## Связанные страницы\n- [[Translator|Translator]]: родительская страница\n- [[Editor|Editor]]: общий контекст редактора\n- [[Game|Game]]: game-level обёртка, где появляется модуль\n\n## При изменении проверить\n- Editor-Tools-Translator при изменении назначения этой страницы.\n- Flow-001-Studio-Basic, если изменение влияет на MVP-путь.\n",
       "headings": [
         {
           "level": 2,
@@ -11401,7 +11401,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "## Назначение\n\nAI Wizard — постоянный AI-агент, доступный на всех экранах платформы. Это не отдельный модуль, а **сквозной интерфейс**, встроенный в каждый экран.\n\nWizard умеет читать контекст текущего модуля и действовать с учётом того, где находится пользователь. Чем больше пользователь взаимодействует с Wizard, тем больше платформа зарабатывает через токенизированную систему — поэтому Wizard активно продвигает себя сам.\n\n\n## Расположение\n\n- Панель Wizard по умолчанию **закреплена справа**\n- Можно свернуть/развернуть, но полностью скрыть нельзя — доступ в одно касание\n- Wizard присутствует в том числе на входных экранах: [[05-Flows/Onboarding|Waitlist Onboarding]] и выборе студии\n\n\n## Режимы работы\n\n### Контекстный ассистент\n\nWizard понимает, в каком модуле работает пользователь, и предлагает релевантные действия:\n\n| Модуль | Что умеет Wizard |\n|--------|-----------------|\n| [[Editor-Tools-Brief\\|Brief]] | Структурирует документацию, генерирует разделы |\n| [[Editor-Tools-Moodboard\\|Moodboard]] | Ищет изображения в интернете, генерирует визуалы |\n| [[Editor-Tools-Blueprint\\|Blueprint]] | Принимает текстовые инструкции, настраивает ноды, объясняет ошибки |\n| [[Editor-Tools-Game-Designer\\|Game Designer]] | Генерирует символы, фоны, UI-элементы |\n| [[Editor-Tools-Sound-Designer\\|Sound Designer]] | Создаёт аудио по описанию |\n| [[Editor-Tools-Publishing\\|Publishing]] | Заполняет метаданные, помогает с формой сабмита |\n| [[Editor-Tools-Promo-Assets\\|Promo Assets]] | Генерирует промо-ассеты под конкретный тип и размер |\n| [[Editor-Tools-Translator\\|Translator]] | Автоматически заполняет переводы, проверяет словарь терминов |\n| [[Editor-Tools-Resources\\|Resources]] | Помогает организовать ассеты, генерирует контент |\n| [[Editor-Tools-Simulation\\|Math Simulation]] | Объясняет результаты симуляции, помогает интерпретировать ошибки |\n\n### Онбординг\n\nДля новых пользователей AI Wizard — **гид по платформе**:\n- Объясняет, с чего начать, исходя из типа игры и роли\n- Ведёт по шагам первой настройки студии\n- Оболочка для [[05-Flows/Onboarding|Waitlist Onboarding]] и выбора студии при мультиаккаунте\n\n### Саппорт и справка\n- Первая точка обращения при любом вопросе\n- Отвечает на вопросы по платформе (в том числе по [[SDK|SDK]] — Wizard обучен на SDK-документации)\n- При невозможности решить вопрос — предоставляет email или эскалирует в поддержку\n\n\n## Self-promotion: триггерный маркетинг\n\nWizard **сам себя продвигает** — триггерится на события платформы и пишет пользователю первым:\n\n| Событие | Действие Wizard |\n|---------|-----------------|\n| Создан аккаунт | Приветственное сообщение, предложение помочь |\n| Первый вход в [[Editor-Tools-Resources\\|Resources]] | «Хочешь помогу организовать ассеты?» |\n| Первый вход в [[Editor-Tools-Translator\\|Translator]] | «Могу перевести сразу все строки» |\n| Загружен архив в [[Editor-Tools-Resources\\|Resources]] | «Запустить симуляцию?» |\n| Ошибка при сборке архива | «Вижу ошибку — давай разберём» |\n| Завершена [[Editor-Tools-Simulation\\|симуляция]] | «Посмотрим результаты вместе?» |\n\nЭто выгодно обеим сторонам: пользователь получает своевременную помощь, платформа — больше взаимодействий с токенизированной системой.\n\n\n## Мульти-агентная архитектура\n\nПродукт может иметь несколько **специализированных агентов**, каждый из которых отвечает за своё направление:\n\n| Агент | Специализация |\n|-------|--------------|\n| SDK-агент | Помощь с интеграцией, архивом, CLI, RGS |\n| Промо-агент | Генерация [[Editor-Tools-Promo-Assets\\|Promo Assets]], маркетинговые материалы |\n| Паблишинг-агент | Форма сабмита, метаданные, ревью |\n| Дизайн-агент | [[Editor-Tools-Game-Designer\\|Game Designer]], [[Editor-Tools-Moodboard\\|Moodboard]], визуальный стиль |\n\n**Именование агентов** настраивается в [[Studio-Settings|Studio Settings]] — студия даёт агентам имена (например, «Макс — технический ассистент»). Пользователь обращается к агентам как к коллегам, а не к безликому интерфейсу.\n\n> Эта архитектура заложена для развития; точные границы между агентами уточняются.\n\n\n## Память и контекст\n\n### Уровень игры\nWizard помнит историю взаимодействия в рамках конкретной игры. Переход между модулями не сбрасывает контекст — Wizard знает, что происходит в [[Brief|Brief]], [[Moodboard|Moodboard]] и [[Blueprint|Blueprint]] одновременно.\n\n### Уровень студии\nВ [[Studio-Settings|Studio Settings]] задаются **постоянные инструкции** для всех агентов:\n- Тон и стиль коммуникации\n- Предпочтения по жанру и визуальному стилю\n- Ограничения (нежелательные механики, темы)\n\nЭти инструкции применяются ко всем играм студии и всем участникам.\n\n\n## Ключевые принципы\n\n- **Контекст из брифа** — Wizard читает [[Brief|Brief]] и [[Moodboard|Moodboard]] для повышения точности генерации\n- **Документация SDK** — Wizard обучен на [[SDK|SDK]]-документации и умеет отвечать на вопросы по интеграции с [[RGS|RGS]]\n- **Документированные ноды** — в [[Blueprint|Blueprint]] Wizard опирается на документацию нод\n- **Вариативность** — генерирует несколько вариантов для сравнения\n\n\n## Система кредитов\n\n| Действие | Стоимость |\n|----------|-----------|\n| Генерация текста (метаданные, переводы) | Низкая |\n| Генерация изображений / символов | Средняя |\n| Генерация аудио | Средняя |\n| Генерация промо-ассетов | Средняя |\n| Настройка нод в [[Editor-Tools-Blueprint\\|Blueprint]] | Низкая |\n| Запуск платформенной [[Editor-Tools-Simulation\\|симуляции]] | TBD |\n\nКредиты включены в тарифный план. После исчерпания лимита — докупаются. Подробнее — [[Billing|Billing]].\n\n\n## Открытые вопросы\n\n> **⚠️ Требует технического решения.**\n\nЕсли два участника студии одновременно открывают чат с Wizard в рамках одной игры:\n- Видят ли они общую историю диалога или каждый — только свою?\n- Как Wizard разрешает параллельные конфликтующие запросы?\n\n\n## Связанные страницы\n\nAI Wizard присутствует и активен в каждом модуле:\n[[Brief|Brief]] · [[Moodboard|Moodboard]] · [[Blueprint|Blueprint]] · [[Game-Designer|Game Designer]] · [[Sound-Designer|Sound Designer]] · [[Resources|Resources]] · [[Promo-Assets|Promo Assets]] · [[Publishing|Publishing]] · [[Translator|Translator]] · [[Simulation|Math Simulation]] · [[05-Flows/Onboarding|Onboarding]] · [[Studio-Settings|Studio Settings]]\n\n## При изменении проверить\n- Родительскую страницу [[Editor|Editor]] и [[Game|Game]], если меняется назначение модуля.\n- Связанные страницы из блока выше, если меняется контракт между модулями.\n",
+      "body": "## Назначение\n\nAI Wizard — постоянный AI-агент, доступный на всех экранах платформы. Это не отдельный модуль, а **сквозной интерфейс**, встроенный в каждый экран.\n\nWizard умеет читать контекст текущего модуля и действовать с учётом того, где находится пользователь. Чем больше пользователь взаимодействует с Wizard, тем больше платформа зарабатывает через токенизированную систему — поэтому Wizard активно продвигает себя сам.\n\n\n## Расположение\n\n- Панель Wizard по умолчанию **закреплена справа**\n- Можно свернуть/развернуть, но полностью скрыть нельзя — доступ в одно касание\n- Wizard присутствует в том числе на входных экранах: [[05-Flows/Onboarding|Waitlist Onboarding]] и выборе студии\n\n\n## Режимы работы\n\n### Контекстный ассистент\n\nWizard понимает, в каком модуле работает пользователь, и предлагает релевантные действия:\n\n| Модуль | Что умеет Wizard |\n|--------|-----------------|\n| [[Editor-Tools-Brief\\|Brief]] | Структурирует документацию, генерирует разделы |\n| [[Editor-Tools-Moodboard\\|Moodboard]] | Ищет изображения в интернете, генерирует визуалы |\n| [[Editor-Tools-Blueprint\\|Blueprint]] | Принимает текстовые инструкции, настраивает ноды, объясняет ошибки |\n| [[Editor-Tools-Game-Designer\\|Game Designer]] | Генерирует символы, фоны, UI-элементы |\n| [[Editor-Tools-Sound-Designer\\|Sound Designer]] | Создаёт аудио по описанию |\n| [[Editor-Tools-Publishing\\|Publishing]] | Заполняет метаданные, помогает с формой сабмита |\n| [[Editor-Tools-Promo-Assets\\|Promo Assets]] | Генерирует промо-ассеты под конкретный тип и размер |\n| [[Editor-Tools-Translator\\|Translator]] | Автоматически заполняет переводы, проверяет словарь терминов |\n| [[Editor-Tools-Resources\\|Resources]] | Помогает организовать ассеты, генерирует контент |\n| [[Editor-Tools-Simulation\\|Math Simulation]] | Объясняет результаты симуляции, помогает интерпретировать ошибки |\n\n### Онбординг\n\nДля новых пользователей AI Wizard — **гид по платформе**:\n- Объясняет, с чего начать, исходя из типа игры и роли\n- Ведёт по шагам первой настройки студии\n- Оболочка для [[05-Flows/Onboarding|Waitlist Onboarding]] и выбора студии при мультиаккаунте\n\n### Саппорт и справка\n- Первая точка обращения при любом вопросе\n- Отвечает на вопросы по платформе (в том числе по [[SDK|SDK]] — Wizard обучен на SDK-документации)\n- При невозможности решить вопрос — предоставляет email или эскалирует в поддержку\n\n\n## Self-promotion: триггерный маркетинг\n\nWizard **сам себя продвигает** — триггерится на события платформы и пишет пользователю первым:\n\n| Событие | Действие Wizard |\n|---------|-----------------|\n| Создан аккаунт | Приветственное сообщение, предложение помочь |\n| Первый вход в [[Editor-Tools-Resources\\|Resources]] | «Хочешь помогу организовать ассеты?» |\n| Первый вход в [[Editor-Tools-Translator\\|Translator]] | «Могу перевести сразу все строки» |\n| Загружен архив в [[Editor-Tools-Resources\\|Resources]] | «Запустить симуляцию?» |\n| Ошибка при сборке архива | «Вижу ошибку — давай разберём» |\n| Завершена [[Editor-Tools-Simulation\\|симуляция]] | «Посмотрим результаты вместе?» |\n\nЭто выгодно обеим сторонам: пользователь получает своевременную помощь, платформа — больше взаимодействий с токенизированной системой.\n\n\n## Мульти-агентная архитектура\n\nПродукт может иметь несколько **специализированных агентов**, каждый из которых отвечает за своё направление:\n\n| Агент | Специализация |\n|-------|--------------|\n| SDK-агент | Помощь с интеграцией, архивом, CLI, RGS |\n| Промо-агент | Генерация [[Editor-Tools-Promo-Assets\\|Promo Assets]], маркетинговые материалы |\n| Паблишинг-агент | Форма сабмита, метаданные, ревью |\n| Дизайн-агент | [[Editor-Tools-Game-Designer\\|Game Designer]], [[Editor-Tools-Moodboard\\|Moodboard]], визуальный стиль |\n\n**Именование агентов** настраивается в [[Studio-Settings|Studio Settings]] — студия даёт агентам имена (например, «Макс — технический ассистент»). Пользователь обращается к агентам как к коллегам, а не к безликому интерфейсу.\n\n> Эта архитектура заложена для развития; точные границы между агентами уточняются.\n\n\n## Память и контекст\n\n### Уровень игры\nWizard помнит историю взаимодействия в рамках конкретной игры. Переход между модулями не сбрасывает контекст — Wizard знает, что происходит в [[Brief|Brief]], [[Moodboard|Moodboard]] и [[Blueprint|Blueprint]] одновременно.\n\n### Уровень студии\nВ [[Studio-Settings|Studio Settings]] задаются **постоянные инструкции** для всех агентов:\n- Тон и стиль коммуникации\n- Предпочтения по жанру и визуальному стилю\n- Ограничения (нежелательные механики, темы)\n\nЭти инструкции применяются ко всем играм студии и всем участникам.\n\n\n## Ключевые принципы\n\n- **Контекст из брифа** — Wizard читает [[Brief|Brief]] и [[Moodboard|Moodboard]] для повышения точности генерации\n- **Документация SDK** — Wizard обучен на [[SDK|SDK]]-документации и умеет отвечать на вопросы по интеграции с [[RGS|RGS]]\n- **Документированные ноды** — в [[Blueprint|Blueprint]] Wizard опирается на документацию нод\n- **Вариативность** — генерирует несколько вариантов для сравнения\n\n\n## Система кредитов\n\n| Действие | Стоимость |\n|----------|-----------|\n| Генерация текста (метаданные, переводы) | Низкая |\n| Генерация изображений / символов | Средняя |\n| Генерация аудио | Средняя |\n| Генерация промо-ассетов | Средняя |\n| Настройка нод в [[Editor-Tools-Blueprint\\|Blueprint]] | Низкая |\n| Запуск платформенной [[Editor-Tools-Simulation\\|симуляции]] | TBD |\n\nКредиты включены в тарифный план. После исчерпания лимита — докупаются. Подробнее — [[Billing|Billing]].\n\n\n## Открытые вопросы\n\n> **Требует технического решения.**\n\nЕсли два участника студии одновременно открывают чат с Wizard в рамках одной игры:\n- Видят ли они общую историю диалога или каждый — только свою?\n- Как Wizard разрешает параллельные конфликтующие запросы?\n\n\n## Связанные страницы\n\nAI Wizard присутствует и активен в каждом модуле:\n[[Brief|Brief]] · [[Moodboard|Moodboard]] · [[Blueprint|Blueprint]] · [[Game-Designer|Game Designer]] · [[Sound-Designer|Sound Designer]] · [[Resources|Resources]] · [[Promo-Assets|Promo Assets]] · [[Publishing|Publishing]] · [[Translator|Translator]] · [[Simulation|Math Simulation]] · [[05-Flows/Onboarding|Onboarding]] · [[Studio-Settings|Studio Settings]]\n\n## При изменении проверить\n- Родительскую страницу [[Editor|Editor]] и [[Game|Game]], если меняется назначение модуля.\n- Связанные страницы из блока выше, если меняется контракт между модулями.\n",
       "headings": [
         {
           "level": 2,
@@ -11746,7 +11746,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Контекстный помощник внутри Studio, Game и Editor.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -11801,7 +11801,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Контекст, память игры и студийные инструкции для AI Wizard.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -11856,7 +11856,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Архитектура специализированных агентов: SDK, promo, publishing и другие.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -11900,7 +11900,8 @@
         "title": "Onboarding",
         "description": "Wizard-оболочка для waitlist, invite и multi-studio флоу.",
         "aliases": [
-          "AI-Wizard-Onboarding"
+          "AI-Wizard-Onboarding",
+          "04-AI-Wizard/Onboarding"
         ],
         "tags": [
           "ai",
@@ -11914,7 +11915,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Wizard-оболочка для waitlist, invite и multi-studio флоу.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -11969,7 +11970,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Событийные триггеры, через которые Wizard сам предлагает помощь.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -12024,7 +12025,7 @@
         "logo": "",
         "metrics": ""
       },
-      "body": "Эскалация из AI Wizard в поддержку и документацию.\n\n## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
+      "body": "## Связанные страницы\n- [[AI-Wizard|AI Wizard]]: родительская архитектура Wizard\n- [[Game-AI-Wizard|Game AI Wizard]]: контекст Wizard внутри игры\n- [[Settings-AI-Wizard|AI Wizard settings]]: настройки и имена агентов\n\n## При изменении проверить\n- AI-Wizard при изменении принципа этой подстраницы.\n- Flow-002-Onboarding, если меняется входной Wizard UX.\n",
       "headings": [
         {
           "level": 2,
@@ -12137,7 +12138,8 @@
         "title": "002 Onboarding",
         "description": "Три пути попадания на платформу: waitlist, invite email, invite link and multi-studio entrance через AI Wizard UX.",
         "aliases": [
-          "Flow-002-Onboarding"
+          "Flow-002-Onboarding",
+          "05-Flows/Onboarding"
         ],
         "tags": [
           "flows",
@@ -15989,6 +15991,37 @@
       "isIndex": false,
       "folder": "",
       "basename": "README"
+    },
+    {
+      "id": "Theme-Colors.md",
+      "path": "Theme-Colors.md",
+      "slug": "theme-colors",
+      "title": "Theme Colors",
+      "description": "Рабочая таблица текущих контекстных цветов viewer theme и места для новой палитры.",
+      "frontmatter": {
+        "title": "Theme Colors",
+        "description": "Рабочая таблица текущих контекстных цветов viewer theme и места для новой палитры.",
+        "aliases": [
+          "Theme Colors"
+        ],
+        "tags": [
+          "viewer",
+          "theme"
+        ],
+        "author": "",
+        "date": "2026-05-30",
+        "category": "viewer",
+        "featured": false,
+        "image": "",
+        "logo": "",
+        "metrics": ""
+      },
+      "body": "\nТема viewer сейчас устроена через CSS variables в `viewer/styles.css`.\n\nБазовые переменные лежат в `:root` и используются почти во всех интерфейсных состояниях: фон, панели, текст, border, primary accent и статусные цвета. Roadmap поверх них заводит локальные `--prm-*` variables, которые в основном ссылаются на базовую палитру.\n\n| Контекст                                  | Цвет сейчас                 | Цвет новый |\n| ----------------------------------------- | --------------------------- | ---------- |\n| Page background / `--bg`                  | `#f7f7f4`                   |            |\n| Main panel / `--panel`                    | `#ffffff`                   |            |\n| Subtle panel / `--panel-subtle`           | `#f0f3f0`                   |            |\n| Primary text / `--text`                   | `#202522`                   |            |\n| Muted text / `--muted`                    | `#68716b`                   |            |\n| Divider / border / `--line`               | `#dfe4df`                   |            |\n| Primary accent / `--accent`               | `#19736c`                   |            |\n| Accent hover / strong / `--accent-strong` | `#105a54`                   |            |\n| Status orange / planned / `--orange`      | `#c6782e`                   |            |\n| Status red / blocked / `--red`            | `#bd4a42`                   |            |\n| Status yellow / in progress / `--yellow`  | `#b88a12`                   |            |\n| Status green / done / `--green`           | `#21815e`                   |            |\n| Status blue / todo / default / `--blue`   | `#2f6ea5`                   |            |\n| White text on filled buttons/bars         | `#ffffff` / `#fff`          |            |\n| Breadcrumb separator                      | `#a2aaa5`                   |            |\n| Missing asset background                  | `#fff5e9`                   |            |\n| Missing asset border                      | `#edc58e`                   |            |\n| Missing asset text                        | `#8a520f`                   |            |\n| Settings success background               | `#eef8f3`                   |            |\n| Settings success border                   | `#b9ddc9`                   |            |\n| Settings success text                     | `#236044`                   |            |\n| Active TOC item background                | `#e8f2ef`                   |            |\n| Inline code background                    | `#e8ece8`                   |            |\n| Code block background                     | `#202522`                   |            |\n| Code block text                           | `#eef5ef`                   |            |\n| Legacy roadmap group background           | `#eef3ef`                   |            |\n| Roadmap backlog / `--prm-bar-backlog`     | `#687385`                   |            |\n| Roadmap hover subtle background           | `#e6ece7`                   |            |\n| Roadmap group hover background            | `#e8eee9`                   |            |\n| Roadmap tooltip shadow                    | `rgba(0, 0, 0, 0.18)`       |            |\n| Mobile nav shadow                         | `rgba(20, 28, 24, 0.16)`    |            |\n| Mobile bottom bar background              | `rgba(255, 255, 255, 0.96)` |            |\n\n",
+      "headings": [],
+      "wikilinks": [],
+      "isIndex": false,
+      "folder": "",
+      "basename": "Theme-Colors"
     }
   ],
   "tree": {
@@ -17467,6 +17500,13 @@
         "path": "README.md",
         "fileName": "README.md",
         "isIndex": false
+      },
+      {
+        "title": "Theme Colors",
+        "slug": "theme-colors",
+        "path": "Theme-Colors.md",
+        "fileName": "Theme-Colors.md",
+        "isIndex": false
       }
     ]
   },
@@ -17478,7 +17518,9 @@
     "01-supabase": "infrastructure/supabase",
     "02-git-branches": "infrastructure/git-ветки",
     "03-git-workflow": "infrastructure/git-флоу-разработки",
+    "04-ai-wizard/onboarding": "ai-wizard/onboarding",
     "04-vercel": "infrastructure/vercel-проекты-и-деплои",
+    "05-flows/onboarding": "flows/onboarding",
     "ai wizard": "ai-wizard/ai-wizard",
     "ai-wizard": "ai-wizard/ai-wizard",
     "ai-wizard-onboarding": "ai-wizard/onboarding",
@@ -17786,6 +17828,8 @@
     "supabase": "infrastructure/supabase",
     "support": "ai-wizard/support",
     "team": "team/team",
+    "theme colors": "theme-colors",
+    "theme-colors": "theme-colors",
     "tools": "editor/tools/tools",
     "translator": "editor/tools/translator/translator",
     "translator-ai": "editor/tools/translator/translator-ai",
@@ -18155,6 +18199,7 @@
     "12-rgs-api-protocol/rgs-api-protocol": "rgs-api-protocol/rgs-api-protocol",
     "rgs-api-protocol/rgs-api-protocol": "rgs-api-protocol/rgs-api-protocol",
     "readme": "readme",
+    "theme-colors": "theme-colors",
     "overview": "overview/overview",
     "studio/audit-log": "studio/audit-log/audit-log",
     "studio/auth": "studio/auth/auth",
@@ -18916,8 +18961,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "studio/auth/auth-invite-email": [
@@ -18946,8 +18991,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Members-Invite",
@@ -18960,8 +19005,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Users-Permissions",
@@ -19004,8 +19049,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Members-Invite",
@@ -19025,8 +19070,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "studio/auth/auth-magic-link": [
@@ -19078,8 +19123,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Auth",
@@ -19092,8 +19137,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Users-Permissions",
@@ -19113,8 +19158,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Users-Permissions",
@@ -19129,8 +19174,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Auth",
@@ -19143,15 +19188,15 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Audit-Log-Events",
@@ -19164,15 +19209,15 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       }
     ],
     "studio/auth/auth": [
@@ -19243,22 +19288,22 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Members-Invite",
@@ -19756,8 +19801,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Users-Permissions",
@@ -19858,8 +19903,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "studio/members/members-roles": [
@@ -19895,8 +19940,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "studio/members/members-sessions": [
@@ -21645,8 +21690,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "studio/users/users-game-access": [
@@ -21863,8 +21908,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       }
     ],
     "game/game-ai-wizard": [
@@ -25389,8 +25434,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Waitlist Onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Editor-Tools-Brief",
@@ -25466,8 +25511,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Waitlist Onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "SDK",
@@ -25690,8 +25735,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Studio-Settings",
@@ -25951,8 +25996,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Members-Role-Templates",
@@ -27252,8 +27297,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Auth-Invite-Email",
@@ -27889,8 +27934,8 @@
         "target": "04-AI-Wizard/Onboarding",
         "heading": "",
         "label": "Wizard Onboarding",
-        "slug": "",
-        "exists": false
+        "slug": "ai-wizard/onboarding",
+        "exists": true
       },
       {
         "target": "Context-Assistant",
@@ -27980,8 +28025,8 @@
         "target": "05-Flows/Onboarding",
         "heading": "",
         "label": "Onboarding Flow",
-        "slug": "",
-        "exists": false
+        "slug": "flows/onboarding",
+        "exists": true
       },
       {
         "target": "Design-System",
@@ -28116,7 +28161,8 @@
         "slug": "web/playtagon-web",
         "exists": true
       }
-    ]
+    ],
+    "theme-colors": []
   },
   "backlinks": {
     "editor/types/types-play-sdk": [
@@ -32371,6 +32417,88 @@
         "title": "Playtagon Docs"
       }
     ],
+    "flows/onboarding": [
+      {
+        "slug": "studio/auth/auth-google-oauth",
+        "title": "Auth: Google OAuth"
+      },
+      {
+        "slug": "studio/auth/auth-invite-email",
+        "title": "Auth: Invite Email"
+      },
+      {
+        "slug": "studio/auth/auth-invite-email",
+        "title": "Auth: Invite Email"
+      },
+      {
+        "slug": "studio/auth/auth-invite-link",
+        "title": "Auth: Invite Link"
+      },
+      {
+        "slug": "studio/auth/auth-invite-link",
+        "title": "Auth: Invite Link"
+      },
+      {
+        "slug": "studio/auth/auth-multi-studio",
+        "title": "Auth: Multi Studio"
+      },
+      {
+        "slug": "studio/auth/auth-waitlist",
+        "title": "Auth: Waitlist"
+      },
+      {
+        "slug": "studio/auth/auth-waitlist",
+        "title": "Auth: Waitlist"
+      },
+      {
+        "slug": "studio/auth/auth",
+        "title": "Studio Auth"
+      },
+      {
+        "slug": "studio/auth/auth",
+        "title": "Studio Auth"
+      },
+      {
+        "slug": "studio/members/members-invite",
+        "title": "Members: Invite"
+      },
+      {
+        "slug": "studio/members/members-role-templates",
+        "title": "Members: Role Templates"
+      },
+      {
+        "slug": "studio/members/members-roles",
+        "title": "Members: Roles"
+      },
+      {
+        "slug": "studio/studio",
+        "title": "Studio"
+      },
+      {
+        "slug": "studio/users/users",
+        "title": "Studio Users"
+      },
+      {
+        "slug": "ai-wizard/ai-wizard",
+        "title": "AI Wizard"
+      },
+      {
+        "slug": "ai-wizard/ai-wizard",
+        "title": "AI Wizard"
+      },
+      {
+        "slug": "ai-wizard/ai-wizard",
+        "title": "AI Wizard"
+      },
+      {
+        "slug": "flows/flows",
+        "title": "Flows"
+      },
+      {
+        "slug": "readme",
+        "title": "Playtagon Docs"
+      }
+    ],
     "studio/members/members-invite": [
       {
         "slug": "studio/auth/auth-invite-email",
@@ -32533,6 +32661,48 @@
         "title": "Playtagon Docs"
       }
     ],
+    "ai-wizard/onboarding": [
+      {
+        "slug": "studio/auth/auth-multi-studio",
+        "title": "Auth: Multi Studio"
+      },
+      {
+        "slug": "studio/auth/auth-multi-studio",
+        "title": "Auth: Multi Studio"
+      },
+      {
+        "slug": "studio/auth/auth-waitlist",
+        "title": "Auth: Waitlist"
+      },
+      {
+        "slug": "studio/auth/auth-waitlist",
+        "title": "Auth: Waitlist"
+      },
+      {
+        "slug": "studio/auth/auth-waitlist",
+        "title": "Auth: Waitlist"
+      },
+      {
+        "slug": "studio/auth/auth",
+        "title": "Studio Auth"
+      },
+      {
+        "slug": "studio/auth/auth",
+        "title": "Studio Auth"
+      },
+      {
+        "slug": "flows/onboarding",
+        "title": "002 Onboarding"
+      },
+      {
+        "slug": "readme",
+        "title": "Playtagon Docs"
+      },
+      {
+        "slug": "readme",
+        "title": "Playtagon Docs"
+      }
+    ],
     "studio/auth/auth-waitlist": [
       {
         "slug": "studio/auth/auth",
@@ -32553,12 +32723,6 @@
       {
         "slug": "readme",
         "title": "Playtagon Docs"
-      }
-    ],
-    "ai-wizard/onboarding": [
-      {
-        "slug": "studio/auth/auth",
-        "title": "Studio Auth"
       }
     ],
     "studio/auth/auth-invite-email": [
@@ -33281,12 +33445,6 @@
       {
         "slug": "readme",
         "title": "Playtagon Docs"
-      }
-    ],
-    "flows/onboarding": [
-      {
-        "slug": "flows/flows",
-        "title": "Flows"
       }
     ],
     "design-system/playpixel": [
