@@ -167,14 +167,16 @@ The page table of contents is generated from `##` through `####` headings. `Link
 
 ## Deployment
 
-Static deployment:
+Docs Viewer supports three deployment modes.
+
+Static deployment serves the generated `viewer/` folder directly. Use it for public docs or when access is handled by hosting infrastructure:
 
 ```bash
 npm run build:index
 rsync -av --delete viewer/ user@server:/var/www/docs-viewer/
 ```
 
-Node deployment:
+Node deployment runs the shared server handler as a long-running service. Use it on a VPS when you need built-in OAuth, `/__config`, or `/__rebuild`:
 
 ```bash
 cp .env.example .env
@@ -182,9 +184,9 @@ npm run build:index
 PORT=8787 npm run dev
 ```
 
-Use the Node server when you need built-in OAuth, `/__config`, or `/__rebuild`.
+Vercel auth deployment uses Vercel Functions with the same auth handler as Node mode. The included `vercel.json` builds the index, routes requests through `api/server.mjs`, and includes `viewer/**` in the function bundle. Configure the project environment with `AUTH_ENABLED=true`, provider credentials, and the `DOCS_VIEWER_*` source variables.
 
-For Vercel or another static host, use:
+For a separate static-only Vercel project, override the project settings:
 
 ```text
 Build Command: npm run build:index
@@ -193,7 +195,7 @@ Output Directory: viewer
 
 ## Auth
 
-Server-side auth is disabled by default. To enable it in Node deployment, configure `.env`:
+Server-side auth is disabled by default. To enable it in Node or Vercel auth deployment, configure `.env` or Vercel Environment Variables:
 
 ```env
 AUTH_ENABLED=true

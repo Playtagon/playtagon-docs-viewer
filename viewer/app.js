@@ -1152,50 +1152,58 @@ function renderSettingsForm(config, message = "") {
   const localPath = config.source?.local?.path || "docs-sample";
   const github = config.source?.github || {};
   const roadmap = config.roadmap || {};
+  const configWritable = config.deployment?.configWritable !== false;
+  const disabledAttr = configWritable ? "" : "disabled";
+  const deploymentMode = config.deployment?.mode || "node";
   els.content.className = "content settings-content";
   els.breadcrumbs.textContent = "Admin";
-  els.pageMeta.textContent = "docs-viewer.config.json";
+  els.pageMeta.textContent = configWritable ? "docs-viewer.config.json" : "environment variables";
   setDocumentTitle("Settings");
   els.content.innerHTML = `<section class="settings-panel">
     <h1 class="doc-title">Settings</h1>
     <p class="doc-description">Configure the docs source and folders ignored during indexing.</p>
     ${message ? `<div class="settings-message">${escapeHtml(message)}</div>` : ""}
+    ${
+      configWritable
+        ? ""
+        : `<div class="settings-message">This ${escapeHtml(deploymentMode)} deployment is configured through Vercel environment variables. Edit env values in Vercel and redeploy.</div>`
+    }
     <form id="settingsForm" class="settings-form">
       <label class="settings-field">
         <span>Project title</span>
-        <input name="projectTitle" value="${escapeHtml(projectTitle)}" placeholder="Docs Viewer" />
+        <input name="projectTitle" value="${escapeHtml(projectTitle)}" placeholder="Docs Viewer" ${disabledAttr} />
       </label>
       <fieldset>
         <legend>Source</legend>
         <label class="settings-radio">
-          <input type="radio" name="sourceType" value="local" ${sourceType === "local" ? "checked" : ""} />
+          <input type="radio" name="sourceType" value="local" ${sourceType === "local" ? "checked" : ""} ${disabledAttr} />
           <span>Local folder</span>
         </label>
         <label class="settings-radio">
-          <input type="radio" name="sourceType" value="github" ${sourceType === "github" ? "checked" : ""} />
+          <input type="radio" name="sourceType" value="github" ${sourceType === "github" ? "checked" : ""} ${disabledAttr} />
           <span>GitHub repository</span>
         </label>
       </fieldset>
       <label class="settings-field">
         <span>Local path</span>
-        <input name="localPath" value="${escapeHtml(localPath)}" placeholder="docs-sample" />
+        <input name="localPath" value="${escapeHtml(localPath)}" placeholder="docs-sample" ${disabledAttr} />
       </label>
       <div class="settings-grid">
         <label class="settings-field">
           <span>GitHub owner</span>
-          <input name="githubOwner" value="${escapeHtml(github.owner || "")}" placeholder="owner" />
+          <input name="githubOwner" value="${escapeHtml(github.owner || "")}" placeholder="owner" ${disabledAttr} />
         </label>
         <label class="settings-field">
           <span>Repository</span>
-          <input name="githubRepo" value="${escapeHtml(github.repo || "")}" placeholder="repo" />
+          <input name="githubRepo" value="${escapeHtml(github.repo || "")}" placeholder="repo" ${disabledAttr} />
         </label>
         <label class="settings-field">
           <span>Branch</span>
-          <input name="githubBranch" value="${escapeHtml(github.branch || "main")}" placeholder="main" />
+          <input name="githubBranch" value="${escapeHtml(github.branch || "main")}" placeholder="main" ${disabledAttr} />
         </label>
         <label class="settings-field">
           <span>Docs path in repo</span>
-          <input name="githubPath" value="${escapeHtml(github.path || "")}" placeholder="Repository root" />
+          <input name="githubPath" value="${escapeHtml(github.path || "")}" placeholder="Repository root" ${disabledAttr} />
         </label>
       </div>
       <p class="settings-note">Leave <code>Docs path in repo</code> empty to index markdown from the repository root.</p>
@@ -1209,32 +1217,33 @@ function renderSettingsForm(config, message = "") {
       )}. Admin emails configured: ${Number(config.auth?.adminEmailsConfigured || 0)}.</p>
       <label class="settings-field">
         <span>Ignored folders</span>
-        <textarea name="ignoredFolders" rows="7">${escapeHtml((config.ignoredFolders || []).join("\n"))}</textarea>
+        <textarea name="ignoredFolders" rows="7" ${disabledAttr}>${escapeHtml((config.ignoredFolders || []).join("\n"))}</textarea>
       </label>
       <fieldset>
         <legend>Roadmap</legend>
         <label class="settings-field">
           <span>Included folders</span>
-          <textarea name="roadmapIncludedFolders" rows="4">${escapeHtml((roadmap.includedFolders || []).join("\n"))}</textarea>
+          <textarea name="roadmapIncludedFolders" rows="4" ${disabledAttr}>${escapeHtml((roadmap.includedFolders || []).join("\n"))}</textarea>
         </label>
         <label class="settings-field">
           <span>Excluded folders</span>
-          <textarea name="roadmapExcludedFolders" rows="4">${escapeHtml((roadmap.excludedFolders || []).join("\n"))}</textarea>
+          <textarea name="roadmapExcludedFolders" rows="4" ${disabledAttr}>${escapeHtml((roadmap.excludedFolders || []).join("\n"))}</textarea>
         </label>
         <p class="settings-note settings-note-wide">Included folders are an allowlist. Leave them empty to scan the full vault. Excluded folders are then applied as a denylist, which is useful for skipping archive or draft subfolders inside an included area.</p>
         <label class="settings-radio">
-          <input type="checkbox" name="roadmapHideUndated" value="true" ${roadmap.hideUndated ? "checked" : ""} />
+          <input type="checkbox" name="roadmapHideUndated" value="true" ${roadmap.hideUndated ? "checked" : ""} ${disabledAttr} />
           <span>Hide undated roadmap items by default</span>
         </label>
       </fieldset>
       <div class="settings-actions">
-        <button class="refresh-docs" type="submit">Save and rebuild</button>
+        <button class="refresh-docs" type="submit" ${disabledAttr}>Save and rebuild</button>
       </div>
     </form>
   </section>`;
 
   els.content.querySelector("#settingsForm").addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (!configWritable) return;
     const form = new FormData(event.currentTarget);
     const nextConfig = {
       app: {

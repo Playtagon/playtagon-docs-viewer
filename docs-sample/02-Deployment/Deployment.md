@@ -17,17 +17,19 @@ status: "done"
 ---
 # Deployment
 
-There are two main deployment modes:
+There are three main deployment modes:
 
 1. Static deployment - serve the `viewer/` folder through nginx, Vercel, Netlify, or any static host.
 2. Node deployment - run `npm run dev` behind a reverse proxy.
+3. Vercel auth deployment - run the shared auth/static handler as a Vercel Function.
 
 ## How to choose
 
 | Option | Use when |
 | --- | --- |
 | [[Deployment Static\|Static deployment]] | Docs are public, or access control is handled outside this app |
-| [[Deployment Node\|Node deployment]] | You need OAuth, `/__config`, `/__rebuild`, or private docs |
+| [[Deployment Node\|Node deployment]] | You self-host and need OAuth, `/__config`, `/__rebuild`, or private docs |
+| Vercel auth deployment | You want Vercel hosting with the built-in OAuth wall |
 
 ## Minimal production flow
 
@@ -36,7 +38,7 @@ npm run build:index
 rsync -av --delete viewer/ user@server:/var/www/docs-viewer/
 ```
 
-If you need a protected viewer, deploy the full project and run the Node service. See [[Deployment Node|Node deployment]].
+If you need a protected viewer on your own server, deploy the full project and run the Node service. See [[Deployment Node|Node deployment]]. If you need a protected viewer on Vercel, use the included `vercel.json` and configure `AUTH_*`, provider credentials, and `DOCS_VIEWER_*` environment variables.
 
 ## Sections
 

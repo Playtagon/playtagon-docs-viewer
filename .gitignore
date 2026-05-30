@@ -9,3 +9,4 @@ knowledge-base.md
 docs-local/
 node_modules/
 viewer/data/assets/
+.vercel
