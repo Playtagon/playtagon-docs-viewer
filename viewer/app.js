@@ -21,6 +21,7 @@ const state = {
   query: "",
   collapsedFolders: new Set(),
   currentPageSlug: "",
+  tocScrollHandler: null,
 };
 
 const els = {
@@ -217,13 +218,22 @@ function renderBreadcrumbs(page) {
   for (const part of folderParts) {
     currentPath = currentPath ? `${currentPath}/${part}` : part;
     const folderPage = pageForFolderPath(currentPath);
+    const isCurrentFolderIndex = page.isIndex && folderPage?.slug === page.slug;
     items.push({
       label: breadcrumbLabel(part),
       href: folderPage && folderPage.slug !== page.slug ? pageHref(folderPage.slug) : "",
+      current: isCurrentFolderIndex,
     });
   }
 
-  items.push({ label: page.title, current: true });
+  if (page.isIndex && folderParts.length && !items.some((item) => item.current)) {
+    items[items.length - 1].current = true;
+    items[items.length - 1].href = "";
+  }
+
+  if (!page.isIndex || !folderParts.length) {
+    items.push({ label: page.title, current: true });
+  }
 
   return `<nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb">
     <ol>
@@ -248,7 +258,39 @@ function renderBreadcrumbs(page) {
 
 function scrollRouteToTop() {
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   els.content?.scrollTo?.({ top: 0, left: 0, behavior: "auto" });
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  });
+}
+
+function scrollOffset() {
+  const topbar = document.querySelector(".topbar");
+  const topbarHeight = topbar?.getBoundingClientRect().height || 0;
+  return topbarHeight + 20;
+}
+
+function routeHash() {
+  if (!location.hash || location.hash.startsWith("#/")) return "";
+  return decodeURIComponent(location.hash.slice(1));
+}
+
+function scrollToHash({ behavior = "auto" } = {}) {
+  const hash = routeHash();
+  if (!hash) return false;
+  const target = document.getElementById(hash);
+  if (!target) return false;
+  requestAnimationFrame(() => {
+    const top = target.getBoundingClientRect().top + window.scrollY - scrollOffset();
+    window.scrollTo({ top: Math.max(0, top), left: 0, behavior });
+  });
+  return true;
+}
+
+function samePageHashLink(url) {
+  return url.hash && url.pathname === location.pathname && url.search === location.search;
 }
 
 function expandFolderPath(folderPath) {
@@ -651,7 +693,7 @@ function collectFolderPaths(node, paths = []) {
   return paths;
 }
 
-function renderTree() {
+function renderTree({ scrollActive = true } = {}) {
   els.tree.innerHTML = renderTreeNode(state.data.tree);
   els.tree.querySelectorAll("[data-folder-path]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -661,36 +703,114 @@ function renderTree() {
       } else {
         state.collapsedFolders.add(path);
       }
-      renderTree();
+      renderTree({ scrollActive: false });
     });
   });
-  scrollActiveTreeLink();
+  if (scrollActive) scrollActiveTreeLink();
 }
 
 function renderBacklinks(page) {
   const links = state.data.backlinks[page.slug] || [];
   if (!links.length) return "";
-  return `<aside class="backlinks"><h2>Linked mentions</h2><ul>${links
-    .map((link) => `<li><a href="${pageHref(link.slug)}">${escapeHtml(link.title)}</a></li>`)
-    .join("")}</ul></aside>`;
+  return `<aside class="backlinks"><h2>Linked mentions</h2><div class="backlink-list">${links
+    .map(
+      (link) => `<a class="backlink-chip" href="${pageHref(link.slug)}">
+        ${icon("file-text")}
+        <span>${escapeHtml(link.title)}</span>
+      </a>`,
+    )
+    .join("")}</div></aside>`;
+}
+
+function pageTocItems(body) {
+  return String(body || "")
+    .split(/\r?\n/)
+    .map((line) => line.match(/^(#{2,4})\s+(.+)$/))
+    .filter(Boolean)
+    .map((heading) => {
+      const text = heading[2].replace(/#+$/, "").trim();
+      return {
+        id: slugify(text),
+        level: heading[1].length,
+        text,
+      };
+    });
+}
+
+function renderPageToc(page) {
+  const items = pageTocItems(page.body);
+  if (!items.length) return "";
+  return `<aside class="page-toc" aria-label="Table of contents">
+    <div class="page-toc-title">On this page</div>
+    <nav>
+      ${items
+        .map(
+          (item) =>
+            `<a class="page-toc-link" data-toc-id="${escapeHtml(item.id)}" style="--toc-depth:${item.level - 2}" href="#${escapeHtml(
+              item.id,
+            )}">${escapeHtml(item.text)}</a>`,
+        )
+        .join("")}
+    </nav>
+  </aside>`;
+}
+
+function setActiveTocItem(id) {
+  const links = els.content.querySelectorAll(".page-toc-link");
+  links.forEach((link) => {
+    link.classList.toggle("is-active", link.dataset.tocId === id);
+  });
+}
+
+function resetPageToc() {
+  if (state.tocScrollHandler) {
+    window.removeEventListener("scroll", state.tocScrollHandler);
+    state.tocScrollHandler = null;
+  }
+}
+
+function setupPageToc() {
+  resetPageToc();
+  const headings = [...els.content.querySelectorAll(".markdown h2[id], .markdown h3[id], .markdown h4[id]")];
+  if (!headings.length) return;
+
+  let frame = 0;
+  const updateActive = () => {
+    frame = 0;
+    const line = scrollOffset() + 8;
+    const active = headings.reduce((current, heading) => {
+      return heading.getBoundingClientRect().top <= line ? heading : current;
+    }, headings[0]);
+    setActiveTocItem(active.id);
+  };
+  state.tocScrollHandler = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(updateActive);
+  };
+  updateActive();
+  window.addEventListener("scroll", state.tocScrollHandler, { passive: true });
 }
 
 function renderPage(page) {
   state.route = page.slug;
   state.currentPageSlug = page.slug;
   expandFolderPath(page.folder);
-  els.content.className = "content";
+  els.content.className = `content ${pageTocItems(page.body).length ? "has-toc" : ""}`;
   els.breadcrumbs.outerHTML = renderBreadcrumbs(page);
   els.breadcrumbs = document.querySelector("#breadcrumbs");
   els.pageMeta.innerHTML = renderSourceMeta(page);
   setDocumentTitle(page.title);
-  els.content.innerHTML = `<article>
-    <h1 class="doc-title">${escapeHtml(page.title)}</h1>
-    ${page.description ? `<p class="doc-description">${escapeHtml(page.description)}</p>` : ""}
-    <div class="markdown">${renderMarkdown(page.body)}</div>
-    ${renderBacklinks(page)}
-  </article>`;
+  els.content.innerHTML = `<div class="doc-layout">
+    <article class="doc-article">
+      <h1 class="doc-title">${escapeHtml(page.title)}</h1>
+      ${page.description ? `<p class="doc-description">${escapeHtml(page.description)}</p>` : ""}
+      <div class="markdown">${renderMarkdown(page.body)}</div>
+      ${renderBacklinks(page)}
+    </article>
+    ${renderPageToc(page)}
+  </div>`;
   renderTree();
+  setupPageToc();
 }
 
 function hasVisibleGroupContent(group, hideUndated) {
@@ -844,6 +964,7 @@ function renderBoardCard(item) {
 }
 
 function renderRoadmap() {
+  resetPageToc();
   state.route = "__roadmap";
   state.currentPageSlug = "roadmap";
   const model = buildRoadmapModel(state.data, state.data.roadmap || {});
@@ -1116,6 +1237,7 @@ function renderSettingsForm(config, message = "") {
 }
 
 async function renderSettings() {
+  resetPageToc();
   state.route = "__settings";
   state.currentPageSlug = "settings";
   renderTree();
@@ -1155,10 +1277,11 @@ function renderRoute() {
   const page = findPage(route);
   if (page) {
     if (route && route !== page.slug) {
-      history.replaceState(null, "", pageHref(page.slug));
+      const hash = routeHash();
+      history.replaceState(null, "", `${pageHref(page.slug)}${hash ? `#${encodeURIComponent(hash)}` : ""}`);
     }
     renderPage(page);
-    if (previousPageSlug && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
+    if (!scrollToHash() && previousPageSlug !== state.currentPageSlug) scrollRouteToTop();
     return;
   }
 
@@ -1167,6 +1290,9 @@ function renderRoute() {
 }
 
 async function init() {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
   state.data = await loadVaultIndex();
   setBrandTitle();
   applyFavicon();
@@ -1191,7 +1317,13 @@ async function init() {
     if (!link || link.target || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const url = new URL(link.href);
     if (url.origin !== location.origin) return;
+    if (url.pathname.startsWith("/__auth/")) return;
     event.preventDefault();
+    if (samePageHashLink(url)) {
+      history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+      scrollToHash({ behavior: "smooth" });
+      return;
+    }
     navigateTo(`${url.pathname}${url.search}${url.hash}`);
   });
   window.addEventListener("popstate", renderRoute);

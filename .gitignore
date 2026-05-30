@@ -6,5 +6,6 @@
 !.env.example
 docs-viewer.config.json
 knowledge-base.md
+docs-local/
 node_modules/
 viewer/data/assets/
