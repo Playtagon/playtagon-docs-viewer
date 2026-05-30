@@ -30,5 +30,5 @@ This sample item represents the optional Node deployment layer.
 
 ## When changing this page, check
 
-- [[Deployment-Auth|Auth deployment]], if auth expectations change.
-- [[Deployment-Node|Node deployment]], if server behavior changes.
+- [[Deployment Auth|Auth deployment]], if auth expectations change.
+- [[Deployment Node|Node deployment]], if server behavior changes.

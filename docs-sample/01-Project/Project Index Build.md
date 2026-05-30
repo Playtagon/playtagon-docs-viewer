@@ -63,6 +63,6 @@ node scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json
 
 ## When changing this page, check
 
-- [[Project-Runtime|Runtime]], if the UI data shape changes.
-- [[Operations-Update-Docs|Update docs]], if the build command changes.
-- [[Operations-Troubleshooting|Troubleshooting]], if new common errors appear.
+- [[Project Runtime|Runtime]], if the UI data shape changes.
+- [[Operations Update Docs|Update docs]], if the build command changes.
+- [[Operations Troubleshooting|Troubleshooting]], if new common errors appear.

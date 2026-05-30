@@ -79,6 +79,6 @@ server {
 
 ## When changing this page, check
 
-- [[Deployment-Auth|Auth deployment]], if environment variables change.
-- [[Project-Runtime|Runtime]], if server behavior changes.
-- [[Operations-Troubleshooting|Troubleshooting]], if diagnostic commands change.
+- [[Deployment Auth|Auth deployment]], if environment variables change.
+- [[Project Runtime|Runtime]], if server behavior changes.
+- [[Operations Troubleshooting|Troubleshooting]], if diagnostic commands change.

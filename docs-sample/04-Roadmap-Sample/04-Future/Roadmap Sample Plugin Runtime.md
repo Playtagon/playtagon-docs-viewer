@@ -42,5 +42,5 @@ Plugin Runtime is a future-facing sample item that shows how a single page can p
 
 ## When changing this page, check
 
-- [[Roadmap-Sample|Roadmap Sample]], if scope names or dates change.
-- [[Project-Architecture|Architecture]], if the plugin boundary changes.
+- [[Roadmap Sample|Roadmap Sample]], if scope names or dates change.
+- [[Project Architecture|Architecture]], if the plugin boundary changes.

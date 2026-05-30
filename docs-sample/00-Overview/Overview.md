@@ -28,8 +28,8 @@ Use it as a safe default source for trying the viewer before pointing the projec
 | [[Project\|Project]] | How the viewer works: source, index, runtime, and UI |
 | [[Deployment\|Deployment]] | How to deploy the viewer |
 | [[Operations\|Operations]] | How to update docs and handle common issues |
-| [[Roadmap-Sample\|Roadmap Sample]] | Dated sample items for the `#/roadmap` route |
-| [[Project-Obsidian-Play-Map\|Obsidian Play Map]] | Local Obsidian companion plugin for editing roadmap data |
+| [[Roadmap Sample\|Roadmap Sample]] | Dated sample items for the `#/roadmap` route |
+| [[Project Obsidian PlayMap\|Obsidian Play Map]] | Local Obsidian companion plugin for editing roadmap data |
 
 ## Core idea
 
@@ -41,16 +41,16 @@ The viewer does not replace Obsidian. Your vault remains the authoring source of
 
 ## Related pages
 
-- [[Project-Architecture|Architecture]] - project layers and file responsibilities.
-- [[Deployment-Static|Static deployment]] - the simplest public deployment path.
-- [[Deployment-Node|Node deployment]] - deployment with auth and server endpoints.
-- [[Operations-Update-Docs|Update docs]] - how to refresh the index after markdown changes.
-- [[Roadmap-Sample|Roadmap Sample]] - sample roadmap items spanning May-December 2026.
-- [[Project-Obsidian-Play-Map|Obsidian Play Map]] - how local Obsidian editing connects to the web viewer.
+- [[Project Architecture|Architecture]] - project layers and file responsibilities.
+- [[Deployment Static|Static deployment]] - the simplest public deployment path.
+- [[Deployment Node|Node deployment]] - deployment with auth and server endpoints.
+- [[Operations Update Docs|Update docs]] - how to refresh the index after markdown changes.
+- [[Roadmap Sample|Roadmap Sample]] - sample roadmap items spanning May-December 2026.
+- [[Project Obsidian PlayMap|Obsidian Play Map]] - how local Obsidian editing connects to the web viewer.
 
 ## When changing this page, check
 
 - [[Project|Project]], if the architecture summary changes.
 - [[Deployment|Deployment]], if the run/deploy model changes.
 - [[Operations|Operations]], if the docs update process changes.
-- [[Roadmap-Sample|Roadmap Sample]], if the demo roadmap changes.
+- [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.

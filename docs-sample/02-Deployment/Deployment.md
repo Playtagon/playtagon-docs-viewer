@@ -26,8 +26,8 @@ There are two main deployment modes:
 
 | Option | Use when |
 | --- | --- |
-| [[Deployment-Static\|Static deployment]] | Docs are public, or access control is handled outside this app |
-| [[Deployment-Node\|Node deployment]] | You need OAuth, `/__config`, `/__rebuild`, or private docs |
+| [[Deployment Static\|Static deployment]] | Docs are public, or access control is handled outside this app |
+| [[Deployment Node\|Node deployment]] | You need OAuth, `/__config`, `/__rebuild`, or private docs |
 
 ## Minimal production flow
 
@@ -36,16 +36,16 @@ npm run build:index
 rsync -av --delete viewer/ user@server:/var/www/docs-viewer/
 ```
 
-If you need a protected viewer, deploy the full project and run the Node service. See [[Deployment-Node|Node deployment]].
+If you need a protected viewer, deploy the full project and run the Node service. See [[Deployment Node|Node deployment]].
 
 ## Sections
 
-- [[Deployment-Static|Static deployment]] - static hosting for `viewer/`.
-- [[Deployment-Node|Node deployment]] - Node server behind nginx.
-- [[Deployment-Auth|Auth deployment]] - environment variables and OAuth callbacks.
+- [[Deployment Static|Static deployment]] - static hosting for `viewer/`.
+- [[Deployment Node|Node deployment]] - Node server behind nginx.
+- [[Deployment Auth|Auth deployment]] - environment variables and OAuth callbacks.
 
 ## When changing this page, check
 
-- [[Project-Runtime|Runtime]], if server behavior changes.
-- [[Operations-Update-Docs|Update docs]], if publishing changes.
-- [[Operations-Troubleshooting|Troubleshooting]], if common symptoms change.
+- [[Project Runtime|Runtime]], if server behavior changes.
+- [[Operations Update Docs|Update docs]], if publishing changes.
+- [[Operations Troubleshooting|Troubleshooting]], if common symptoms change.

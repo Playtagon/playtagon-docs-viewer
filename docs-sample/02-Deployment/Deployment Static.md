@@ -68,5 +68,5 @@ sudo certbot --nginx -d docs.example.com
 ## When changing this page, check
 
 - [[Deployment|Deployment]], if the static vs Node tradeoff changes.
-- [[Operations-Update-Docs|Update docs]], if publishing changes.
-- [[Project-Runtime|Runtime]], if the browser UI starts requiring a backend.
+- [[Operations Update Docs|Update docs]], if publishing changes.
+- [[Project Runtime|Runtime]], if the browser UI starts requiring a backend.

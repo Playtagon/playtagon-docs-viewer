@@ -28,8 +28,8 @@ This section describes day-to-day work with the viewer after deployment.
 
 ## Sections
 
-- [[Operations-Update-Docs|Update docs]] - how to update content.
-- [[Operations-Troubleshooting|Troubleshooting]] - what to check when something does not open.
+- [[Operations Update Docs|Update docs]] - how to update content.
+- [[Operations Troubleshooting|Troubleshooting]] - what to check when something does not open.
 
 ## Commands
 
@@ -41,5 +41,5 @@ npm run dev
 ## When changing this page, check
 
 - [[Deployment|Deployment]], if the production flow changes.
-- [[Project-Index-Build|Index build]], if index building changes.
-- [[Operations-Troubleshooting|Troubleshooting]], if symptoms or commands change.
+- [[Project Index Build|Index build]], if index building changes.
+- [[Operations Troubleshooting|Troubleshooting]], if symptoms or commands change.

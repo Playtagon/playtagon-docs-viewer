@@ -30,5 +30,5 @@ Viewer UX work focuses on the browser runtime: fast navigation, readable pages, 
 
 ## When changing this page, check
 
-- [[Project-Runtime|Runtime]], if viewer behavior changes.
-- [[Roadmap-Sample|Roadmap Sample]], if the sample date range changes.
+- [[Project Runtime|Runtime]], if viewer behavior changes.
+- [[Roadmap Sample|Roadmap Sample]], if the sample date range changes.

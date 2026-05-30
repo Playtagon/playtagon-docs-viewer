@@ -67,6 +67,6 @@ proxy_pass http://127.0.0.1:8787;
 
 ## When changing this page, check
 
-- [[Deployment-Node|Node deployment]], if systemd or proxy setup changes.
-- [[Deployment-Auth|Auth deployment]], if auth behavior changes.
-- [[Operations-Update-Docs|Update docs]], if the rebuild flow changes.
+- [[Deployment Node|Node deployment]], if systemd or proxy setup changes.
+- [[Deployment Auth|Auth deployment]], if auth behavior changes.
+- [[Operations Update Docs|Update docs]], if the rebuild flow changes.

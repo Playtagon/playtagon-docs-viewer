@@ -18,7 +18,7 @@ status: "done"
 ---
 # Auth Deployment
 
-Auth works only in [[Deployment-Node|Node deployment]], because static hosting cannot run the server-side OAuth flow.
+Auth works only in [[Deployment Node|Node deployment]], because static hosting cannot run the server-side OAuth flow.
 
 ## Minimal `.env`
 
@@ -71,6 +71,6 @@ Admins are listed in `AUTH_ADMIN_EMAILS`.
 
 ## When changing this page, check
 
-- [[Deployment-Node|Node deployment]], if proxy setup changes.
-- [[Project-Runtime|Runtime]], if auth endpoints change.
-- [[Operations-Troubleshooting|Troubleshooting]], if new auth errors appear.
+- [[Deployment Node|Node deployment]], if proxy setup changes.
+- [[Project Runtime|Runtime]], if auth endpoints change.
+- [[Operations Troubleshooting|Troubleshooting]], if new auth errors appear.

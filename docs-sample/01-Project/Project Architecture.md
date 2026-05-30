@@ -59,5 +59,5 @@ These values make the viewer usable as a framework/starter without company-speci
 ## When changing this page, check
 
 - [[Project|Project]], if the project map changes.
-- [[Project-Index-Build|Index build]], if indexed data changes.
-- [[Deployment-Static|Static deployment]], if the viewer stops being purely static.
+- [[Project Index Build|Index build]], if indexed data changes.
+- [[Deployment Static|Static deployment]], if the viewer stops being purely static.

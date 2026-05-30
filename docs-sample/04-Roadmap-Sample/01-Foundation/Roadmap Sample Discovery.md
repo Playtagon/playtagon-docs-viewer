@@ -30,5 +30,5 @@ Discovery covers the initial product decisions for Docs Viewer: source format, r
 
 ## When changing this page, check
 
-- [[Roadmap-Sample|Roadmap Sample]], if the sample timeline changes.
-- [[Project-Architecture|Architecture]], if source/runtime boundaries change.
+- [[Roadmap Sample|Roadmap Sample]], if the sample timeline changes.
+- [[Project Architecture|Architecture]], if source/runtime boundaries change.

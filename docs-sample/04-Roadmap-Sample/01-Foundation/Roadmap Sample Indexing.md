@@ -31,5 +31,5 @@ Indexing turns the source vault into `viewer/data/vault-index.json`.
 
 ## When changing this page, check
 
-- [[Project-Index-Build|Index build]], if the sample implies a new index field.
-- [[Operations-Troubleshooting|Troubleshooting]], if a new failure mode appears.
+- [[Project Index Build|Index build]], if the sample implies a new index field.
+- [[Operations Troubleshooting|Troubleshooting]], if a new failure mode appears.

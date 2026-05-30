@@ -72,10 +72,10 @@ The Refresh button is visible to all users. For admins, it calls `/__rebuild` an
 
 ## When Node is not needed
 
-If the docs are public and do not need server endpoints, deploy only the `viewer/` folder. See [[Deployment-Static|Static deployment]].
+If the docs are public and do not need server endpoints, deploy only the `viewer/` folder. See [[Deployment Static|Static deployment]].
 
 ## When changing this page, check
 
-- [[Deployment-Node|Node deployment]], if server startup changes.
-- [[Deployment-Auth|Auth deployment]], if auth changes.
-- [[Project-Architecture|Architecture]], if browser/server boundaries change.
+- [[Deployment Node|Node deployment]], if server startup changes.
+- [[Deployment Auth|Auth deployment]], if auth changes.
+- [[Project Architecture|Architecture]], if browser/server boundaries change.

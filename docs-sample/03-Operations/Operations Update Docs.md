@@ -48,6 +48,6 @@ If `/__rebuild` is enabled, the server runtime can rebuild the index.
 
 ## When changing this page, check
 
-- [[Deployment-Static|Static deployment]], if static upload changes.
-- [[Deployment-Node|Node deployment]], if the server flow changes.
-- [[Project-Index-Build|Index build]], if the build command changes.
+- [[Deployment Static|Static deployment]], if static upload changes.
+- [[Deployment Node|Node deployment]], if the server flow changes.
+- [[Project Index Build|Index build]], if the build command changes.

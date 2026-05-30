@@ -35,12 +35,12 @@ The sample is intentionally nested so the roadmap can demonstrate folder groups:
 
 | Item | Status | Window |
 | --- | --- | --- |
-| [[Roadmap-Sample-Discovery\|Discovery]] | Done | May 2026 |
-| [[Roadmap-Sample-Indexing\|Indexing]] | In progress | June-July 2026 |
-| [[Roadmap-Sample-Viewer-UX\|Viewer UX]] | Planned | July-August 2026 |
-| [[Roadmap-Sample-Auth-Admin\|Auth and admin]] | Planned | August-September 2026 |
-| [[Roadmap-Sample-Deployment\|Deployment]] | Todo | October 2026 |
-| [[Roadmap-Sample-Plugin-Runtime\|Plugin runtime]] | Backlog | November-December 2026 |
+| [[Roadmap Sample Discovery\|Discovery]] | Done | May 2026 |
+| [[Roadmap Sample Indexing\|Indexing]] | In progress | June-July 2026 |
+| [[Roadmap Sample Viewer UX\|Viewer UX]] | Planned | July-August 2026 |
+| [[Roadmap Sample Auth Admin\|Auth and admin]] | Planned | August-September 2026 |
+| [[Roadmap Sample Deployment\|Deployment]] | Todo | October 2026 |
+| [[Roadmap Sample Plugin Runtime\|Plugin runtime]] | Backlog | November-December 2026 |
 
 ## Roadmap fields
 
@@ -68,6 +68,6 @@ The sample config uses:
 
 ## When changing this page, check
 
-- [[Project-Runtime|Runtime]], if roadmap rendering changes.
-- [[Operations-Update-Docs|Update docs]], if sample data needs to be rebuilt.
+- [[Project Runtime|Runtime]], if roadmap rendering changes.
+- [[Operations Update Docs|Update docs]], if sample data needs to be rebuilt.
 - `#/roadmap`, to confirm the sample timeline still spans May-December 2026.

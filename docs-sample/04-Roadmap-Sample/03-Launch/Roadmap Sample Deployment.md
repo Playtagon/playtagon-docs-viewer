@@ -31,4 +31,4 @@ Deployment work makes the project easy to publish from a clean GitHub repository
 ## When changing this page, check
 
 - [[Deployment|Deployment]], if the deployment matrix changes.
-- [[Operations-Update-Docs|Update docs]], if publishing steps change.
+- [[Operations Update Docs|Update docs]], if publishing steps change.

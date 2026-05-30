@@ -44,14 +44,14 @@ markdown vault
 
 ## Sections
 
-- [[Project-Architecture|Architecture]] - layers and responsibilities.
-- [[Project-Index-Build|Index build]] - how markdown becomes JSON.
-- [[Project-Runtime|Runtime]] - what the browser UI and Node server do.
-- [[Project-Obsidian-Play-Map|Obsidian Play Map]] - how the local Obsidian plugin fits into the workflow.
+- [[Project Architecture|Architecture]] - layers and responsibilities.
+- [[Project Index Build|Index build]] - how markdown becomes JSON.
+- [[Project Runtime|Runtime]] - what the browser UI and Node server do.
+- [[Project Obsidian PlayMap|Obsidian Play Map]] - how the local Obsidian plugin fits into the workflow.
 
 ## When changing this page, check
 
-- [[Project-Architecture|Architecture]], if layer boundaries change.
-- [[Project-Index-Build|Index build]], if the `vault-index.json` format changes.
-- [[Project-Runtime|Runtime]], if server or browser behavior changes.
-- [[Project-Obsidian-Play-Map|Obsidian Play Map]], if plugin organization changes.
+- [[Project Architecture|Architecture]], if layer boundaries change.
+- [[Project Index Build|Index build]], if the `vault-index.json` format changes.
+- [[Project Runtime|Runtime]], if server or browser behavior changes.
+- [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.
