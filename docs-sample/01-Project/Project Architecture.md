@@ -24,9 +24,9 @@ The architecture is intentionally small: markdown is stored separately from the 
 | Layer | Responsibility |
 | --- | --- |
 | Source | `.md` / `.mdx` files, assets, and folder structure |
-| Index builder | Frontmatter, headings, wikilinks, backlinks, and aliases |
-| Viewer runtime | Sidebar, routes, markdown rendering, roadmap route |
-| Server shell | Static serving, auth, rebuild endpoint, config endpoint |
+| Index builder | Frontmatter, headings, wikilinks, backlinks, aliases, and theme data |
+| Viewer runtime | Sidebar, routes, markdown rendering, theme variables, roadmap route |
+| Server shell | Static serving, auth, themed login page, rebuild endpoint, config endpoint |
 
 ## Why this shape
 
@@ -46,6 +46,7 @@ The project starts with neutral placeholder defaults:
 | GitHub repo | `your-docs-repo` |
 | GitHub branch | `main` |
 | GitHub docs path | `docs` |
+| Theme | `default` from `themes/` |
 | Auth | disabled with `AUTH_ENABLED=false` |
 
 These values make the viewer usable as a framework/starter without company-specific defaults. For a real project, replace `docs-viewer.config.json` and `.env`.
@@ -54,10 +55,13 @@ These values make the viewer usable as a framework/starter without company-speci
 
 `viewer/app.js` should not read source markdown files directly. It works with the build output: `viewer/data/vault-index.json`.
 
-`scripts/build_viewer_index.mjs` should not decide how the UI looks. Its job is to prepare data.
+`scripts/build_viewer_index.mjs` should not decide how the UI looks. Its job is to prepare data, including the active theme selected from config or environment.
+
+Theme design belongs in JSON files under `themes/`. See [[Project Themes|Themes]].
 
 ## When changing this page, check
 
 - [[Project|Project]], if the project map changes.
 - [[Project Index Build|Index build]], if indexed data changes.
+- [[Project Themes|Themes]], if theme boundaries change.
 - [[Deployment Static|Static deployment]], if the viewer stops being purely static.

@@ -24,7 +24,7 @@ Node deployment is needed when the viewer should manage auth, config, or rebuild
 ```bash
 mkdir -p /opt/docs-viewer
 rsync -av --delete \
-  package.json scripts viewer docs-sample docs-viewer.config.json .env.example \
+  package.json scripts viewer themes docs-sample docs-viewer.config.json .env.example \
   user@server:/opt/docs-viewer/
 ```
 
@@ -36,6 +36,8 @@ cp .env.example .env
 npm run build:index
 PORT=8787 npm run dev
 ```
+
+Keep the `themes/` directory on the server if the deployment should rebuild or switch themes there. The active theme is resolved during `npm run build:index`. See [[Operations Themes|Theme operations]].
 
 ## Systemd service
 
@@ -81,4 +83,5 @@ server {
 
 - [[Deployment Auth|Auth deployment]], if environment variables change.
 - [[Project Runtime|Runtime]], if server behavior changes.
+- [[Operations Themes|Theme operations]], if theme rebuild or config behavior changes.
 - [[Operations Troubleshooting|Troubleshooting]], if diagnostic commands change.

@@ -2,6 +2,10 @@
   "app": {
     "title": "Docs Viewer"
   },
+  "theme": {
+    "active": "default",
+    "directory": "themes"
+  },
   "source": {
     "type": "local",
     "local": {
