@@ -9,9 +9,115 @@ await loadEnv();
 const configFile = path.resolve("docs-viewer.config.json");
 const MARKDOWN_EXTENSIONS = new Set([".md", ".mdx"]);
 const ASSET_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".avif", ".ico"]);
+const THEME_SCHEMA = "docs-viewer-theme/v1";
+const DEFAULT_THEME_DIRECTORY = "themes";
+const DEFAULT_THEME = {
+  schema: THEME_SCHEMA,
+  id: "default",
+  name: "Default",
+  mode: "light",
+  radius: "8px",
+  colors: {
+    background: "#f7f7f4",
+    panel: "#ffffff",
+    panelSubtle: "#f0f3f0",
+    text: "#202522",
+    muted: "#68716b",
+    line: "#dfe4df",
+    accent: "#19736c",
+    accentStrong: "#105a54",
+    onAccent: "#ffffff",
+  },
+  semantic: {
+    separatorMuted: "#a2aaa5",
+    warningBg: "#fff5e9",
+    warningLine: "#edc58e",
+    warningText: "#8a520f",
+    successBg: "#eef8f3",
+    successLine: "#b9ddc9",
+    successText: "#236044",
+    selectionBg: "#e8f2ef",
+    roadmapGroupBg: "#eef3ef",
+    controlHoverBg: "#e6ece7",
+    groupHoverBg: "#e8eee9",
+    mobileChromeBg: "rgba(255, 255, 255, 0.96)",
+    shadow: "rgba(20, 28, 24, 0.16)",
+    popoverShadow: "rgba(0, 0, 0, 0.18)",
+  },
+  content: {
+    text: "#202522",
+    muted: "#68716b",
+    heading: "#202522",
+    link: "#19736c",
+    linkHover: "#105a54",
+    rule: "#dfe4df",
+    blockquoteLine: "#19736c",
+    blockquoteText: "#68716b",
+    inlineCodeBg: "#e8ece8",
+    codeBlockBg: "#202522",
+    codeBlockLine: "#dfe4df",
+    codeBlockText: "#eef5ef",
+    tableLine: "#dfe4df",
+    tableHeaderBg: "#f0f3f0",
+    tableHeaderText: "#202522",
+    imageCaptionText: "#68716b",
+    cardBg: "#ffffff",
+    cardLine: "#dfe4df",
+    cardHoverLine: "#19736c",
+    cardTitleText: "#202522",
+    cardBodyText: "#68716b",
+    backlinkBg: "#ffffff",
+    backlinkLine: "#dfe4df",
+    backlinkHoverBg: "#f0f3f0",
+    backlinkHoverLine: "#19736c",
+  },
+  navigation: {
+    itemText: "#202522",
+    itemMuted: "#68716b",
+    itemHoverBg: "#f0f3f0",
+    itemHoverText: "#202522",
+    itemActiveBg: "#f0f3f0",
+    itemActiveText: "#202522",
+    itemActiveMarker: "#19736c",
+    branchLine: "#81a8a2",
+  },
+  authLogin: {
+    background: "#f7f7f4",
+    panelBg: "#ffffff",
+    panelLine: "#dfe4df",
+    titleText: "#202522",
+    bodyText: "#68716b",
+    buttonBg: "#19736c",
+    buttonText: "#ffffff",
+    buttonHoverBg: "#105a54",
+    messageBg: "#fff3f1",
+    messageLine: "#e4b6af",
+    messageText: "#8b2f28",
+  },
+  authStatus: {
+    line: "#dfe4df",
+    emailText: "#202522",
+    providerText: "#68716b",
+    signOutBg: "#f0f3f0",
+    signOutText: "#202522",
+    signOutHoverBg: "#e6ece7",
+  },
+  status: {
+    backlog: "#687385",
+    todo: "#2f6ea5",
+    planned: "#c6782e",
+    active: "#b88a12",
+    blocked: "#bd4a42",
+    done: "#21815e",
+  },
+};
 const DEFAULT_CONFIG = {
   app: {
     title: "Docs Viewer",
+  },
+  theme: {
+    active: "default",
+    directory: DEFAULT_THEME_DIRECTORY,
   },
   source: {
     type: "local",
@@ -138,6 +244,17 @@ function applyEnvOverrides(inputConfig) {
     next.plugins.roadmap.enabled = roadmapPluginEnabled;
   }
 
+  const themeJson = envValue("DOCS_VIEWER_THEME_JSON");
+  const themeActive = envValue("DOCS_VIEWER_THEME_ACTIVE");
+  const themeDirectory = envValue("DOCS_VIEWER_THEME_DIRECTORY");
+  if (themeJson) {
+    next.theme = JSON.parse(themeJson);
+  } else if (themeActive || themeDirectory) {
+    next.theme ||= {};
+    if (themeActive) next.theme.active = themeActive;
+    if (themeDirectory) next.theme.directory = themeDirectory;
+  }
+
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");
   if (ignoredFolders) {
     next.ignoredFolders = ignoredFolders;
@@ -167,6 +284,116 @@ function normalizeFolderList(value) {
   return (Array.isArray(value) ? value : [])
     .map((item) => String(item || "").replace(/^\/+|\/+$/g, ""))
     .filter(Boolean);
+}
+
+function normalizeThemeDirectory(value) {
+  const normalized = String(value || DEFAULT_THEME_DIRECTORY).replace(/^\/+|\/+$/g, "");
+  return normalized === "." ? "" : normalized;
+}
+
+function themeConfig(input) {
+  const theme = input && typeof input === "object" ? input : {};
+  if (theme.schema === THEME_SCHEMA) {
+    return {
+      active: String(theme.id || theme.name || "inline"),
+      directory: normalizeThemeDirectory(DEFAULT_THEME_DIRECTORY),
+      inline: theme,
+    };
+  }
+  return {
+    active: String(theme.active || DEFAULT_THEME.id).trim() || DEFAULT_THEME.id,
+    directory: normalizeThemeDirectory(theme.directory),
+    inline: null,
+  };
+}
+
+function themeIdFromPath(relativePath) {
+  return slugify(path.posix.basename(relativePath, ".json")) || path.posix.basename(relativePath, ".json");
+}
+
+function cloneJson(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function normalizeTheme(theme, fallbackId = "") {
+  if (!theme || typeof theme !== "object") return null;
+  const id = String(theme.id || fallbackId || theme.name || "").trim();
+  return {
+    schema: THEME_SCHEMA,
+    id: id || DEFAULT_THEME.id,
+    name: String(theme.name || id || DEFAULT_THEME.name).trim() || DEFAULT_THEME.name,
+    mode: theme.mode === "dark" ? "dark" : "light",
+    radius: String(theme.radius || DEFAULT_THEME.radius),
+    colors: { ...(theme.colors || {}) },
+    semantic: { ...(theme.semantic || {}) },
+    content: { ...(theme.content || {}) },
+    navigation: { ...(theme.navigation || {}) },
+    authLogin: { ...(theme.authLogin || {}) },
+    authStatus: { ...(theme.authStatus || {}) },
+    status: { ...(theme.status || {}) },
+  };
+}
+
+function mergeTheme(theme) {
+  const normalized = normalizeTheme(theme);
+  if (!normalized) return cloneJson(DEFAULT_THEME);
+  return {
+    ...cloneJson(DEFAULT_THEME),
+    ...normalized,
+    colors: {
+      ...DEFAULT_THEME.colors,
+      ...normalized.colors,
+    },
+    semantic: {
+      ...DEFAULT_THEME.semantic,
+      ...normalized.semantic,
+    },
+    content: {
+      ...DEFAULT_THEME.content,
+      ...normalized.content,
+    },
+    navigation: {
+      ...DEFAULT_THEME.navigation,
+      itemText: normalized.colors.text || DEFAULT_THEME.navigation.itemText,
+      itemMuted: normalized.colors.muted || DEFAULT_THEME.navigation.itemMuted,
+      itemHoverBg: normalized.colors.panelSubtle || DEFAULT_THEME.navigation.itemHoverBg,
+      itemHoverText: normalized.colors.text || DEFAULT_THEME.navigation.itemHoverText,
+      itemActiveBg: normalized.colors.panelSubtle || DEFAULT_THEME.navigation.itemActiveBg,
+      itemActiveText: normalized.colors.text || DEFAULT_THEME.navigation.itemActiveText,
+      itemActiveMarker: normalized.colors.accent || DEFAULT_THEME.navigation.itemActiveMarker,
+      branchLine: normalized.colors.accent || DEFAULT_THEME.navigation.branchLine,
+      ...normalized.navigation,
+    },
+    authLogin: {
+      ...DEFAULT_THEME.authLogin,
+      background: normalized.colors.background || DEFAULT_THEME.authLogin.background,
+      panelBg: normalized.colors.panel || DEFAULT_THEME.authLogin.panelBg,
+      panelLine: normalized.colors.line || DEFAULT_THEME.authLogin.panelLine,
+      titleText: normalized.colors.text || DEFAULT_THEME.authLogin.titleText,
+      bodyText: normalized.colors.muted || DEFAULT_THEME.authLogin.bodyText,
+      buttonBg: normalized.colors.accent || DEFAULT_THEME.authLogin.buttonBg,
+      buttonText: normalized.colors.onAccent || DEFAULT_THEME.authLogin.buttonText,
+      buttonHoverBg: normalized.colors.accentStrong || DEFAULT_THEME.authLogin.buttonHoverBg,
+      messageBg: normalized.semantic.warningBg || DEFAULT_THEME.authLogin.messageBg,
+      messageLine: normalized.semantic.warningLine || DEFAULT_THEME.authLogin.messageLine,
+      messageText: normalized.semantic.warningText || DEFAULT_THEME.authLogin.messageText,
+      ...normalized.authLogin,
+    },
+    authStatus: {
+      ...DEFAULT_THEME.authStatus,
+      line: normalized.colors.line || DEFAULT_THEME.authStatus.line,
+      emailText: normalized.colors.text || DEFAULT_THEME.authStatus.emailText,
+      providerText: normalized.colors.muted || DEFAULT_THEME.authStatus.providerText,
+      signOutBg: normalized.colors.panelSubtle || DEFAULT_THEME.authStatus.signOutBg,
+      signOutText: normalized.colors.text || DEFAULT_THEME.authStatus.signOutText,
+      signOutHoverBg: normalized.semantic.controlHoverBg || DEFAULT_THEME.authStatus.signOutHoverBg,
+      ...normalized.authStatus,
+    },
+    status: {
+      ...DEFAULT_THEME.status,
+      ...normalized.status,
+    },
+  };
 }
 
 function stripNumericPrefix(value) {
@@ -486,6 +713,41 @@ async function loadGitHubSource(source) {
   );
 }
 
+async function walkThemeFiles(directory) {
+  if (!directory) return [];
+  const startDir = path.resolve(directory);
+  let entries = [];
+  try {
+    entries = await readdir(startDir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+
+  const files = [];
+  for (const entry of entries) {
+    const fullPath = path.join(startDir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walkThemeFiles(fullPath)));
+      continue;
+    }
+    if (entry.isFile() && path.extname(entry.name).toLowerCase() === ".json") {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+async function loadThemeFiles(directory) {
+  const themeFiles = (await walkThemeFiles(directory)).sort((a, b) => toPosix(a).localeCompare(toPosix(b)));
+  return Promise.all(
+    themeFiles.map(async (absolutePath) => ({
+      absolutePath,
+      path: toPosix(path.relative(process.cwd(), absolutePath)),
+      content: await readFile(absolutePath),
+    })),
+  );
+}
+
 async function loadLocalSource() {
   const markdownFiles = (await walk(rootDir)).sort((a, b) => toPosix(a).localeCompare(toPosix(b)));
   const assetFiles = (await walkAssets(rootDir)).sort((a, b) => toPosix(a).localeCompare(toPosix(b)));
@@ -510,8 +772,54 @@ async function loadLocalSource() {
   return files;
 }
 
+function resolveTheme(themeFiles, configTheme) {
+  const resolvedConfig = themeConfig(configTheme);
+  const fileThemes = themeFiles
+    .map((file) => {
+      try {
+        const parsed = JSON.parse(file.content.toString("utf8"));
+        return {
+          path: file.path,
+          theme: mergeTheme({
+            id: themeIdFromPath(file.path),
+            ...parsed,
+          }),
+        };
+      } catch (error) {
+        throw new Error(`Invalid theme JSON in ${file.path}: ${error.message}`);
+      }
+    });
+  const builtInThemes = [{ path: "", theme: cloneJson(DEFAULT_THEME) }];
+  const themes = [
+    ...new Map([...builtInThemes, ...fileThemes].map((entry) => [entry.theme.id, entry])).values(),
+  ];
+  const activeTheme = resolvedConfig.inline
+    ? mergeTheme(resolvedConfig.inline)
+    : themes.find((entry) => entry.theme.id === resolvedConfig.active)?.theme || cloneJson(DEFAULT_THEME);
+
+  return {
+    theme: activeTheme,
+    meta: {
+      active: activeTheme.id,
+      requested: resolvedConfig.active,
+      directory: resolvedConfig.directory,
+      available: themes.map((entry) => ({
+        id: entry.theme.id,
+        name: entry.theme.name,
+        mode: entry.theme.mode,
+        path: entry.path,
+        builtIn: !entry.path,
+      })),
+      items: Object.fromEntries(themes.map((entry) => [entry.theme.id, entry.theme])),
+    },
+  };
+}
+
 const copiedPluginFiles = await copyViewerPlugins();
+const configuredTheme = themeConfig(config.theme);
 const sourceFiles = config.source?.type === "github" ? await loadGitHubSource(config.source) : await loadLocalSource();
+const themeFiles = await loadThemeFiles(configuredTheme.directory);
+const resolvedTheme = resolveTheme(themeFiles, config.theme);
 const markdownFiles = sourceFiles
   .filter((file) => MARKDOWN_EXTENSIONS.has(path.posix.extname(file.path).toLowerCase()))
   .sort((a, b) => a.path.localeCompare(b.path));
@@ -618,6 +926,8 @@ const index = {
   app: {
     title: config.app?.title || "Docs Viewer",
   },
+  theme: resolvedTheme.theme,
+  themes: resolvedTheme.meta,
   source: config.source?.type === "github"
     ? {
         type: "github",

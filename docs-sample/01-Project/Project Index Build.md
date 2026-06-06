@@ -53,6 +53,14 @@ node scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json
 - aliases;
 - folder tree;
 - copied assets.
+- active theme;
+- available theme catalog.
+
+## Themes in the build
+
+The build reads theme JSON files from `theme.directory`, selects `theme.active`, and writes the resolved theme into `viewer/data/vault-index.json`.
+
+The index also includes a catalog of available themes so the browser can preview bundled themes without another rebuild. See [[Project Themes|Themes]] for token groups and fallback behavior.
 
 ## Useful markdown conventions
 
@@ -64,5 +72,7 @@ node scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json
 ## When changing this page, check
 
 - [[Project Runtime|Runtime]], if the UI data shape changes.
+- [[Project Themes|Themes]], if theme data or fallback behavior changes.
 - [[Operations Update Docs|Update docs]], if the build command changes.
+- [[Operations Themes|Theme operations]], if the rebuild workflow for themes changes.
 - [[Operations Troubleshooting|Troubleshooting]], if new common errors appear.

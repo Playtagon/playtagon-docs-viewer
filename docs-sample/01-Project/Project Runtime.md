@@ -30,11 +30,24 @@ The runtime has two parts: the browser UI in `viewer/` and the optional Node ser
 - wikilinks;
 - backlinks;
 - page table of contents from `##` through `####` headings;
+- theme variables from the built index;
 - enabled plugin routes such as `#/roadmap`.
 
 The right-side `On this page` navigation is runtime UI, not authored content. It highlights the active heading while scrolling and uses a sticky topbar-aware offset for heading links.
 
 `Linked mentions` are also runtime UI. The index builder resolves wikilinks and writes backlinks into `vault-index.json`; the browser renders those backlinks as linked document chips.
+
+## Themes at runtime
+
+`viewer/app.js` applies theme tokens from `viewer/data/vault-index.json` as CSS variables. The active built theme controls the default look for every reader.
+
+The built index also includes available themes for local preview. A user can preview a bundled theme with the topbar selector or a URL such as:
+
+```text
+/?theme=playtagon-dark
+```
+
+Preview is browser-local. Publishing a theme for everyone still requires changing config or environment variables and rebuilding the index. See [[Project Themes|Themes]] and [[Operations Themes|Theme operations]].
 
 ## Viewer plugins
 
@@ -80,6 +93,8 @@ When `AUTH_ENABLED=true`, opening a page without a session redirects to `/__auth
 
 The Refresh button is visible to all users. For admins, it calls `/__rebuild` and reloads the index. For non-admin readers, it only reloads the latest published `viewer/data/vault-index.json`.
 
+The `/__auth/login` page is rendered by the server before `viewer/app.js` loads. It reads the active built theme and applies `authLogin` tokens directly, so private Node and Vercel auth deployments keep the sign-in page aligned with the viewer.
+
 ## When Node is not needed
 
 If the docs are public and do not need server endpoints, deploy only the `viewer/` folder. See [[Deployment Static|Static deployment]].
@@ -88,4 +103,6 @@ If the docs are public and do not need server endpoints, deploy only the `viewer
 
 - [[Deployment Node|Node deployment]], if server startup changes.
 - [[Deployment Auth|Auth deployment]], if auth changes.
+- [[Project Themes|Themes]], if theme runtime application changes.
+- [[Operations Themes|Theme operations]], if preview or rebuild behavior changes.
 - [[Project Architecture|Architecture]], if browser/server boundaries change.

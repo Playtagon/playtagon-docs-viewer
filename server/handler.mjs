@@ -12,9 +12,26 @@ const configFile = resolve("docs-viewer.config.json");
 const SESSION_COOKIE = "docs_viewer_session";
 const OAUTH_STATE_COOKIE = "docs_viewer_oauth_state";
 const IS_VERCEL = Boolean(process.env.VERCEL);
+const DEFAULT_AUTH_LOGIN_THEME = {
+  background: "#f7f7f4",
+  panelBg: "#ffffff",
+  panelLine: "#dfe4df",
+  titleText: "#202522",
+  bodyText: "#68716b",
+  buttonBg: "#19736c",
+  buttonText: "#ffffff",
+  buttonHoverBg: "#105a54",
+  messageBg: "#fff3f1",
+  messageLine: "#e4b6af",
+  messageText: "#8b2f28",
+};
 const DEFAULT_CONFIG = {
   app: {
     title: "Docs Viewer",
+  },
+  theme: {
+    active: "default",
+    directory: "themes",
   },
   source: {
     type: "local",
@@ -255,11 +272,55 @@ async function getProviderConfig(provider) {
   return provider === "oidc" ? oidcProviderConfig() : authProviderConfig(provider);
 }
 
+function isSafeCssValue(value) {
+  const text = String(value || "").trim();
+  return (
+    /^#[0-9a-f]{3,8}$/i.test(text) ||
+    /^(rgb|rgba|hsl|hsla)\([0-9%,.\s+-]+\)$/i.test(text) ||
+    /^[a-z]+$/i.test(text) ||
+    /^-?\d+(\.\d+)?(px|rem|em|%)$/i.test(text)
+  );
+}
+
+function authLoginThemeCss(theme) {
+  const loginTheme = {
+    ...DEFAULT_AUTH_LOGIN_THEME,
+    ...(theme?.authLogin || {}),
+  };
+  const entries = [
+    ["--auth-login-bg", loginTheme.background, DEFAULT_AUTH_LOGIN_THEME.background],
+    ["--auth-login-panel-bg", loginTheme.panelBg, DEFAULT_AUTH_LOGIN_THEME.panelBg],
+    ["--auth-login-panel-line", loginTheme.panelLine, DEFAULT_AUTH_LOGIN_THEME.panelLine],
+    ["--auth-login-title-text", loginTheme.titleText, DEFAULT_AUTH_LOGIN_THEME.titleText],
+    ["--auth-login-body-text", loginTheme.bodyText, DEFAULT_AUTH_LOGIN_THEME.bodyText],
+    ["--auth-login-button-bg", loginTheme.buttonBg, DEFAULT_AUTH_LOGIN_THEME.buttonBg],
+    ["--auth-login-button-text", loginTheme.buttonText, DEFAULT_AUTH_LOGIN_THEME.buttonText],
+    ["--auth-login-button-hover-bg", loginTheme.buttonHoverBg, DEFAULT_AUTH_LOGIN_THEME.buttonHoverBg],
+    ["--auth-login-message-bg", loginTheme.messageBg, DEFAULT_AUTH_LOGIN_THEME.messageBg],
+    ["--auth-login-message-line", loginTheme.messageLine, DEFAULT_AUTH_LOGIN_THEME.messageLine],
+    ["--auth-login-message-text", loginTheme.messageText, DEFAULT_AUTH_LOGIN_THEME.messageText],
+  ];
+  return entries
+    .map(([name, value, fallback]) => `${name}: ${isSafeCssValue(value) ? String(value).trim() : fallback};`)
+    .join(" ");
+}
+
+async function readActiveTheme() {
+  try {
+    return (await readVaultIndex()).theme || null;
+  } catch {
+    return null;
+  }
+}
+
 async function authLoginPage(req, message = "") {
   const config = authConfig();
   const viewerConfig = await readConfig();
+  const theme = await readActiveTheme();
   const appTitle = viewerConfig.app?.title || DEFAULT_CONFIG.app.title;
   const faviconHref = await loginFaviconHref();
+  const colorScheme = theme?.mode === "dark" ? "dark" : "light";
+  const themeCss = authLoginThemeCss(theme);
   const providerIcons = {
     github: "brand-github",
     google: "brand-google",
@@ -289,18 +350,18 @@ async function authLoginPage(req, message = "") {
     ${faviconHref ? `<link rel="icon" href="${escapeHtml(faviconHref)}" />` : ""}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <style>
-      :root { box-sizing: border-box; color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      :root { box-sizing: border-box; color-scheme: ${colorScheme}; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; ${themeCss} }
       *, *::before, *::after { box-sizing: inherit; }
-      body { background: #f7f7f4; color: #202522; display: grid; margin: 0; min-height: 100dvh; padding: clamp(16px, 4vw, 24px); place-items: center; }
+      body { background: var(--auth-login-bg); color: var(--auth-login-title-text); display: grid; margin: 0; min-height: 100dvh; padding: clamp(16px, 4vw, 24px); place-items: center; }
       main { max-width: min(420px, 100%); width: 100%; }
       h1 { font-size: clamp(28px, 8vw, 32px); letter-spacing: 0; line-height: 1.1; margin: 0 0 10px; overflow-wrap: anywhere; }
-      p { color: #68716b; line-height: 1.5; margin: 0 0 24px; }
-      .auth-panel { background: #fff; border: 1px solid #dfe4df; border-radius: 8px; padding: 28px; }
+      p { color: var(--auth-login-body-text); line-height: 1.5; margin: 0 0 24px; }
+      .auth-panel { background: var(--auth-login-panel-bg); border: 1px solid var(--auth-login-panel-line); border-radius: 8px; padding: 28px; }
       .auth-actions { display: grid; gap: 10px; }
-      .auth-button { align-items: center; background: #19736c; border-radius: 6px; color: #fff; display: flex; font-weight: 700; gap: 8px; min-height: 44px; justify-content: center; padding: 10px 14px; text-decoration: none; }
+      .auth-button { align-items: center; background: var(--auth-login-button-bg); border-radius: 6px; color: var(--auth-login-button-text); display: flex; font-weight: 700; gap: 8px; min-height: 44px; justify-content: center; padding: 10px 14px; text-decoration: none; }
       .auth-button .ti { font-size: 20px; }
-      .auth-button:hover { background: #105a54; }
-      .auth-message { background: #fff3f1; border: 1px solid #e4b6af; border-radius: 6px; color: #8b2f28; margin-bottom: 16px; padding: 10px 12px; }
+      .auth-button:hover { background: var(--auth-login-button-hover-bg); }
+      .auth-message { background: var(--auth-login-message-bg); border: 1px solid var(--auth-login-message-line); border-radius: 6px; color: var(--auth-login-message-text); margin-bottom: 16px; padding: 10px 12px; }
       @media (max-width: 480px) {
         body { padding: 14px; place-items: center; }
         .auth-panel { padding: 20px; }
@@ -451,6 +512,17 @@ function applyEnvOverrides(inputConfig) {
     next.plugins ||= {};
     next.plugins.roadmap ||= {};
     next.plugins.roadmap.enabled = roadmapPluginEnabled;
+  }
+
+  const themeJson = envValue("DOCS_VIEWER_THEME_JSON");
+  const themeActive = envValue("DOCS_VIEWER_THEME_ACTIVE");
+  const themeDirectory = envValue("DOCS_VIEWER_THEME_DIRECTORY");
+  if (themeJson) {
+    next.theme = JSON.parse(themeJson);
+  } else if (themeActive || themeDirectory) {
+    next.theme ||= {};
+    if (themeActive) next.theme.active = themeActive;
+    if (themeDirectory) next.theme.directory = themeDirectory;
   }
 
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");

@@ -29,6 +29,8 @@ AUTH_SESSION_SECRET=replace-with-long-random-string-at-least-32-chars
 AUTH_ALLOWED_DOMAINS=example.com
 AUTH_ADMIN_EMAILS=alice@example.com
 AUTH_PROVIDERS=google
+DOCS_VIEWER_THEME_ACTIVE=default
+DOCS_VIEWER_THEME_DIRECTORY=themes
 
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
@@ -68,9 +70,13 @@ Admins are listed in `AUTH_ADMIN_EMAILS`.
 - `AUTH_SESSION_SECRET` must be long and random.
 - `AUTH_BASE_URL` must match the public HTTPS domain.
 - Nginx must forward `Host` and `X-Forwarded-Proto`.
+- The server-rendered login page uses the active built theme and `authLogin` tokens from `viewer/data/vault-index.json`.
+- On Vercel, update `DOCS_VIEWER_THEME_ACTIVE` and redeploy when changing the production theme.
 
 ## When changing this page, check
 
 - [[Deployment Node|Node deployment]], if proxy setup changes.
 - [[Project Runtime|Runtime]], if auth endpoints change.
+- [[Project Themes|Themes]], if auth theme token behavior changes.
+- [[Operations Themes|Theme operations]], if theme env or redeploy steps change.
 - [[Operations Troubleshooting|Troubleshooting]], if new auth errors appear.

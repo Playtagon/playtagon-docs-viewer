@@ -93,6 +93,10 @@ The local config is ignored by git so projects can keep private paths or reposit
   "app": {
     "title": "Docs Viewer"
   },
+  "theme": {
+    "active": "default",
+    "directory": "themes"
+  },
   "source": {
     "type": "local",
     "local": {
@@ -122,6 +126,8 @@ The local config is ignored by git so projects can keep private paths or reposit
 
 `app.title` controls the viewer brand text and browser tab suffix.
 
+`theme.active` selects the theme JSON used during `build:index`. `theme.directory` is resolved in the viewer project root, so local, GitHub, static, Node, and Vercel builds all converge on the generated `viewer/data/vault-index.json`. If no matching theme exists, the built-in `default` theme is used.
+
 `source.github.path` is optional. Leave it empty to index markdown from the repository root, or set it to a subfolder when docs live below the root.
 
 `roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault. `roadmap.excludedFolders` is applied after the allowlist, so it is useful for excluding archive or draft subfolders inside a broader included folder.
@@ -138,6 +144,8 @@ DOCS_VIEWER_GITHUB_REPO=playtagon-docs-internal
 DOCS_VIEWER_GITHUB_BRANCH=main
 DOCS_VIEWER_GITHUB_PATH=
 DOCS_VIEWER_GITHUB_TOKEN=
+DOCS_VIEWER_THEME_ACTIVE=default
+DOCS_VIEWER_THEME_DIRECTORY=themes
 DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_HIDE_UNDATED=false
@@ -147,6 +155,114 @@ DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED=true
 `DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources. Use `__empty__` when an environment-backed list should intentionally be empty, for example an empty roadmap include list that scans the full vault.
 
 To customize the browser favicon, place `favicon.ico`, `favicon.png`, or `favicon.svg` anywhere in the indexed docs assets, for example `00 Assets/favicon.png`. The viewer will use it automatically after rebuilding the index.
+
+## Themes
+
+Themes are small JSON files designed to be easy to generate or edit with an LLM. Put them in the configured theme directory in the viewer project root:
+
+```text
+docs-viewer/
+└── themes/
+    ├── default.json
+    └── playtagon-dark.json
+```
+
+Switch themes by changing `theme.active` and rebuilding. Node deployments can do this from Settings and `Save and rebuild`; static and Vercel deployments pick it up on the next build/redeploy. The build also writes every valid theme into `viewer/data/vault-index.json`, so a local preview can switch instantly without another rebuild.
+
+Preview any bundled theme by adding `?theme=<theme-id>` to the current URL:
+
+```text
+http://127.0.0.1:8787/?theme=dracula
+```
+
+Settings also has an active-theme dropdown. Choosing a theme previews it in the current browser; saving makes it the configured active theme for everyone after rebuild.
+
+Theme v1 uses semantic tokens, not raw CSS selectors:
+
+- `colors` controls the viewer shell and primary UI chrome.
+- `semantic` controls shared UI states such as selection, warning, success, shadows, and roadmap group surfaces.
+- `content` controls rendered markdown: document text, headings, links, quotes, code, tables, cards, and backlinks.
+- `navigation` controls the sidebar tree: item text, hover, active state, and branch lines.
+- `authLogin` controls the server-rendered sign-in page used by Node and Vercel auth deployments.
+- `authStatus` controls the signed-in user strip in the sidebar.
+- `status` controls roadmap/status colors.
+
+```json
+{
+  "schema": "docs-viewer-theme/v1",
+  "id": "custom-dark",
+  "name": "Custom Dark",
+  "mode": "dark",
+  "radius": "8px",
+  "colors": {
+    "background": "#121615",
+    "panel": "#1b211f",
+    "panelSubtle": "#26302c",
+    "text": "#edf4ef",
+    "muted": "#9ba9a2",
+    "line": "#344039",
+    "accent": "#3db7a8",
+    "accentStrong": "#7ed8ca",
+    "onAccent": "#071513"
+  },
+  "semantic": {
+    "selectionBg": "#203d39"
+  },
+  "content": {
+    "text": "#edf4ef",
+    "muted": "#9ba9a2",
+    "heading": "#ffffff",
+    "link": "#3db7a8",
+    "linkHover": "#7ed8ca",
+    "rule": "#344039",
+    "blockquoteLine": "#3db7a8",
+    "blockquoteText": "#9ba9a2",
+    "inlineCodeBg": "#252d29",
+    "codeBlockBg": "#101017",
+    "codeBlockLine": "#344039",
+    "codeBlockText": "#d8efe5",
+    "tableLine": "#344039",
+    "tableHeaderBg": "#26302c",
+    "tableHeaderText": "#edf4ef",
+    "cardBg": "#1b211f",
+    "cardLine": "#344039",
+    "cardHoverLine": "#3db7a8",
+    "cardTitleText": "#edf4ef",
+    "cardBodyText": "#9ba9a2"
+  },
+  "navigation": {
+    "itemActiveBg": "#203d39",
+    "itemActiveMarker": "#3db7a8"
+  },
+  "authLogin": {
+    "background": "#121615",
+    "panelBg": "#1b211f",
+    "panelLine": "#344039",
+    "titleText": "#edf4ef",
+    "bodyText": "#9ba9a2",
+    "buttonBg": "#3db7a8",
+    "buttonText": "#071513",
+    "buttonHoverBg": "#7ed8ca"
+  },
+  "authStatus": {
+    "line": "#344039",
+    "emailText": "#edf4ef",
+    "providerText": "#9ba9a2",
+    "signOutBg": "#26302c",
+    "signOutText": "#edf4ef",
+    "signOutHoverBg": "#203d39"
+  },
+  "status": {
+    "todo": "#6da7e8",
+    "planned": "#d99b55",
+    "active": "#dbc85a",
+    "blocked": "#e06a64",
+    "done": "#66c89b"
+  }
+}
+```
+
+Unknown fields are ignored by the viewer. Missing fields inherit from the built-in `default` theme, so an LLM can safely return only the tokens it wants to change.
 
 ## Writing Docs
 

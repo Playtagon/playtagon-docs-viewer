@@ -23,6 +23,81 @@ const state = {
   currentPageSlug: "",
   tocScrollHandler: null,
   mobileNavOpen: false,
+  previewThemeId: "",
+};
+
+const THEME_SCHEMA = "docs-viewer-theme/v1";
+const THEME_PREVIEW_STORAGE_KEY = "docs-viewer-theme-preview";
+const THEME_VARIABLES = {
+  radius: "--radius",
+  "colors.background": "--bg",
+  "colors.panel": "--panel",
+  "colors.panelSubtle": "--panel-subtle",
+  "colors.text": "--text",
+  "colors.muted": "--muted",
+  "colors.line": "--line",
+  "colors.accent": "--accent",
+  "colors.accentStrong": "--accent-strong",
+  "colors.onAccent": "--on-accent",
+  "semantic.separatorMuted": "--separator-muted",
+  "semantic.warningBg": "--warning-bg",
+  "semantic.warningLine": "--warning-line",
+  "semantic.warningText": "--warning-text",
+  "semantic.successBg": "--success-bg",
+  "semantic.successLine": "--success-line",
+  "semantic.successText": "--success-text",
+  "semantic.selectionBg": "--selection-bg",
+  "content.text": "--content-text",
+  "content.muted": "--content-muted",
+  "content.heading": "--content-heading",
+  "content.link": "--content-link",
+  "content.linkHover": "--content-link-hover",
+  "content.rule": "--content-rule",
+  "content.blockquoteLine": "--content-blockquote-line",
+  "content.blockquoteText": "--content-blockquote-text",
+  "content.inlineCodeBg": "--content-inline-code-bg",
+  "content.codeBlockBg": "--content-code-block-bg",
+  "content.codeBlockLine": "--content-code-block-line",
+  "content.codeBlockText": "--content-code-block-text",
+  "content.tableLine": "--content-table-line",
+  "content.tableHeaderBg": "--content-table-header-bg",
+  "content.tableHeaderText": "--content-table-header-text",
+  "content.imageCaptionText": "--content-image-caption-text",
+  "content.cardBg": "--content-card-bg",
+  "content.cardLine": "--content-card-line",
+  "content.cardHoverLine": "--content-card-hover-line",
+  "content.cardTitleText": "--content-card-title-text",
+  "content.cardBodyText": "--content-card-body-text",
+  "content.backlinkBg": "--content-backlink-bg",
+  "content.backlinkLine": "--content-backlink-line",
+  "content.backlinkHoverBg": "--content-backlink-hover-bg",
+  "content.backlinkHoverLine": "--content-backlink-hover-line",
+  "navigation.itemText": "--nav-item-text",
+  "navigation.itemMuted": "--nav-item-muted",
+  "navigation.itemHoverBg": "--nav-item-hover-bg",
+  "navigation.itemHoverText": "--nav-item-hover-text",
+  "navigation.itemActiveBg": "--nav-item-active-bg",
+  "navigation.itemActiveText": "--nav-item-active-text",
+  "navigation.itemActiveMarker": "--nav-item-active-marker",
+  "navigation.branchLine": "--nav-branch-line",
+  "authStatus.line": "--auth-status-line",
+  "authStatus.emailText": "--auth-status-email-text",
+  "authStatus.providerText": "--auth-status-provider-text",
+  "authStatus.signOutBg": "--auth-status-sign-out-bg",
+  "authStatus.signOutText": "--auth-status-sign-out-text",
+  "authStatus.signOutHoverBg": "--auth-status-sign-out-hover-bg",
+  "semantic.roadmapGroupBg": "--roadmap-group-bg",
+  "semantic.controlHoverBg": "--control-hover-bg",
+  "semantic.groupHoverBg": "--group-hover-bg",
+  "semantic.mobileChromeBg": "--mobile-chrome-bg",
+  "semantic.shadow": "--shadow",
+  "semantic.popoverShadow": "--popover-shadow",
+  "status.backlog": "--status-backlog",
+  "status.todo": "--blue",
+  "status.planned": "--orange",
+  "status.active": "--yellow",
+  "status.blocked": "--red",
+  "status.done": "--green",
 };
 
 const els = {
@@ -40,6 +115,8 @@ const els = {
   mobileMenuToggle: document.querySelector("#mobileMenuToggle"),
   refreshDocs: document.querySelector("#refreshDocs"),
   authStatus: document.querySelector("#authStatus"),
+  themePreview: document.querySelector("#themePreview"),
+  themePreviewSelect: document.querySelector("#themePreviewSelect"),
 };
 
 function escapeHtml(value) {
@@ -79,6 +156,158 @@ function icon(name) {
 
 function appTitle() {
   return state.data?.app?.title || "Docs Viewer";
+}
+
+function getThemeValue(theme, path) {
+  return path.split(".").reduce((value, part) => value?.[part], theme);
+}
+
+function isSafeThemeValue(value) {
+  const text = String(value || "").trim();
+  return (
+    /^#[0-9a-f]{3,8}$/i.test(text) ||
+    /^(rgb|rgba|hsl|hsla)\([0-9%,.\s+-]+\)$/i.test(text) ||
+    /^[a-z]+$/i.test(text) ||
+    /^-?\d+(\.\d+)?(px|rem|em|%)$/i.test(text)
+  );
+}
+
+function applyTheme(theme) {
+  if (!theme || typeof theme !== "object") return;
+  const root = document.documentElement;
+  root.dataset.theme = theme.id || "custom";
+  root.dataset.themeMode = theme.mode === "dark" ? "dark" : "light";
+  root.style.colorScheme = theme.mode === "dark" ? "dark" : "light";
+
+  for (const [themePath, variableName] of Object.entries(THEME_VARIABLES)) {
+    const value = getThemeValue(theme, themePath);
+    if (value === undefined || value === null || !isSafeThemeValue(value)) continue;
+    root.style.setProperty(variableName, String(value).trim());
+  }
+}
+
+function themeItems() {
+  return state.data?.themes?.items || {};
+}
+
+function themeForId(id) {
+  const themeId = String(id || "").trim();
+  if (!themeId) return null;
+  if (state.data?.theme?.id === themeId) return state.data.theme;
+  return themeItems()[themeId] || null;
+}
+
+function storedPreviewThemeId() {
+  try {
+    return localStorage.getItem(THEME_PREVIEW_STORAGE_KEY) || "";
+  } catch {
+    return "";
+  }
+}
+
+function setStoredPreviewThemeId(id) {
+  try {
+    if (id) {
+      localStorage.setItem(THEME_PREVIEW_STORAGE_KEY, id);
+    } else {
+      localStorage.removeItem(THEME_PREVIEW_STORAGE_KEY);
+    }
+  } catch {
+    // Storage can be unavailable in private or locked-down browser contexts.
+  }
+}
+
+function urlPreviewThemeId() {
+  return new URLSearchParams(location.search).get("theme") || "";
+}
+
+function applyCurrentTheme() {
+  const urlThemeId = urlPreviewThemeId();
+  const urlTheme = themeForId(urlThemeId);
+  if (urlTheme) {
+    state.previewThemeId = urlTheme.id;
+    setStoredPreviewThemeId(urlTheme.id);
+    applyTheme(urlTheme);
+    return urlTheme;
+  }
+
+  const storedTheme = themeForId(storedPreviewThemeId());
+  if (storedTheme) {
+    state.previewThemeId = storedTheme.id;
+    applyTheme(storedTheme);
+    return storedTheme;
+  }
+
+  state.previewThemeId = "";
+  applyTheme(state.data?.theme);
+  return state.data?.theme || null;
+}
+
+function setPreviewTheme(id) {
+  const theme = themeForId(id);
+  if (!theme) return null;
+  state.previewThemeId = theme.id;
+  setStoredPreviewThemeId(theme.id);
+  applyTheme(theme);
+  return theme;
+}
+
+function clearPreviewTheme() {
+  state.previewThemeId = "";
+  setStoredPreviewThemeId("");
+  applyTheme(state.data?.theme);
+}
+
+function themePreviewUrl(id) {
+  const url = new URL(location.href);
+  if (id) {
+    url.searchParams.set("theme", id);
+  } else {
+    url.searchParams.delete("theme");
+  }
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function activeThemeId() {
+  return state.data?.theme?.id || state.data?.themes?.active || "default";
+}
+
+function selectedThemeId() {
+  return state.previewThemeId || activeThemeId();
+}
+
+function renderThemePreviewControl() {
+  if (!els.themePreview || !els.themePreviewSelect) return;
+  const availableThemes = state.data?.themes?.available || [];
+  if (availableThemes.length <= 1) {
+    els.themePreview.hidden = true;
+    return;
+  }
+
+  els.themePreview.hidden = false;
+  const selected = selectedThemeId();
+  els.themePreviewSelect.innerHTML = availableThemes
+    .map((theme) => {
+      const label = theme.name || theme.id;
+      return `<option value="${escapeHtml(theme.id)}" ${theme.id === selected ? "selected" : ""}>${escapeHtml(label)}</option>`;
+    })
+    .join("");
+  els.themePreviewSelect.value = selected;
+}
+
+function activateThemePreview(id) {
+  const themeId = String(id || "").trim();
+  if (!themeId || themeId === activeThemeId()) {
+    clearPreviewTheme();
+    history.replaceState(null, "", themePreviewUrl(""));
+    renderThemePreviewControl();
+    return;
+  }
+
+  const previewTheme = setPreviewTheme(themeId);
+  if (!previewTheme) return;
+  history.replaceState(null, "", themePreviewUrl(previewTheme.id));
+  renderThemePreviewControl();
 }
 
 function isPluginEnabled(pluginId) {
@@ -1136,6 +1365,8 @@ async function refreshDocs() {
 
   try {
     state.data = await loadVaultIndex();
+    applyCurrentTheme();
+    renderThemePreviewControl();
     state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
     state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
     applyPluginUi();
@@ -1161,6 +1392,17 @@ function collectRoadmapGroupPaths(group, paths = []) {
   return paths;
 }
 
+function themeSelectOptions(selectedId) {
+  const availableThemes = state.data?.themes?.available || [];
+  const selected = selectedId || state.data?.themes?.active || state.data?.theme?.id || "default";
+  return availableThemes
+    .map((theme) => {
+      const label = `${theme.name || theme.id}${theme.mode ? ` (${theme.mode})` : ""}`;
+      return `<option value="${escapeHtml(theme.id)}" ${theme.id === selected ? "selected" : ""}>${escapeHtml(label)}</option>`;
+    })
+    .join("");
+}
+
 function renderSettingsForm(config, message = "") {
   const projectTitle = config.app?.title || appTitle();
   const sourceType = config.source?.type || "local";
@@ -1168,6 +1410,9 @@ function renderSettingsForm(config, message = "") {
   const github = config.source?.github || {};
   const roadmap = config.roadmap || {};
   const plugins = config.plugins || {};
+  const theme = config.theme || {};
+  const configuredThemeId = theme.active || state.data?.themes?.active || "default";
+  const canSelectTheme = Boolean((state.data?.themes?.available || []).length);
   const roadmapPluginEnabled = plugins.roadmap?.enabled !== false;
   const configWritable = config.deployment?.configWritable !== false;
   const disabledAttr = configWritable ? "" : "disabled";
@@ -1190,6 +1435,29 @@ function renderSettingsForm(config, message = "") {
         <span>Project title</span>
         <input name="projectTitle" value="${escapeHtml(projectTitle)}" placeholder="Docs Viewer" ${disabledAttr} />
       </label>
+      <fieldset>
+        <legend>Theme</legend>
+        <label class="settings-field">
+          <span>Active theme</span>
+          ${
+            canSelectTheme
+              ? `<select id="themeActiveSelect" name="themeActive" ${disabledAttr}>${themeSelectOptions(
+                  state.previewThemeId || configuredThemeId,
+                )}</select>`
+              : `<input name="themeActive" value="${escapeHtml(configuredThemeId)}" placeholder="default" ${disabledAttr} />`
+          }
+        </label>
+        <label class="settings-field">
+          <span>Theme directory</span>
+          <input name="themeDirectory" value="${escapeHtml(theme.directory || state.data?.themes?.directory || "themes")}" placeholder="themes" ${disabledAttr} />
+        </label>
+        <div class="settings-theme-actions">
+          <button id="resetThemePreview" class="refresh-docs" type="button">Use active</button>
+          <a id="themePreviewLink" class="source-link" href="${escapeHtml(themePreviewUrl(state.previewThemeId || configuredThemeId))}">${icon(
+            "external-link",
+          )}<span>Preview link</span></a>
+        </div>
+      </fieldset>
       <fieldset>
         <legend>Source</legend>
         <label class="settings-radio">
@@ -1265,6 +1533,19 @@ function renderSettingsForm(config, message = "") {
     </form>
   </section>`;
 
+  const themeSelect = els.content.querySelector("#themeActiveSelect");
+  const previewLink = els.content.querySelector("#themePreviewLink");
+  themeSelect?.addEventListener("change", (event) => {
+    activateThemePreview(event.currentTarget.value);
+    if (previewLink) previewLink.href = themePreviewUrl(state.previewThemeId || event.currentTarget.value);
+  });
+  els.content.querySelector("#resetThemePreview")?.addEventListener("click", () => {
+    const activeId = state.data?.themes?.active || state.data?.theme?.id || configuredThemeId;
+    activateThemePreview(activeId);
+    if (themeSelect) themeSelect.value = activeId;
+    if (previewLink) previewLink.href = themePreviewUrl(activeId);
+  });
+
   els.content.querySelector("#settingsForm").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!configWritable) return;
@@ -1287,6 +1568,10 @@ function renderSettingsForm(config, message = "") {
         .split(/\r?\n|,/)
         .map((item) => item.trim())
         .filter(Boolean),
+      theme: {
+        active: String(form.get("themeActive") || "default").trim() || "default",
+        directory: String(form.get("themeDirectory") || "themes").trim() || "themes",
+      },
       plugins: {
         roadmap: {
           enabled: form.get("roadmapPluginEnabled") === "true",
@@ -1309,6 +1594,8 @@ function renderSettingsForm(config, message = "") {
       await saveViewerConfig(nextConfig);
       await fetch("/__rebuild", { method: "POST" });
       state.data = await loadVaultIndex();
+      applyCurrentTheme();
+      renderThemePreviewControl();
       state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
       state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
       setBrandTitle();
@@ -1389,6 +1676,8 @@ async function init() {
     history.scrollRestoration = "manual";
   }
   state.data = await loadVaultIndex();
+  applyCurrentTheme();
+  renderThemePreviewControl();
   setBrandTitle();
   applyFavicon();
   applyPluginUi();
@@ -1425,6 +1714,9 @@ async function init() {
     navigateTo("/settings");
   });
   els.refreshDocs?.addEventListener("click", refreshDocs);
+  els.themePreviewSelect?.addEventListener("change", (event) => {
+    activateThemePreview(event.currentTarget.value);
+  });
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link || link.target || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

@@ -31,6 +31,8 @@ This updates:
 viewer/data/vault-index.json
 ```
 
+The active theme is also written into `viewer/data/vault-index.json`. If you switch themes, rebuild before uploading `viewer/`. See [[Operations Themes|Theme operations]].
+
 ## Upload to a server
 
 ```bash
@@ -69,4 +71,5 @@ sudo certbot --nginx -d docs.example.com
 
 - [[Deployment|Deployment]], if the static vs Node tradeoff changes.
 - [[Operations Update Docs|Update docs]], if publishing changes.
+- [[Operations Themes|Theme operations]], if theme rebuild or upload steps change.
 - [[Project Runtime|Runtime]], if the browser UI starts requiring a backend.
