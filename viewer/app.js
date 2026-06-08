@@ -644,7 +644,7 @@ function resolveAssetPath(target) {
 
   const key = decodeURIComponent(cleanTarget).toLowerCase();
   const assetPath = state.data.assets?.[key] || state.data.assets?.[key.split("/").pop()];
-  return assetPath ? `./data/${assetPath}` : "";
+  return assetPath ? `/data/${assetPath}` : "";
 }
 
 function renderImage(target, alt = "") {
