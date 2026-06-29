@@ -22,6 +22,7 @@ const state = {
   collapsedFolders: new Set(),
   currentPageSlug: "",
   tocScrollHandler: null,
+  activeTocId: "",
   mobileNavOpen: false,
   previewThemeId: "",
 };
@@ -115,6 +116,8 @@ const els = {
   mobileMenuToggle: document.querySelector("#mobileMenuToggle"),
   refreshDocs: document.querySelector("#refreshDocs"),
   authStatus: document.querySelector("#authStatus"),
+  languageSwitcher: document.querySelector("#languageSwitcher"),
+  languageSelect: document.querySelector("#languageSelect"),
   themePreview: document.querySelector("#themePreview"),
   themePreviewSelect: document.querySelector("#themePreviewSelect"),
 };
@@ -148,6 +151,26 @@ function breadcrumbLabel(value) {
 
 function pageHref(slug) {
   return slug ? `/${slug}` : "/";
+}
+
+function i18nEnabled() {
+  return Boolean(state.data?.i18n?.enabled);
+}
+
+function configuredLanguages() {
+  return i18nEnabled() ? state.data?.i18n?.languages || [] : [];
+}
+
+function languageCodes() {
+  return new Set(configuredLanguages().map((language) => language.code));
+}
+
+function defaultLanguage() {
+  return state.data?.i18n?.defaultLanguage || configuredLanguages()[0]?.code || "";
+}
+
+function pathWithoutLanguage(page) {
+  return page?.pathWithoutLanguage || page?.path || "";
 }
 
 function icon(name) {
@@ -360,7 +383,12 @@ function currentRoute() {
 
 function findPage(slug) {
   if (!slug) {
-    return state.data.pages.find((page) => page.path.toLowerCase() === "readme.md")
+    const lang = defaultLanguage();
+    return (i18nEnabled()
+      ? state.data.pages.find((page) => page.language === lang && ["readme.md", "index.md"].includes(pathWithoutLanguage(page).toLowerCase()))
+        || state.data.pages.find((page) => page.language === lang)
+      : null)
+      || state.data.pages.find((page) => page.path.toLowerCase() === "readme.md")
       || state.data.pages.find((page) => page.path.toLowerCase() === "index.md")
       || state.data.pages[0];
   }
@@ -429,9 +457,10 @@ function folderRouteSlug(folderPath) {
     .join("/");
 }
 
-function pageForFolderPath(folderPath) {
+function pageForFolderPath(folderPath, language = "") {
   const routeSlug = folderRouteSlug(folderPath);
-  const resolvedSlug = state.data.routeAliases?.[routeSlug] || routeSlug;
+  const languageRoute = i18nEnabled() && language && routeSlug ? `${language}/${routeSlug}` : routeSlug;
+  const resolvedSlug = state.data.routeAliases?.[languageRoute] || state.data.routeAliases?.[routeSlug] || languageRoute || routeSlug;
   return state.data.pages.find((item) => item.slug === resolvedSlug) || null;
 }
 
@@ -456,14 +485,15 @@ function renderBreadcrumbs(page) {
       href: "/",
     },
   ];
-  const folderParts = String(page.folder || "")
+  const folderPath = pathWithoutLanguage(page).split("/").slice(0, -1).join("/") || page.folder || "";
+  const folderParts = String(folderPath || "")
     .split("/")
     .filter(Boolean);
   let currentPath = "";
 
   for (const part of folderParts) {
     currentPath = currentPath ? `${currentPath}/${part}` : part;
-    const folderPage = pageForFolderPath(currentPath);
+    const folderPage = pageForFolderPath(currentPath, page.language);
     const isCurrentFolderIndex = page.isIndex && folderPage?.slug === page.slug;
     items.push({
       label: breadcrumbLabel(part),
@@ -555,6 +585,16 @@ function currentTreePage() {
   return state.data?.pages.find((page) => page.slug === state.currentPageSlug) || null;
 }
 
+function currentTree() {
+  const page = currentTreePage() || findPage(currentRoute());
+  return state.data?.treesByLanguage?.[page?.language] || state.data?.tree;
+}
+
+function treeFolderPathForPage(page) {
+  if (!page) return "";
+  return pathWithoutLanguage(page).split("/").slice(0, -1).join("/") || page.folder || "";
+}
+
 function scrollActiveTreeLink() {
   const activeLink = els.tree.querySelector(".tree-link.is-active");
   if (!activeLink) return;
@@ -619,12 +659,14 @@ async function saveViewerConfig(config) {
 }
 
 function inlineMarkdown(value) {
+  const currentPage = currentTreePage();
   return escapeHtml(value)
     .replace(/\[\[([^\]|#]+)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g, (_, target, heading, label) => {
       const cleanTarget = String(target).replace(/\\+$/, "").trim();
       const cleanHeading = heading ? String(heading).replace(/\\+$/, "").trim() : "";
       const cleanLabel = label?.trim() || cleanTarget;
-      const slug = state.data.aliases[cleanTarget.toLowerCase()];
+      const key = cleanTarget.toLowerCase();
+      const slug = state.data.aliasesByLanguage?.[currentPage?.language]?.[key] || state.data.aliases[key];
       const hash = cleanHeading ? `#${slugify(cleanHeading)}` : "";
       return slug
         ? `<a href="${pageHref(slug)}${hash}">${escapeHtml(cleanLabel)}</a>`
@@ -962,7 +1004,7 @@ function collectFolderPaths(node, paths = []) {
 }
 
 function renderTree({ scrollActive = true } = {}) {
-  els.tree.innerHTML = renderTreeNode(state.data.tree);
+  els.tree.innerHTML = renderTreeNode(currentTree());
   els.tree.querySelectorAll("[data-folder-path]").forEach((button) => {
     button.addEventListener("click", () => {
       const path = button.dataset.folderPath;
@@ -975,6 +1017,35 @@ function renderTree({ scrollActive = true } = {}) {
     });
   });
   if (scrollActive) scrollActiveTreeLink();
+}
+
+function renderLanguageSwitcher(page) {
+  if (!els.languageSwitcher || !els.languageSelect) return;
+  const languages = configuredLanguages();
+  if (!page || languages.length <= 1) {
+    els.languageSwitcher.hidden = true;
+    els.languageSelect.innerHTML = "";
+    return;
+  }
+
+  const translations = page.translations || {};
+  els.languageSwitcher.hidden = false;
+  els.languageSelect.dataset.currentLanguage = page.language || "";
+  els.languageSelect.innerHTML = languages
+    .map((language) => {
+      const slug = translations[language.code];
+      const label = language.label || language.code;
+      const compactLabel = String(language.code || label).slice(0, 2).toUpperCase();
+      const isActive = page.language === language.code;
+      const translatedPage = slug ? state.data.pages.find((item) => item.slug === slug) : null;
+      if (!translatedPage) {
+        return `<option value="" disabled title="${escapeHtml(label)}">${escapeHtml(compactLabel)}</option>`;
+      }
+      return `<option value="${escapeHtml(pageHref(slug))}" data-hreflang="${escapeHtml(language.code)}" title="${escapeHtml(label)}"${
+        isActive ? " selected" : ""
+      }>${escapeHtml(compactLabel)}</option>`;
+    })
+    .join("");
 }
 
 function setMobileNavOpen(open) {
@@ -1042,9 +1113,33 @@ function renderPageToc(page) {
 }
 
 function setActiveTocItem(id) {
+  if (state.activeTocId === id) return;
+  state.activeTocId = id;
   const links = els.content.querySelectorAll(".page-toc-link");
+  let activeLink = null;
   links.forEach((link) => {
-    link.classList.toggle("is-active", link.dataset.tocId === id);
+    const isActive = link.dataset.tocId === id;
+    link.classList.toggle("is-active", isActive);
+    if (isActive) activeLink = link;
+  });
+  scrollActiveTocLink(activeLink);
+}
+
+function scrollActiveTocLink(activeLink) {
+  const toc = activeLink?.closest(".page-toc");
+  if (!toc || toc.scrollHeight <= toc.clientHeight) return;
+
+  const inset = 10;
+  const tocRect = toc.getBoundingClientRect();
+  const linkRect = activeLink.getBoundingClientRect();
+  const isAbove = linkRect.top < tocRect.top + inset;
+  const isBelow = linkRect.bottom > tocRect.bottom - inset;
+  if (!isAbove && !isBelow) return;
+
+  toc.scrollBy({
+    top: linkRect.top - tocRect.top - (toc.clientHeight - linkRect.height) / 2,
+    left: 0,
+    behavior: "auto",
   });
 }
 
@@ -1053,6 +1148,7 @@ function resetPageToc() {
     window.removeEventListener("scroll", state.tocScrollHandler);
     state.tocScrollHandler = null;
   }
+  state.activeTocId = "";
 }
 
 function setupPageToc() {
@@ -1080,10 +1176,11 @@ function setupPageToc() {
 function renderPage(page) {
   state.route = page.slug;
   state.currentPageSlug = page.slug;
-  expandFolderPath(page.folder);
+  expandFolderPath(treeFolderPathForPage(page));
   els.content.className = `content ${pageTocItems(page.body).length ? "has-toc" : ""}`;
   els.breadcrumbs.outerHTML = renderBreadcrumbs(page);
   els.breadcrumbs = document.querySelector("#breadcrumbs");
+  renderLanguageSwitcher(page);
   els.pageMeta.innerHTML = renderSourceMeta(page);
   setDocumentTitle(page.title);
   els.content.innerHTML = `<div class="doc-layout">
@@ -1255,6 +1352,7 @@ function renderBoardCard(item) {
 
 function renderRoadmap() {
   resetPageToc();
+  renderLanguageSwitcher(null);
   state.route = "__roadmap";
   state.currentPageSlug = "roadmap";
   const model = buildRoadmapModel(state.data, state.data.roadmap || {});
@@ -1368,7 +1466,7 @@ async function refreshDocs() {
     applyCurrentTheme();
     renderThemePreviewControl();
     state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
-    state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+    state.collapsedFolders = new Set(collectFolderPaths(currentTree()));
     applyPluginUi();
     renderTree();
     renderRoute();
@@ -1403,6 +1501,18 @@ function themeSelectOptions(selectedId) {
     .join("");
 }
 
+function parseLanguageRows(value) {
+  return String(value || "")
+    .split(/\r?\n|,/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      const [code, label, basePath] = item.split(":").map((part) => part?.trim() || "");
+      return code ? { code, label: label || code, basePath } : null;
+    })
+    .filter(Boolean);
+}
+
 function renderSettingsForm(config, message = "") {
   const projectTitle = config.app?.title || appTitle();
   const sourceType = config.source?.type || "local";
@@ -1411,6 +1521,7 @@ function renderSettingsForm(config, message = "") {
   const roadmap = config.roadmap || {};
   const plugins = config.plugins || {};
   const theme = config.theme || {};
+  const i18n = config.i18n || {};
   const configuredThemeId = theme.active || state.data?.themes?.active || "default";
   const canSelectTheme = Boolean((state.data?.themes?.available || []).length);
   const roadmapPluginEnabled = plugins.roadmap?.enabled !== false;
@@ -1492,6 +1603,28 @@ function renderSettingsForm(config, message = "") {
         </label>
       </div>
       <p class="settings-note">Leave <code>Docs path in repo</code> empty to index markdown from the repository root.</p>
+      <fieldset>
+        <legend>Languages</legend>
+        <label class="settings-radio">
+          <input type="checkbox" name="i18nEnabled" value="true" ${i18n.enabled ? "checked" : ""} ${disabledAttr} />
+          <span>Enable multilingual docs</span>
+        </label>
+        <div class="settings-grid">
+          <label class="settings-field">
+            <span>Default language</span>
+            <input name="i18nDefaultLanguage" value="${escapeHtml(i18n.defaultLanguage || state.data?.i18n?.defaultLanguage || "en")}" placeholder="en" ${disabledAttr} />
+          </label>
+        </div>
+        <label class="settings-field">
+          <span>Languages</span>
+          <textarea name="i18nLanguages" rows="4" placeholder="en:English:/&#10;nl:Nederlands:/nl" ${disabledAttr}>${escapeHtml(
+            (i18n.languages || state.data?.i18n?.languages || [])
+              .map((language) => `${language.code || ""}:${language.label || language.code || ""}:${language.basePath || ""}`)
+              .join("\n"),
+          )}</textarea>
+        </label>
+        <p class="settings-note settings-note-wide">Keep default-language markdown at the source root with <code>en:English:/</code>, then put translations in mirrored folders such as <code>nl/Project/Page.md</code>. Leave disabled for ordinary single-language vaults.</p>
+      </fieldset>
       <p class="settings-note">Private GitHub repositories use server-side env token: <code>DOCS_VIEWER_GITHUB_TOKEN</code> or <code>GITHUB_TOKEN</code>. Token configured: ${
         config.githubTokenConfigured ? "yes" : "no"
       }.</p>
@@ -1572,6 +1705,11 @@ function renderSettingsForm(config, message = "") {
         active: String(form.get("themeActive") || "default").trim() || "default",
         directory: String(form.get("themeDirectory") || "themes").trim() || "themes",
       },
+      i18n: {
+        enabled: form.get("i18nEnabled") === "true",
+        defaultLanguage: String(form.get("i18nDefaultLanguage") || "en").trim() || "en",
+        languages: parseLanguageRows(form.get("i18nLanguages")),
+      },
       plugins: {
         roadmap: {
           enabled: form.get("roadmapPluginEnabled") === "true",
@@ -1597,7 +1735,7 @@ function renderSettingsForm(config, message = "") {
       applyCurrentTheme();
       renderThemePreviewControl();
       state.hideUndatedRoadmap = Boolean(state.data.roadmap?.hideUndated);
-      state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+      state.collapsedFolders = new Set(collectFolderPaths(currentTree()));
       setBrandTitle();
       applyFavicon();
       applyPluginUi();
@@ -1615,6 +1753,7 @@ async function renderSettings() {
     return;
   }
   resetPageToc();
+  renderLanguageSwitcher(null);
   state.route = "__settings";
   state.currentPageSlug = "settings";
   renderTree();
@@ -1668,6 +1807,7 @@ function renderRoute() {
   }
 
   els.content.innerHTML = `<div class="empty-state">Page not found.</div>`;
+  renderLanguageSwitcher(null);
   if (previousPageSlug) scrollRouteToTop();
 }
 
@@ -1685,7 +1825,7 @@ async function init() {
   state.auth = await loadAuthStatus();
   renderAuthStatus(state.auth);
   applyAdminUi(state.auth);
-  state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+  state.collapsedFolders = new Set(collectFolderPaths(currentTree()));
   els.searchInput.addEventListener("input", () => {
     state.query = els.searchInput.value;
     renderTree();
@@ -1699,9 +1839,9 @@ async function init() {
     renderTree();
   });
   els.collapseTree?.addEventListener("click", () => {
-    state.collapsedFolders = new Set(collectFolderPaths(state.data.tree));
+    state.collapsedFolders = new Set(collectFolderPaths(currentTree()));
     const page = currentTreePage();
-    if (page) expandFolderPath(page.folder);
+    if (page) expandFolderPath(treeFolderPathForPage(page));
     renderTree({ scrollActive: false });
   });
   els.mobileMenuToggle?.addEventListener("click", () => {
@@ -1716,6 +1856,11 @@ async function init() {
   els.refreshDocs?.addEventListener("click", refreshDocs);
   els.themePreviewSelect?.addEventListener("change", (event) => {
     activateThemePreview(event.currentTarget.value);
+  });
+  els.languageSelect?.addEventListener("change", (event) => {
+    const href = event.currentTarget.value;
+    if (!href) return;
+    navigateTo(href);
   });
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");

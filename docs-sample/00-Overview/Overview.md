@@ -42,6 +42,7 @@ The viewer does not replace Obsidian. Your vault remains the authoring source of
 ## Related pages
 
 - [[Project Architecture|Architecture]] - project layers and file responsibilities.
+- [[Project Multilingual Docs|Multilingual docs]] - optional language folders and translation switching.
 - [[Project Themes|Themes]] - theme files, token groups, preview, and fallback behavior.
 - [[Deployment Static|Static deployment]] - the simplest public deployment path.
 - [[Deployment Node|Node deployment]] - deployment with auth and server endpoints.
@@ -55,5 +56,6 @@ The viewer does not replace Obsidian. Your vault remains the authoring source of
 - [[Project|Project]], if the architecture summary changes.
 - [[Deployment|Deployment]], if the run/deploy model changes.
 - [[Operations|Operations]], if the docs update process changes.
+- [[Project Multilingual Docs|Multilingual docs]], if language support changes.
 - [[Project Themes|Themes]], if theme behavior changes.
 - [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.

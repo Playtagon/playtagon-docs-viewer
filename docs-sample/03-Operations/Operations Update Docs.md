@@ -42,6 +42,8 @@ If `/__rebuild` is enabled, the server runtime can rebuild the index.
 
 If the server should switch themes, keep the root `themes/` directory available on the server. See [[Operations Themes|Theme operations]].
 
+For multilingual docs, update mirrored files under each language folder and rebuild so `page.translations` and language-specific navigation stay current.
+
 ## Checklist
 
 - The start page opens.
@@ -49,6 +51,7 @@ If the server should switch themes, keep the root `themes/` directory available 
 - Sidebar shows new pages.
 - Backlinks appear where incoming links are expected.
 - The active theme is visible after rebuild.
+- Language switching works if multilingual docs are enabled.
 - `#/roadmap` opens if roadmap fields are used.
 
 ## When changing this page, check
@@ -56,4 +59,5 @@ If the server should switch themes, keep the root `themes/` directory available 
 - [[Deployment Static|Static deployment]], if static upload changes.
 - [[Deployment Node|Node deployment]], if the server flow changes.
 - [[Project Index Build|Index build]], if the build command changes.
+- [[Project Multilingual Docs|Multilingual docs]], if language folder workflow changes.
 - [[Operations Themes|Theme operations]], if theme rebuild steps change.

@@ -33,6 +33,11 @@ const DEFAULT_CONFIG = {
     active: "default",
     directory: "themes",
   },
+  i18n: {
+    enabled: false,
+    defaultLanguage: "en",
+    languages: [],
+  },
   source: {
     type: "local",
     local: { path: "docs-sample" },
@@ -464,6 +469,21 @@ function envBoolean(key) {
   return ["1", "true", "yes", "on"].includes(value.toLowerCase());
 }
 
+function envLanguages(key) {
+  const raw = envValue(key);
+  if (!raw) return undefined;
+  if (raw.startsWith("[")) {
+    return JSON.parse(raw);
+  }
+  return raw
+    .split(",")
+    .map((item) => {
+      const [code, label, basePath] = item.split(":").map((part) => part?.trim() || "");
+      return code ? { code, label: label || code, basePath } : null;
+    })
+    .filter(Boolean);
+}
+
 function applyEnvOverrides(inputConfig) {
   const next = JSON.parse(JSON.stringify(inputConfig || DEFAULT_CONFIG));
   const appTitle = envValue("DOCS_VIEWER_APP_TITLE");
@@ -523,6 +543,16 @@ function applyEnvOverrides(inputConfig) {
     next.theme ||= {};
     if (themeActive) next.theme.active = themeActive;
     if (themeDirectory) next.theme.directory = themeDirectory;
+  }
+
+  const i18nEnabled = envBoolean("DOCS_VIEWER_I18N_ENABLED");
+  const i18nDefaultLanguage = envValue("DOCS_VIEWER_I18N_DEFAULT_LANGUAGE");
+  const i18nLanguages = envLanguages("DOCS_VIEWER_I18N_LANGUAGES");
+  if (i18nEnabled !== undefined || i18nDefaultLanguage || i18nLanguages) {
+    next.i18n ||= {};
+    if (i18nEnabled !== undefined) next.i18n.enabled = i18nEnabled;
+    if (i18nDefaultLanguage) next.i18n.defaultLanguage = i18nDefaultLanguage;
+    if (i18nLanguages) next.i18n.languages = i18nLanguages;
   }
 
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");

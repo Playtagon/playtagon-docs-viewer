@@ -48,6 +48,7 @@ markdown vault
 - [[Project Architecture|Architecture]] - layers and responsibilities.
 - [[Project Index Build|Index build]] - how markdown becomes JSON.
 - [[Project Runtime|Runtime]] - what the browser UI and Node server do.
+- [[Project Multilingual Docs|Multilingual docs]] - optional language folders, translation pairs, and language switching.
 - [[Project Themes|Themes]] - theme files, token groups, preview, and fallback behavior.
 - [[Project Obsidian PlayMap|Obsidian Play Map]] - how the local Obsidian plugin fits into the workflow.
 
@@ -56,5 +57,6 @@ markdown vault
 - [[Project Architecture|Architecture]], if layer boundaries change.
 - [[Project Index Build|Index build]], if the `vault-index.json` format changes.
 - [[Project Runtime|Runtime]], if server or browser behavior changes.
+- [[Project Multilingual Docs|Multilingual docs]], if language folder behavior changes.
 - [[Project Themes|Themes]], if theme ownership or folder structure changes.
 - [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.
