@@ -565,6 +565,7 @@ a:hover {
   gap: 6px;
   height: 30px;
   padding: 0 6px;
+  position: relative;
   width: 60px;
 }
 
@@ -576,6 +577,7 @@ a:hover {
 .language-switcher .ti {
   flex: 0 0 auto;
   font-size: 16px;
+  pointer-events: none;
 }
 
 .theme-preview:hover,
@@ -588,6 +590,16 @@ a:hover {
 
 .theme-preview .ti {
   margin: 0 auto;
+}
+
+.language-current {
+  color: var(--text);
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  pointer-events: none;
+  text-transform: uppercase;
 }
 
 .theme-preview select,
@@ -609,6 +621,9 @@ a:hover {
 
 .language-switcher select {
   cursor: pointer;
+  inset: 0;
+  opacity: 0;
+  position: absolute;
   text-transform: uppercase;
 }
 

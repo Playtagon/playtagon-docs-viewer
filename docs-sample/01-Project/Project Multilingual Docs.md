@@ -15,6 +15,7 @@ image: ""
 logo: ""
 metrics: ""
 status: "done"
+translationKey: "01-Project/Project Multilingual Docs"
 ---
 # Multilingual Docs
 
@@ -85,12 +86,22 @@ docs-sample/
 ├── 00-Overview/
 │   └── Overview.md
 ├── 01-Project/
+│   ├── Project.md
 │   └── Project Multilingual Docs.md
 └── nl/
     ├── 00-Overview/
-    │   └── Overview.md
+    │   └── Overview NL.md
     └── 01-Project/
-        └── Project Multilingual Docs.md
+        ├── Project NL.md
+        └── Project Multilingual Docs NL.md
+```
+
+The `NL` suffix is intentionally technical. It keeps Obsidian page names unique when English and Dutch files share the same human title. Docs Viewer strips a trailing language code that matches the current page language from navigation, breadcrumbs, headings, wikilink labels, and fallback file labels.
+
+Because the translated filenames do not have to match, these sample pages use matching frontmatter keys:
+
+```yaml
+translationKey: "01-Project/Project Multilingual Docs"
 ```
 
 Run it locally with:
@@ -104,7 +115,7 @@ node scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json
 PORT=8790 npm run dev
 ```
 
-Then open `/overview/overview` or `/nl/overview/overview` and use the language selector.
+Then open `/overview` or `/nl/overview` and use the language selector.
 
 ## Build output
 

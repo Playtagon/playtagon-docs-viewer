@@ -209,6 +209,8 @@ The path after the language folder is the translation key. Root default-language
 
 Wikilinks resolve inside the current language first, then fall back to global aliases. If paths cannot mirror cleanly, set the same `translationKey` in frontmatter on each translated page.
 
+Translated filenames may include a technical language suffix for Obsidian disambiguation, for example `Game.md` and `nl/Game NL.md`. When i18n is enabled, Docs Viewer strips a trailing suffix that matches the page language from navigation, breadcrumbs, headings, wikilink labels, and fallback file labels; the file path and aliases still keep the suffix so Obsidian-style links such as `[[Game NL]]` continue to resolve.
+
 The repository includes a small two-language demo directly in `docs-sample/`: English pages stay at the docs root, and Dutch translations live in `docs-sample/nl/`.
 
 ## Themes

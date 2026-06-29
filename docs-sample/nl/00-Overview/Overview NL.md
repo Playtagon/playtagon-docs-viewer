@@ -14,6 +14,7 @@ image: ""
 logo: ""
 metrics: ""
 status: "done"
+translationKey: "00-Overview/Overview"
 ---
 # Docs Viewer Overzicht
 
@@ -25,7 +26,7 @@ Gebruik deze vault als veilige standaardbron om de viewer te testen voordat je h
 
 | Sectie | Doel |
 | --- | --- |
-| [[Project\|Project]] | Hoe de viewer werkt: source, index, runtime en UI |
+| [[Project NL\|Project NL]] | Hoe de viewer werkt: source, index, runtime en UI |
 | [[Deployment\|Deployment]] | Hoe je de viewer deployt |
 | [[Operations\|Operations]] | Hoe je docs bijwerkt, themes wisselt en veelvoorkomende problemen oplost |
 | [[Roadmap Sample\|Roadmap Sample]] | Gedateerde voorbeelditems voor de `#/roadmap` route |
@@ -42,7 +43,7 @@ De viewer vervangt Obsidian niet. Je vault blijft de authoring source of truth, 
 ## Gerelateerde pagina's
 
 - [[Project Architecture|Architecture]] - projectlagen en file-verantwoordelijkheden.
-- [[Project Multilingual Docs|Multilingual docs]] - optionele language folders en translation switching.
+- [[Project Multilingual Docs NL|Multilingual docs NL]] - optionele language folders en translation switching.
 - [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.
 - [[Deployment Static|Static deployment]] - het eenvoudigste publieke deployment-pad.
 - [[Deployment Node|Node deployment]] - deployment met auth en server endpoints.
@@ -53,9 +54,9 @@ De viewer vervangt Obsidian niet. Je vault blijft de authoring source of truth, 
 
 ## When changing this page, check
 
-- [[Project|Project]], if the architecture summary changes.
+- [[Project NL|Project NL]], if the architecture summary changes.
 - [[Deployment|Deployment]], if the run/deploy model changes.
 - [[Operations|Operations]], if the docs update process changes.
-- [[Project Multilingual Docs|Multilingual docs]], if language support changes.
+- [[Project Multilingual Docs NL|Multilingual docs NL]], if language support changes.
 - [[Project Themes|Themes]], if theme behavior changes.
 - [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.

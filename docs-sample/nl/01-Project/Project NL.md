@@ -14,6 +14,7 @@ image: ""
 logo: ""
 metrics: ""
 status: "done"
+translationKey: "01-Project/Project"
 ---
 # Project
 
@@ -48,7 +49,7 @@ markdown vault
 - [[Project Architecture|Architecture]] - lagen en verantwoordelijkheden.
 - [[Project Index Build|Index build]] - hoe markdown JSON wordt.
 - [[Project Runtime|Runtime]] - wat de browser UI en Node server doen.
-- [[Project Multilingual Docs|Multilingual docs]] - optionele language folders, translation pairs en language switching.
+- [[Project Multilingual Docs NL|Multilingual docs NL]] - optionele language folders, translation pairs en language switching.
 - [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.
 - [[Project Obsidian PlayMap|Obsidian Play Map]] - hoe de lokale Obsidian plugin in de workflow past.
 
@@ -57,6 +58,6 @@ markdown vault
 - [[Project Architecture|Architecture]], if layer boundaries change.
 - [[Project Index Build|Index build]], if the `vault-index.json` format changes.
 - [[Project Runtime|Runtime]], if server or browser behavior changes.
-- [[Project Multilingual Docs|Multilingual docs]], if language folder behavior changes.
+- [[Project Multilingual Docs NL|Multilingual docs NL]], if language folder behavior changes.
 - [[Project Themes|Themes]], if theme ownership or folder structure changes.
 - [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.

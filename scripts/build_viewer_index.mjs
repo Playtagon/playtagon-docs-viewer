@@ -486,8 +486,35 @@ function stripNumericPrefix(value) {
   return value.replace(/^\d+[\s._-]+/, "");
 }
 
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripLanguageSuffix(value, language) {
+  const text = String(value || "").trim();
+  const code = String(language || "").trim();
+  if (!I18N.enabled || !code) return text;
+  return text.replace(new RegExp(`[\\s_-]+${escapeRegExp(code)}$`, "i"), "").trim() || text;
+}
+
 function routePart(value) {
   return slugify(stripNumericPrefix(value));
+}
+
+function routePartForLanguage(value, language) {
+  return slugify(stripLanguageSuffix(stripNumericPrefix(value), language));
+}
+
+function routePartsForPath(relativePath, language) {
+  return relativePath
+    .replace(/\.(mdx?|MDX?)$/, "")
+    .split("/")
+    .map((part) => routePartForLanguage(part, language));
+}
+
+function pageSlugForPath(relativePath, language, isIndex) {
+  const parts = routePartsForPath(relativePath, language);
+  return (isIndex ? parts.slice(0, -1) : parts).join("/");
 }
 
 function displayName(value) {
@@ -585,16 +612,19 @@ function parseFrontmatter(raw) {
   return { frontmatter, body };
 }
 
-function extractHeadings(body) {
+function extractHeadings(body, language = "") {
   return body
     .split(/\r?\n/)
     .map((line) => line.match(/^(#{1,4})\s+(.+)$/))
     .filter(Boolean)
-    .map((match) => ({
-      level: match[1].length,
-      text: match[2].replace(/#+$/, "").trim(),
-      slug: slugify(match[2].replace(/#+$/, "").trim()),
-    }));
+    .map((match) => {
+      const text = stripLanguageSuffix(match[2].replace(/#+$/, "").trim(), language);
+      return {
+        level: match[1].length,
+        text,
+        slug: slugify(text),
+      };
+    });
 }
 
 function extractLinks(body) {
@@ -739,10 +769,10 @@ function buildTree(files, options = {}) {
   return root;
 }
 
-function isIndexFile(relativePath, frontmatterTitle) {
+function isIndexFile(relativePath, frontmatterTitle, language = "") {
   const parsed = path.posix.parse(relativePath);
   const folderName = stripNumericPrefix(path.posix.basename(parsed.dir || ""));
-  const baseName = stripNumericPrefix(parsed.name);
+  const baseName = stripLanguageSuffix(stripNumericPrefix(parsed.name), language);
   return parsed.name.toLowerCase() === "index" || slugify(baseName) === slugify(folderName) || slugify(frontmatterTitle) === slugify(folderName);
 }
 
@@ -950,10 +980,14 @@ for (const markdownFile of markdownFiles) {
   const raw = markdownFile.content.toString("utf8");
   const { frontmatter, body } = parseFrontmatter(raw);
   const languageInfo = pageLanguageInfo(relativePath, frontmatter);
-  const basename = path.posix.basename(relativePath, path.posix.extname(relativePath));
-  const title = frontmatter.title || stripNumericPrefix(basename);
-  const slug = relativePath.replace(/\.(mdx?|MDX?)$/, "").split("/").map(routePart).join("/");
-  const headings = extractHeadings(body);
+  const extname = path.posix.extname(relativePath);
+  const basename = path.posix.basename(relativePath, extname);
+  const rawTitle = frontmatter.title || stripNumericPrefix(basename);
+  const title = stripLanguageSuffix(rawTitle, languageInfo.language);
+  const displayFileName = `${stripLanguageSuffix(stripNumericPrefix(basename), languageInfo.language)}${extname}`;
+  const isIndex = isIndexFile(relativePath, title, languageInfo.language);
+  const slug = pageSlugForPath(relativePath, languageInfo.language, isIndex);
+  const headings = extractHeadings(body, languageInfo.language);
   const wikilinks = extractLinks(body);
   const page = {
     id: relativePath,
@@ -970,14 +1004,18 @@ for (const markdownFile of markdownFiles) {
     body,
     headings,
     wikilinks,
-    isIndex: isIndexFile(relativePath, title),
+    isIndex,
     folder: toPosix(path.dirname(relativePath)).replace(/^\.$/, ""),
     basename,
+    displayFileName,
   };
 
   pages.push(page);
   addPageAlias(page, basename);
   addPageAlias(page, title);
+  if (rawTitle !== title) {
+    addPageAlias(page, rawTitle);
+  }
 
   for (const alias of Array.isArray(frontmatter.aliases) ? frontmatter.aliases : []) {
     addPageAlias(page, alias);
@@ -1016,6 +1054,13 @@ for (const page of pages) {
     .map(routePart)
     .join("/");
   routeAliases[noNumericSlug] = page.slug;
+
+  const languageSuffixSlug = page.path
+    .replace(/\.(mdx?|MDX?)$/, "")
+    .split("/")
+    .map((part) => routePartForLanguage(part, page.language))
+    .join("/");
+  routeAliases[languageSuffixSlug] = page.slug;
 }
 
 for (const page of pages) {
