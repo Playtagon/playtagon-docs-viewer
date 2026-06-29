@@ -671,6 +671,14 @@ async function saveViewerConfig(config) {
   return response.json();
 }
 
+function isExternalHref(href) {
+  return /^(https?:)?\/\//i.test(String(href || "").trim());
+}
+
+function externalLinkAttrs(href) {
+  return isExternalHref(href) ? ' target="_blank" rel="noopener noreferrer"' : "";
+}
+
 function inlineMarkdown(value) {
   const currentPage = currentTreePage();
   return escapeHtml(value)
@@ -688,7 +696,7 @@ function inlineMarkdown(value) {
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
     .replace(/`([^`]+)`/g, "<code>$1</code>")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => `<a href="${href}"${externalLinkAttrs(href)}>${label}</a>`);
 }
 
 function resolveAssetPath(target) {
@@ -737,7 +745,7 @@ function renderCardsBlock(block) {
       const href = card[2].startsWith("/docs/")
         ? `#/${state.data.routeAliases?.[card[2].replace(/^\/docs\//, "")] || card[2].replace(/^\/docs\//, "")}`
         : card[2];
-      return `<a class="doc-card" href="${escapeHtml(href)}"><span class="doc-card-title">${escapeHtml(
+      return `<a class="doc-card" href="${escapeHtml(href)}"${externalLinkAttrs(href)}><span class="doc-card-title">${escapeHtml(
         card[1],
       )}</span><span class="doc-card-body">${inlineMarkdown(card[3].trim())}</span></a>`;
     })
