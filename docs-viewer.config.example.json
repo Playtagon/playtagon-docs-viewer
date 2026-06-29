@@ -6,6 +6,14 @@
     "active": "default",
     "directory": "themes"
   },
+  "i18n": {
+    "enabled": false,
+    "defaultLanguage": "en",
+    "languages": [
+      { "code": "en", "label": "English", "basePath": "/" },
+      { "code": "nl", "label": "Nederlands", "basePath": "/nl" }
+    ]
+  },
   "source": {
     "type": "local",
     "local": {

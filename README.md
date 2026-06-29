@@ -97,6 +97,14 @@ The local config is ignored by git so projects can keep private paths or reposit
     "active": "default",
     "directory": "themes"
   },
+  "i18n": {
+    "enabled": false,
+    "defaultLanguage": "en",
+    "languages": [
+      { "code": "en", "label": "English", "basePath": "/" },
+      { "code": "nl", "label": "Nederlands", "basePath": "/nl" }
+    ]
+  },
   "source": {
     "type": "local",
     "local": {
@@ -128,6 +136,8 @@ The local config is ignored by git so projects can keep private paths or reposit
 
 `theme.active` selects the theme JSON used during `build:index`. `theme.directory` is resolved in the viewer project root, so local, GitHub, static, Node, and Vercel builds all converge on the generated `viewer/data/vault-index.json`. If no matching theme exists, the built-in `default` theme is used.
 
+`i18n.enabled` turns on optional multilingual docs. When enabled, the default language can stay at the docs root and translated pages can live under mirrored language folders such as `nl/Project/Page.md`; matching paths become translations of each other.
+
 `source.github.path` is optional. Leave it empty to index markdown from the repository root, or set it to a subfolder when docs live below the root.
 
 `roadmap.includedFolders` is the explicit allowlist for pages shown at `#/roadmap`. Leave it empty to let the roadmap scan the full vault. `roadmap.excludedFolders` is applied after the allowlist, so it is useful for excluding archive or draft subfolders inside a broader included folder.
@@ -146,6 +156,9 @@ DOCS_VIEWER_GITHUB_PATH=
 DOCS_VIEWER_GITHUB_TOKEN=
 DOCS_VIEWER_THEME_ACTIVE=default
 DOCS_VIEWER_THEME_DIRECTORY=themes
+DOCS_VIEWER_I18N_ENABLED=false
+DOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en
+DOCS_VIEWER_I18N_LANGUAGES=en:English:/,nl:Nederlands:/nl
 DOCS_VIEWER_ROADMAP_INCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_EXCLUDED_FOLDERS=__empty__
 DOCS_VIEWER_ROADMAP_HIDE_UNDATED=false
@@ -155,6 +168,48 @@ DOCS_VIEWER_PLUGIN_ROADMAP_ENABLED=true
 `DOCS_VIEWER_GITHUB_TOKEN` is only needed for private GitHub sources. Use `__empty__` when an environment-backed list should intentionally be empty, for example an empty roadmap include list that scans the full vault.
 
 To customize the browser favicon, place `favicon.ico`, `favicon.png`, or `favicon.svg` anywhere in the indexed docs assets, for example `00 Assets/favicon.png`. The viewer will use it automatically after rebuilding the index.
+
+## Multilingual Docs
+
+Multilingual routing is optional and off by default. A single-language vault needs no `i18n` config and keeps the ordinary tree, aliases, search, and clean URLs.
+
+When `i18n.enabled` is `true`, you can keep the default language at the source root and add other languages in language folders:
+
+```text
+docs/
+├── Project/Overview.md
+└── nl/
+    └── Project/Overview.md
+```
+
+You can also put every language in a top-level language folder:
+
+```text
+docs/
+├── en/
+│   └── Project/Overview.md
+└── nl/
+    └── Project/Overview.md
+```
+
+The path after the language folder is the translation key. Root default-language pages use their root-relative path as the translation key. In both layouts above, matching paths become translations of each other. The build writes `translations`, `aliasesByLanguage`, and `treesByLanguage` into `viewer/data/vault-index.json`; the browser then shows a compact language selector only for configured multilingual docs.
+
+```json
+{
+  "i18n": {
+    "enabled": true,
+    "defaultLanguage": "en",
+    "languages": [
+      { "code": "en", "label": "English", "basePath": "/" },
+      { "code": "nl", "label": "Nederlands", "basePath": "/nl" }
+    ]
+  }
+}
+```
+
+Wikilinks resolve inside the current language first, then fall back to global aliases. If paths cannot mirror cleanly, set the same `translationKey` in frontmatter on each translated page.
+
+The repository includes a small two-language demo directly in `docs-sample/`: English pages stay at the docs root, and Dutch translations live in `docs-sample/nl/`.
 
 ## Themes
 

@@ -119,6 +119,11 @@ const DEFAULT_CONFIG = {
     active: "default",
     directory: DEFAULT_THEME_DIRECTORY,
   },
+  i18n: {
+    enabled: false,
+    defaultLanguage: "en",
+    languages: [],
+  },
   source: {
     type: "local",
     local: { path: "docs-sample" },
@@ -193,6 +198,21 @@ function envBoolean(key) {
   return ["1", "true", "yes", "on"].includes(value.toLowerCase());
 }
 
+function envLanguages(key) {
+  const raw = envValue(key);
+  if (!raw) return undefined;
+  if (raw.startsWith("[")) {
+    return JSON.parse(raw);
+  }
+  return raw
+    .split(",")
+    .map((item) => {
+      const [code, label, basePath] = item.split(":").map((part) => part?.trim() || "");
+      return code ? { code, label: label || code, basePath } : null;
+    })
+    .filter(Boolean);
+}
+
 function applyEnvOverrides(inputConfig) {
   const next = JSON.parse(JSON.stringify(inputConfig || DEFAULT_CONFIG));
 
@@ -255,6 +275,16 @@ function applyEnvOverrides(inputConfig) {
     if (themeDirectory) next.theme.directory = themeDirectory;
   }
 
+  const i18nEnabled = envBoolean("DOCS_VIEWER_I18N_ENABLED");
+  const i18nDefaultLanguage = envValue("DOCS_VIEWER_I18N_DEFAULT_LANGUAGE");
+  const i18nLanguages = envLanguages("DOCS_VIEWER_I18N_LANGUAGES");
+  if (i18nEnabled !== undefined || i18nDefaultLanguage || i18nLanguages) {
+    next.i18n ||= {};
+    if (i18nEnabled !== undefined) next.i18n.enabled = i18nEnabled;
+    if (i18nDefaultLanguage) next.i18n.defaultLanguage = i18nDefaultLanguage;
+    if (i18nLanguages) next.i18n.languages = i18nLanguages;
+  }
+
   const ignoredFolders = envList("DOCS_VIEWER_IGNORED_FOLDERS");
   if (ignoredFolders) {
     next.ignoredFolders = ignoredFolders;
@@ -284,6 +314,62 @@ function normalizeFolderList(value) {
   return (Array.isArray(value) ? value : [])
     .map((item) => String(item || "").replace(/^\/+|\/+$/g, ""))
     .filter(Boolean);
+}
+
+function boolValue(value, fallback = false) {
+  if (value === undefined || value === null || value === "") return fallback;
+  if (typeof value === "boolean") return value;
+  return ["1", "true", "yes", "on"].includes(String(value).toLowerCase());
+}
+
+function normalizeLanguageConfig(inputConfig) {
+  const raw = inputConfig?.i18n || {};
+  const defaultLanguage = String(raw.defaultLanguage || DEFAULT_CONFIG.i18n.defaultLanguage).trim() || DEFAULT_CONFIG.i18n.defaultLanguage;
+  const languages = Array.isArray(raw.languages)
+    ? raw.languages
+        .map((language) => {
+          const code = String(language.code || "").trim();
+          const basePath = String(language.basePath ?? "").trim().replace(/\/$/, "");
+          return {
+            code,
+            label: String(language.label || code).trim(),
+            basePath: basePath || (code === defaultLanguage ? "/" : `/${code}`),
+          };
+        })
+        .filter((language) => language.code)
+    : [];
+
+  if (!languages.some((language) => language.code === defaultLanguage)) {
+    languages.unshift({
+      code: defaultLanguage,
+      label: defaultLanguage,
+      basePath: raw.defaultBasePath || "/",
+    });
+  }
+
+  return {
+    enabled: boolValue(raw.enabled, false),
+    defaultLanguage,
+    languages,
+    codes: new Set(languages.map((language) => language.code)),
+  };
+}
+
+const I18N = normalizeLanguageConfig(config);
+
+function pageLanguageInfo(relativePath, frontmatter) {
+  const parts = relativePath.split("/");
+  const detectedLanguage = I18N.enabled && I18N.codes.has(parts[0]) ? parts[0] : "";
+  const language = String(frontmatter.language || detectedLanguage || I18N.defaultLanguage).trim();
+  const pathWithoutLanguage = detectedLanguage ? parts.slice(1).join("/") : relativePath;
+  const translationKey = String(frontmatter.translationKey || pathWithoutLanguage.replace(/\.(mdx?|MDX?)$/, "")).trim();
+
+  return {
+    language,
+    detectedLanguage,
+    pathWithoutLanguage,
+    translationKey,
+  };
 }
 
 function normalizeThemeDirectory(value) {
@@ -609,12 +695,14 @@ async function copyViewerPlugins() {
   return copied;
 }
 
-function buildTree(files) {
+function buildTree(files, options = {}) {
+  const pathField = options.pathField || "path";
   const root = { name: "docs", path: "", children: [], pages: [] };
   const byPath = new Map([["", root]]);
 
   for (const file of files) {
-    const parts = file.path.split("/");
+    const treePath = file[pathField] || file.path;
+    const parts = treePath.split("/");
     const fileName = parts.pop();
     let current = root;
     let currentPath = "";
@@ -828,7 +916,18 @@ const assetFiles = sourceFiles
   .sort((a, b) => a.path.localeCompare(b.path));
 const pages = [];
 const aliases = new Map();
+const aliasesByLanguage = {};
 const assets = {};
+
+function addPageAlias(page, alias) {
+  const key = String(alias || "").trim().toLowerCase();
+  if (!key) return;
+  aliasesByLanguage[page.language] ||= {};
+  aliasesByLanguage[page.language][key] = page.slug;
+  if (!aliases.has(key)) {
+    aliases.set(key, page.slug);
+  }
+}
 
 for (const assetFile of assetFiles) {
   const relativePath = assetFile.path;
@@ -850,6 +949,7 @@ for (const markdownFile of markdownFiles) {
   const relativePath = markdownFile.path;
   const raw = markdownFile.content.toString("utf8");
   const { frontmatter, body } = parseFrontmatter(raw);
+  const languageInfo = pageLanguageInfo(relativePath, frontmatter);
   const basename = path.posix.basename(relativePath, path.posix.extname(relativePath));
   const title = frontmatter.title || stripNumericPrefix(basename);
   const slug = relativePath.replace(/\.(mdx?|MDX?)$/, "").split("/").map(routePart).join("/");
@@ -861,6 +961,11 @@ for (const markdownFile of markdownFiles) {
     slug,
     title,
     description: frontmatter.description || "",
+    language: languageInfo.language,
+    detectedLanguage: languageInfo.detectedLanguage,
+    pathWithoutLanguage: languageInfo.pathWithoutLanguage,
+    translationKey: languageInfo.translationKey,
+    translations: {},
     frontmatter,
     body,
     headings,
@@ -871,16 +976,35 @@ for (const markdownFile of markdownFiles) {
   };
 
   pages.push(page);
-  aliases.set(basename.toLowerCase(), page.slug);
-  aliases.set(title.toLowerCase(), page.slug);
+  addPageAlias(page, basename);
+  addPageAlias(page, title);
 
   for (const alias of Array.isArray(frontmatter.aliases) ? frontmatter.aliases : []) {
-    aliases.set(String(alias).toLowerCase(), page.slug);
+    addPageAlias(page, alias);
   }
 }
 
 const pageBySlug = new Map(pages.map((page) => [page.slug, page]));
 const routeAliases = {};
+const translationGroups = new Map();
+
+for (const page of pages) {
+  if (!I18N.enabled || !page.translationKey) continue;
+  const group = translationGroups.get(page.translationKey) || [];
+  group.push(page);
+  translationGroups.set(page.translationKey, group);
+}
+
+for (const groupPages of translationGroups.values()) {
+  const byLanguage = Object.fromEntries(
+    groupPages
+      .sort((a, b) => a.language.localeCompare(b.language))
+      .map((page) => [page.language, page.slug]),
+  );
+  for (const page of groupPages) {
+    page.translations = byLanguage;
+  }
+}
 
 for (const page of pages) {
   const legacyNumericSlug = page.path.replace(/\.(mdx?|MDX?)$/, "").split("/").map(slugify).join("/");
@@ -912,7 +1036,8 @@ const backlinks = {};
 
 for (const page of pages) {
   resolvedLinks[page.slug] = page.wikilinks.map((link) => {
-    const targetSlug = aliases.get(link.target.toLowerCase()) || "";
+    const targetKey = link.target.toLowerCase();
+    const targetSlug = aliasesByLanguage[page.language]?.[targetKey] || aliases.get(targetKey) || "";
     if (targetSlug) {
       backlinks[targetSlug] ||= [];
       backlinks[targetSlug].push({ slug: page.slug, title: page.title });
@@ -928,6 +1053,11 @@ const index = {
   },
   theme: resolvedTheme.theme,
   themes: resolvedTheme.meta,
+  i18n: {
+    enabled: I18N.enabled,
+    defaultLanguage: I18N.defaultLanguage,
+    languages: I18N.enabled ? I18N.languages : [],
+  },
   source: config.source?.type === "github"
     ? {
         type: "github",
@@ -955,7 +1085,19 @@ const index = {
   },
   pages,
   tree: buildTree(pages),
+  treesByLanguage: I18N.enabled
+    ? Object.fromEntries(
+        I18N.languages.map((language) => [
+          language.code,
+          buildTree(
+            pages.filter((page) => page.language === language.code),
+            { pathField: "pathWithoutLanguage" },
+          ),
+        ]),
+      )
+    : {},
   aliases: Object.fromEntries([...aliases.entries()].sort()),
+  aliasesByLanguage,
   routeAliases,
   assets,
   resolvedLinks,

@@ -31,6 +31,7 @@ The runtime has two parts: the browser UI in `viewer/` and the optional Node ser
 - backlinks;
 - page table of contents from `##` through `####` headings;
 - theme variables from the built index;
+- optional language switching from built i18n metadata;
 - enabled plugin routes such as `#/roadmap`.
 
 The right-side `On this page` navigation is runtime UI, not authored content. It highlights the active heading while scrolling and uses a sticky topbar-aware offset for heading links.
@@ -48,6 +49,12 @@ The built index also includes available themes for local preview. A user can pre
 ```
 
 Preview is browser-local. Publishing a theme for everyone still requires changing config or environment variables and rebuilding the index. See [[Project Themes|Themes]] and [[Operations Themes|Theme operations]].
+
+## Languages at runtime
+
+When multilingual docs are enabled, the browser uses `treesByLanguage` so language folders do not appear as ordinary navigation sections. The language selector switches between translated pages from `page.translations`.
+
+Single-language deployments do not need this configuration and do not show the language selector. See [[Project Multilingual Docs|Multilingual docs]].
 
 ## Viewer plugins
 
@@ -104,5 +111,6 @@ If the docs are public and do not need server endpoints, deploy only the `viewer
 - [[Deployment Node|Node deployment]], if server startup changes.
 - [[Deployment Auth|Auth deployment]], if auth changes.
 - [[Project Themes|Themes]], if theme runtime application changes.
+- [[Project Multilingual Docs|Multilingual docs]], if language switching changes.
 - [[Operations Themes|Theme operations]], if preview or rebuild behavior changes.
 - [[Project Architecture|Architecture]], if browser/server boundaries change.

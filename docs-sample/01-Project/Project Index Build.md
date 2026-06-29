@@ -55,12 +55,17 @@ node scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json
 - copied assets.
 - active theme;
 - available theme catalog.
+- optional i18n language metadata and translation pairs.
 
 ## Themes in the build
 
 The build reads theme JSON files from `theme.directory`, selects `theme.active`, and writes the resolved theme into `viewer/data/vault-index.json`.
 
 The index also includes a catalog of available themes so the browser can preview bundled themes without another rebuild. See [[Project Themes|Themes]] for token groups and fallback behavior.
+
+## Multilingual data
+
+When `i18n.enabled` is `true`, the build detects configured language folders, stores each page language, builds `treesByLanguage`, and connects mirrored paths through `page.translations`. See [[Project Multilingual Docs|Multilingual docs]].
 
 ## Useful markdown conventions
 
@@ -73,6 +78,7 @@ The index also includes a catalog of available themes so the browser can preview
 
 - [[Project Runtime|Runtime]], if the UI data shape changes.
 - [[Project Themes|Themes]], if theme data or fallback behavior changes.
+- [[Project Multilingual Docs|Multilingual docs]], if language metadata changes.
 - [[Operations Update Docs|Update docs]], if the build command changes.
 - [[Operations Themes|Theme operations]], if the rebuild workflow for themes changes.
 - [[Operations Troubleshooting|Troubleshooting]], if new common errors appear.
