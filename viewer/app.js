@@ -117,6 +117,7 @@ const els = {
   refreshDocs: document.querySelector("#refreshDocs"),
   authStatus: document.querySelector("#authStatus"),
   languageSwitcher: document.querySelector("#languageSwitcher"),
+  languageCurrent: document.querySelector("#languageCurrent"),
   languageSelect: document.querySelector("#languageSelect"),
   themePreview: document.querySelector("#themePreview"),
   themePreviewSelect: document.querySelector("#themePreviewSelect"),
@@ -145,8 +146,19 @@ function stripNumericPrefix(value) {
   return String(value || "").replace(/^\d+[\s._-]+/, "");
 }
 
-function breadcrumbLabel(value) {
-  return stripNumericPrefix(value).replace(/[-_]+/g, " ").trim();
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripLanguageSuffix(value, language) {
+  const text = String(value || "").trim();
+  const code = String(language || "").trim();
+  if (!i18nEnabled() || !code) return text;
+  return text.replace(new RegExp(`[\\s_-]+${escapeRegExp(code)}$`, "i"), "").trim() || text;
+}
+
+function breadcrumbLabel(value, language = "") {
+  return stripLanguageSuffix(stripNumericPrefix(value).replace(/[-_]+/g, " ").trim(), language);
 }
 
 function pageHref(slug) {
@@ -442,7 +454,8 @@ function renderSourceMeta(page) {
   const sourcePath = sourcePathForPage(page);
   const href = sourceHrefForPage(page);
   const label = `Source: ${sourcePath}`;
-  const displayName = state.data?.source?.type === "github" ? "Source" : page.fileName || page.path.split("/").pop() || "Source";
+  const fileName = page.displayFileName || page.fileName || page.path.split("/").pop();
+  const displayName = state.data?.source?.type === "github" ? "Source" : fileName || "Source";
   const content = `${icon("external-link")}<span>${escapeHtml(displayName)}</span>`;
   return href
     ? `<a class="source-link" href="${escapeHtml(href)}" target="_blank" rel="noreferrer" title="${escapeHtml(label)}">${content}</a>`
@@ -496,7 +509,7 @@ function renderBreadcrumbs(page) {
     const folderPage = pageForFolderPath(currentPath, page.language);
     const isCurrentFolderIndex = page.isIndex && folderPage?.slug === page.slug;
     items.push({
-      label: breadcrumbLabel(part),
+      label: breadcrumbLabel(part, page.language),
       href: folderPage && folderPage.slug !== page.slug ? pageHref(folderPage.slug) : "",
       current: isCurrentFolderIndex,
     });
@@ -664,10 +677,10 @@ function inlineMarkdown(value) {
     .replace(/\[\[([^\]|#]+)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g, (_, target, heading, label) => {
       const cleanTarget = String(target).replace(/\\+$/, "").trim();
       const cleanHeading = heading ? String(heading).replace(/\\+$/, "").trim() : "";
-      const cleanLabel = label?.trim() || cleanTarget;
+      const cleanLabel = stripLanguageSuffix(label?.trim() || cleanTarget, currentPage?.language);
       const key = cleanTarget.toLowerCase();
       const slug = state.data.aliasesByLanguage?.[currentPage?.language]?.[key] || state.data.aliases[key];
-      const hash = cleanHeading ? `#${slugify(cleanHeading)}` : "";
+      const hash = cleanHeading ? `#${slugify(stripLanguageSuffix(cleanHeading, currentPage?.language))}` : "";
       return slug
         ? `<a href="${pageHref(slug)}${hash}">${escapeHtml(cleanLabel)}</a>`
         : `<span title="Missing page" class="missing-link">${escapeHtml(cleanLabel)}</span>`;
@@ -901,7 +914,7 @@ function renderMarkdown(raw) {
       flushList();
       flushQuote();
       const level = heading[1].length;
-      const text = heading[2].replace(/#+$/, "").trim();
+      const text = stripLanguageSuffix(heading[2].replace(/#+$/, "").trim(), currentTreePage()?.language);
       blocks.push(`<h${level} id="${slugify(text)}">${inlineMarkdown(text)}</h${level}>`);
       continue;
     }
@@ -1024,12 +1037,18 @@ function renderLanguageSwitcher(page) {
   const languages = configuredLanguages();
   if (!page || languages.length <= 1) {
     els.languageSwitcher.hidden = true;
+    if (els.languageCurrent) els.languageCurrent.textContent = "";
     els.languageSelect.innerHTML = "";
     return;
   }
 
   const translations = page.translations || {};
   els.languageSwitcher.hidden = false;
+  if (els.languageCurrent) {
+    const currentLanguage = languages.find((language) => language.code === page.language);
+    const currentLabel = currentLanguage?.code || currentLanguage?.label || page.language || "";
+    els.languageCurrent.textContent = String(currentLabel).slice(0, 2).toUpperCase();
+  }
   els.languageSelect.dataset.currentLanguage = page.language || "";
   els.languageSelect.innerHTML = languages
     .map((language) => {
@@ -1079,13 +1098,13 @@ function renderBacklinks(page) {
     .join("")}</div></aside>`;
 }
 
-function pageTocItems(body) {
-  return String(body || "")
+function pageTocItems(page) {
+  return String(page?.body || "")
     .split(/\r?\n/)
     .map((line) => line.match(/^(#{2,4})\s+(.+)$/))
     .filter(Boolean)
     .map((heading) => {
-      const text = heading[2].replace(/#+$/, "").trim();
+      const text = stripLanguageSuffix(heading[2].replace(/#+$/, "").trim(), page?.language);
       return {
         id: slugify(text),
         level: heading[1].length,
@@ -1095,7 +1114,7 @@ function pageTocItems(body) {
 }
 
 function renderPageToc(page) {
-  const items = pageTocItems(page.body);
+  const items = pageTocItems(page);
   if (!items.length) return "";
   return `<aside class="page-toc" aria-label="Table of contents">
     <div class="page-toc-title">On this page</div>
@@ -1177,7 +1196,7 @@ function renderPage(page) {
   state.route = page.slug;
   state.currentPageSlug = page.slug;
   expandFolderPath(treeFolderPathForPage(page));
-  els.content.className = `content ${pageTocItems(page.body).length ? "has-toc" : ""}`;
+  els.content.className = `content ${pageTocItems(page).length ? "has-toc" : ""}`;
   els.breadcrumbs.outerHTML = renderBreadcrumbs(page);
   els.breadcrumbs = document.querySelector("#breadcrumbs");
   renderLanguageSwitcher(page);

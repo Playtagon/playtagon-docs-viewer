@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T11:12:02.385Z",
+  "generatedAt": "2026-06-29T13:23:13.750Z",
   "app": {
     "title": "Docs Viewer"
   },
@@ -1324,7 +1324,7 @@
     {
       "id": "00-Overview/Overview.md",
       "path": "00-Overview/Overview.md",
-      "slug": "overview/overview",
+      "slug": "overview",
       "title": "Docs Viewer Overview",
       "description": "A compact sample vault for testing docs structure, wikilinks, roadmap fields, and deployment flows.",
       "language": "en",
@@ -1332,8 +1332,8 @@
       "pathWithoutLanguage": "00-Overview/Overview.md",
       "translationKey": "00-Overview/Overview",
       "translations": {
-        "en": "overview/overview",
-        "nl": "nl/overview/overview"
+        "en": "overview",
+        "nl": "nl/overview"
       },
       "frontmatter": {
         "title": "Docs Viewer Overview",
@@ -1352,7 +1352,8 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "00-Overview/Overview"
       },
       "body": "# Docs Viewer Overview\n\n`docs-sample` is a small documentation vault that shows how to organize a project with folders, index pages, feature pages, frontmatter, and Obsidian-style wikilinks.\n\nUse it as a safe default source for trying the viewer before pointing the project at a real docs vault.\n\n## Quick map\n\n| Section | Purpose |\n| --- | --- |\n| [[Project\\|Project]] | How the viewer works: source, index, runtime, and UI |\n| [[Deployment\\|Deployment]] | How to deploy the viewer |\n| [[Operations\\|Operations]] | How to update docs, switch themes, and handle common issues |\n| [[Roadmap Sample\\|Roadmap Sample]] | Dated sample items for the `#/roadmap` route |\n| [[Project Obsidian PlayMap\\|Obsidian Play Map]] | Local Obsidian companion plugin for editing roadmap data |\n\n## Core idea\n\nThe viewer does not replace Obsidian. Your vault remains the authoring source of truth, while the web viewer becomes a read-only runtime:\n\n1. Markdown files live in a vault.\n2. `npm run build:index` generates `viewer/data/vault-index.json`.\n3. `viewer/` is served as static files or through the optional Node server.\n\n## Related pages\n\n- [[Project Architecture|Architecture]] - project layers and file responsibilities.\n- [[Project Multilingual Docs|Multilingual docs]] - optional language folders and translation switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview, and fallback behavior.\n- [[Deployment Static|Static deployment]] - the simplest public deployment path.\n- [[Deployment Node|Node deployment]] - deployment with auth and server endpoints.\n- [[Operations Update Docs|Update docs]] - how to refresh the index after markdown changes.\n- [[Operations Themes|Theme operations]] - how to add, preview, switch, and publish themes.\n- [[Roadmap Sample|Roadmap Sample]] - sample roadmap items spanning May-December 2026.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - how local Obsidian editing connects to the web viewer.\n\n## When changing this page, check\n\n- [[Project|Project]], if the architecture summary changes.\n- [[Deployment|Deployment]], if the run/deploy model changes.\n- [[Operations|Operations]], if the docs update process changes.\n- [[Project Multilingual Docs|Multilingual docs]], if language support changes.\n- [[Project Themes|Themes]], if theme behavior changes.\n- [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.\n",
       "headings": [
@@ -1486,7 +1487,8 @@
       ],
       "isIndex": true,
       "folder": "00-Overview",
-      "basename": "Overview"
+      "basename": "Overview",
+      "displayFileName": "Overview.md"
     },
     {
       "id": "01-Project/Project Architecture.md",
@@ -1582,7 +1584,8 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Architecture"
+      "basename": "Project Architecture",
+      "displayFileName": "Project Architecture.md"
     },
     {
       "id": "01-Project/Project Index Build.md",
@@ -1708,7 +1711,8 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Index Build"
+      "basename": "Project Index Build",
+      "displayFileName": "Project Index Build.md"
     },
     {
       "id": "01-Project/Project Multilingual Docs.md",
@@ -1742,9 +1746,10 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "01-Project/Project Multilingual Docs"
       },
-      "body": "# Multilingual Docs\n\nDocs Viewer can run as a single-language viewer or as a multilingual viewer.\n\nThe feature is optional. When `i18n.enabled` is `false`, the viewer keeps the ordinary page tree, aliases, search, wikilinks, and routes.\n\n## Configuration\n\nEnable multilingual docs in `docs-viewer.config.json`:\n\n```json\n{\n  \"i18n\": {\n    \"enabled\": true,\n    \"defaultLanguage\": \"en\",\n    \"languages\": [\n      { \"code\": \"en\", \"label\": \"English\", \"basePath\": \"/\" },\n      { \"code\": \"nl\", \"label\": \"Nederlands\", \"basePath\": \"/nl\" }\n    ]\n  }\n}\n```\n\nHosted builds can use environment variables:\n\n```env\nDOCS_VIEWER_I18N_ENABLED=true\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en\nDOCS_VIEWER_I18N_LANGUAGES=en:English:/,nl:Nederlands:/nl\n```\n\n## Folder model\n\nThere are two supported layouts.\n\nMigration-friendly layout keeps the default language at the source root and puts additional languages in language folders:\n\n```text\ndocs/\n├── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nIn this layout, `Project/Overview.md` is treated as `defaultLanguage`, and `nl/Project/Overview.md` is treated as the Dutch translation.\n\nStrict language-folder layout puts every language under a language folder:\n\n```text\ndocs/\n├── en/\n│   └── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nThe path after the language folder becomes the translation key. Root default-language pages use their root-relative path as the translation key. In both examples, the translated pages share `Project/Overview`.\n\nIf translated files cannot use mirrored paths, set the same `translationKey` in frontmatter on each translated page.\n\n## Demo source\n\nThe repository includes a small two-language demo directly in `docs-sample/`:\n\n```text\ndocs-sample/\n├── 00-Overview/\n│   └── Overview.md\n├── 01-Project/\n│   └── Project Multilingual Docs.md\n└── nl/\n    ├── 00-Overview/\n    │   └── Overview.md\n    └── 01-Project/\n        └── Project Multilingual Docs.md\n```\n\nRun it locally with:\n\n```bash\nDOCS_VIEWER_I18N_ENABLED=true \\\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en \\\nDOCS_VIEWER_I18N_LANGUAGES='en:English:/,nl:Nederlands:/nl' \\\nnode scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json\n\nPORT=8790 npm run dev\n```\n\nThen open `/overview/overview` or `/nl/overview/overview` and use the language selector.\n\n## Build output\n\nWhen i18n is enabled, `npm run build:index` writes:\n\n- `page.language`;\n- `page.pathWithoutLanguage`;\n- `page.translationKey`;\n- `page.translations`;\n- `aliasesByLanguage`;\n- `treesByLanguage`;\n- `i18n` config metadata.\n\nWikilinks resolve inside the current language first, then fall back to global aliases.\n\n## Runtime behavior\n\nThe browser runtime uses the current page language to:\n\n- render the sidebar without exposing language folders as ordinary nav sections;\n- resolve wikilinks in the current language first;\n- show a compact language selector when multiple configured languages exist;\n- switch to the translated page when that translation exists.\n\nPages without a translation keep unavailable language options disabled.\n\n## When changing this page, check\n\n- [[Project Index Build|Index build]], if indexed i18n fields change.\n- [[Project Runtime|Runtime]], if language switching or language-specific navigation changes.\n- [[Operations Update Docs|Update docs]], if the multilingual publishing flow changes.\n",
+      "body": "# Multilingual Docs\n\nDocs Viewer can run as a single-language viewer or as a multilingual viewer.\n\nThe feature is optional. When `i18n.enabled` is `false`, the viewer keeps the ordinary page tree, aliases, search, wikilinks, and routes.\n\n## Configuration\n\nEnable multilingual docs in `docs-viewer.config.json`:\n\n```json\n{\n  \"i18n\": {\n    \"enabled\": true,\n    \"defaultLanguage\": \"en\",\n    \"languages\": [\n      { \"code\": \"en\", \"label\": \"English\", \"basePath\": \"/\" },\n      { \"code\": \"nl\", \"label\": \"Nederlands\", \"basePath\": \"/nl\" }\n    ]\n  }\n}\n```\n\nHosted builds can use environment variables:\n\n```env\nDOCS_VIEWER_I18N_ENABLED=true\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en\nDOCS_VIEWER_I18N_LANGUAGES=en:English:/,nl:Nederlands:/nl\n```\n\n## Folder model\n\nThere are two supported layouts.\n\nMigration-friendly layout keeps the default language at the source root and puts additional languages in language folders:\n\n```text\ndocs/\n├── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nIn this layout, `Project/Overview.md` is treated as `defaultLanguage`, and `nl/Project/Overview.md` is treated as the Dutch translation.\n\nStrict language-folder layout puts every language under a language folder:\n\n```text\ndocs/\n├── en/\n│   └── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nThe path after the language folder becomes the translation key. Root default-language pages use their root-relative path as the translation key. In both examples, the translated pages share `Project/Overview`.\n\nIf translated files cannot use mirrored paths, set the same `translationKey` in frontmatter on each translated page.\n\n## Demo source\n\nThe repository includes a small two-language demo directly in `docs-sample/`:\n\n```text\ndocs-sample/\n├── 00-Overview/\n│   └── Overview.md\n├── 01-Project/\n│   ├── Project.md\n│   └── Project Multilingual Docs.md\n└── nl/\n    ├── 00-Overview/\n    │   └── Overview NL.md\n    └── 01-Project/\n        ├── Project NL.md\n        └── Project Multilingual Docs NL.md\n```\n\nThe `NL` suffix is intentionally technical. It keeps Obsidian page names unique when English and Dutch files share the same human title. Docs Viewer strips a trailing language code that matches the current page language from navigation, breadcrumbs, headings, wikilink labels, and fallback file labels.\n\nBecause the translated filenames do not have to match, these sample pages use matching frontmatter keys:\n\n```yaml\ntranslationKey: \"01-Project/Project Multilingual Docs\"\n```\n\nRun it locally with:\n\n```bash\nDOCS_VIEWER_I18N_ENABLED=true \\\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en \\\nDOCS_VIEWER_I18N_LANGUAGES='en:English:/,nl:Nederlands:/nl' \\\nnode scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json\n\nPORT=8790 npm run dev\n```\n\nThen open `/overview` or `/nl/overview` and use the language selector.\n\n## Build output\n\nWhen i18n is enabled, `npm run build:index` writes:\n\n- `page.language`;\n- `page.pathWithoutLanguage`;\n- `page.translationKey`;\n- `page.translations`;\n- `aliasesByLanguage`;\n- `treesByLanguage`;\n- `i18n` config metadata.\n\nWikilinks resolve inside the current language first, then fall back to global aliases.\n\n## Runtime behavior\n\nThe browser runtime uses the current page language to:\n\n- render the sidebar without exposing language folders as ordinary nav sections;\n- resolve wikilinks in the current language first;\n- show a compact language selector when multiple configured languages exist;\n- switch to the translated page when that translation exists.\n\nPages without a translation keep unavailable language options disabled.\n\n## When changing this page, check\n\n- [[Project Index Build|Index build]], if indexed i18n fields change.\n- [[Project Runtime|Runtime]], if language switching or language-specific navigation changes.\n- [[Operations Update Docs|Update docs]], if the multilingual publishing flow changes.\n",
       "headings": [
         {
           "level": 1,
@@ -1801,7 +1806,8 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Multilingual Docs"
+      "basename": "Project Multilingual Docs",
+      "displayFileName": "Project Multilingual Docs.md"
     },
     {
       "id": "01-Project/Project Obsidian PlayMap.md",
@@ -1884,7 +1890,8 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Obsidian PlayMap"
+      "basename": "Project Obsidian PlayMap",
+      "displayFileName": "Project Obsidian PlayMap.md"
     },
     {
       "id": "01-Project/Project Runtime.md",
@@ -2021,7 +2028,8 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Runtime"
+      "basename": "Project Runtime",
+      "displayFileName": "Project Runtime.md"
     },
     {
       "id": "01-Project/Project Themes.md",
@@ -2128,12 +2136,13 @@
       ],
       "isIndex": false,
       "folder": "01-Project",
-      "basename": "Project Themes"
+      "basename": "Project Themes",
+      "displayFileName": "Project Themes.md"
     },
     {
       "id": "01-Project/Project.md",
       "path": "01-Project/Project.md",
-      "slug": "project/project",
+      "slug": "project",
       "title": "Project",
       "description": "How the docs viewer works.",
       "language": "en",
@@ -2141,8 +2150,8 @@
       "pathWithoutLanguage": "01-Project/Project.md",
       "translationKey": "01-Project/Project",
       "translations": {
-        "en": "project/project",
-        "nl": "nl/project/project"
+        "en": "project",
+        "nl": "nl/project"
       },
       "frontmatter": {
         "title": "Project",
@@ -2161,7 +2170,8 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "01-Project/Project"
       },
       "body": "# Project\n\nDocs Viewer is a lightweight web client for Obsidian-style documentation. It reads a markdown vault, builds a JSON index, and renders docs in the browser without a heavy frontend framework.\n\n## Project parts\n\n| Part | Path | Role |\n| --- | --- | --- |\n| Source vault | `docs-sample/` or your own vault | Markdown files, frontmatter, wikilinks, and assets |\n| Build script | `scripts/build_viewer_index.mjs` | Builds pages, links, aliases, backlinks, and folder tree |\n| Runtime server | `scripts/dev_server.mjs` | Serves the viewer, auth, and server endpoints |\n| Static viewer | `viewer/` | HTML, CSS, JS, and `data/vault-index.json` |\n| Themes | `themes/` | JSON theme files used by the build and runtime |\n| Viewer plugins | `plugins/` | Source files for viewer extensions such as Roadmap |\n| Obsidian plugins | `plugins-obsidian/` | Catalog for local Obsidian companion plugins |\n| Play Map | `plugins-obsidian/playmap/` | Obsidian roadmap plugin folder users can copy into a vault |\n| Config | `docs-viewer.config.json` | Selects the source and ignored folders |\n\n## Main flow\n\n```text\nmarkdown vault\n  -> scripts/build_viewer_index.mjs\n  -> viewer/data/vault-index.json\n  -> viewer/app.js\n  -> browser UI\n```\n\n## Sections\n\n- [[Project Architecture|Architecture]] - layers and responsibilities.\n- [[Project Index Build|Index build]] - how markdown becomes JSON.\n- [[Project Runtime|Runtime]] - what the browser UI and Node server do.\n- [[Project Multilingual Docs|Multilingual docs]] - optional language folders, translation pairs, and language switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview, and fallback behavior.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - how the local Obsidian plugin fits into the workflow.\n\n## When changing this page, check\n\n- [[Project Architecture|Architecture]], if layer boundaries change.\n- [[Project Index Build|Index build]], if the `vault-index.json` format changes.\n- [[Project Runtime|Runtime]], if server or browser behavior changes.\n- [[Project Multilingual Docs|Multilingual docs]], if language folder behavior changes.\n- [[Project Themes|Themes]], if theme ownership or folder structure changes.\n- [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.\n",
       "headings": [
@@ -2255,7 +2265,8 @@
       ],
       "isIndex": true,
       "folder": "01-Project",
-      "basename": "Project"
+      "basename": "Project",
+      "displayFileName": "Project.md"
     },
     {
       "id": "02-Deployment/Deployment Auth.md",
@@ -2357,7 +2368,8 @@
       ],
       "isIndex": false,
       "folder": "02-Deployment",
-      "basename": "Deployment Auth"
+      "basename": "Deployment Auth",
+      "displayFileName": "Deployment Auth.md"
     },
     {
       "id": "02-Deployment/Deployment Node.md",
@@ -2458,7 +2470,8 @@
       ],
       "isIndex": false,
       "folder": "02-Deployment",
-      "basename": "Deployment Node"
+      "basename": "Deployment Node",
+      "displayFileName": "Deployment Node.md"
     },
     {
       "id": "02-Deployment/Deployment Static.md",
@@ -2559,12 +2572,13 @@
       ],
       "isIndex": false,
       "folder": "02-Deployment",
-      "basename": "Deployment Static"
+      "basename": "Deployment Static",
+      "displayFileName": "Deployment Static.md"
     },
     {
       "id": "02-Deployment/Deployment.md",
       "path": "02-Deployment/Deployment.md",
-      "slug": "deployment/deployment",
+      "slug": "deployment",
       "title": "Deployment",
       "description": "Deployment options for Docs Viewer.",
       "language": "en",
@@ -2572,7 +2586,7 @@
       "pathWithoutLanguage": "02-Deployment/Deployment.md",
       "translationKey": "02-Deployment/Deployment",
       "translations": {
-        "en": "deployment/deployment"
+        "en": "deployment"
       },
       "frontmatter": {
         "title": "Deployment",
@@ -2685,7 +2699,8 @@
       ],
       "isIndex": true,
       "folder": "02-Deployment",
-      "basename": "Deployment"
+      "basename": "Deployment",
+      "displayFileName": "Deployment.md"
     },
     {
       "id": "03-Operations/Operations Themes.md",
@@ -2792,7 +2807,8 @@
       ],
       "isIndex": false,
       "folder": "03-Operations",
-      "basename": "Operations Themes"
+      "basename": "Operations Themes",
+      "displayFileName": "Operations Themes.md"
     },
     {
       "id": "03-Operations/Operations Troubleshooting.md",
@@ -2883,7 +2899,8 @@
       ],
       "isIndex": false,
       "folder": "03-Operations",
-      "basename": "Operations Troubleshooting"
+      "basename": "Operations Troubleshooting",
+      "displayFileName": "Operations Troubleshooting.md"
     },
     {
       "id": "03-Operations/Operations Update Docs.md",
@@ -2979,12 +2996,13 @@
       ],
       "isIndex": false,
       "folder": "03-Operations",
-      "basename": "Operations Update Docs"
+      "basename": "Operations Update Docs",
+      "displayFileName": "Operations Update Docs.md"
     },
     {
       "id": "03-Operations/Operations.md",
       "path": "03-Operations/Operations.md",
-      "slug": "operations/operations",
+      "slug": "operations",
       "title": "Operations",
       "description": "Operational notes for updating docs, rebuilding the index, and checking common issues.",
       "language": "en",
@@ -2992,7 +3010,7 @@
       "pathWithoutLanguage": "03-Operations/Operations.md",
       "translationKey": "03-Operations/Operations",
       "translations": {
-        "en": "operations/operations"
+        "en": "operations"
       },
       "frontmatter": {
         "title": "Operations",
@@ -3080,7 +3098,8 @@
       ],
       "isIndex": true,
       "folder": "03-Operations",
-      "basename": "Operations"
+      "basename": "Operations",
+      "displayFileName": "Operations.md"
     },
     {
       "id": "04-Roadmap-Sample/01-Foundation/Roadmap Sample Discovery.md",
@@ -3148,7 +3167,8 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/01-Foundation",
-      "basename": "Roadmap Sample Discovery"
+      "basename": "Roadmap Sample Discovery",
+      "displayFileName": "Roadmap Sample Discovery.md"
     },
     {
       "id": "04-Roadmap-Sample/01-Foundation/Roadmap Sample Indexing.md",
@@ -3216,7 +3236,8 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/01-Foundation",
-      "basename": "Roadmap Sample Indexing"
+      "basename": "Roadmap Sample Indexing",
+      "displayFileName": "Roadmap Sample Indexing.md"
     },
     {
       "id": "04-Roadmap-Sample/02-Experience/Roadmap Sample Auth Admin.md",
@@ -3284,7 +3305,8 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/02-Experience",
-      "basename": "Roadmap Sample Auth Admin"
+      "basename": "Roadmap Sample Auth Admin",
+      "displayFileName": "Roadmap Sample Auth Admin.md"
     },
     {
       "id": "04-Roadmap-Sample/02-Experience/Roadmap Sample Viewer UX.md",
@@ -3352,7 +3374,8 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/02-Experience",
-      "basename": "Roadmap Sample Viewer UX"
+      "basename": "Roadmap Sample Viewer UX",
+      "displayFileName": "Roadmap Sample Viewer UX.md"
     },
     {
       "id": "04-Roadmap-Sample/03-Launch/Roadmap Sample Deployment.md",
@@ -3420,7 +3443,8 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/03-Launch",
-      "basename": "Roadmap Sample Deployment"
+      "basename": "Roadmap Sample Deployment",
+      "displayFileName": "Roadmap Sample Deployment.md"
     },
     {
       "id": "04-Roadmap-Sample/04-Future/Roadmap Sample Plugin Runtime.md",
@@ -3508,12 +3532,13 @@
       ],
       "isIndex": false,
       "folder": "04-Roadmap-Sample/04-Future",
-      "basename": "Roadmap Sample Plugin Runtime"
+      "basename": "Roadmap Sample Plugin Runtime",
+      "displayFileName": "Roadmap Sample Plugin Runtime.md"
     },
     {
       "id": "04-Roadmap-Sample/Roadmap Sample.md",
       "path": "04-Roadmap-Sample/Roadmap Sample.md",
-      "slug": "roadmap-sample/roadmap-sample",
+      "slug": "roadmap-sample",
       "title": "Roadmap Sample",
       "description": "A small set of dated sample items used to demonstrate the roadmap timeline and board.",
       "language": "en",
@@ -3521,7 +3546,7 @@
       "pathWithoutLanguage": "04-Roadmap-Sample/Roadmap Sample.md",
       "translationKey": "04-Roadmap-Sample/Roadmap Sample",
       "translations": {
-        "en": "roadmap-sample/roadmap-sample"
+        "en": "roadmap-sample"
       },
       "frontmatter": {
         "title": "Roadmap Sample",
@@ -3609,21 +3634,22 @@
       ],
       "isIndex": true,
       "folder": "04-Roadmap-Sample",
-      "basename": "Roadmap Sample"
+      "basename": "Roadmap Sample",
+      "displayFileName": "Roadmap Sample.md"
     },
     {
-      "id": "nl/00-Overview/Overview.md",
-      "path": "nl/00-Overview/Overview.md",
-      "slug": "nl/overview/overview",
+      "id": "nl/00-Overview/Overview NL.md",
+      "path": "nl/00-Overview/Overview NL.md",
+      "slug": "nl/overview",
       "title": "Docs Viewer Overzicht",
       "description": "Een compacte voorbeeld-vault voor docs-structuur, wikilinks, roadmap-velden en deployment flows.",
       "language": "nl",
       "detectedLanguage": "nl",
-      "pathWithoutLanguage": "00-Overview/Overview.md",
+      "pathWithoutLanguage": "00-Overview/Overview NL.md",
       "translationKey": "00-Overview/Overview",
       "translations": {
-        "en": "overview/overview",
-        "nl": "nl/overview/overview"
+        "en": "overview",
+        "nl": "nl/overview"
       },
       "frontmatter": {
         "title": "Docs Viewer Overzicht",
@@ -3642,9 +3668,10 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "00-Overview/Overview"
       },
-      "body": "# Docs Viewer Overzicht\n\n`docs-sample` is een kleine documentatie-vault die laat zien hoe je een project organiseert met mappen, indexpagina's, feature-pagina's, frontmatter en Obsidian-style wikilinks.\n\nGebruik deze vault als veilige standaardbron om de viewer te testen voordat je het project naar een echte docs-vault laat wijzen.\n\n## Snelle kaart\n\n| Sectie | Doel |\n| --- | --- |\n| [[Project\\|Project]] | Hoe de viewer werkt: source, index, runtime en UI |\n| [[Deployment\\|Deployment]] | Hoe je de viewer deployt |\n| [[Operations\\|Operations]] | Hoe je docs bijwerkt, themes wisselt en veelvoorkomende problemen oplost |\n| [[Roadmap Sample\\|Roadmap Sample]] | Gedateerde voorbeelditems voor de `#/roadmap` route |\n| [[Project Obsidian PlayMap\\|Obsidian Play Map]] | Lokale Obsidian companion plugin voor roadmap-data |\n\n## Kernidee\n\nDe viewer vervangt Obsidian niet. Je vault blijft de authoring source of truth, terwijl de web viewer een read-only runtime wordt:\n\n1. Markdown-bestanden staan in een vault.\n2. `npm run build:index` genereert `viewer/data/vault-index.json`.\n3. `viewer/` wordt als static files of via de optionele Node server geserveerd.\n\n## Gerelateerde pagina's\n\n- [[Project Architecture|Architecture]] - projectlagen en file-verantwoordelijkheden.\n- [[Project Multilingual Docs|Multilingual docs]] - optionele language folders en translation switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.\n- [[Deployment Static|Static deployment]] - het eenvoudigste publieke deployment-pad.\n- [[Deployment Node|Node deployment]] - deployment met auth en server endpoints.\n- [[Operations Update Docs|Update docs]] - hoe je de index ververst na markdown-wijzigingen.\n- [[Operations Themes|Theme operations]] - hoe je themes toevoegt, previewt, wisselt en publiceert.\n- [[Roadmap Sample|Roadmap Sample]] - sample roadmap items van mei tot december 2026.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - hoe lokale Obsidian editing aansluit op de web viewer.\n\n## When changing this page, check\n\n- [[Project|Project]], if the architecture summary changes.\n- [[Deployment|Deployment]], if the run/deploy model changes.\n- [[Operations|Operations]], if the docs update process changes.\n- [[Project Multilingual Docs|Multilingual docs]], if language support changes.\n- [[Project Themes|Themes]], if theme behavior changes.\n- [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.\n",
+      "body": "# Docs Viewer Overzicht\n\n`docs-sample` is een kleine documentatie-vault die laat zien hoe je een project organiseert met mappen, indexpagina's, feature-pagina's, frontmatter en Obsidian-style wikilinks.\n\nGebruik deze vault als veilige standaardbron om de viewer te testen voordat je het project naar een echte docs-vault laat wijzen.\n\n## Snelle kaart\n\n| Sectie | Doel |\n| --- | --- |\n| [[Project NL\\|Project NL]] | Hoe de viewer werkt: source, index, runtime en UI |\n| [[Deployment\\|Deployment]] | Hoe je de viewer deployt |\n| [[Operations\\|Operations]] | Hoe je docs bijwerkt, themes wisselt en veelvoorkomende problemen oplost |\n| [[Roadmap Sample\\|Roadmap Sample]] | Gedateerde voorbeelditems voor de `#/roadmap` route |\n| [[Project Obsidian PlayMap\\|Obsidian Play Map]] | Lokale Obsidian companion plugin voor roadmap-data |\n\n## Kernidee\n\nDe viewer vervangt Obsidian niet. Je vault blijft de authoring source of truth, terwijl de web viewer een read-only runtime wordt:\n\n1. Markdown-bestanden staan in een vault.\n2. `npm run build:index` genereert `viewer/data/vault-index.json`.\n3. `viewer/` wordt als static files of via de optionele Node server geserveerd.\n\n## Gerelateerde pagina's\n\n- [[Project Architecture|Architecture]] - projectlagen en file-verantwoordelijkheden.\n- [[Project Multilingual Docs NL|Multilingual docs NL]] - optionele language folders en translation switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.\n- [[Deployment Static|Static deployment]] - het eenvoudigste publieke deployment-pad.\n- [[Deployment Node|Node deployment]] - deployment met auth en server endpoints.\n- [[Operations Update Docs|Update docs]] - hoe je de index ververst na markdown-wijzigingen.\n- [[Operations Themes|Theme operations]] - hoe je themes toevoegt, previewt, wisselt en publiceert.\n- [[Roadmap Sample|Roadmap Sample]] - sample roadmap items van mei tot december 2026.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - hoe lokale Obsidian editing aansluit op de web viewer.\n\n## When changing this page, check\n\n- [[Project NL|Project NL]], if the architecture summary changes.\n- [[Deployment|Deployment]], if the run/deploy model changes.\n- [[Operations|Operations]], if the docs update process changes.\n- [[Project Multilingual Docs NL|Multilingual docs NL]], if language support changes.\n- [[Project Themes|Themes]], if theme behavior changes.\n- [[Roadmap Sample|Roadmap Sample]], if the demo roadmap changes.\n",
       "headings": [
         {
           "level": 1,
@@ -3674,9 +3701,9 @@
       ],
       "wikilinks": [
         {
-          "target": "Project",
+          "target": "Project NL",
           "heading": "",
-          "label": "Project"
+          "label": "Project NL"
         },
         {
           "target": "Deployment",
@@ -3704,9 +3731,9 @@
           "label": "Architecture"
         },
         {
-          "target": "Project Multilingual Docs",
+          "target": "Project Multilingual Docs NL",
           "heading": "",
-          "label": "Multilingual docs"
+          "label": "Multilingual docs NL"
         },
         {
           "target": "Project Themes",
@@ -3744,9 +3771,9 @@
           "label": "Obsidian Play Map"
         },
         {
-          "target": "Project",
+          "target": "Project NL",
           "heading": "",
-          "label": "Project"
+          "label": "Project NL"
         },
         {
           "target": "Deployment",
@@ -3759,9 +3786,9 @@
           "label": "Operations"
         },
         {
-          "target": "Project Multilingual Docs",
+          "target": "Project Multilingual Docs NL",
           "heading": "",
-          "label": "Multilingual docs"
+          "label": "Multilingual docs NL"
         },
         {
           "target": "Project Themes",
@@ -3776,17 +3803,18 @@
       ],
       "isIndex": true,
       "folder": "nl/00-Overview",
-      "basename": "Overview"
+      "basename": "Overview NL",
+      "displayFileName": "Overview.md"
     },
     {
-      "id": "nl/01-Project/Project Multilingual Docs.md",
-      "path": "nl/01-Project/Project Multilingual Docs.md",
+      "id": "nl/01-Project/Project Multilingual Docs NL.md",
+      "path": "nl/01-Project/Project Multilingual Docs NL.md",
       "slug": "nl/project/project-multilingual-docs",
       "title": "Meertalige Docs",
       "description": "Hoe optionele meertalige documentatie werkt in Docs Viewer.",
       "language": "nl",
       "detectedLanguage": "nl",
-      "pathWithoutLanguage": "01-Project/Project Multilingual Docs.md",
+      "pathWithoutLanguage": "01-Project/Project Multilingual Docs NL.md",
       "translationKey": "01-Project/Project Multilingual Docs",
       "translations": {
         "en": "project/project-multilingual-docs",
@@ -3810,9 +3838,10 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "01-Project/Project Multilingual Docs"
       },
-      "body": "# Meertalige Docs\n\nDocs Viewer kan draaien als single-language viewer of als meertalige viewer.\n\nDe feature is optioneel. Wanneer `i18n.enabled` `false` is, behoudt de viewer de normale page tree, aliases, search, wikilinks en routes.\n\n## Configuratie\n\nZet meertalige docs aan in `docs-viewer.config.json`:\n\n```json\n{\n  \"i18n\": {\n    \"enabled\": true,\n    \"defaultLanguage\": \"en\",\n    \"languages\": [\n      { \"code\": \"en\", \"label\": \"English\", \"basePath\": \"/\" },\n      { \"code\": \"nl\", \"label\": \"Nederlands\", \"basePath\": \"/nl\" }\n    ]\n  }\n}\n```\n\nHosted builds kunnen environment variables gebruiken:\n\n```env\nDOCS_VIEWER_I18N_ENABLED=true\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en\nDOCS_VIEWER_I18N_LANGUAGES=en:English:/,nl:Nederlands:/nl\n```\n\n## Foldermodel\n\nEr zijn twee ondersteunde layouts.\n\nDe migration-friendly layout houdt de default language aan de source root en zet extra talen in language folders:\n\n```text\ndocs/\n├── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nIn deze layout wordt `Project/Overview.md` behandeld als `defaultLanguage`, en `nl/Project/Overview.md` als de Nederlandse vertaling.\n\nDe strict language-folder layout zet iedere taal in een top-level language folder:\n\n```text\ndocs/\n├── en/\n│   └── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nHet pad na de language folder wordt de translation key. Root default-language pages gebruiken hun root-relative path als translation key. In beide voorbeelden delen de vertaalde pagina's `Project/Overview`.\n\nAls vertaalde bestanden geen mirrored paths kunnen gebruiken, zet dan dezelfde `translationKey` in frontmatter op elke vertaalde pagina.\n\n## Demo source\n\nDeze repository bevat een kleine twee-talige demo direct in `docs-sample/`:\n\n```text\ndocs-sample/\n├── 00-Overview/\n│   └── Overview.md\n├── 01-Project/\n│   └── Project Multilingual Docs.md\n└── nl/\n    ├── 00-Overview/\n    │   └── Overview.md\n    └── 01-Project/\n        └── Project Multilingual Docs.md\n```\n\nRun hem lokaal met:\n\n```bash\nDOCS_VIEWER_I18N_ENABLED=true \\\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en \\\nDOCS_VIEWER_I18N_LANGUAGES='en:English:/,nl:Nederlands:/nl' \\\nnode scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json\n\nPORT=8790 npm run dev\n```\n\nOpen daarna `/overview/overview` of `/nl/overview/overview` en gebruik de language selector.\n\n## Build output\n\nWanneer i18n aan staat, schrijft `npm run build:index`:\n\n- `page.language`;\n- `page.pathWithoutLanguage`;\n- `page.translationKey`;\n- `page.translations`;\n- `aliasesByLanguage`;\n- `treesByLanguage`;\n- `i18n` config metadata.\n\nWikilinks worden eerst in de huidige taal opgelost en vallen daarna terug op global aliases.\n\n## Runtime behavior\n\nDe browser runtime gebruikt de huidige page language om:\n\n- de sidebar te renderen zonder language folders als gewone nav sections te tonen;\n- wikilinks eerst in de huidige taal op te lossen;\n- een compacte language selector te tonen wanneer meerdere talen geconfigureerd zijn;\n- naar de vertaalde pagina te wisselen wanneer die translation bestaat.\n\nPagina's zonder vertaling houden unavailable language options disabled.\n\n## When changing this page, check\n\n- [[Project Index Build|Index build]], if indexed i18n fields change.\n- [[Project Runtime|Runtime]], if language switching or language-specific navigation changes.\n- [[Operations Update Docs|Update docs]], if the multilingual publishing flow changes.\n",
+      "body": "# Meertalige Docs\n\nDocs Viewer kan draaien als single-language viewer of als meertalige viewer.\n\nDe feature is optioneel. Wanneer `i18n.enabled` `false` is, behoudt de viewer de normale page tree, aliases, search, wikilinks en routes.\n\n## Configuratie\n\nZet meertalige docs aan in `docs-viewer.config.json`:\n\n```json\n{\n  \"i18n\": {\n    \"enabled\": true,\n    \"defaultLanguage\": \"en\",\n    \"languages\": [\n      { \"code\": \"en\", \"label\": \"English\", \"basePath\": \"/\" },\n      { \"code\": \"nl\", \"label\": \"Nederlands\", \"basePath\": \"/nl\" }\n    ]\n  }\n}\n```\n\nHosted builds kunnen environment variables gebruiken:\n\n```env\nDOCS_VIEWER_I18N_ENABLED=true\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en\nDOCS_VIEWER_I18N_LANGUAGES=en:English:/,nl:Nederlands:/nl\n```\n\n## Foldermodel\n\nEr zijn twee ondersteunde layouts.\n\nDe migration-friendly layout houdt de default language aan de source root en zet extra talen in language folders:\n\n```text\ndocs/\n├── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nIn deze layout wordt `Project/Overview.md` behandeld als `defaultLanguage`, en `nl/Project/Overview.md` als de Nederlandse vertaling.\n\nDe strict language-folder layout zet iedere taal in een top-level language folder:\n\n```text\ndocs/\n├── en/\n│   └── Project/Overview.md\n└── nl/\n    └── Project/Overview.md\n```\n\nHet pad na de language folder wordt de translation key. Root default-language pages gebruiken hun root-relative path als translation key. In beide voorbeelden delen de vertaalde pagina's `Project/Overview`.\n\nAls vertaalde bestanden geen mirrored paths kunnen gebruiken, zet dan dezelfde `translationKey` in frontmatter op elke vertaalde pagina.\n\n## Demo source\n\nDeze repository bevat een kleine twee-talige demo direct in `docs-sample/`:\n\n```text\ndocs-sample/\n├── 00-Overview/\n│   └── Overview.md\n├── 01-Project/\n│   ├── Project.md\n│   └── Project Multilingual Docs.md\n└── nl/\n    ├── 00-Overview/\n    │   └── Overview NL.md\n    └── 01-Project/\n        ├── Project NL.md\n        └── Project Multilingual Docs NL.md\n```\n\nDe `NL` suffix is bewust technisch. Hij houdt Obsidian page names uniek wanneer Engelse en Nederlandse files dezelfde menselijke titel delen. Docs Viewer verbergt een trailing language code die overeenkomt met de huidige page language in navigation, breadcrumbs, headings, wikilink labels en fallback file labels.\n\nOmdat vertaalde filenames niet gelijk hoeven te zijn, gebruiken deze sample pages dezelfde frontmatter key:\n\n```yaml\ntranslationKey: \"01-Project/Project Multilingual Docs\"\n```\n\nRun hem lokaal met:\n\n```bash\nDOCS_VIEWER_I18N_ENABLED=true \\\nDOCS_VIEWER_I18N_DEFAULT_LANGUAGE=en \\\nDOCS_VIEWER_I18N_LANGUAGES='en:English:/,nl:Nederlands:/nl' \\\nnode scripts/build_viewer_index.mjs docs-sample viewer/data/vault-index.json\n\nPORT=8790 npm run dev\n```\n\nOpen daarna `/overview` of `/nl/overview` en gebruik de language selector.\n\n## Build output\n\nWanneer i18n aan staat, schrijft `npm run build:index`:\n\n- `page.language`;\n- `page.pathWithoutLanguage`;\n- `page.translationKey`;\n- `page.translations`;\n- `aliasesByLanguage`;\n- `treesByLanguage`;\n- `i18n` config metadata.\n\nWikilinks worden eerst in de huidige taal opgelost en vallen daarna terug op global aliases.\n\n## Runtime behavior\n\nDe browser runtime gebruikt de huidige page language om:\n\n- de sidebar te renderen zonder language folders als gewone nav sections te tonen;\n- wikilinks eerst in de huidige taal op te lossen;\n- een compacte language selector te tonen wanneer meerdere talen geconfigureerd zijn;\n- naar de vertaalde pagina te wisselen wanneer die translation bestaat.\n\nPagina's zonder vertaling houden unavailable language options disabled.\n\n## When changing this page, check\n\n- [[Project Index Build|Index build]], if indexed i18n fields change.\n- [[Project Runtime|Runtime]], if language switching or language-specific navigation changes.\n- [[Operations Update Docs|Update docs]], if the multilingual publishing flow changes.\n",
       "headings": [
         {
           "level": 1,
@@ -3869,21 +3898,22 @@
       ],
       "isIndex": false,
       "folder": "nl/01-Project",
-      "basename": "Project Multilingual Docs"
+      "basename": "Project Multilingual Docs NL",
+      "displayFileName": "Project Multilingual Docs.md"
     },
     {
-      "id": "nl/01-Project/Project.md",
-      "path": "nl/01-Project/Project.md",
-      "slug": "nl/project/project",
+      "id": "nl/01-Project/Project NL.md",
+      "path": "nl/01-Project/Project NL.md",
+      "slug": "nl/project",
       "title": "Project",
       "description": "Hoe de docs viewer werkt.",
       "language": "nl",
       "detectedLanguage": "nl",
-      "pathWithoutLanguage": "01-Project/Project.md",
+      "pathWithoutLanguage": "01-Project/Project NL.md",
       "translationKey": "01-Project/Project",
       "translations": {
-        "en": "project/project",
-        "nl": "nl/project/project"
+        "en": "project",
+        "nl": "nl/project"
       },
       "frontmatter": {
         "title": "Project",
@@ -3902,9 +3932,10 @@
         "image": "",
         "logo": "",
         "metrics": "",
-        "status": "done"
+        "status": "done",
+        "translationKey": "01-Project/Project"
       },
-      "body": "# Project\n\nDocs Viewer is een lichte webclient voor Obsidian-style documentatie. Hij leest een markdown-vault, bouwt een JSON-index en rendert docs in de browser zonder zwaar frontend framework.\n\n## Projectonderdelen\n\n| Onderdeel | Pad | Rol |\n| --- | --- | --- |\n| Source vault | `docs-sample/` of je eigen vault | Markdown files, frontmatter, wikilinks en assets |\n| Build script | `scripts/build_viewer_index.mjs` | Bouwt pages, links, aliases, backlinks en folder tree |\n| Runtime server | `scripts/dev_server.mjs` | Serveert de viewer, auth en server endpoints |\n| Static viewer | `viewer/` | HTML, CSS, JS en `data/vault-index.json` |\n| Themes | `themes/` | JSON theme files voor build en runtime |\n| Viewer plugins | `plugins/` | Source files voor viewer-extensies zoals Roadmap |\n| Obsidian plugins | `plugins-obsidian/` | Catalogus voor lokale Obsidian companion plugins |\n| Play Map | `plugins-obsidian/playmap/` | Obsidian roadmap plugin folder die gebruikers naar een vault kunnen kopieren |\n| Config | `docs-viewer.config.json` | Kiest source en ignored folders |\n\n## Hoofdflow\n\n```text\nmarkdown vault\n  -> scripts/build_viewer_index.mjs\n  -> viewer/data/vault-index.json\n  -> viewer/app.js\n  -> browser UI\n```\n\n## Secties\n\n- [[Project Architecture|Architecture]] - lagen en verantwoordelijkheden.\n- [[Project Index Build|Index build]] - hoe markdown JSON wordt.\n- [[Project Runtime|Runtime]] - wat de browser UI en Node server doen.\n- [[Project Multilingual Docs|Multilingual docs]] - optionele language folders, translation pairs en language switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - hoe de lokale Obsidian plugin in de workflow past.\n\n## When changing this page, check\n\n- [[Project Architecture|Architecture]], if layer boundaries change.\n- [[Project Index Build|Index build]], if the `vault-index.json` format changes.\n- [[Project Runtime|Runtime]], if server or browser behavior changes.\n- [[Project Multilingual Docs|Multilingual docs]], if language folder behavior changes.\n- [[Project Themes|Themes]], if theme ownership or folder structure changes.\n- [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.\n",
+      "body": "# Project\n\nDocs Viewer is een lichte webclient voor Obsidian-style documentatie. Hij leest een markdown-vault, bouwt een JSON-index en rendert docs in de browser zonder zwaar frontend framework.\n\n## Projectonderdelen\n\n| Onderdeel | Pad | Rol |\n| --- | --- | --- |\n| Source vault | `docs-sample/` of je eigen vault | Markdown files, frontmatter, wikilinks en assets |\n| Build script | `scripts/build_viewer_index.mjs` | Bouwt pages, links, aliases, backlinks en folder tree |\n| Runtime server | `scripts/dev_server.mjs` | Serveert de viewer, auth en server endpoints |\n| Static viewer | `viewer/` | HTML, CSS, JS en `data/vault-index.json` |\n| Themes | `themes/` | JSON theme files voor build en runtime |\n| Viewer plugins | `plugins/` | Source files voor viewer-extensies zoals Roadmap |\n| Obsidian plugins | `plugins-obsidian/` | Catalogus voor lokale Obsidian companion plugins |\n| Play Map | `plugins-obsidian/playmap/` | Obsidian roadmap plugin folder die gebruikers naar een vault kunnen kopieren |\n| Config | `docs-viewer.config.json` | Kiest source en ignored folders |\n\n## Hoofdflow\n\n```text\nmarkdown vault\n  -> scripts/build_viewer_index.mjs\n  -> viewer/data/vault-index.json\n  -> viewer/app.js\n  -> browser UI\n```\n\n## Secties\n\n- [[Project Architecture|Architecture]] - lagen en verantwoordelijkheden.\n- [[Project Index Build|Index build]] - hoe markdown JSON wordt.\n- [[Project Runtime|Runtime]] - wat de browser UI en Node server doen.\n- [[Project Multilingual Docs NL|Multilingual docs NL]] - optionele language folders, translation pairs en language switching.\n- [[Project Themes|Themes]] - theme files, token groups, preview en fallback behavior.\n- [[Project Obsidian PlayMap|Obsidian Play Map]] - hoe de lokale Obsidian plugin in de workflow past.\n\n## When changing this page, check\n\n- [[Project Architecture|Architecture]], if layer boundaries change.\n- [[Project Index Build|Index build]], if the `vault-index.json` format changes.\n- [[Project Runtime|Runtime]], if server or browser behavior changes.\n- [[Project Multilingual Docs NL|Multilingual docs NL]], if language folder behavior changes.\n- [[Project Themes|Themes]], if theme ownership or folder structure changes.\n- [[Project Obsidian PlayMap|Obsidian Play Map]], if plugin organization changes.\n",
       "headings": [
         {
           "level": 1,
@@ -3949,9 +3980,9 @@
           "label": "Runtime"
         },
         {
-          "target": "Project Multilingual Docs",
+          "target": "Project Multilingual Docs NL",
           "heading": "",
-          "label": "Multilingual docs"
+          "label": "Multilingual docs NL"
         },
         {
           "target": "Project Themes",
@@ -3979,9 +4010,9 @@
           "label": "Runtime"
         },
         {
-          "target": "Project Multilingual Docs",
+          "target": "Project Multilingual Docs NL",
           "heading": "",
-          "label": "Multilingual docs"
+          "label": "Multilingual docs NL"
         },
         {
           "target": "Project Themes",
@@ -3996,7 +4027,8 @@
       ],
       "isIndex": true,
       "folder": "nl/01-Project",
-      "basename": "Project"
+      "basename": "Project NL",
+      "displayFileName": "Project.md"
     }
   ],
   "tree": {
@@ -4011,7 +4043,7 @@
         "pages": [
           {
             "title": "Docs Viewer Overview",
-            "slug": "overview/overview",
+            "slug": "overview",
             "path": "00-Overview/Overview.md",
             "fileName": "Overview.md",
             "isIndex": true
@@ -4068,7 +4100,7 @@
           },
           {
             "title": "Project",
-            "slug": "project/project",
+            "slug": "project",
             "path": "01-Project/Project.md",
             "fileName": "Project.md",
             "isIndex": true
@@ -4104,7 +4136,7 @@
           },
           {
             "title": "Deployment",
-            "slug": "deployment/deployment",
+            "slug": "deployment",
             "path": "02-Deployment/Deployment.md",
             "fileName": "Deployment.md",
             "isIndex": true
@@ -4140,7 +4172,7 @@
           },
           {
             "title": "Operations",
-            "slug": "operations/operations",
+            "slug": "operations",
             "path": "03-Operations/Operations.md",
             "fileName": "Operations.md",
             "isIndex": true
@@ -4230,7 +4262,7 @@
         "pages": [
           {
             "title": "Roadmap Sample",
-            "slug": "roadmap-sample/roadmap-sample",
+            "slug": "roadmap-sample",
             "path": "04-Roadmap-Sample/Roadmap Sample.md",
             "fileName": "Roadmap Sample.md",
             "isIndex": true
@@ -4250,9 +4282,9 @@
             "pages": [
               {
                 "title": "Docs Viewer Overzicht",
-                "slug": "nl/overview/overview",
-                "path": "nl/00-Overview/Overview.md",
-                "fileName": "Overview.md",
+                "slug": "nl/overview",
+                "path": "nl/00-Overview/Overview NL.md",
+                "fileName": "Overview NL.md",
                 "isIndex": true
               }
             ]
@@ -4266,15 +4298,15 @@
               {
                 "title": "Meertalige Docs",
                 "slug": "nl/project/project-multilingual-docs",
-                "path": "nl/01-Project/Project Multilingual Docs.md",
-                "fileName": "Project Multilingual Docs.md",
+                "path": "nl/01-Project/Project Multilingual Docs NL.md",
+                "fileName": "Project Multilingual Docs NL.md",
                 "isIndex": false
               },
               {
                 "title": "Project",
-                "slug": "nl/project/project",
-                "path": "nl/01-Project/Project.md",
-                "fileName": "Project.md",
+                "slug": "nl/project",
+                "path": "nl/01-Project/Project NL.md",
+                "fileName": "Project NL.md",
                 "isIndex": true
               }
             ]
@@ -4298,7 +4330,7 @@
           "pages": [
             {
               "title": "Docs Viewer Overview",
-              "slug": "overview/overview",
+              "slug": "overview",
               "path": "00-Overview/Overview.md",
               "fileName": "Overview.md",
               "isIndex": true
@@ -4355,7 +4387,7 @@
             },
             {
               "title": "Project",
-              "slug": "project/project",
+              "slug": "project",
               "path": "01-Project/Project.md",
               "fileName": "Project.md",
               "isIndex": true
@@ -4391,7 +4423,7 @@
             },
             {
               "title": "Deployment",
-              "slug": "deployment/deployment",
+              "slug": "deployment",
               "path": "02-Deployment/Deployment.md",
               "fileName": "Deployment.md",
               "isIndex": true
@@ -4427,7 +4459,7 @@
             },
             {
               "title": "Operations",
-              "slug": "operations/operations",
+              "slug": "operations",
               "path": "03-Operations/Operations.md",
               "fileName": "Operations.md",
               "isIndex": true
@@ -4517,7 +4549,7 @@
           "pages": [
             {
               "title": "Roadmap Sample",
-              "slug": "roadmap-sample/roadmap-sample",
+              "slug": "roadmap-sample",
               "path": "04-Roadmap-Sample/Roadmap Sample.md",
               "fileName": "Roadmap Sample.md",
               "isIndex": true
@@ -4539,9 +4571,9 @@
           "pages": [
             {
               "title": "Docs Viewer Overzicht",
-              "slug": "nl/overview/overview",
-              "path": "nl/00-Overview/Overview.md",
-              "fileName": "Overview.md",
+              "slug": "nl/overview",
+              "path": "nl/00-Overview/Overview NL.md",
+              "fileName": "Overview NL.md",
               "isIndex": true
             }
           ]
@@ -4555,15 +4587,15 @@
             {
               "title": "Meertalige Docs",
               "slug": "nl/project/project-multilingual-docs",
-              "path": "nl/01-Project/Project Multilingual Docs.md",
-              "fileName": "Project Multilingual Docs.md",
+              "path": "nl/01-Project/Project Multilingual Docs NL.md",
+              "fileName": "Project Multilingual Docs NL.md",
               "isIndex": false
             },
             {
               "title": "Project",
-              "slug": "nl/project/project",
-              "path": "nl/01-Project/Project.md",
-              "fileName": "Project.md",
+              "slug": "nl/project",
+              "path": "nl/01-Project/Project NL.md",
+              "fileName": "Project NL.md",
               "isIndex": true
             }
           ]
@@ -4580,10 +4612,10 @@
     "deployment node": "deployment/deployment-node",
     "deployment sample": "roadmap-sample/launch/roadmap-sample-deployment",
     "deployment static": "deployment/deployment-static",
-    "deployment": "deployment/deployment",
+    "deployment": "deployment",
     "discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
-    "docs viewer overview": "overview/overview",
-    "docs viewer overzicht": "nl/overview/overview",
+    "docs viewer overview": "overview",
+    "docs viewer overzicht": "nl/overview",
     "i18n": "project/project-multilingual-docs",
     "index build": "project/project-index-build",
     "indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
@@ -4596,25 +4628,28 @@
     "operations themes": "operations/operations-themes",
     "operations troubleshooting": "operations/operations-troubleshooting",
     "operations update docs": "operations/operations-update-docs",
-    "operations": "operations/operations",
-    "overview": "overview/overview",
-    "overzicht": "nl/overview/overview",
+    "operations": "operations",
+    "overview nl": "nl/overview",
+    "overview": "overview",
+    "overzicht": "nl/overview",
     "play map": "project/project-obsidian-playmap",
     "plugin runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
     "project architecture": "project/project-architecture",
     "project index build": "project/project-index-build",
+    "project multilingual docs nl": "nl/project/project-multilingual-docs",
     "project multilingual docs": "project/project-multilingual-docs",
+    "project nl": "nl/project",
     "project obsidian playmap": "project/project-obsidian-playmap",
     "project runtime": "project/project-runtime",
     "project themes": "project/project-themes",
-    "project": "project/project",
+    "project": "project",
     "roadmap sample auth admin": "roadmap-sample/experience/roadmap-sample-auth-admin",
     "roadmap sample deployment": "roadmap-sample/launch/roadmap-sample-deployment",
     "roadmap sample discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
     "roadmap sample indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
     "roadmap sample plugin runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
     "roadmap sample viewer ux": "roadmap-sample/experience/roadmap-sample-viewer-ux",
-    "roadmap sample": "roadmap-sample/roadmap-sample",
+    "roadmap sample": "roadmap-sample",
     "runtime": "project/project-runtime",
     "static deployment": "deployment/deployment-static",
     "switch themes": "operations/operations-themes",
@@ -4628,8 +4663,8 @@
   },
   "aliasesByLanguage": {
     "en": {
-      "overview": "overview/overview",
-      "docs viewer overview": "overview/overview",
+      "overview": "overview",
+      "docs viewer overview": "overview",
       "project architecture": "project/project-architecture",
       "architecture": "project/project-architecture",
       "project index build": "project/project-index-build",
@@ -4647,7 +4682,7 @@
       "project themes": "project/project-themes",
       "themes": "project/project-themes",
       "theme system": "project/project-themes",
-      "project": "project/project",
+      "project": "project",
       "deployment auth": "deployment/deployment-auth",
       "auth deployment": "deployment/deployment-auth",
       "oauth deployment": "deployment/deployment-auth",
@@ -4663,7 +4698,7 @@
       "troubleshooting": "operations/operations-troubleshooting",
       "operations update docs": "operations/operations-update-docs",
       "update docs": "operations/operations-update-docs",
-      "operations": "operations/operations",
+      "operations": "operations",
       "roadmap sample discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
       "discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
       "roadmap sample indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
@@ -4676,22 +4711,23 @@
       "deployment sample": "roadmap-sample/launch/roadmap-sample-deployment",
       "roadmap sample plugin runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
       "plugin runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
-      "roadmap sample": "roadmap-sample/roadmap-sample"
+      "roadmap sample": "roadmap-sample"
     },
     "nl": {
-      "overview": "nl/overview/overview",
-      "docs viewer overzicht": "nl/overview/overview",
-      "overzicht": "nl/overview/overview",
-      "project multilingual docs": "nl/project/project-multilingual-docs",
+      "overview nl": "nl/overview",
+      "docs viewer overzicht": "nl/overview",
+      "overzicht": "nl/overview",
+      "project multilingual docs nl": "nl/project/project-multilingual-docs",
       "meertalige docs": "nl/project/project-multilingual-docs",
       "multilingual docs": "nl/project/project-multilingual-docs",
       "i18n": "nl/project/project-multilingual-docs",
-      "project": "nl/project/project"
+      "project nl": "nl/project",
+      "project": "nl/project"
     }
   },
   "routeAliases": {
-    "00-overview/overview": "overview/overview",
-    "overview/overview": "overview/overview",
+    "00-overview/overview": "overview",
+    "overview/overview": "overview",
     "01-project/project-architecture": "project/project-architecture",
     "project/project-architecture": "project/project-architecture",
     "01-project/project-index-build": "project/project-index-build",
@@ -4704,24 +4740,24 @@
     "project/project-runtime": "project/project-runtime",
     "01-project/project-themes": "project/project-themes",
     "project/project-themes": "project/project-themes",
-    "01-project/project": "project/project",
-    "project/project": "project/project",
+    "01-project/project": "project",
+    "project/project": "project",
     "02-deployment/deployment-auth": "deployment/deployment-auth",
     "deployment/deployment-auth": "deployment/deployment-auth",
     "02-deployment/deployment-node": "deployment/deployment-node",
     "deployment/deployment-node": "deployment/deployment-node",
     "02-deployment/deployment-static": "deployment/deployment-static",
     "deployment/deployment-static": "deployment/deployment-static",
-    "02-deployment/deployment": "deployment/deployment",
-    "deployment/deployment": "deployment/deployment",
+    "02-deployment/deployment": "deployment",
+    "deployment/deployment": "deployment",
     "03-operations/operations-themes": "operations/operations-themes",
     "operations/operations-themes": "operations/operations-themes",
     "03-operations/operations-troubleshooting": "operations/operations-troubleshooting",
     "operations/operations-troubleshooting": "operations/operations-troubleshooting",
     "03-operations/operations-update-docs": "operations/operations-update-docs",
     "operations/operations-update-docs": "operations/operations-update-docs",
-    "03-operations/operations": "operations/operations",
-    "operations/operations": "operations/operations",
+    "03-operations/operations": "operations",
+    "operations/operations": "operations",
     "04-roadmap-sample/01-foundation/roadmap-sample-discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
     "roadmap-sample/foundation/roadmap-sample-discovery": "roadmap-sample/foundation/roadmap-sample-discovery",
     "04-roadmap-sample/01-foundation/roadmap-sample-indexing": "roadmap-sample/foundation/roadmap-sample-indexing",
@@ -4734,30 +4770,33 @@
     "roadmap-sample/launch/roadmap-sample-deployment": "roadmap-sample/launch/roadmap-sample-deployment",
     "04-roadmap-sample/04-future/roadmap-sample-plugin-runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
     "roadmap-sample/future/roadmap-sample-plugin-runtime": "roadmap-sample/future/roadmap-sample-plugin-runtime",
-    "04-roadmap-sample/roadmap-sample": "roadmap-sample/roadmap-sample",
-    "roadmap-sample/roadmap-sample": "roadmap-sample/roadmap-sample",
-    "nl/00-overview/overview": "nl/overview/overview",
-    "nl/overview/overview": "nl/overview/overview",
-    "nl/01-project/project-multilingual-docs": "nl/project/project-multilingual-docs",
+    "04-roadmap-sample/roadmap-sample": "roadmap-sample",
+    "roadmap-sample/roadmap-sample": "roadmap-sample",
+    "nl/00-overview/overview-nl": "nl/overview",
+    "nl/overview/overview-nl": "nl/overview",
+    "nl/overview/overview": "nl/overview",
+    "nl/01-project/project-multilingual-docs-nl": "nl/project/project-multilingual-docs",
+    "nl/project/project-multilingual-docs-nl": "nl/project/project-multilingual-docs",
     "nl/project/project-multilingual-docs": "nl/project/project-multilingual-docs",
-    "nl/01-project/project": "nl/project/project",
-    "nl/project/project": "nl/project/project",
-    "overview": "overview/overview",
-    "project": "project/project",
-    "deployment": "deployment/deployment",
-    "operations": "operations/operations",
-    "roadmap-sample": "roadmap-sample/roadmap-sample",
-    "nl/overview": "nl/overview/overview",
-    "nl/project": "nl/project/project"
+    "nl/01-project/project-nl": "nl/project",
+    "nl/project/project-nl": "nl/project",
+    "nl/project/project": "nl/project",
+    "overview": "overview",
+    "project": "project",
+    "deployment": "deployment",
+    "operations": "operations",
+    "roadmap-sample": "roadmap-sample",
+    "nl/overview": "nl/overview",
+    "nl/project": "nl/project"
   },
   "assets": {},
   "resolvedLinks": {
-    "overview/overview": [
+    "overview": [
       {
         "target": "Project",
         "heading": "",
         "label": "Project",
-        "slug": "project/project",
+        "slug": "project",
         "exists": true
       },
       {
@@ -4771,14 +4810,14 @@
         "target": "Operations",
         "heading": "",
         "label": "Operations",
-        "slug": "operations/operations",
+        "slug": "operations",
         "exists": true
       },
       {
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -4841,7 +4880,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -4855,7 +4894,7 @@
         "target": "Project",
         "heading": "",
         "label": "Project",
-        "slug": "project/project",
+        "slug": "project",
         "exists": true
       },
       {
@@ -4869,7 +4908,7 @@
         "target": "Operations",
         "heading": "",
         "label": "Operations",
-        "slug": "operations/operations",
+        "slug": "operations",
         "exists": true
       },
       {
@@ -4890,7 +4929,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       }
     ],
@@ -4906,7 +4945,7 @@
         "target": "Project",
         "heading": "",
         "label": "Project",
-        "slug": "project/project",
+        "slug": "project",
         "exists": true
       },
       {
@@ -5045,7 +5084,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       }
     ],
@@ -5151,7 +5190,7 @@
         "exists": true
       }
     ],
-    "project/project": [
+    "project": [
       {
         "target": "Project Architecture",
         "heading": "",
@@ -5355,7 +5394,7 @@
         "exists": true
       }
     ],
-    "deployment/deployment": [
+    "deployment": [
       {
         "target": "Deployment Static",
         "heading": "",
@@ -5483,7 +5522,7 @@
         "target": "Project",
         "heading": "",
         "label": "Project",
-        "slug": "project/project",
+        "slug": "project",
         "exists": true
       },
       {
@@ -5552,7 +5591,7 @@
         "exists": true
       }
     ],
-    "operations/operations": [
+    "operations": [
       {
         "target": "Operations Update Docs",
         "heading": "",
@@ -5608,7 +5647,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -5663,7 +5702,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       }
     ],
@@ -5688,7 +5727,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -5699,7 +5738,7 @@
         "exists": true
       }
     ],
-    "roadmap-sample/roadmap-sample": [
+    "roadmap-sample": [
       {
         "target": "Roadmap Sample Discovery",
         "heading": "",
@@ -5757,33 +5796,33 @@
         "exists": true
       }
     ],
-    "nl/overview/overview": [
+    "nl/overview": [
       {
-        "target": "Project",
+        "target": "Project NL",
         "heading": "",
-        "label": "Project",
-        "slug": "nl/project/project",
+        "label": "Project NL",
+        "slug": "nl/project",
         "exists": true
       },
       {
         "target": "Deployment",
         "heading": "",
         "label": "Deployment",
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "exists": true
       },
       {
         "target": "Operations",
         "heading": "",
         "label": "Operations",
-        "slug": "operations/operations",
+        "slug": "operations",
         "exists": true
       },
       {
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -5801,9 +5840,9 @@
         "exists": true
       },
       {
-        "target": "Project Multilingual Docs",
+        "target": "Project Multilingual Docs NL",
         "heading": "",
-        "label": "Multilingual docs",
+        "label": "Multilingual docs NL",
         "slug": "nl/project/project-multilingual-docs",
         "exists": true
       },
@@ -5846,7 +5885,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       },
       {
@@ -5857,30 +5896,30 @@
         "exists": true
       },
       {
-        "target": "Project",
+        "target": "Project NL",
         "heading": "",
-        "label": "Project",
-        "slug": "nl/project/project",
+        "label": "Project NL",
+        "slug": "nl/project",
         "exists": true
       },
       {
         "target": "Deployment",
         "heading": "",
         "label": "Deployment",
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "exists": true
       },
       {
         "target": "Operations",
         "heading": "",
         "label": "Operations",
-        "slug": "operations/operations",
+        "slug": "operations",
         "exists": true
       },
       {
-        "target": "Project Multilingual Docs",
+        "target": "Project Multilingual Docs NL",
         "heading": "",
-        "label": "Multilingual docs",
+        "label": "Multilingual docs NL",
         "slug": "nl/project/project-multilingual-docs",
         "exists": true
       },
@@ -5895,7 +5934,7 @@
         "target": "Roadmap Sample",
         "heading": "",
         "label": "Roadmap Sample",
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "exists": true
       }
     ],
@@ -5922,7 +5961,7 @@
         "exists": true
       }
     ],
-    "nl/project/project": [
+    "nl/project": [
       {
         "target": "Project Architecture",
         "heading": "",
@@ -5945,9 +5984,9 @@
         "exists": true
       },
       {
-        "target": "Project Multilingual Docs",
+        "target": "Project Multilingual Docs NL",
         "heading": "",
-        "label": "Multilingual docs",
+        "label": "Multilingual docs NL",
         "slug": "nl/project/project-multilingual-docs",
         "exists": true
       },
@@ -5987,9 +6026,9 @@
         "exists": true
       },
       {
-        "target": "Project Multilingual Docs",
+        "target": "Project Multilingual Docs NL",
         "heading": "",
-        "label": "Multilingual docs",
+        "label": "Multilingual docs NL",
         "slug": "nl/project/project-multilingual-docs",
         "exists": true
       },
@@ -6010,13 +6049,13 @@
     ]
   },
   "backlinks": {
-    "project/project": [
+    "project": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6030,11 +6069,11 @@
     ],
     "roadmap-sample/launch/roadmap-sample-deployment": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6046,7 +6085,7 @@
         "title": "Static Deployment"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
@@ -6054,39 +6093,39 @@
         "title": "Deployment"
       },
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
-    "operations/operations": [
+    "operations": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
-    "roadmap-sample/roadmap-sample": [
+    "roadmap-sample": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6106,55 +6145,55 @@
         "title": "Plugin Runtime"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
     "project/project-obsidian-playmap": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ],
     "project/project-architecture": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6162,11 +6201,11 @@
         "title": "Runtime"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
@@ -6178,25 +6217,25 @@
         "title": "Plugin Runtime"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ],
     "project/project-multilingual-docs": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6216,11 +6255,11 @@
         "title": "Runtime"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
@@ -6230,11 +6269,11 @@
     ],
     "project/project-themes": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6262,11 +6301,11 @@
         "title": "Runtime"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
@@ -6274,7 +6313,7 @@
         "title": "Auth Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6282,29 +6321,29 @@
         "title": "Theme Operations"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ],
     "deployment/deployment-static": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6316,11 +6355,11 @@
         "title": "Runtime"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6332,13 +6371,13 @@
         "title": "Update Docs"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
     "deployment/deployment-node": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6354,15 +6393,15 @@
         "title": "Auth Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6382,13 +6421,13 @@
         "title": "Auth and Admin"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
     "operations/operations-update-docs": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6404,7 +6443,7 @@
         "title": "Static Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6416,7 +6455,7 @@
         "title": "Troubleshooting"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
@@ -6424,11 +6463,11 @@
         "title": "Deployment"
       },
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
@@ -6438,7 +6477,7 @@
     ],
     "operations/operations-themes": [
       {
-        "slug": "overview/overview",
+        "slug": "overview",
         "title": "Docs Viewer Overview"
       },
       {
@@ -6478,11 +6517,11 @@
         "title": "Static Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6494,11 +6533,11 @@
         "title": "Update Docs"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
@@ -6516,11 +6555,11 @@
         "title": "Themes"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
@@ -6528,7 +6567,7 @@
         "title": "Update Docs"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
@@ -6540,11 +6579,11 @@
         "title": "Meertalige Docs"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ],
@@ -6566,11 +6605,11 @@
         "title": "Themes"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
-        "slug": "project/project",
+        "slug": "project",
         "title": "Project"
       },
       {
@@ -6586,7 +6625,7 @@
         "title": "Static Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6594,7 +6633,7 @@
         "title": "Viewer UX"
       },
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       },
       {
@@ -6602,11 +6641,11 @@
         "title": "Meertalige Docs"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ],
@@ -6624,15 +6663,15 @@
         "title": "Node Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
-        "slug": "operations/operations",
+        "slug": "operations",
         "title": "Operations"
       },
       {
@@ -6650,7 +6689,7 @@
         "title": "Node Deployment"
       },
       {
-        "slug": "deployment/deployment",
+        "slug": "deployment",
         "title": "Deployment"
       },
       {
@@ -6668,69 +6707,69 @@
     ],
     "roadmap-sample/foundation/roadmap-sample-discovery": [
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
     "roadmap-sample/foundation/roadmap-sample-indexing": [
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
     "roadmap-sample/experience/roadmap-sample-viewer-ux": [
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
     "roadmap-sample/experience/roadmap-sample-auth-admin": [
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
     "roadmap-sample/future/roadmap-sample-plugin-runtime": [
       {
-        "slug": "roadmap-sample/roadmap-sample",
+        "slug": "roadmap-sample",
         "title": "Roadmap Sample"
       }
     ],
-    "nl/project/project": [
+    "nl/project": [
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
-    "deployment/deployment": [
+    "deployment": [
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       }
     ],
     "nl/project/project-multilingual-docs": [
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/overview/overview",
+        "slug": "nl/overview",
         "title": "Docs Viewer Overzicht"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       },
       {
-        "slug": "nl/project/project",
+        "slug": "nl/project",
         "title": "Project"
       }
     ]
